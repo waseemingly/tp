@@ -7,11 +7,11 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `mahidharah@gmail.com`
 
-## Project team G10-02
+## Project team T09-02
 
 ### C Mahidharah Rajendran
 
-<img src="images/IMG_9903.jpg" width="200px">
+<img src="images/mahidharah.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/Mahidharah)]
@@ -19,15 +19,14 @@ You can reach us at the email `mahidharah@gmail.com`
 
 * Role: Developer
 
-### Jane Doe
+### Wan Mingyu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mingyu-wan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/mingyu-wan)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
 
 ### Johnny Doe
 
