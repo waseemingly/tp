@@ -19,15 +19,13 @@ You can reach us at the email `mahidharah@gmail.com`
 
 * Role: Developer
 
-### Jane Doe
+### Elizabeth Mao Zhi Min
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/emzm2023.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/emzm2023)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
 
 ### Johnny Doe
 
