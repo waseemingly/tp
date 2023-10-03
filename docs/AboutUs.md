@@ -7,11 +7,11 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `mahidharah@gmail.com`
 
-## Project team G10-02
+## Project team T09-02
 
 ### C Mahidharah Rajendran
 
-<img src="images/IMG_9903.jpg" width="200px">
+<img src="images/mahidharah.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/Mahidharah)]
@@ -24,6 +24,14 @@ You can reach us at the email `mahidharah@gmail.com`
 <img src="images/emzm2023.png" width="200px">
 
 [[github](http://github.com/emzm2023)]
+
+
+### Wan Mingyu
+
+<img src="images/mingyu-wan.png" width="200px">
+
+[[github](http://github.com/mingyu-wan)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 
