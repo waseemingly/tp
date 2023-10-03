@@ -257,64 +257,89 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of colleague contacts internally
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* an employee or employer within a software company
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: combines contact management with role-specific features, making it easy for employees 
+to manage company contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​         | I want to …​                                                       | So that I can…​                                                                                |
+|----------|-----------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| `* * *`  | new user        | see usage instructions                                             | refer to instructions when I forget how to use the App                                         |
+| `* * *`  | company boss    | set up a new company profile                                       | allow employees of my organisation to use the App                                              |
+| `* * *`  | HR staff        | add new employee details quickly                                   | keep the employee directory up-to-date                                                         |
+| `* * *`  | HR staff        | add new employees details directly from a file                     | import employee details easily                                                                 |
+| `* * *`  | HR staff        | delete employee details                                            | keep the employee directory updated when an employee leaves                                    |
+| `* * *`  | HR staff        | see restricted salary information of employees                     | review and make changes to it if necessary                                                     |
+| `* * *`  | HR staff        | access all the information of all the employees in my company      | quickly communicate with them regarding HR matters                                             |
+| `* * *`  | company boss    | access all employees' contacts                                     | reach out quickly for updates or discussions                                                   |
+| `* * *`  | employee        | access the contact details of other employees                      | get in touch with them if necessary                                                            |
+| `* * *`  | employee        | search up other employees' contacts based on their details         | to locate their information easily                                                             |
+| `* * *`  | developer       | see the project-specific roles and Github accounts of my teammates | contact the relevant team member for project-related issues                                    |
+| `* * *`  | employee        | login as a specific user                                           | access user-specific features                                                                  |
+| `* * *`  | project manager | edit the project-specific roles of project collaborators under me  | allow project collaborators to get in touch with the relevant people regarding project matters |
+| `* *`    | company boss    | set up a company information page                                  | allow employees to view the company's mission, vision, and values                              |
+| `* *`    | employee        | view my company's information page                                 | be aligned with the organisation's mission, vision, and values                                 |
+| `* *`    | company boss    | view project manager reports on resource allocation                | ensure projects are running efficiently                                                        |
+| `* *`    | project manager | view a list of project collaborators and their contact information | access contact details easily and quickly assemble teams for new projects                                                                                              |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `AddressBook`, and the **Actor** is the `user`, unless specified otherwise)unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add a single employee**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an employee.
+2.  AddressBook requests the details of the employee.
+3.  User enters the requested details in the required format.
+4.  AddressBook requests for confirmation.
+5.  User confirms.
+6.  AddressBook adds the new employee to the company database.
 
-    Use case ends.
+       Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The request is done by a non-HR staff.
 
-  Use case ends.
+  * 1a1. AddressBook informs user that user does not have the access rights to add a new employee.
+  
+    Use case ends.
 
-* 3a. The given index is invalid.
+* 3a1. The given details are invalid or in an invalid format.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. AddressBook shows an error message and requests for correct input.
+    * 3a2. User enters requested details again.
+        
+      Steps 3a1-3a2 are repeated until details entered are valid.
+      Use case resumes at step 4.
 
-      Use case resumes at step 2.
+* *a. At any time, User chooses to cancel the action.
+  * *a1. AddressBook requests to confirm the cancellation.
+  * *a2. User confirms the cancellation.
 
-*{More to be added}*
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  
 
 *{More to be added}*
 
