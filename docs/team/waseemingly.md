@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Mahidharah's Project Portfolio Page
+title: Waseem's Project Portfolio Page
 ---
 
 ### Project: CodeContact
@@ -11,8 +11,8 @@ Given below are my contributions to the project.
 
 * **New Feature**: FEATURE1
   * What it does:
-  * Justification: 
-  * Highlights: 
+  * Justification:
+  * Highlights:
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 
@@ -20,20 +20,22 @@ Given below are my contributions to the project.
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
   * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
-    
-* **Code contributed**: [RepoSense link]()
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=waseemingly&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
 
 * **Project management(team-based tasks contributions)**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 
-* **Documentation Contributions**:
+* **Documentation Contributions**: 
   * User Guide Contributions:
-    * Added documentation for the features `delete` and `find` [\#72]()
+    * Added documentation for the features `edit` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide Contributions:
     * Added implementation details of the `delete` feature.
+  * README Contributions:
+    * Maintained README page of repository
 
 
 * **Community (Review/mentoring contributions)**:
@@ -42,11 +44,11 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
   * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
-    
+
 * **Contributions beyond the project team:**:
   * NOTHING
 
-  
+
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())
   * Integrated a new Github plugin (CircleCI) to the team repo
