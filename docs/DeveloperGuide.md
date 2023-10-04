@@ -257,64 +257,182 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of colleague contacts internally
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* an employee or employer within a software company
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: combines contact management with role-specific features, making it easy for employees 
+to manage company contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​         | I want to …​                                                        | So that I can…​                                                                                |
+|----------|-----------------|---------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| `* * *`  | new user        | see usage instructions                                              | refer to instructions when I forget how to use the App                                         |
+| `* * *`  | company boss    | set up a new company profile                                        | allow employees of my organisation to use the App                                              |
+| `* * *`  | company boss    | view all employee's contacts and details                            | quickly communicate with my employees                                                          |
+| `* * *`  | HR staff        | add new employee details quickly                                    | keep the employee directory up-to-date                                                         |
+| `* * *`  | HR staff        | add new employees details directly from a file                      | import employee details easily                                                                 |
+| `* * *`  | HR staff        | delete employee details                                             | keep the employee directory updated when an employee leaves                                    |
+| `* * *`  | HR staff        | view restricted salary information of employees                     | review and make changes to it if necessary                                                     |
+| `* * *`  | HR staff        | view all the information of all the employees in the company        | quickly communicate with them regarding HR matters                                             |
+| `* * *`  | HR staff        | edit any information of all the employees in the company            | keep the employee directory updated                                                            |
+| `* * *`  | any employee    | login as a specific user                                            | access user-specific features                                                                  |
+| `* * *`  | any employee    | view the contact details of other employees                         | get in touch with them if necessary                                                            |
+| `* * *`  | any employee    | search up other employees' contacts based on their details          | to locate their information easily                                                             |
+| `* * *`  | developer       | view the project-specific roles and Github accounts of my teammates | contact the relevant team member for project-related issues                                    |
+| `* * *`  | project manager | edit the project-specific roles of project collaborators under me   | allow project collaborators to get in touch with the relevant people regarding project matters |
+| `* *`    | company boss    | set up a company information page                                   | allow employees to view the company's mission, vision, and values                              |
+| `* *`    | company boss    | view project manage reports on resource allocation                  | ensure projects are running efficiently                                                        |
+| `* *`    | employee        | view my company's information page                                  | be aligned with the organisation's mission, vision, and values                                 |
+| `* *`    | project manager | view a list of project collaborators and their contact information  | access contact details easily and quickly assemble teams for new projects                      |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `AddressBook`, and the **Actor** is the `user`, unless specified otherwise)unless specified otherwise)
 
-**Use case: Delete a person**
+#### **Use case:** UC1 - Add a single employee
+
+**Actor:** HR staff
+
+**Preconditions:** User is logged in as an HR staff
+
+**Guarantees:**
+1. A new profile will be added to the company's system after every successful addition
+2. A login credential for the added user will be created
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an employee.
+2.  AddressBook requests the details of the employee.
+3.  User enters the requested details in the required format.
+4.  AddressBook requests for confirmation.
+5.  User confirms.
+6.  AddressBook adds the new employee to the company database.
+
+       Use case ends.
+
+**Extensions**
+
+* 1a. The request is done by a non-HR staff.
+
+  * 1a1. AddressBook informs user that user does not have the access rights to add a new employee.
+  
+    Use case ends.
+
+* 3a. The given details are invalid or in an invalid format.
+
+    * 3a1. AddressBook shows an error message and requests for correct input.
+    * 3a2. User enters requested details again.
+        
+      Steps 3a1-3a2 are repeated until details entered are valid.
+      Use case resumes at step 4.
+
+* *a. At any time, User chooses to cancel the action.
+  * *a1. AddressBook requests to confirm the cancellation.
+  * *a2. User confirms the cancellation.
+
+    Use case ends.
+
+#### **Use case:** UC2 - Logging in as a specific user
+
+**Actor:** Any Employee
+
+**Preconditions:**
+1. The employee has valid login credentials provided by the HR.
+
+**Guarantees:**
+1. User is logged into their account system.
+2. They only have the access rights to the user-specific features (eg. developers can only modify their personal 
+particulars and no other information).
+
+**MSS**
+1. User accesses the login page of the system.
+2. System presents the login page to the user.
+3. User enters their own login credentials and submits to the system.
+4. System validates the user's login credentials.
+5. User logs in to system.
+
+   Use case ends.
+
+**Extensions**
+* 4a. The login credentials are invalid (no record it is created).
+  * 4a1. System shows an error message and directs user to seek HR for help.
+
+    Use case ends.
+
+* 4b. The login credentials has an invalid format.
+  * 4b1. System shows an error message and requests for correct input.
+  * 4b2. User enters requested details again.
+    Step 4b1-4b2 are repeated until details entered are valid. Use case resumed at step 5.
+
+#### **Use case:** UC3 - Search for other employee's contacts
+
+**Actor:** Any Employee
+
+**Precondition:**
+1. User is logged in.
+2. System identifies what role the user is (so that no irrelevant information is shown).
+
+**Guarantees:**
+1. User can view the contact information and details of other users based on the 
+search keyword.
+2. User can only view relevant information their roles have access rights to.
+
+**MSS**
+1. User requests to search an employee
+2. System requests the keywords for the search.
+3. User enters the requested details in the required format.
+4. System processes the search request and retrieves a list of employees matching the provided criteria.
+5. System displays search results, which include the names of employees who match the search criteria along
+with information that user's role has access rights to.
 
     Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
+* 3a. The search has an invalid type or format.
+  * 3a1. System shows an error message and requests dor correct input.
+  * 3a2. User enters requested details again.
+    Steps 3a1-3a2 are repeated until details entered are valid. Use case resumes at step 4.
+* 4a. There is no matching list of employees.
+  * 4a1. System show message that no relevant information is found
+    
+    Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### System/Performance Requirements
+* Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+#### Reliability Requirements
+* Should be able to handle failures and show relevant error messages (hardware/network failures)
+* Should ensure that data is protected from corruption or loss
+* Should be able to recover immediately after inaccurate/invalid commands
+#### Usability Requirements
+* Should follow specific code design and usability guidelines
+* The user interface shall follow a consistent design pattern and layout throughout the application.
+* There shall be clear and intuitive pathways for accomplishing common tasks.
+* Users shall receive informative feedback on their actions (e.g., success messages, error messages) 
+in a clear and user-friendly manner.
+* Context-sensitive help and tooltips shall be available to assist users in understanding complex features.
+* A comprehensive user manual or online documentation shall be provided to explain how to use the application.
+#### Process Requirements
+* The project is expected to adhere to a schedule that completes a milestone set every two weeks.
+* The projsct shall follow a iterative breadth-first development methodology
+* Automated testing suits shall be maintained and run for each build
+* Code review shall be conducted for all new code contrivution, with at least one team member 
+reviewing each piece of code before it is merged
+* All project source code shall be stored in a version control system (e.g., Git), 
+and commits should follow a consistent naming convention.
+* Coding standards and style guidelines shall be defined and followed consistently by all development team members.
 
 *{More to be added}*
 
