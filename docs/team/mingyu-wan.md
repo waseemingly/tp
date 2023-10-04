@@ -3,9 +3,9 @@ layout: page
 title: Mingyu's Project Portfolio Page
 ---
 
-### Project: CodeContacts
+### Project: CodeContact
 
-CodeContacts is a desktop address book solution for Software Engineering companies. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+CodeContact is a desktop address book solution for Software Engineering companies. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
