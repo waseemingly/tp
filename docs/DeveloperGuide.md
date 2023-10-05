@@ -313,11 +313,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add an employee.
-2.  AddressBook requests the details of the employee.
+2.  System requests the details of the employee.
 3.  User enters the requested details in the required format.
-4.  AddressBook requests for confirmation.
+4.  System requests for confirmation.
 5.  User confirms.
-6.  AddressBook adds the new employee to the company database.
+6.  System adds the new employee to the company database.
 
        Use case ends.
 
@@ -325,20 +325,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The request is done by a non-HR staff.
 
-  * 1a1. AddressBook informs user that user does not have the access rights to add a new employee.
+  * 1a1. System informs user that user does not have the access rights to add a new employee.
   
     Use case ends.
 
 * 3a. The given details are invalid or in an invalid format.
 
-    * 3a1. AddressBook shows an error message and requests for correct input.
+    * 3a1. System informs user there is an error and requests for correct input.
     * 3a2. User enters requested details again.
         
       Steps 3a1-3a2 are repeated until details entered are valid.
+      
       Use case resumes at step 4.
 
 * *a. At any time, User chooses to cancel the action.
-  * *a1. AddressBook requests to confirm the cancellation.
+  * *a1. System requests to confirm the cancellation.
   * *a2. User confirms the cancellation.
 
     Use case ends.
@@ -366,14 +367,17 @@ particulars and no other information).
 
 **Extensions**
 * 4a. The login credentials are invalid (no record it is created).
-  * 4a1. System shows an error message and directs user to seek HR for help.
+  * 4a1. System informs user there is an erro and directs user to seek HR for help.
 
     Use case ends.
 
 * 4b. The login credentials has an invalid format.
-  * 4b1. System shows an error message and requests for correct input.
+  * 4b1. System informs user there is an error and requests for correct input.
   * 4b2. User enters requested details again.
-    Step 4b1-4b2 are repeated until details entered are valid. Use case resumed at step 5.
+    
+    Step 4b1-4b2 are repeated until details entered are valid. 
+    
+    Use case resumed at step 5.
 
 #### **Use case:** UC3 - Search for other employee's contacts
 
@@ -400,11 +404,15 @@ with information that user's role has access rights to.
 
 **Extensions**
 * 3a. The search has an invalid type or format.
-  * 3a1. System shows an error message and requests dor correct input.
+  * 3a1. System informs user there is an error and requests for correct input.
   * 3a2. User enters requested details again.
-    Steps 3a1-3a2 are repeated until details entered are valid. Use case resumes at step 4.
+    
+    Steps 3a1-3a2 are repeated until details entered are valid. 
+    
+    Use case resumes at step 4.
+  
 * 4a. There is no matching list of employees.
-  * 4a1. System show message that no relevant information is found
+  * 4a1. System informs user that no relevant information is found
     
     Use case ends.
 
