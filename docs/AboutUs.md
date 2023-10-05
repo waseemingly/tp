@@ -33,6 +33,15 @@ You can reach us at the email `mahidharah@gmail.com`
 
 * Role: Developer
 
+### Mathan Chidambaranathan
+
+<img src="images/ncmathan.png" width="200px">
+
+[[github](http://github.com/ncmathan)]
+[[portfolio](team/ncmathan.md)]
+
+* Role: Developer
+
 ### Mohammed Waseem Malik
 
 <img src="images/waseemingly.png" width="200px">
