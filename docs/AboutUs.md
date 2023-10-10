@@ -2,8 +2,6 @@
 layout: page
 title: About Us
 ---
-# About Us
-
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at the email `mahidharah@gmail.com`
@@ -54,12 +52,3 @@ You can reach us at the email `mahidharah@gmail.com`
 * Role: Developer
 * Responsibilities: Deliverables and deadlines
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/waseemingly.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
