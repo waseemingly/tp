@@ -10,12 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Project;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -28,46 +24,53 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String dateJoined;
+    private final String username;
+    private final String password;
+    private final String role;
+    private final String salary;
+    private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
-    /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
-     */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("dateJoined") String dateJoined, @JsonProperty("username") String username,
+                             @JsonProperty("password") String password, @JsonProperty("role") String role,
+                             @JsonProperty("salary") String salary,
+                             @JsonProperty("projects") List<JsonAdaptedProject> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dateJoined = dateJoined;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.salary = salary;
         if (tags != null) {
-            this.tags.addAll(tags);
+            this.projects.addAll(tags);
         }
     }
 
-    /**
-     * Converts a given {@code Person} into this class for Jackson use.
-     */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        dateJoined = source.getDateJoined().toString();
+        username = source.getUsername().username;
+        password = source.getPassword().password;
+        role = source.getRole().role;
+        salary = source.getSalary().toString();
+        projects.addAll(source.getProjects().stream()
+                .map(JsonAdaptedProject::new)
                 .collect(Collectors.toList()));
     }
 
-    /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
-     */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+        final List<Project> personProjects = new ArrayList<>();
+        for (JsonAdaptedProject tag : projects) {
+            personProjects.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +105,48 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (dateJoined == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DateJoined.class.getSimpleName()));
+        }
+        if (!DateJoined.isValidDate(dateJoined)) {
+            throw new IllegalValueException(DateJoined.MESSAGE_CONSTRAINTS);
+        }
+        final DateJoined modelDateJoined = new DateJoined(dateJoined);
+
+        if (username == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Username.class.getSimpleName()));
+        }
+        if (!Username.isValidUsername(username)) {
+            throw new IllegalValueException(Username.MESSAGE_CONSTRAINTS);
+        }
+        final Username modelUsername = new Username(username);
+
+        if (password == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Password.class.getSimpleName()));
+        }
+        if (!Password.isValidPassword(password)) {
+            throw new IllegalValueException(Password.MESSAGE_CONSTRAINTS);
+        }
+        final Password modelPassword = new Password(password);
+
+        if (role == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+        }
+        if (!Role.isValidRole(role)) {
+            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        }
+        final Role modelRole = new Role(role);
+
+        if (salary == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));
+        }
+        if (!Salary.isValidSalary(salary)) {
+            throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        final Salary modelSalary = new Salary(salary);
+        final Set<Project> modelProjects = new HashSet<>(personProjects);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelDateJoined,
+                modelUsername, modelPassword, modelRole, modelSalary, modelProjects);
     }
 
 }

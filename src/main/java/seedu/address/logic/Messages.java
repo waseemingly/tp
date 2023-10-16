@@ -43,8 +43,18 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append("; Date Joined: ")
+                .append(person.getDateJoined())
+                .append("; Role: ")
+                .append(person.getRole())
+                .append("; Salary: ")
+                .append(person.getSalary())
+                .append("; Username: ")
+                .append(person.getUsername())
+                .append("; Password: ")
+                .append(person.getPassword())
+                .append("; Projects: ");
+        person.getProjects().forEach(builder::append);
         return builder.toString();
     }
 

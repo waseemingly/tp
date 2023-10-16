@@ -21,10 +21,14 @@ public class DateJoined {
      *
      * @param date A valid date string.
      */
-    public DateJoined(String date) throws ParseException {
+    public DateJoined(String date){
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        value = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+        try {
+            value = new SimpleDateFormat("dd-MM-yyyy").parse(date);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
