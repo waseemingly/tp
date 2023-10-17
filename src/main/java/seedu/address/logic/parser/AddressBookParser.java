@@ -1,8 +1,10 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_ACTION_BY_USER;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,6 +20,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Role;
 
 /**
  * Parses user input.
@@ -30,6 +34,7 @@ public class AddressBookParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
+    private static Role role;
     /**
      * Parses user input into command for execution.
      *
@@ -53,14 +58,23 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
+
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            if (AddressBookParser.role.equals(new Role("HR"))) {
+                return new AddCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(MESSAGE_INVALID_ACTION_BY_USER);
+            }
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            if (AddressBookParser.role.equals(new Role("HR"))) {
+                return new DeleteCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(MESSAGE_INVALID_ACTION_BY_USER);
+            }
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -81,6 +95,10 @@ public class AddressBookParser {
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    public static void setCurrentUser(Person user) {
+        AddressBookParser.role = user.getRole();
     }
 
 }
