@@ -9,11 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Project;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -35,6 +32,21 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+
+    /**
+     * Returns true if the String can be parsed to return an Index and false if not.
+     *
+     * @param str The String to try to parse.
+     */
+    public static Boolean canParseIndex(String str) {
+        try {
+            parseIndex(str);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+    
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -96,29 +108,99 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String project} into a {@code Project}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code Project} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Project parseProject(String project) throws ParseException {
+        requireNonNull(project);
+        String trimmedProject = project.trim();
+        if (!Project.isValidProjectName(trimmedProject)) {
+            throw new ParseException(Project.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Project(trimmedProject);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> projects} into a {@code Set<project>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Project> parseProjects(Collection<String> projects) throws ParseException {
+        requireNonNull(projects);
+        final Set<Project> projectSet = new HashSet<>();
+        for (String projectName : projects) {
+            projectSet.add(parseProject(projectName));
         }
-        return tagSet;
+        return projectSet;
+    }
+    /**
+     * Parses a {@code String dateJoined} into a {@code DateJoined}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code DateJoined} is invalid.
+     */
+    public static DateJoined parseDateJoined(String dateJoined) throws ParseException {
+        requireNonNull(dateJoined);
+        String trimmedDateJoined = dateJoined.trim();
+        if (!DateJoined.isValidDate(trimmedDateJoined)) {
+            throw new ParseException(DateJoined.MESSAGE_CONSTRAINTS);
+        }
+        return new DateJoined(trimmedDateJoined);
+    }
+    /**
+     * Parses a {@code String username} into a {@code Username}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Username} is invalid.
+     */
+    public static Username parseUsername(String username) throws ParseException {
+        requireNonNull(username);
+        String trimmedUsername = username.trim();
+        if (!Username.isValidUsername(trimmedUsername)) {
+            throw new ParseException(Username.MESSAGE_CONSTRAINTS);
+        }
+        return new Username(trimmedUsername);
+    }
+    /**
+     * Parses a {@code String password} into a {@code Password}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Password} is invalid.
+     */
+    public static Password parsePassword(String password) throws ParseException {
+        requireNonNull(password);
+        String trimmedPassword = password.trim();
+        if (!Password.isValidPassword(trimmedPassword)) {
+            throw new ParseException(Password.MESSAGE_CONSTRAINTS);
+        }
+        return new Password(trimmedPassword);
+    }
+    /**
+     * Parses a {@code String role} into a {@code Role}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Role} is invalid.
+     */
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!Role.isValidRole(trimmedRole)) {
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        }
+        return new Role(trimmedRole);
+    }
+    /**
+     * Parses a {@code String salary} into a {@code Salary}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Salary} is invalid.
+     */
+    public static Salary parseSalary(String salary) throws ParseException {
+        requireNonNull(salary);
+        String trimmedSalary = salary.trim();
+        if (!Salary.isValidSalary(trimmedSalary)) {
+            throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        return new Salary(trimmedSalary);
     }
 }

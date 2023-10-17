@@ -3,94 +3,112 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Project;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
-
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final DateJoined DEFAULT_DATE_JOINED = new DateJoined("01-01-2022");
+    public static final Username DEFAULT_USERNAME = new Username("amy_bee");
+    public static final Password DEFAULT_PASSWORD = new Password("password123");
+    public static final Role DEFAULT_ROLE = new Role("User");
+    public static final Salary DEFAULT_SALARY = new Salary("50000");
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Project> projects;
+    private DateJoined dateJoined;
+    private Username username;
+    private Password password;
+    private Role role;
+    private Salary salary;
 
-    /**
-     * Creates a {@code PersonBuilder} with the default details.
-     */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        projects = new HashSet<>();
+        dateJoined = DEFAULT_DATE_JOINED;
+        username = DEFAULT_USERNAME;
+        password = DEFAULT_PASSWORD;
+        role = DEFAULT_ROLE;
+        salary = DEFAULT_SALARY;
     }
 
-    /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
-     */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        projects = new HashSet<>(personToCopy.getProjects());
+        dateJoined = personToCopy.getDateJoined();
+        username = personToCopy.getUsername();
+        password = personToCopy.getPassword();
+        role = personToCopy.getRole();
+        salary = personToCopy.getSalary();
     }
 
-    /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
-     */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
 
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withProjects(String... tags) {
+        this.projects = SampleDataUtil.getProjectSet(tags);
         return this;
     }
 
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
 
-    /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
-     */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
 
-    /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
-     */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    public PersonBuilder withDateJoined(String dateJoined) {
+        this.dateJoined = new DateJoined(dateJoined);
+        return this;
     }
 
+    public PersonBuilder withUsername(String username) {
+        this.username = new Username(username);
+        return this;
+    }
+
+    public PersonBuilder withPassword(String password) {
+        this.password = new Password(password);
+        return this;
+    }
+
+    public PersonBuilder withRole(String role) {
+        this.role = new Role(role);
+        return this;
+    }
+
+    public PersonBuilder withSalary(String salary) {
+        this.salary = new Salary(salary);
+        return this;
+    }
+
+    public Person build() {
+        return new Person(name, phone, email, address, dateJoined, username, password, role, salary, projects);
+    }
 }

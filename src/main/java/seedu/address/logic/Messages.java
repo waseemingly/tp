@@ -18,7 +18,9 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-
+    public static final String MESSAGE_UNAUTHORISED_COMMAND = 
+                "You do not have the access rights to execute this command!";
+    
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
@@ -43,8 +45,18 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append("; Date Joined: ")
+                .append(person.getDateJoined())
+                .append("; Role: ")
+                .append(person.getRole())
+                .append("; Salary: ")
+                .append(person.getSalary())
+                .append("; Username: ")
+                .append(person.getUsername())
+                .append("; Password: ")
+                .append(person.getPassword())
+                .append("; Projects: ");
+        person.getProjects().forEach(builder::append);
         return builder.toString();
     }
 
