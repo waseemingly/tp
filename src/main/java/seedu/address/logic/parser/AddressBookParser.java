@@ -97,6 +97,12 @@ public class AddressBookParser {
         }
     }
 
+    /**
+     * Sets the current user in the Address Book application based on the provided Person object.
+     *
+     * @param user The Person object representing the current user.
+     *             This person's role will be used to set the user's role in the application.
+     */
     public static void setCurrentUser(Person user) {
         AddressBookParser.role = user.getRole();
     }
