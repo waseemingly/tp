@@ -32,6 +32,21 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+
+    /**
+     * Returns true if the String can be parsed to return an Index and false if not.
+     *
+     * @param str The String to try to parse.
+     */
+    public static Boolean canParseIndex(String str) {
+        try {
+            parseIndex(str);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+    
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.

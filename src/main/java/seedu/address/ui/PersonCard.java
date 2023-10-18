@@ -50,7 +50,6 @@ public class PersonCard extends UiPart<Region> {
     private Label roles;
     @FXML
     private Label salary;
-
     @FXML
     private FlowPane tags;
     private static Role role;

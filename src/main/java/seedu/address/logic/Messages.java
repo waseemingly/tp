@@ -19,8 +19,10 @@ public class Messages {
                 "These are the %1$d employees with matching information";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_UNAUTHORISED_COMMAND = 
+                "You do not have the access rights to execute this command!";
     public static final String MESSAGE_INVALID_ACTION_BY_USER = "You are access right to do this!";
-
+  
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
