@@ -21,7 +21,6 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_UNAUTHORISED_COMMAND = 
                 "You do not have the access rights to execute this command!";
-    public static final String MESSAGE_INVALID_ACTION_BY_USER = "You are access right to do this!";
   
     /**
      * Returns an error message indicating the duplicate prefixes.
