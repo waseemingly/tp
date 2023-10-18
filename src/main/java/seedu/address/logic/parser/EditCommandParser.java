@@ -11,9 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -58,7 +55,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      *
      * @param userRole The role of the current user.
      */
-    public static void setRole(Role userRole) {
+    public static void setCurrentUserRole(Role userRole) {
         role = userRole;
         
         if (userRole.equals(new Role("Developer"))) {
@@ -78,16 +75,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_PROJECT, PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_USERNAME,
                 PREFIX_PASSWORD);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_PROJECT);
-
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_PROJECT, PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_USERNAME, PREFIX_PASSWORD);
@@ -96,10 +83,10 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         for (Prefix prefix : restrictedPrefix) {
             if (argMultimap.getValue(prefix).isPresent()) {
-               throw new ParseException(Messages.MESSAGE_UNAUTHORISED_COMMAND); 
+                throw new ParseException(Messages.MESSAGE_UNAUTHORISED_COMMAND);
             }
         }
-        
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -127,7 +114,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_PASSWORD).isPresent()) {
             editPersonDescriptor.setPassword(ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get()));
         }
-
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_PROJECT)).ifPresent(editPersonDescriptor::setProjects);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -137,7 +123,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditCommand editCommand;
 
         String preamble = argMultimap.getPreamble();
-        
+
         if (role.equals(new Role("HR"))) {
             if (ParserUtil.canParseIndex(preamble)) {
                 Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -153,7 +139,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 editCommand = new EditSelfCommand(editPersonDescriptor);
             }
         }
-        
+
         return editCommand;
     }
 

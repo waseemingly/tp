@@ -15,7 +15,7 @@ public class DummyCurrentUser {
      */
     DummyCurrentUser(Person user) {
         this.user = user;
-        EditCommandParser.setRole(user.getRole());
+        EditCommandParser.setCurrentUserRole(user.getRole());
         EditSelfCommand.setCurrentUser(user);
     }
 }
