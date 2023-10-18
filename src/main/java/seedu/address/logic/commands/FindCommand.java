@@ -5,7 +5,17 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.DateJoinedContainsKeywordsPredicate;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.KeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.ProjectContainsKeywordsPredicate;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
+import seedu.address.model.person.SalaryContainsKeywordsPredicate;
+import seedu.address.model.person.UsernameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -15,15 +25,46 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Please Find with the correct input "
+            + "Find pr/<Project Name> OR Find r/<Role> OR Find n/<Name>.\n"
+            + "Example: " + COMMAND_WORD + " n/ alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private KeywordPredicate<Person> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(NameContainsKeywordsPredicate namePredicate) {
+        this.predicate = namePredicate;
+    }
+
+    public FindCommand(RoleContainsKeywordsPredicate rolePredicate) {
+        this.predicate = rolePredicate;
+    }
+
+    public FindCommand(AddressContainsKeywordsPredicate addressPredicate) {
+        this.predicate = addressPredicate;
+    }
+
+    public FindCommand(DateJoinedContainsKeywordsPredicate dateJoinedPredicate) {
+        this.predicate = dateJoinedPredicate;
+    }
+
+    public FindCommand(EmailContainsKeywordsPredicate emailPredicate) {
+        this.predicate = emailPredicate;
+    }
+
+    public FindCommand(PhoneContainsKeywordsPredicate phonePredicate) {
+        this.predicate = phonePredicate;
+    }
+
+    public FindCommand(SalaryContainsKeywordsPredicate salaryPredicate) {
+        this.predicate = salaryPredicate;
+    }
+
+    public FindCommand(UsernameContainsKeywordsPredicate usernamePredicate) {
+        this.predicate = usernamePredicate;
+    }
+
+    public FindCommand(ProjectContainsKeywordsPredicate projectPredicate) {
+        this.predicate = projectPredicate;
     }
 
     @Override
@@ -33,6 +74,7 @@ public class FindCommand extends Command {
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
+
 
     @Override
     public boolean equals(Object other) {

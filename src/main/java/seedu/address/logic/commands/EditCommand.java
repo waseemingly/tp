@@ -26,6 +26,20 @@ import seedu.address.model.tag.Project;
 public abstract class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+            + "by the index number used in the displayed person list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_PROJECT + "PROJECT]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com";
+  
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "The details in the address book are already as given.";
@@ -50,6 +64,30 @@ public abstract class EditCommand extends Command {
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedDateJoined,updatedUsername,updatedPassword,updatedRole,updatedSalary, updatedProjects);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditCommand)) {
+            return false;
+        }
+
+        EditCommand otherEditCommand = (EditCommand) other;
+        return index.equals(otherEditCommand.index)
+                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("index", index)
+                .add("editPersonDescriptor", editPersonDescriptor)
+                .toString();
     }
 
     /**
@@ -165,6 +203,18 @@ public abstract class EditCommand extends Command {
             this.role = role;
         }
 
+        public void setDateJoined(DateJoined dateJoined) {
+            this.dateJoined = dateJoined;
+        }
+
+        public Optional<DateJoined> getDateJoined() {
+            return Optional.ofNullable(dateJoined);
+        }
+
+        public void setRole(Role role) {
+            this.role = role;
+        }
+      
         public Optional<Role> getRole() {
             return Optional.ofNullable(role);
         }
