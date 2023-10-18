@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_ACTION_BY_USER;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNAUTHORISED_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.Arrays;
@@ -34,7 +34,7 @@ public class AddressBookParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
-    private static Role role = new Role("HR");
+    private static Role role = new Role("Developer");
     /**
      * Parses user input into command for execution.
      *
@@ -63,7 +63,7 @@ public class AddressBookParser {
             if (AddressBookParser.role.equals(new Role("HR"))) {
                 return new AddCommandParser().parse(arguments);
             } else {
-                throw new ParseException(MESSAGE_INVALID_ACTION_BY_USER);
+                throw new ParseException(MESSAGE_UNAUTHORISED_COMMAND);
             }
 
         case EditCommand.COMMAND_WORD:
@@ -73,7 +73,7 @@ public class AddressBookParser {
             if (AddressBookParser.role.equals(new Role("HR"))) {
                 return new DeleteCommandParser().parse(arguments);
             } else {
-                throw new ParseException(MESSAGE_INVALID_ACTION_BY_USER);
+                throw new ParseException(MESSAGE_UNAUTHORISED_COMMAND);
             }
 
         case ClearCommand.COMMAND_WORD:
