@@ -11,18 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CreateCompanyCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.LoginCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Role;
@@ -73,6 +63,12 @@ public class AddressBookParser {
                 return new AddCommandParser().parse(arguments);
             } else {
                 throw new ParseException(MESSAGE_UNAUTHORISED_COMMAND);
+            }
+        case ImportCommand.COMMAND_WORD:
+            if (AddressBookParser.role.equals(new Role("HR"))) {
+                return new ImportCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(MESSAGE_INVALID_ACTION_BY_USER);
             }
 
         case EditCommand.COMMAND_WORD:
