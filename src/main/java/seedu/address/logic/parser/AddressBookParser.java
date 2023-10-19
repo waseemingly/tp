@@ -1,8 +1,9 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_ACTION_BY_USER;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNAUTHORISED_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.Messages.MESSAGE_USER_NOT_LOGGED_IN;
 
 import java.util.Arrays;
 import java.util.logging.Logger;
@@ -11,6 +12,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
+import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Role;
@@ -27,7 +29,8 @@ public class AddressBookParser {
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     private static Role role = new Role("HR");
-    /**
+
+  /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
@@ -48,14 +51,18 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
+        if ((AddressBookParser.role == null) && (!commandWord.equals(LoginCommand.COMMAND_WORD)) && 
+                (!commandWord.equals(CreateCompanyCommand.COMMAND_WORD))) {
+            throw new ParseException(MESSAGE_USER_NOT_LOGGED_IN);
+        }
+        
         switch (commandWord) {
-
 
         case AddCommand.COMMAND_WORD:
             if (AddressBookParser.role.equals(new Role("HR"))) {
                 return new AddCommandParser().parse(arguments);
             } else {
-                throw new ParseException(MESSAGE_INVALID_ACTION_BY_USER);
+                throw new ParseException(MESSAGE_UNAUTHORISED_COMMAND);
             }
         case ImportCommand.COMMAND_WORD:
             if (AddressBookParser.role.equals(new Role("HR"))) {
@@ -71,7 +78,7 @@ public class AddressBookParser {
             if (AddressBookParser.role.equals(new Role("HR"))) {
                 return new DeleteCommandParser().parse(arguments);
             } else {
-                throw new ParseException(MESSAGE_INVALID_ACTION_BY_USER);
+                throw new ParseException(MESSAGE_UNAUTHORISED_COMMAND);
             }
 
         case ClearCommand.COMMAND_WORD:

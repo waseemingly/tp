@@ -71,7 +71,6 @@ public class PersonCard extends UiPart<Region> {
             dateJoined.setText(String.valueOf(person.getDateJoined().value));
             username.setText(person.getUsername().username);
             password.setText(person.getPassword().password);
-            roles.setText(person.getRole().role);
             salary.setText(String.valueOf(person.getSalary().salary));
             person.getProjects().stream()
                     .sorted(Comparator.comparing(tag -> tag.projectName))
@@ -81,6 +80,11 @@ public class PersonCard extends UiPart<Region> {
                     .sorted(Comparator.comparing(tag -> tag.projectName))
                     .forEach(tag -> tags.getChildren().add(new Label(tag.projectName)));
         } else if (PersonCard.role.equals(new Role("Developer"))) {
+            address.setText("Other information not available");
+            dateJoined.setVisible(false);
+            username.setVisible(false);
+            password.setVisible(false);
+            salary.setVisible(false);
         }
     }
 
