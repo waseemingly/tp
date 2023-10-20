@@ -52,7 +52,6 @@ public class PersonCard extends UiPart<Region> {
     private Label salary;
     @FXML
     private FlowPane tags;
-    private static Role role = new Role("HR");
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -66,35 +65,13 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         roles.setText(person.getRole().role);
 
-        if (PersonCard.role.equals(new Role("HR"))) {
-            address.setText(person.getAddress().value);
-            dateJoined.setText(String.valueOf(person.getDateJoined().value));
-            username.setText(person.getUsername().username);
-            password.setText(person.getPassword().password);
-            salary.setText(String.valueOf(person.getSalary().salary));
-            person.getProjects().stream()
-                    .sorted(Comparator.comparing(tag -> tag.projectName))
-                    .forEach(tag -> tags.getChildren().add(new Label(tag.projectName)));
-        } else if (PersonCard.role.equals(new Role("Manager"))) {
-            person.getProjects().stream()
-                    .sorted(Comparator.comparing(tag -> tag.projectName))
-                    .forEach(tag -> tags.getChildren().add(new Label(tag.projectName)));
-        } else if (PersonCard.role.equals(new Role("Developer"))) {
-            address.setText("Other information not available");
-            dateJoined.setVisible(false);
-            username.setVisible(false);
-            password.setVisible(false);
-            salary.setVisible(false);
-        }
-    }
-
-    /**
-     * Sets the current user's role in the PersonCard application based on the provided Person object.
-     *
-     * @param user The Person object representing the current user.
-     *             This person's role will be used to set the user's role in the application.
-     */
-    public static void setCurrentUser(Person user) {
-        PersonCard.role = user.getRole();
+        address.setText(person.getAddress().value);
+        dateJoined.setText(String.valueOf(person.getDateJoined().value));
+        username.setText(person.getUsername().username);
+        password.setText(person.getPassword().password);
+        salary.setText(String.valueOf(person.getSalary().salary));
+        person.getProjects().stream()
+                .sorted(Comparator.comparing(tag -> tag.projectName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.projectName)));
     }
 }

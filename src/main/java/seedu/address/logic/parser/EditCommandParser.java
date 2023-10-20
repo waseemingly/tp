@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -22,46 +21,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.EditOthersCommand;
-import seedu.address.logic.commands.EditSelfCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Role;
 import seedu.address.model.tag.Project;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
-    
-    /** An ArrayList of restricted fields represented by Prefixes that should not be edited given current user. */
-    private static final ArrayList<Prefix> restrictedPrefix = new ArrayList<>();
-
-    /**
-     * The role of the current user.
-     */
-    private static Role role;
-    
-    /**
-     * Adds each restricted field as a Prefix to the restrictedPrefix ArrayList.
-     */
-    private static void setRestrictedPrefixes(Prefix... prefixes) {
-        for (Prefix prefix : prefixes) {
-            restrictedPrefix.add(prefix);
-        }
-    }
-
-    /**
-     * Sets role to the role of the current user.
-     *
-     * @param userRole The role of the current user.
-     */
-    public static void setCurrentUserRole(Role userRole) {
-        role = userRole;
-        
-        if (userRole.equals(new Role("Developer"))) {
-            setRestrictedPrefixes(PREFIX_PROJECT, PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY);
-        }
-    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -76,16 +42,18 @@ public class EditCommandParser implements Parser<EditCommand> {
                 PREFIX_ADDRESS, PREFIX_PROJECT, PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_USERNAME,
                 PREFIX_PASSWORD);
 
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        }
+        
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_PROJECT, PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_USERNAME, PREFIX_PASSWORD);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-
-        for (Prefix prefix : restrictedPrefix) {
-            if (argMultimap.getValue(prefix).isPresent()) {
-                throw new ParseException(Messages.MESSAGE_UNAUTHORISED_COMMAND);
-            }
-        }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -120,27 +88,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        EditCommand editCommand;
-
-        String preamble = argMultimap.getPreamble();
-
-        if (role.equals(new Role("HR"))) {
-            if (ParserUtil.canParseIndex(preamble)) {
-                Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-                editCommand = new EditOthersCommand(index, editPersonDescriptor);
-            } else {
-                editCommand = new EditSelfCommand(editPersonDescriptor);
-            }
-        } else {
-            if (ParserUtil.canParseIndex(preamble)) {
-                throw new ParseException(
-                        String.format(Messages.MESSAGE_UNAUTHORISED_COMMAND, EditSelfCommand.MESSAGE_USAGE));
-            } else {
-                editCommand = new EditSelfCommand(editPersonDescriptor);
-            }
-        }
-
-        return editCommand;
+        return new EditCommand(index, editPersonDescriptor);
     }
 
     /**
