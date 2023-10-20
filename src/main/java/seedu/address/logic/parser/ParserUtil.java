@@ -103,8 +103,8 @@ public class ParserUtil {
     public static Project parseProject(String project) throws ParseException {
         requireNonNull(project);
         String trimmedProject = project.trim();
-        if (!Project.isValidProjectName(trimmedProject)) {
-            throw new ParseException(Project.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(trimmedProject)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Project(trimmedProject);
     }

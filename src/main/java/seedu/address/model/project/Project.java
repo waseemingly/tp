@@ -1,10 +1,14 @@
 package seedu.address.model.project;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.name.Name;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+
+import seedu.address.model.commons.Name;
 
 /**
  * Represents a Project in the address book.
@@ -12,16 +16,20 @@ import seedu.address.model.name.Name;
  */
 public class Project {
 
-    public final Name projectName;
+    private final Name projectName;
+    private final Optional<Description> description;
+    private final Set<Deadline> deadlines = new HashSet<>();
 
     /**
      * Constructs a {@code Tag}.
      *
      * @param projectName A valid project name.
      */
-    public Project(Name projectName) {
-        requireNonNull(projectName);
+    public Project(Name projectName, Description desc, Set<Deadline> deadlines) {
+        requireAllNonNull(projectName, desc, deadlines);
         this.projectName = projectName;
+        this.description = Optional.ofNullable(desc);
+        this.deadlines.addAll(deadlines);
     }
     
     @Override
@@ -36,16 +44,18 @@ public class Project {
         }
 
         Project otherTag = (Project) other;
-        return projectName.equals(otherTag.projectName);
+        return projectName.equals(otherTag.projectName)
+                && description.equals(otherTag.description)
+                && deadlines.equals(otherTag.deadlines);
     }
 
     @Override
     public int hashCode() {
-        return projectName.hashCode();
+        return Objects.hash(projectName, description, deadlines);
     }
 
     /**
-     * Format state as text for viewing.
+     * Returns the name of the Project.
      */
     @Override
     public String toString() {
@@ -56,4 +66,15 @@ public class Project {
         return projectName;
     }
 
+    public Optional<Description> getProjectDescription() {
+        return description;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Deadline> getProjectDeadlines() {
+        return Collections.unmodifiableSet(deadlines);
+    }
 }
