@@ -118,7 +118,7 @@ public abstract class EditCommand extends Command {
             return false;
         }
 
-        EditOthersCommand otherEditCommand = (EditOthersCommand) other;
+        EditCommand otherEditCommand = (EditCommand) other;
         return index.equals(otherEditCommand.index)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
