@@ -71,7 +71,7 @@ public class PersonCard extends UiPart<Region> {
         password.setText(person.getPassword().password);
         salary.setText(String.valueOf(person.getSalary().salary));
         person.getProjects().stream()
-                .sorted(Comparator.comparing(tag -> tag.projectName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.projectName)));
+                .sorted(Comparator.comparing(tag -> tag.getProjectName().fullName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getProjectName().fullName)));
     }
 }

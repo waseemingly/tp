@@ -1,22 +1,17 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.name.Name;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Project;
+import seedu.address.model.project.Project;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.Set;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_FILE;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 public class ImportCommandParser implements Parser<ImportCommand>{
 

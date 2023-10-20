@@ -1,37 +1,29 @@
-package seedu.address.model.tag;
+package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.name.Name;
+
 /**
- * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidProjectName(String)}
+ * Represents a Project in the address book.
+ * Guarantees: immutable; fields are validated.
  */
 public class Project {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
-    public final String projectName;
+    public final Name projectName;
 
     /**
      * Constructs a {@code Tag}.
      *
      * @param projectName A valid project name.
      */
-    public Project(String projectName) {
+    public Project(Name projectName) {
         requireNonNull(projectName);
-        checkArgument(isValidProjectName(projectName), MESSAGE_CONSTRAINTS);
         this.projectName = projectName;
     }
-
-    /**
-     * Returns true if a given string is a valid tag name.
-     */
-    public static boolean isValidProjectName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
+    
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -55,8 +47,13 @@ public class Project {
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
-        return '[' + projectName + ']';
+        return projectName.toString();
+    }
+    
+    public Name getProjectName() {
+        return projectName;
     }
 
 }

@@ -17,8 +17,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.name.Name;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Project;
+import seedu.address.model.project.Project;
 
 /**
  * Edits the details of an existing person in the address book.

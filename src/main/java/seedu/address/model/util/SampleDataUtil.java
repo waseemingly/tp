@@ -6,10 +6,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.name.Name;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Project;
-
-import javax.swing.plaf.basic.BasicBorders;
+import seedu.address.model.project.Project;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

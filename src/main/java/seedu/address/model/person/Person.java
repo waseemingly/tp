@@ -2,12 +2,11 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Project;
+import seedu.address.model.name.Name;
+import seedu.address.model.project.Project;
 
 /**
  * Represents a Person in the address book.
