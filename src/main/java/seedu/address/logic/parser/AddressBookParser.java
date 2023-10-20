@@ -5,14 +5,12 @@ import static seedu.address.logic.Messages.MESSAGE_UNAUTHORISED_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_USER_NOT_LOGGED_IN;
 
-import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
-import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Role;
@@ -27,8 +25,6 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
-
-    private static Role role = new Role("HR");
 
   /**
      * Parses user input into command for execution.
@@ -51,35 +47,19 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
-        if ((AddressBookParser.role == null) && (!commandWord.equals(LoginCommand.COMMAND_WORD)) && 
-                (!commandWord.equals(CreateCompanyCommand.COMMAND_WORD))) {
-            throw new ParseException(MESSAGE_USER_NOT_LOGGED_IN);
-        }
-        
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            if (AddressBookParser.role.equals(new Role("HR"))) {
-                return new AddCommandParser().parse(arguments);
-            } else {
-                throw new ParseException(MESSAGE_UNAUTHORISED_COMMAND);
-            }
+            return new AddCommandParser().parse(arguments);
+
         case ImportCommand.COMMAND_WORD:
-            if (AddressBookParser.role.equals(new Role("HR"))) {
-                return new ImportCommandParser().parse(arguments);
-            } else {
-                throw new ParseException(MESSAGE_INVALID_ACTION_BY_USER);
-            }
+            return new ImportCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            if (AddressBookParser.role.equals(new Role("HR"))) {
-                return new DeleteCommandParser().parse(arguments);
-            } else {
-                throw new ParseException(MESSAGE_UNAUTHORISED_COMMAND);
-            }
+            return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -101,15 +81,4 @@ public class AddressBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
-    /**
-     * Sets the current user in the Address Book application based on the provided Person object.
-     *
-     * @param user The Person object representing the current user.
-     *             This person's role will be used to set the user's role in the application.
-     */
-    public static void setCurrentUser(Person user) {
-        AddressBookParser.role = user.getRole();
-    }
-
 }
