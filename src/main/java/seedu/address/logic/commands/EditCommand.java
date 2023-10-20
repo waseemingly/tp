@@ -17,7 +17,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.name.Name;
+import seedu.address.model.commons.Date;
+import seedu.address.model.commons.Name;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
@@ -77,7 +78,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        DateJoined updatedDateJoined = editPersonDescriptor.getDateJoined().orElse(personToEdit.getDateJoined());
+        Date updatedDateJoined = editPersonDescriptor.getDateJoined().orElse(personToEdit.getDateJoined());
         Username updatedUsername = editPersonDescriptor.getUsername().orElse(personToEdit.getUsername());
         Password updatedPassword = editPersonDescriptor.getPassword().orElse(personToEdit.getPassword());
         Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
@@ -144,7 +145,7 @@ public class EditCommand extends Command {
         private Set<Project> projects;
         private Username username;
         private Password password;
-        private DateJoined dateJoined;
+        private Date dateJoined;
         private Role role;
         private Salary salary;
 
@@ -233,11 +234,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(password);
         }
 
-        public void setDateJoined(DateJoined dateJoined) {
+        public void setDateJoined(Date dateJoined) {
             this.dateJoined = dateJoined;
         }
 
-        public Optional<DateJoined> getDateJoined() {
+        public Optional<Date> getDateJoined() {
             return Optional.ofNullable(dateJoined);
         }
 

@@ -5,7 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.*;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.name.Name;
+import seedu.address.model.commons.Date;
+import seedu.address.model.commons.Name;
 import seedu.address.model.project.Project;
 
 /**
@@ -26,14 +27,14 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final DateJoined dateJoined;
+    private final seedu.address.model.commons.Date dateJoined;
     private final Set<Project> projects = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,DateJoined dateJoined, Username username,
-                  Password password, Role role, Salary salary, Set<Project> projects){
+    public Person(Name name, Phone phone, Email email, Address address, seedu.address.model.commons.Date dateJoined, Username username,
+                  Password password, Role role, Salary salary, Set<Project> projects) {
         requireAllNonNull(name, phone, email, address, username, password, role, salary, projects);
         this.name = name;
         this.phone = phone;
@@ -76,7 +77,7 @@ public class Person {
         return role;
     }
 
-    public DateJoined getDateJoined(){
+    public Date getDateJoined(){
         return dateJoined;
     }
 

@@ -9,7 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.name.Name;
+import seedu.address.model.commons.Date;
+import seedu.address.model.commons.Name;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
@@ -125,13 +126,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code DateJoined} is invalid.
      */
-    public static DateJoined parseDateJoined(String dateJoined) throws ParseException {
+    public static Date parseDateJoined(String dateJoined) throws ParseException {
         requireNonNull(dateJoined);
         String trimmedDateJoined = dateJoined.trim();
-        if (!DateJoined.isValidDate(trimmedDateJoined)) {
-            throw new ParseException(DateJoined.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDate(trimmedDateJoined)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new DateJoined(trimmedDateJoined);
+        return new Date(trimmedDateJoined);
     }
     /**
      * Parses a {@code String username} into a {@code Username}.
