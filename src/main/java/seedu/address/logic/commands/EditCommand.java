@@ -23,7 +23,7 @@ import seedu.address.model.tag.Project;
 /**
  * Edits the details of an existing person in the address book.
  */
-public abstract class EditCommand extends Command {
+public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -114,7 +114,7 @@ public abstract class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditOthersCommand)) {
+        if (!(other instanceof EditCommand)) {
             return false;
         }
 
