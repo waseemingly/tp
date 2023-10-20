@@ -41,9 +41,9 @@ public class EditOthersCommand extends EditCommand {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    private final Index index;
+    final Index index;
     
-    private final EditPersonDescriptor editPersonDescriptor;
+    final EditPersonDescriptor editPersonDescriptor;
     
 
     /**

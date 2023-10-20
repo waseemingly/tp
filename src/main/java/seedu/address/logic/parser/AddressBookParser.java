@@ -1,9 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_UNAUTHORISED_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.Messages.MESSAGE_USER_NOT_LOGGED_IN;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
