@@ -3,8 +3,10 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.commons.Date;
+import seedu.address.model.commons.Name;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Project;
+import seedu.address.model.project.Project;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -15,7 +17,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final DateJoined DEFAULT_DATE_JOINED = new DateJoined("01-01-2022");
+    public static final Date DEFAULT_DATE_JOINED = new Date("01-01-2022");
     public static final Username DEFAULT_USERNAME = new Username("amy_bee");
     public static final Password DEFAULT_PASSWORD = new Password("password123");
     public static final Role DEFAULT_ROLE = new Role("User");
@@ -26,7 +28,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Project> projects;
-    private DateJoined dateJoined;
+    private Date dateJoined;
     private Username username;
     private Password password;
     private Role role;
@@ -84,7 +86,7 @@ public class PersonBuilder {
     }
 
     public PersonBuilder withDateJoined(String dateJoined) {
-        this.dateJoined = new DateJoined(dateJoined);
+        this.dateJoined = new Date(dateJoined);
         return this;
     }
 

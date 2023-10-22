@@ -22,7 +22,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Project;
+import seedu.address.model.project.Project;
 
 /**
  * Parses input arguments and creates a new EditCommand object

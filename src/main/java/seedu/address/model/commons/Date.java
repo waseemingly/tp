@@ -1,8 +1,7 @@
-package seedu.address.model.person;
+package seedu.address.model.commons;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -10,18 +9,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents the date a person Joined. In the format: dd-MM-YYYY
  */
-public class DateJoined {
+public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be of the format dd-MM-yyyy. Eg: 31-12-2019";
     public static final String VALIDATION_REGEX = "[0-3]\\d-[01]\\d-\\d{4}";
-    public final Date value;
+    public final java.util.Date value;
 
     /**
      * Constructs a {@code DateJoined}.
      *
      * @param date A valid date string.
      */
-    public DateJoined(String date){
+    public Date(String date){
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         try {
@@ -60,11 +59,11 @@ public class DateJoined {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DateJoined)) {
+        if (!(other instanceof Date)) {
             return false;
         }
 
-        DateJoined otherDate = (DateJoined) other;
+        Date otherDate = (Date) other;
         return value.equals(otherDate.value);
     }
 

@@ -1,22 +1,18 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.Date;
+import seedu.address.model.commons.Name;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Project;
+import seedu.address.model.project.Project;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.Set;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_FILE;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 public class ImportCommandParser implements Parser<ImportCommand>{
 
@@ -42,7 +38,7 @@ public class ImportCommandParser implements Parser<ImportCommand>{
                 Phone phone = ParserUtil.parsePhone(employee[1]);
                 Email email = ParserUtil.parseEmail(employee[2]);
                 Address address = ParserUtil.parseAddress(employee[3]);
-                DateJoined dateJoined = ParserUtil.parseDateJoined(employee[4]);
+                Date dateJoined = ParserUtil.parseDateJoined(employee[4]);
                 Username username = ParserUtil.parseUsername(employee[5]);
                 Password password = ParserUtil.parsePassword(employee[6]);
                 Role role = ParserUtil.parseRole(employee[7]);
