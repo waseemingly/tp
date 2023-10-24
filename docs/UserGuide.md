@@ -110,20 +110,21 @@ It is a **desktop app for managing contacts, optimized for use via a Command Lin
 #### Edit developer details
 Edits the details of an existing developer in the address book.
 
-Format: `edit-d n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
+Format: `edit-d INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
 
-* Edits the developer with the name specified by `n/NAME`.
+* Edits the developer at the specified `INDEX` in the currently displayed developer list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing projects, the existing assigned projects of the developer will be removed ie. adding of projects is not cumulative.
 * You can remove all the developer's projects by typing `p/` without specifying any project name after it.
 
-Example of usage: `edit-d n/AMY p/98989898 pr/Project2 pr/Project3`
+Example of usage: `edit-d 2 p/98989898 pr/Project2 pr/Project3`
   * Edits `AMY`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
 
 Acceptable parameters: 
+* `INDEX` must be a positive integer.
 * `NAME` and `PROJECT_NAME` can only consist of capital and small letters, spaces and hyphens.
-* `NAME` must be the name of an **existing developer** in the address book.
+* `NAME` cannot be the same as another existing developer's name in the address book.
 * `PHONE_NUMBER` has to 8 digits without spaces.
 * `EMAIL` has to be of the format `<TEXT>@<TEXT>`.
 * `DATE_JOINED` has to be of format `dd-MM-yyyy` (e.g. `31-12-2019`).
@@ -153,26 +154,29 @@ When command fails due to an error, the respective error message will be display
   * `Please input the employee details in the correct format!`
 * No edits in input command
   * `At least one field to edit must be provided!`
+* Invalid command target
+  * `Invalid command target! You cannot call edit-d on the target.`
 
 Relevant UI mock-ups (???)
 
 #### Edit client details
 Edits the details of an existing client in the address book.
 
-Format: `edit-c n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
+Format: `edit-c INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
 
-* Edits the client with the name specified by `n/NAME`.
+* Edits the client at the specified `INDEX` in the currently displayed client list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing projects, the existing assigned projects of the client will be removed ie. adding of projects is not cumulative.
 * You can remove all the client's projects by typing `p/` without specifying any project name after it.
 
-Example of usage: `edit-c n/BOB p/bob@gmail.com`
+Example of usage: `edit-c 3 p/bob@gmail.com`
 * Edits `BOB`'s email to `bob@gmail.com`.
 
 Acceptable parameters:
+* `INDEX` must be a positive integer.
 * `NAME`, `PROJECT_NAME` and `ORGANISATION` can only consist of capital and small letters, spaces and hyphens.
-* `NAME` must be the name of an **existing client** in the address book.
+* `NAME` cannot be the same as another existing client's name in the address book.
 * `PHONE_NUMBER` has to 8 digits without spaces.
 * `EMAIL` has to be of the format `<TEXT>@<TEXT>`.
 * `PROJECT_NAME` should be the name of an existing project.
@@ -197,26 +201,29 @@ When command fails due to an error, the respective error message will be display
     * `Please input the client details in the correct format!`
 * No edits in input command
     * `At least one field to edit must be provided!`
+* Invalid command target
+    * `Invalid command target! You cannot call edit-d on the target.`
 
 Relevant UI mock-ups (???)
 
 #### Edit project details
 Edits the details of an existing project in the address book.
 
-Format: `edit-p n/NAME [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`
+Format: `edit-p INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`
 
-* Edits the project with the name specified by `n/NAME`.
+* Edits the project at the specified `INDEX` in the currently displayed project list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing deadlines, the existing deadlines will be removed ie. adding of projects is not cumulative.
 * You can remove all the current deadlines by typing `d/` without specifying any deadline.
 
-Example of usage: `edit-p n/Project1 d/Finish Feature-A by: 09-09-2023`
+Example of usage: `edit-p 1 d/Finish Feature-A by: 09-09-2023`
 * Deletes existing project deadlines and adds new deadline `Finish Feature-A by: 09-09-2023`
 
 Acceptable parameters:
+* `INDEX` must be a positive integer.
 * `NAME` can only consist of capital and small letters, spaces and hyphens.
-* `NAME` must be the name of an **existing project** in the address book.
+* `NAME` cannot be the same as another existing project's name in the address book.
 * `DEADLINE` should be of the format `DEADLINE_DESCRIPTION by: DATE`, where `DATE` is in `dd-MM-yyyy` format.
 
 When command succeeds, CLI shows: (??)
@@ -237,6 +244,8 @@ When command fails due to an error, the respective error message will be display
     * `Please input the project details in the correct format!`
 * No edits in input command
     * `At least one field to edit must be provided!`
+* Invalid command target
+    * `Invalid command target! You cannot call edit-d on the target.`
 
 Relevant UI mock-ups (???)
 
