@@ -2,8 +2,7 @@
 layout: page
 title: User Guide
 ---
-CodeContact combines contact management with developer-specific and HR-specific features, making it easy for users to access coding-related contacts and project collaborators via command line.
-
+Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers
 
 It is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact management tasks done faster than traditional GUI apps.
 
@@ -18,18 +17,18 @@ It is a **desktop app for managing contacts, optimized for use via a Command Lin
 
 1. Copy the file to the folder you want to use as the _home folder_ for your CodeContact.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codecontact.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all contacts.
+    * `list developers` : Lists all developers.
 
     * `n/Amy p/12345678 e/any.u.nus.edu a/NUS UTOWN d/06-09-2023 r/Developer s/4999 pr/{PROJECT1, PROJECT2…}` : Adds a contact named `John Doe` to the Address Book.
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete developer 3` : Deletes the 3rd contact shown in the current list.
 
     * `clear` : Deletes all contacts.
 
@@ -62,40 +61,22 @@ It is a **desktop app for managing contacts, optimized for use via a Command Lin
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Sign up and create new company profile
-* What it does
-    * Creates a new organisation profile and creates a HR user in that organisation
-* Format
-    * `create company <company-name>`
-* Example
-    * `create company Code-Contact`
-* Acceptable parameters
-    * any input containing letters and numbers, with no spacing and special characters except “-”
-* When command succeeds
-    * `You have successfully created a new company profile for company-name. Please enter your details in the format n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/HR s/SALARY pr/{PROJECT1, PROJECT2…} u/USERNAME pa/PASSWORD to create a new HR user profile for yourself.`
-* When command fails
-    * `Please enter the company-name with the correct format - any input containing letters and numbers, with no spacing and special characters except “-” is allowed.`
-
-* Relevant UI mock-ups
-![company profile](images/companyProfile.png)
-
-### Create new employee profiles individually (only HR)
+### Adding new information : `add`
 * What it does:
-    * HR can add a new employee to the list of people into the data one by one
+    * Manager can add a new employee to the list of people into the data one by one
 * Format
     * `create new employee`
-    * `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE s/SALARY pr/{PROJECT1, PROJECT2…} u/USERNAME pa/PASSWORD`
+    * `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE s/SALARY pr/{PROJECT1, PROJECT2…}`
 * Example
     * User types: `create new employee`
     * CLI  shows: `Input employee details in the format below:`
-      `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE s/SALARY pr/{PROJECT1, PROJECT2…}`
-    * User types: `n/AMY p/87654321 e/amy@u.nus.edu a/NUS UTOWN d/06 Sep 2023 r/Developer s/4999 pr/{login} u/amy pa/Password123!`
+      `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE `
+    * User types: `n/AMY p/87654321 e/amy@u.nus.edu a/NUS UTOWN d/06 Sep 2023 r/Developer s/4999`
 * Acceptable parameters
     * Names can only consist of capital and small letters, spaces and hyphens.
     * Contact number has to 8 digits without spaces
     * Email has to be of the format `<TEXT>@<TEXT>`
     * Date joined has to be of format `dd mmm yyyy `(E.x 09 Sept 2022)
-    * Role should be: `HR`, `manager` or `developer`
     * Salary has to be at least 4 digits
     * Project should be valid project name already listed in the company, multiple projects have to be comma separated
     * Password is at least 8 characters long, with a combination of uppercase letters, lowercase letters, numbers, and symbols
@@ -124,30 +105,12 @@ It is a **desktop app for managing contacts, optimized for use via a Command Lin
     * Missing particular's error
         * `Error! New user’s {MISSING_PARTICULARS} are missing.`
 * Relevant UI mock-ups
-![add new employee](images/newEmployee.png)
 
-### Login (all employees)
+### Edit information details : `edit`
 * What it does:
-    * Prompts users to enter company name
-    * Prompts users to enter their login id and password
+    * Allows managers to change the details of the information stored
 * Format
-    * `companydomian/ (company’s domain) userid/ (user_id) password/ (password)`
-* Example
-    * `companydomian/ google-sg userid/ mahidharah password/ 2103TforTough!`
-* Acceptable parameters
-    * company domain must exist in database/file
-    * userid must exist in companydomain file (can include characters)
-    * password must match (can include characters)
-    * precise expected outputs when the command succeeds e.g., changes in the GUI, messages shown to the user
-    * precise expected outputs when the command fails e.g., what are the error messages shown when a specific parameter is invalid, missing, specified multiple times, etc.
-    * Home page where commands can then be entered to utilise other functionality, according to user role and company
-
-### Update details for user within a company/organisation (all employees)
-* What it does:
-    * Allows HR to change any details of any employee.
-    * Allows employees to change only certain details such as personal particulars.
-* Format
-    * `update employee1`
+    * `edit employee1`
     * Modify the details that you want to change
     * `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE s/CHANGED_SALARY pr/{PROJECT1, PROJECT2…} u/USERNAME pa/PASSWORD`
 * Example
@@ -193,9 +156,8 @@ Password: Password123!
           Names can only consist of capital and small letters, spaces and hyphens.`
 
 * Relevant UI mock-ups
-![update_details](images/updateDetails.png)
 
-### Search according to industry details
+### Search according to type and industry details: `search`
 * What it does
     * Every user can search for contacts related to the keyword (eg. by search prj name, members of the prj team will appear)
 * Format
@@ -220,19 +182,18 @@ Password: Password123!
     * Invalid input<br> `x/ is not a valid type to search, Please search with the correct input Search p/<Project Name> OR Search r/<Role> OR Search n/<Name>`
 
 * Relevant UI mock-ups
-![search_industry](images/searchPicture.png)
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-Format: `help`
 
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `list TYPE`
+
+* lists the specific type of thing you are asking
+
+Examples:
+* `list developers` lists all the developers
+* `list projects` lists all the projects
 
 ### Deleting a person : `delete`
 
@@ -247,6 +208,12 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+Format: `help`
 
 ### Clearing all entries : `clear`
 
@@ -281,11 +248,9 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**create company** | Format: <br>`create company <company-name>` <br>Example:<br>  `e.g: create company Code-Contact` <br> 
-**create employee** | Format: <br>`create new employee` <br> `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE s/SALARY pr/{PROJECT1, PROJECT2…} u/USERNAME pa/PASSWORD` <br>Example:<br> `e.g: n/AMY p/87654321 e/amy@u.nus.edu a/NUS UTOWN d/06 Sep 2023 r/Developer s/4999 pr/{login} u/amy pa/Password123!`
-**login** | Format: <br>`companydomian/ (company’s domain) userid/ (user_id) password/ (password)` <br>Example:<br> `companydomian/ google-sg userid/ mahidharah password/ 2103TforTough!`
-**update** |Format: <br> `update <employee-name>` <br> `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE s/CHANGED_SALARY pr/{PROJECT1, PROJECT2…} u/USERNAME pa/PASSWORD`<br>Example:<br> `update Amy`<br>`n/AMY p/87654321 e/amy@u.nus.edu a/NUS UTOWN d/06 sept r/Developer s/4999 pr/{login} u/amy pa/password12345`
-**search** | Format: <br> `Search p/<Project Name>` <br> `Search r/<Role>` <br> `Search n/<Name>`<br>Example:<br> `Search p/2103/T` <br> `Search r/Senior Developer` <br> `Search n/Amy`
-**delete** | `delete INDEX`<br> e.g., `delete 3`
-**list** | `list`
+**add**|Format: <br> <br> Example: <br><br>
+**edit** |Format: <br> <br> Example: <br><br>
+**search** |Format: <br> <br> Example: <br><br>
+**delete** |Format: <br> <br> Example: <br><br>
+**list** |Format: <br> `list developers` <br>  `list projects` <br> `list clients`
 **help** | `help`
