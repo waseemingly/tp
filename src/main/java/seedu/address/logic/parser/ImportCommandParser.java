@@ -4,6 +4,8 @@ import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.person.Role;
+import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
@@ -39,8 +41,6 @@ public class ImportCommandParser implements Parser<ImportCommand>{
                 Email email = ParserUtil.parseEmail(employee[2]);
                 Address address = ParserUtil.parseAddress(employee[3]);
                 Date dateJoined = ParserUtil.parseDateJoined(employee[4]);
-                Username username = ParserUtil.parseUsername(employee[5]);
-                Password password = ParserUtil.parsePassword(employee[6]);
                 Role role = ParserUtil.parseRole(employee[7]);
                 Salary salary = ParserUtil.parseSalary(employee[8]);
                 ArrayList<String> projects = new ArrayList<>();
@@ -49,7 +49,7 @@ public class ImportCommandParser implements Parser<ImportCommand>{
                 }
                 Set<Project> projectList = ParserUtil.parseProjects(projects);
 
-                Person person = new Person(name, phone, email, address, dateJoined, username,password,role, salary,projectList);
+                Person person = new Person(name, phone, email, address, dateJoined,role, salary,projectList);
                 toAddList.add(person);
 
             }

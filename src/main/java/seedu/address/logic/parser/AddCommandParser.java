@@ -11,6 +11,8 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.person.Role;
+import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
@@ -42,13 +44,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Date dateJoined = ParserUtil.parseDateJoined(argMultimap.getValue(PREFIX_DATEJOINED)
                 .orElse(new SimpleDateFormat("dd-MM-yyyy").format(new java.util.Date())));
-        Username username = ParserUtil.parseUsername(argMultimap.getValue(PREFIX_USERNAME).get());
-        Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
         Set<Project> projectList = ParserUtil.parseProjects(argMultimap.getAllValues(PREFIX_PROJECT));
 
-        Person person = new Person(name, phone, email, address, dateJoined, username,password,role, salary,projectList);
+        Person person = new Person(name, phone, email, address, dateJoined,role, salary,projectList);
 
         return new AddCommand(person);
     }

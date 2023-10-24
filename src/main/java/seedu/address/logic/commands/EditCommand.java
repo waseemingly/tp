@@ -19,6 +19,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.person.Role;
+import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
@@ -79,14 +81,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Date updatedDateJoined = editPersonDescriptor.getDateJoined().orElse(personToEdit.getDateJoined());
-        Username updatedUsername = editPersonDescriptor.getUsername().orElse(personToEdit.getUsername());
-        Password updatedPassword = editPersonDescriptor.getPassword().orElse(personToEdit.getPassword());
         Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
         Set<Project> updatedProjects = editPersonDescriptor.getProjects().orElse(personToEdit.getProjects());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedDateJoined,updatedUsername,updatedPassword,updatedRole,updatedSalary, updatedProjects);
+                updatedDateJoined,updatedRole,updatedSalary, updatedProjects);
     }
 
     @Override
@@ -143,8 +143,6 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Project> projects;
-        private Username username;
-        private Password password;
         private Date dateJoined;
         private Role role;
         private Salary salary;
@@ -161,8 +159,6 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setProjects(toCopy.projects);
-            setUsername(toCopy.username);
-            setPassword(toCopy.password);
             setDateJoined(toCopy.dateJoined);
             setRole(toCopy.role);
             setSalary(toCopy.salary);
@@ -173,7 +169,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(
-                    name, phone, email, address, projects, username, password, dateJoined, role, salary);
+                    name, phone, email, address, projects, dateJoined, role, salary);
         }
 
         // Getter and setter methods for each field
@@ -218,21 +214,6 @@ public class EditCommand extends Command {
             return (projects != null) ? Optional.of(Collections.unmodifiableSet(projects)) : Optional.empty();
         }
 
-        public void setUsername(Username username) {
-            this.username = username;
-        }
-
-        public Optional<Username> getUsername() {
-            return Optional.ofNullable(username);
-        }
-
-        public void setPassword(Password password) {
-            this.password = password;
-        }
-
-        public Optional<Password> getPassword() {
-            return Optional.ofNullable(password);
-        }
 
         public void setDateJoined(Date dateJoined) {
             this.dateJoined = dateJoined;
@@ -275,8 +256,6 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(projects, otherEditPersonDescriptor.projects)
-                    && Objects.equals(username, otherEditPersonDescriptor.username)
-                    && Objects.equals(password, otherEditPersonDescriptor.password)
                     && Objects.equals(dateJoined, otherEditPersonDescriptor.dateJoined)
                     && Objects.equals(role, otherEditPersonDescriptor.role)
                     && Objects.equals(salary, otherEditPersonDescriptor.salary);
@@ -290,8 +269,6 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("projects", projects)
-                    .add("username", username)
-                    .add("password", password)
                     .add("dateJoined", dateJoined)
                     .add("role", role)
                     .add("salary", salary)

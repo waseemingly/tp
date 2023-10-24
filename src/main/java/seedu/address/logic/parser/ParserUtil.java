@@ -11,7 +11,11 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.person.Role;
+import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
 
 /**
@@ -106,7 +110,7 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedProject)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Project(trimmedProject);
+        return new Project(new Name(trimmedProject),new Description(""),new HashSet<Deadline>());
     }
 
     /**
@@ -134,34 +138,8 @@ public class ParserUtil {
         }
         return new Date(trimmedDateJoined);
     }
-    /**
-     * Parses a {@code String username} into a {@code Username}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code Username} is invalid.
-     */
-    public static Username parseUsername(String username) throws ParseException {
-        requireNonNull(username);
-        String trimmedUsername = username.trim();
-        if (!Username.isValidUsername(trimmedUsername)) {
-            throw new ParseException(Username.MESSAGE_CONSTRAINTS);
-        }
-        return new Username(trimmedUsername);
-    }
-    /**
-     * Parses a {@code String password} into a {@code Password}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code Password} is invalid.
-     */
-    public static Password parsePassword(String password) throws ParseException {
-        requireNonNull(password);
-        String trimmedPassword = password.trim();
-        if (!Password.isValidPassword(trimmedPassword)) {
-            throw new ParseException(Password.MESSAGE_CONSTRAINTS);
-        }
-        return new Password(trimmedPassword);
-    }
+
+
     /**
      * Parses a {@code String role} into a {@code Role}.
      * Leading and trailing whitespaces will be trimmed.

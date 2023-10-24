@@ -14,7 +14,6 @@ import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.ProjectContainsKeywordsPredicate;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
-import seedu.address.model.person.UsernameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -56,9 +55,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             } else if (trimmedArgs.startsWith("s/")) {
                 String[] salaryKeywords = trimmedArgs.replaceFirst("s/", "").split("\\s+");
                 return new FindCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(salaryKeywords)));
-            } else if (trimmedArgs.startsWith("u/")) {
-                String[] usernameKeywords = trimmedArgs.replaceFirst("u/", "").split("\\s+");
-                return new FindCommand(new UsernameContainsKeywordsPredicate(Arrays.asList(usernameKeywords)));
             } else {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

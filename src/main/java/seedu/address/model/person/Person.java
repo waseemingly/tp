@@ -7,6 +7,7 @@ import java.util.*;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Salary;
 import seedu.address.model.project.Project;
 
 /**
@@ -20,31 +21,22 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
-    private final Username username;
-    private final Password password;
     private final Role role;
-    private final Salary salary;
 
     // Data fields
     private final Address address;
-    private final seedu.address.model.commons.Date dateJoined;
     private final Set<Project> projects = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, seedu.address.model.commons.Date dateJoined, Username username,
-                  Password password, Role role, Salary salary, Set<Project> projects) {
-        requireAllNonNull(name, phone, email, address, username, password, role, salary, projects);
+    public Person(Name name, Phone phone, Email email, Address address, Role role, Set<Project> projects) {
+        requireAllNonNull(name, phone, email, address, role, projects);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.dateJoined = dateJoined;
-        this.username = username;
-        this.password = password;
         this.role = role;
-        this.salary = salary;
         this.projects.addAll(projects);
     }
 
@@ -64,22 +56,11 @@ public class Person {
         return address;
     }
 
-    public Username getUsername() {
-        return username;
-    }
-    public Password getPassword(){
-        return password;
-    }
-    public Salary getSalary(){
-        return salary;
-    }
     public Role getRole(){
         return role;
     }
 
-    public Date getDateJoined(){
-        return dateJoined;
-    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -122,10 +103,6 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && dateJoined.equals(otherPerson.dateJoined)
-                && username.equals(otherPerson.username)
-                && password.equals(otherPerson.password)
-                && salary.equals(otherPerson.salary)
                 && role.equals(otherPerson.role)
                 && projects.equals(otherPerson.projects);
     }
@@ -133,7 +110,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, username, password, salary, role, projects);
+        return Objects.hash(name, phone, email, address, role, projects);
     }
 
     @Override
@@ -143,10 +120,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("username", username)
-                .add("password", password)
                 .add("role", role)
-                .add("salary", salary)
                 .add("projects", projects)
                 .toString();
     }
