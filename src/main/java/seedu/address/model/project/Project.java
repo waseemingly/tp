@@ -31,6 +31,9 @@ public class Project {
         this.description = Optional.ofNullable(desc);
         this.deadlines.addAll(deadlines);
     }
+    public Project(String projectName) {
+        this(new Name(projectName),new Description(""),new HashSet<>());
+    }
     
     @Override
     public boolean equals(Object other) {

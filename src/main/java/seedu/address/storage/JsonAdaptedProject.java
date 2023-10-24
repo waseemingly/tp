@@ -45,7 +45,7 @@ class JsonAdaptedProject {
         }
         final Name projectModelName = new Name(projectName);
         
-        return new Project(projectModelName);
+        return new Project(projectModelName.fullName);
     }
 
 }

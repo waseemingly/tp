@@ -76,12 +76,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             editPersonDescriptor.setSalary(ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get()));
         }
-        if (argMultimap.getValue(PREFIX_USERNAME).isPresent()) {
-            editPersonDescriptor.setUsername(ParserUtil.parseUsername(argMultimap.getValue(PREFIX_USERNAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_PASSWORD).isPresent()) {
-            editPersonDescriptor.setPassword(ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get()));
-        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_PROJECT)).ifPresent(editPersonDescriptor::setProjects);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

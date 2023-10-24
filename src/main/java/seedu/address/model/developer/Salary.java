@@ -1,10 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.developer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's salary in the company.
+ * Represents a Developer's salary in the company.
  * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
  */
 public class Salary {
