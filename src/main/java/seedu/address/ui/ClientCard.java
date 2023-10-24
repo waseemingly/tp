@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.Client.Client;
 import seedu.address.model.developer.Developer;
 
 import java.util.Comparator;
@@ -15,7 +16,7 @@ import java.util.Comparator;
  */
 public class ClientCard extends UiPart<Region> {
 
-    private static final String FXML = "DeveloperListCard.fxml";
+    private static final String FXML = "ClientListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,7 +26,7 @@ public class ClientCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Developer developer;
+    public final Client client;
 
     @FXML
     private HBox cardPane;
@@ -40,34 +41,31 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label dateJoined;
-    @FXML
-    private Label username;
-    @FXML
-    private Label password;
-    @FXML
     private Label role;
     @FXML
-    private Label salary;
+    private Label organisation;
+    @FXML
+    private Label document;
+
     @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ClientCard (Developer developer, int displayedIndex) {
+    public ClientCard (Client client, int displayedIndex) {
         super(FXML);
-        this.developer = developer;
+        this.client = client;
         id.setText(displayedIndex + ". ");
-        name.setText(developer.getName().fullName);
-        phone.setText(developer.getPhone().value);
-        email.setText(developer.getEmail().value);
-        role.setText(developer.getRole().role);
+        name.setText(client.getName().fullName);
+        phone.setText(client.getPhone().value);
+        email.setText(client.getEmail().value);
+        role.setText(client.getRole().role);
+        address.setText(client.getAddress().value);
+        organisation.setText(client.getOrganisation().fullName);
+        document.setText(client.getDocument().toString());
 
-        address.setText(developer.getAddress().value);
-        dateJoined.setText(String.valueOf(developer.getDateJoined().value));
-        salary.setText(String.valueOf(developer.getSalary().salary));
-        developer.getProjects().stream()
+        client.getProjects().stream()
                 .sorted(Comparator.comparing(tag -> tag.getProjectName().fullName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getProjectName().fullName)));
     }
