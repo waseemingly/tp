@@ -106,56 +106,139 @@ It is a **desktop app for managing contacts, optimized for use via a Command Lin
         * `Error! New user’s {MISSING_PARTICULARS} are missing.`
 * Relevant UI mock-ups
 
-### Edit information details : `edit`
-* What it does:
-    * Allows managers to change the details of the information stored
-* Format
-    * `edit employee1`
-    * Modify the details that you want to change
-    * `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE s/CHANGED_SALARY pr/{PROJECT1, PROJECT2…} u/USERNAME pa/PASSWORD`
-* Example
-    * User types: `update Amy`
-    * CLI  shows: `Here are the employee details: AMY 87654321 amy@u.nus.edu NUS UTOWN 06 sept Developer 4999 amy password123`
-    * User types: `n/AMY p/87654321 e/amy@u.nus.edu a/NUS UTOWN d/06 sept r/Developer s/4999 pr/{login} u/amy pa/password12345`
-    * CLI  shows: `Here are the updated employee details: AMY 87654321 amy@u.nus.edu NUS UTOWN 06 sept Developer 6999 amy password123`
-* Acceptable parameters 
-    * Inputs are the same as adding an employee but you just change the particular details that you want to modify.
-    * Names can only consist of capital and small letters, spaces and hyphens.
-    * Contact number has to 8 digits without spaces
-    * Email has to be of the format <TEXT>@<TEXT>
-    * Date joined has to be of format dd mmm yyyy (E.x 09 Sept 2022)
-    * Role should be: HR, manager or developer
-    * Salary has to be at least 4 digits
-    * Project should be valid project name already listed in the company, multiple projects have to be comma separated
-    * Password is at least 8 characters long, with a combination of uppercase letters, lowercase letters, numbers, and symbols
-* When command succeeds
-    * CLI shows:
+### Edit
+#### Edit developer details
+Edits the details of an existing developer in the address book.
+
+Format: `edit-d n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
+
+* Edits the developer with the name specified by `n/NAME`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing projects, the existing assigned projects of the developer will be removed ie. adding of projects is not cumulative.
+* You can remove all the developer's projects by typing `p/` without specifying any project name after it.
+
+Example of usage: `edit-d n/AMY p/98989898 pr/Project2 pr/Project3`
+  * Edits `AMY`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
+
+Acceptable parameters: 
+* `NAME` and `PROJECT_NAME` can only consist of capital and small letters, spaces and hyphens.
+* `NAME` must be the name of an **existing developer** in the address book.
+* `PHONE_NUMBER` has to 8 digits without spaces.
+* `EMAIL` has to be of the format `<TEXT>@<TEXT>`.
+* `DATE_JOINED` has to be of format `dd-MM-yyyy` (e.g. `31-12-2019`).
+* `ROLE` has to be.......??
+* `SALARY` has to be at least 4 digits.
+* `PROJECT_NAME` should be the name of an existing project.
+
+When command succeeds, CLI shows:          (??)
 ```
 Here are the updated employee details:
 Name: AMY
-Contact Number: 87654321
+Contact Number: 98989898
 Email: amy@u.nus.edu
 Address: NUS UTOWN
-Date Joined: 06 Sep 2023
+Date Joined: 06-09-2023
 Role: Developer
 Salary: 6999
-Assigned Projects:login
-Username: amy
-Password: Password123!
+Assigned Projects: Project1, Project2
 ```
-* When command fails
-    * Repetitive name
-        * `More than 1 person with the NAME has been found, please input employee’s phone number:`
-    * Invalid input
-        * `Please input the employee details in the right format`
-    * No access error
-        * `You do not have access to modify this. Please contact your administrator.`
-    * Format error
-        * `Error! New user’s <PARTICULAR> does not follow the format: <FORMAT>`
-        * E.x.:  `Error! New user’s name does not follow the format:
-          Names can only consist of capital and small letters, spaces and hyphens.`
 
-* Relevant UI mock-ups
+When command fails due to an error, the respective error message will be displayed:
+* Non-existent developer
+  * `There is no employee with that name!`
+* Non-existent project
+  * `There is no project with that name!`
+* Invalid command format
+  * `Please input the employee details in the correct format!`
+* No edits in input command
+  * `At least one field to edit must be provided!`
+
+Relevant UI mock-ups (???)
+
+#### Edit client details
+Edits the details of an existing client in the address book.
+
+Format: `edit-c n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
+
+* Edits the client with the name specified by `n/NAME`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing projects, the existing assigned projects of the client will be removed ie. adding of projects is not cumulative.
+* You can remove all the client's projects by typing `p/` without specifying any project name after it.
+
+Example of usage: `edit-c n/BOB p/bob@gmail.com`
+* Edits `BOB`'s email to `bob@gmail.com`.
+
+Acceptable parameters:
+* `NAME`, `PROJECT_NAME` and `ORGANISATION` can only consist of capital and small letters, spaces and hyphens.
+* `NAME` must be the name of an **existing client** in the address book.
+* `PHONE_NUMBER` has to 8 digits without spaces.
+* `EMAIL` has to be of the format `<TEXT>@<TEXT>`.
+* `PROJECT_NAME` should be the name of an existing project.
+
+When command succeeds, CLI shows: (??)
+```
+Here are the updated employee details:
+Name: BOB
+Contact Number: 87654321
+Email: bob@gmail.com
+Address: Blk 123 Banana Road
+Projects: Project1
+Organisation: Banana
+```
+
+When command fails due to an error, the respective error message will be displayed:
+* Non-existent client
+    * `There is no client with that name!`
+* Non-existent project
+    * `There is no project with that name!`
+* Invalid command format
+    * `Please input the client details in the correct format!`
+* No edits in input command
+    * `At least one field to edit must be provided!`
+
+Relevant UI mock-ups (???)
+
+#### Edit project details
+Edits the details of an existing project in the address book.
+
+Format: `edit-p n/NAME [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`
+
+* Edits the project with the name specified by `n/NAME`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing deadlines, the existing deadlines will be removed ie. adding of projects is not cumulative.
+* You can remove all the current deadlines by typing `d/` without specifying any deadline.
+
+Example of usage: `edit-p n/Project1 d/Finish Feature-A by: 09-09-2023`
+* Deletes existing project deadlines and adds new deadline `Finish Feature-A by: 09-09-2023`
+
+Acceptable parameters:
+* `NAME` can only consist of capital and small letters, spaces and hyphens.
+* `NAME` must be the name of an **existing project** in the address book.
+* `DEADLINE` should be of the format `DEADLINE_DESCRIPTION by: DATE`, where `DATE` is in `dd-MM-yyyy` format.
+
+When command succeeds, CLI shows: (??)
+```
+Here are the updated project details:
+Name: Project1
+Description: Project1's deliverable is a CLI chatbot to manage tasks.
+Deadlines: 
+    1. Finish Feature-A by: 09-09-2023.
+    2. Finish Feature-B by: 20-09-2023.
+    3. Release first iteration by: 30-09-2023.
+```
+
+When command fails due to an error, the respective error message will be displayed:
+* Non-existent project
+    * `There is no project with that name!`
+* Invalid command format
+    * `Please input the project details in the correct format!`
+* No edits in input command
+    * `At least one field to edit must be provided!`
+
+Relevant UI mock-ups (???)
 
 ### Search according to type and industry details: `search`
 * What it does
