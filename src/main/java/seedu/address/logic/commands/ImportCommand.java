@@ -4,7 +4,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Developer;
+import seedu.address.model.developer.Developer;
 
 import java.util.ArrayList;
 
@@ -37,11 +37,11 @@ public class ImportCommand extends Command{
         requireNonNull(model);
         String output = "";
         for(Developer toAdd: toAddList) {
-            if (model.hasPerson(toAdd)) {
+            if (model.hasDeveloper(toAdd)) {
                 output += toAdd.getName().fullName + MESSAGE_DUPLICATE_PERSON;
             }
 
-            model.addPerson(toAdd);
+            model.addDeveloper(toAdd);
             output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
             output += "\n";
         }

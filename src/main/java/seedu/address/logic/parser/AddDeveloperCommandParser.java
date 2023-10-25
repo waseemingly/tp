@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -49,7 +50,7 @@ public class AddDeveloperCommandParser implements Parser<AddDeveloperCommand> {
                 .orElse(new SimpleDateFormat("dd-MM-yyyy").format(new java.util.Date())));
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
-        Set<Project> projectList = ParserUtil.parseProjects(argMultimap.getAllValues(PREFIX_PROJECT));
+        Set<String> projectList = new HashSet<>(argMultimap.getAllValues(PREFIX_PROJECT));
         GithubId githubId = ParserUtil.parseGithubId(argMultimap.getValue(PREFIX_GITHUBID).get());
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
 

@@ -13,7 +13,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * Represents a Client in the address book, extending the Developer class.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Client extends Developer {
+public class Client extends Person {
     private final Name organisation;
     private final Document document;
 

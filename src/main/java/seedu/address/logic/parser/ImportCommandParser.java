@@ -4,6 +4,7 @@ import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
@@ -49,8 +50,8 @@ public class ImportCommandParser implements Parser<ImportCommand>{
                 }
                 Set<Project> projectList = ParserUtil.parseProjects(projects);
 
-                Developer developer = new Developer(name, phone, email, address, dateJoined,role, salary,projectList);
-                toAddList.add(developer);
+                //Developer developer = new Developer(name, phone, email, address, dateJoined,role, salary,projectList);
+                //toAddList.add(developer);
 
             }
             return new ImportCommand(toAddList);

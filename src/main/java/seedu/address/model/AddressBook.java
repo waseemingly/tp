@@ -11,8 +11,6 @@ import seedu.address.model.Client.Client;
 import seedu.address.model.Client.UniqueClientList;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.UniqueDeveloperList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 

@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,6 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
@@ -46,8 +46,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DATEJOINED + "DATE JOINED]"
             + "[" + PREFIX_ROLE + "ROLE]"
             + "[" + PREFIX_SALARY + "SALARY]"
-            + "[" + PREFIX_USERNAME + "USERNAME]"
-            + "[" + PREFIX_PASSWORD + "PASSWORD]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -76,7 +74,7 @@ public class EditCommand extends Command {
     static Developer createEditedPerson(Developer developerToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert developerToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(developerToEdit.getName());
+        /*Name updatedName = editPersonDescriptor.getName().orElse(developerToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(developerToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(developerToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(developerToEdit.getAddress());
@@ -86,13 +84,14 @@ public class EditCommand extends Command {
         Set<Project> updatedProjects = editPersonDescriptor.getProjects().orElse(developerToEdit.getProjects());
 
         return new Developer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedDateJoined,updatedRole,updatedSalary, updatedProjects);
+                updatedDateJoined,updatedRole,updatedSalary, updatedProjects);*/
+        return null;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Developer> lastShownList = model.getFilteredPersonList();
+        /*List<Developer> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -107,7 +106,10 @@ public class EditCommand extends Command {
         model.setPerson(developerToEdit, editedDeveloper);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedDeveloper)));
+*/
+        return null;
     }
+
 
     @Override
     public boolean equals(Object other) {

@@ -15,7 +15,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * Represents a Developer in the address book, extending the Developer class.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Developer extends seedu.address.model.person.Developer {
+public class Developer extends Person {
     private final Salary salary;
     private final Date dateJoined;
     private final GithubId githubId;

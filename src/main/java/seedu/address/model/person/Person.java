@@ -5,10 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.*;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
-import seedu.address.model.developer.Salary;
-import seedu.address.model.project.Project;
 
 /**
  * Represents a Person in the address book.
