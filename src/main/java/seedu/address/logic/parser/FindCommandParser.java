@@ -8,8 +8,10 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.DateJoinedContainsKeywordsPredicate;
+import seedu.address.model.person.DocumentContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.OrganisationContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.ProjectContainsKeywordsPredicate;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
@@ -31,30 +33,54 @@ public class FindCommandParser implements Parser<FindCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
 
-            if (trimmedArgs.startsWith("n/")) {
-                String[] nameKeywords = trimmedArgs.replaceFirst("n/", "").split("\\s+");
+            if (trimmedArgs.startsWith("developer n/")) {
+                String[] nameKeywords = trimmedArgs.replaceFirst("developer n/", "").split("\\s+");
                 return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-            } else if (trimmedArgs.startsWith("r/")) {
-                String[] roleKeywords = trimmedArgs.replaceFirst("r/", "").split("\\s+");
+            } else if (trimmedArgs.startsWith("developer r/")) {
+                String[] roleKeywords = trimmedArgs.replaceFirst("developer r/", "").split("\\s+");
                 return new FindCommand(new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
-            } else if (trimmedArgs.startsWith("a/")) {
-                String[] addressKeywords = trimmedArgs.replaceFirst("a/", "").split("\\s+");
+            } else if (trimmedArgs.startsWith("developer a/")) {
+                String[] addressKeywords = trimmedArgs.replaceFirst("developer a/", "").split("\\s+");
                 return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
-            } else if (trimmedArgs.startsWith("d/")) {
-                String[] dateJoinedKeywords = trimmedArgs.replaceFirst("d/", "").split("\\s+");
+            } else if (trimmedArgs.startsWith("developer d/")) {
+                String[] dateJoinedKeywords = trimmedArgs.replaceFirst("developer d/", "").split("\\s+");
                 return new FindCommand(new DateJoinedContainsKeywordsPredicate(Arrays.asList(dateJoinedKeywords)));
-            } else if (trimmedArgs.startsWith("e/")) {
-                String[] emailKeywords = trimmedArgs.replaceFirst("e/", "").split("\\s+");
+            } else if (trimmedArgs.startsWith("developer e/")) {
+                String[] emailKeywords = trimmedArgs.replaceFirst("developer e/", "").split("\\s+");
                 return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
-            } else if (trimmedArgs.startsWith("ph/")) {
-                String[] phoneKeywords = trimmedArgs.replaceFirst("p/", "").split("\\s+");
+            } else if (trimmedArgs.startsWith("developer ph/")) {
+                String[] phoneKeywords = trimmedArgs.replaceFirst("developer ph/", "").split("\\s+");
                 return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
-            } else if (trimmedArgs.startsWith("pr/")) {
-                String[] phoneKeywords = trimmedArgs.replaceFirst("p/", "").split("\\s+");
-                return new FindCommand(new ProjectContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
-            } else if (trimmedArgs.startsWith("s/")) {
-                String[] salaryKeywords = trimmedArgs.replaceFirst("s/", "").split("\\s+");
+            } else if (trimmedArgs.startsWith("developer pr/")) {
+                String[] projectKeywords = trimmedArgs.replaceFirst("developer pr/", "").split("\\s+");
+                return new FindCommand(new ProjectContainsKeywordsPredicate(Arrays.asList(projectKeywords)));
+            } else if (trimmedArgs.startsWith("developer s/")) {
+                String[] salaryKeywords = trimmedArgs.replaceFirst("developer s/", "").split("\\s+");
                 return new FindCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(salaryKeywords)));
+            } else if (trimmedArgs.startsWith("client n/")) {
+                String[] nameKeywords = trimmedArgs.replaceFirst("client n/", "").split("\\s+");
+                return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            } else if (trimmedArgs.startsWith("client ph/")) {
+                String[] phoneKeywords = trimmedArgs.replaceFirst("client ph/", "").split("\\s+");
+                return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
+            } else if (trimmedArgs.startsWith("client e/")) {
+                String[] emailKeywords = trimmedArgs.replaceFirst("client e/", "").split("\\s+");
+                return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
+            } else if (trimmedArgs.startsWith("client a/")) {
+                String[] addressKeywords = trimmedArgs.replaceFirst("client a/", "").split("\\s+");
+                return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
+            } else if (trimmedArgs.startsWith("client r/")) {
+                String[] roleKeywords = trimmedArgs.replaceFirst("client r/", "").split("\\s+");
+                return new FindCommand(new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
+            } else if (trimmedArgs.startsWith("client pr/")) {
+                String[] projectKeywords = trimmedArgs.replaceFirst("client pr/", "").split("\\s+");
+                return new FindCommand(new ProjectContainsKeywordsPredicate(Arrays.asList(projectKeywords)));
+            } else if (trimmedArgs.startsWith("client org/")) {
+                String[] organisationKeywords = trimmedArgs.replaceFirst("client org/", "").split("\\s+");
+                return new FindCommand(new OrganisationContainsKeywordsPredicate(Arrays.asList(organisationKeywords)));
+            } else if (trimmedArgs.startsWith("client doc/")) {
+                String[] documentKeywords = trimmedArgs.replaceFirst("client doc/", "").split("\\s+");
+                return new FindCommand(new DocumentContainsKeywordsPredicate(Arrays.asList(documentKeywords)));
             } else {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
