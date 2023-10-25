@@ -26,7 +26,7 @@ public class Developer extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Developer(Name name, Phone phone, Email email, Address address, Role role, Set<Project> projects,
+    public Developer(Name name, Phone phone, Email email, Address address, Role role, Set<String> projects,
                      Salary salary, Date dateJoined, GithubId githubId, Rating rating) {
         super(name, phone, email, address, role, projects);
         requireAllNonNull(salary, dateJoined, githubId, rating);
@@ -42,6 +42,14 @@ public class Developer extends Person {
 
     public Date getDateJoined() {
         return dateJoined;
+    }
+    public boolean isSameDeveloper(Developer otherDeveloper) {
+        if (otherDeveloper == this) {
+            return true;
+        }
+
+        return otherDeveloper != null
+                && otherDeveloper.getName().equals(getName());
     }
 
     public GithubId getGithubId() {

@@ -1,5 +1,6 @@
 package seedu.address.model.Client;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
@@ -21,7 +22,7 @@ public class Client extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Role role, Set<Project> projects,
+    public Client(Name name, Phone phone, Email email, Address address, Role role, Set<String> projects,
                   Name organisation, Document document) {
         super(name, phone, email, address, role, projects);
         requireAllNonNull(organisation, document);
@@ -35,6 +36,15 @@ public class Client extends Person {
 
     public Document getDocument() {
         return document;
+    }
+
+    public boolean isSameClient(Client otherClient) {
+        if (otherClient == this) {
+            return true;
+        }
+
+        return otherClient != null
+                && otherClient.getName().equals(getName());
     }
 
     @Override

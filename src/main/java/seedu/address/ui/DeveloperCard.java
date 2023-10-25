@@ -65,7 +65,7 @@ public class DeveloperCard extends UiPart<Region> {
         dateJoined.setText(String.valueOf(developer.getDateJoined().value));
         salary.setText(String.valueOf(developer.getSalary().salary));
         developer.getProjects().stream()
-                .sorted(Comparator.comparing(tag -> tag.getProjectName().fullName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getProjectName().fullName)));
+                .sorted(Comparator.comparing(tag -> tag))
+                .forEach(tag -> tags.getChildren().add(new Label(tag)));
     }
 }

@@ -25,12 +25,12 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Project> projects = new HashSet<>();
+    private final Set<String> projects = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Role role, Set<Project> projects) {
+    public Person(Name name, Phone phone, Email email, Address address, Role role, Set<String> projects) {
         requireAllNonNull(name, phone, email, address, role, projects);
         this.name = name;
         this.phone = phone;
@@ -66,7 +66,7 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Project> getProjects() {
+    public Set<String> getProjects() {
         return Collections.unmodifiableSet(projects);
     }
 

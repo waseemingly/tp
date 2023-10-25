@@ -12,6 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.GithubId;
+import seedu.address.model.developer.Rating;
 import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
@@ -28,17 +31,22 @@ class JsonAdaptedDeveloper {
     private final String phone;
     private final String email;
     private final String address;
-    private final String dateJoined;
+
     private final String role;
+
+    private final List<String> projects = new ArrayList<>();
     private final String salary;
-    private final List<JsonAdaptedProject> projects = new ArrayList<>();
+    private final String dateJoined;
+    private final String githubId;
+    private final String rating;
 
     @JsonCreator
     public JsonAdaptedDeveloper(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("dateJoined") String dateJoined, @JsonProperty("role") String role,
                                 @JsonProperty("salary") String salary,
-                                @JsonProperty("projects") List<JsonAdaptedProject> tags) {
+                                @JsonProperty("projects") List<String> tags, @JsonProperty("githubId") String githubId,
+                                @JsonProperty("rating") String rating) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,9 +57,11 @@ class JsonAdaptedDeveloper {
         if (tags != null) {
             this.projects.addAll(tags);
         }
+        this.githubId = githubId;
+        this.rating = rating;
     }
 
-    public JsonAdaptedDeveloper(Person source) {
+    public JsonAdaptedDeveloper(Developer source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -59,15 +69,15 @@ class JsonAdaptedDeveloper {
         dateJoined = source.getDateJoined().toString();
         role = source.getRole().role;
         salary = source.getSalary().toString();
-        projects.addAll(source.getProjects().stream()
-                .map(JsonAdaptedProject::new)
-                .collect(Collectors.toList()));
+        projects.addAll(source.getProjects());
+        rating = source.getRating().toString();
+        githubId = source.getGithubId().username;
     }
 
-    public Person toModelType() throws IllegalValueException {
-        final List<Project> personProjects = new ArrayList<>();
-        for (JsonAdaptedProject tag : projects) {
-            personProjects.add(tag.toModelType());
+    public Developer toModelType() throws IllegalValueException {
+        final List<String> personProjects = new ArrayList<>();
+        for (String tag : projects) {
+            personProjects.add(tag);
         }
 
         if (name == null) {
@@ -127,8 +137,22 @@ class JsonAdaptedDeveloper {
             throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
         }
         final Salary modelSalary = new Salary(salary);
-        final Set<Project> modelProjects = new HashSet<>(personProjects);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelDateJoined, modelRole, modelSalary, modelProjects);
+        if (githubId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, GithubId.class.getSimpleName()));
+        }
+        if (!GithubId.isValidGithubId(githubId)) {
+            throw new IllegalValueException(GithubId.MESSAGE_CONSTRAINTS);
+        }
+        final GithubId modelGithubId = new GithubId(githubId);
+        if (rating == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
+        }
+        if (!Rating.isValidRating(rating)) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        final Rating modelRating = new Rating(rating);
+        final Set<String> modelProjects = new HashSet<>(personProjects);
+        return new Developer(modelName, modelPhone, modelEmail, modelAddress, modelRole, modelProjects, modelSalary, modelDateJoined, modelGithubId, modelRating);
     }
 
 }
