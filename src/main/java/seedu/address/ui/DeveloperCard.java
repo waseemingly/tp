@@ -8,11 +8,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.person.Person;
 
 
 /**
- * A UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Developer}.
  */
 public class DeveloperCard extends UiPart<Region> {
 
@@ -50,9 +49,9 @@ public class DeveloperCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Developer} and index to display.
      */
-    public DeveloperCard (Developer developer, int displayedIndex) {
+    public DeveloperCard (seedu.address.model.developer.Developer developer, int displayedIndex) {
         super(FXML);
         this.developer = developer;
         id.setText(displayedIndex + ". ");

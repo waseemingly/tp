@@ -9,8 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Client.Client;
-import seedu.address.model.developer.Developer;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Developer;
 
 /**
  * Panel containing the list of persons.
@@ -20,32 +19,32 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Developer> personListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Developer> developerList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(developerList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code DeveloperCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Developer} using a {@code DeveloperCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Developer> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Developer developer, boolean empty) {
+            super.updateItem(developer, empty);
 
-            if (empty || person == null) {
+            if (empty || developer == null) {
                 setGraphic(null);
                 setText(null);
-            } else if (person instanceof Developer) {
-                setGraphic(new DeveloperCard((Developer) person, getIndex() + 1).getRoot());
+            } else if (developer instanceof seedu.address.model.developer.Developer) {
+                setGraphic(new DeveloperCard((seedu.address.model.developer.Developer) developer, getIndex() + 1).getRoot());
             } else {
-                setGraphic(new ClientCard((Client) person, getIndex() + 1).getRoot());
+                setGraphic(new ClientCard((Client) developer, getIndex() + 1).getRoot());
             }
         }
     }

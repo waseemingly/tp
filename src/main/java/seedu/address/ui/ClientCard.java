@@ -6,13 +6,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.Client.Client;
-import seedu.address.model.developer.Developer;
 
 import java.util.Comparator;
 
 
 /**
- * A UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Developer}.
  */
 public class ClientCard extends UiPart<Region> {
 
@@ -51,7 +50,7 @@ public class ClientCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Developer} and index to display.
      */
     public ClientCard (Client client, int displayedIndex) {
         super(FXML);

@@ -12,7 +12,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Developer objects.
  */
 public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
@@ -49,17 +49,17 @@ public class PersonBuilder {
         salary = DEFAULT_SALARY;
     }
 
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        projects = new HashSet<>(personToCopy.getProjects());
-        dateJoined = personToCopy.getDateJoined();
-        username = personToCopy.getUsername();
-        password = personToCopy.getPassword();
-        role = personToCopy.getRole();
-        salary = personToCopy.getSalary();
+    public PersonBuilder(Developer developerToCopy) {
+        name = developerToCopy.getName();
+        phone = developerToCopy.getPhone();
+        email = developerToCopy.getEmail();
+        address = developerToCopy.getAddress();
+        projects = new HashSet<>(developerToCopy.getProjects());
+        dateJoined = developerToCopy.getDateJoined();
+        username = developerToCopy.getUsername();
+        password = developerToCopy.getPassword();
+        role = developerToCopy.getRole();
+        salary = developerToCopy.getSalary();
     }
 
     public PersonBuilder withName(String name) {
@@ -112,7 +112,7 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, dateJoined, username, password, role, salary, projects);
+    public Developer build() {
+        return new Developer(name, phone, email, address, dateJoined, username, password, role, salary, projects);
     }
 }

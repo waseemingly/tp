@@ -18,11 +18,11 @@ import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Developer}.
  */
 class JsonAdaptedDeveloper {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Developer's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -51,7 +51,7 @@ class JsonAdaptedDeveloper {
         }
     }
 
-    public JsonAdaptedDeveloper(Person source) {
+    public JsonAdaptedDeveloper(Developer source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -64,7 +64,7 @@ class JsonAdaptedDeveloper {
                 .collect(Collectors.toList()));
     }
 
-    public Person toModelType() throws IllegalValueException {
+    public Developer toModelType() throws IllegalValueException {
         final List<Project> personProjects = new ArrayList<>();
         for (JsonAdaptedProject tag : projects) {
             personProjects.add(tag.toModelType());
@@ -128,7 +128,7 @@ class JsonAdaptedDeveloper {
         }
         final Salary modelSalary = new Salary(salary);
         final Set<Project> modelProjects = new HashSet<>(personProjects);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelDateJoined, modelRole, modelSalary, modelProjects);
+        return new Developer(modelName, modelPhone, modelEmail, modelAddress, modelDateJoined, modelRole, modelSalary, modelProjects);
     }
 
 }
