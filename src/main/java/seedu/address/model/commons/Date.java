@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the date a person Joined. In the format: dd-MM-YYYY
+ * Represents the date a developer Joined. In the format: dd-MM-YYYY
  */
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =

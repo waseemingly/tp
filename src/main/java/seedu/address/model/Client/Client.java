@@ -4,18 +4,16 @@ import seedu.address.model.developer.Developer;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a Client in the address book, extending the Person class.
+ * Represents a Client in the address book, extending the Developer class.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Client extends Person {
+public class Client extends Developer {
     private final Name organisation;
     private final Document document;
 

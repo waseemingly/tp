@@ -10,7 +10,7 @@ import seedu.address.model.person.DateJoinedContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.KeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Developer;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.ProjectContainsKeywordsPredicate;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
@@ -28,7 +28,7 @@ public class FindCommand extends Command {
             + "Find pr/<Project Name> OR Find r/<Role> OR Find n/<Name>.\n"
             + "Example: " + COMMAND_WORD + " n/ alice bob charlie";
 
-    private KeywordPredicate<Person> predicate;
+    private KeywordPredicate<Developer> predicate;
 
     public FindCommand(NameContainsKeywordsPredicate namePredicate) {
         this.predicate = namePredicate;

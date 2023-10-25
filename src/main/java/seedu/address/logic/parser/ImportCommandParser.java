@@ -32,7 +32,7 @@ public class ImportCommandParser implements Parser<ImportCommand>{
             if(!isValid){
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
             }
-            ArrayList<Person> toAddList = new ArrayList<>();
+            ArrayList<Developer> toAddList = new ArrayList<>();
             while ((line = br.readLine()) != null)   //returns a Boolean value
             {
                 String[] employee = line.split(splitBy);    // use comma as separator
@@ -49,8 +49,8 @@ public class ImportCommandParser implements Parser<ImportCommand>{
                 }
                 Set<Project> projectList = ParserUtil.parseProjects(projects);
 
-                Person person = new Person(name, phone, email, address, dateJoined,role, salary,projectList);
-                toAddList.add(person);
+                Developer developer = new Developer(name, phone, email, address, dateJoined,role, salary,projectList);
+                toAddList.add(developer);
 
             }
             return new ImportCommand(toAddList);
