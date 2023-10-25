@@ -26,6 +26,13 @@ public class Deadline {
         this.desc = desc;
         this.priority = priority;
     }
+    public Deadline (String str) {
+        String[] output = str.split(",");
+        //TODO: add new error
+        this.date = new Date(output[0]);
+        this.desc = new Description(output[1]);
+        this.priority= Priority.valueOf(output[2]);
+    }
     
     public Date getDate() {
         return date;
@@ -54,6 +61,10 @@ public class Deadline {
         return date.equals(otherDeadline.date)
                 && desc.equals(otherDeadline.desc)
                 && priority.equals(otherDeadline.priority);
+    }
+
+    public String getStringRepresentation() {
+        return date.toString()+","+desc.toString()+","+priority.toString();
     }
 
     @Override

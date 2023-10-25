@@ -4,6 +4,7 @@ import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.developer.Developer;
 
 /**
  * Tests that a {@code Developer}'s {@code Phone} matches any of the keywords given.

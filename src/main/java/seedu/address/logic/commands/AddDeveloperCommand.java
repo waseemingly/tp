@@ -7,14 +7,14 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Developer;
+import seedu.address.model.developer.Developer;
 
 /**
  * Adds a developer to the address book.
  */
 public class AddDeveloperCommand extends Command {
 
-    public static final String COMMAND_WORD = "adddeveloper";
+    public static final String COMMAND_WORD = "addDeveloper";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a developer to the address book. "
             + "Parameters: "

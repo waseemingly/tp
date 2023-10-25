@@ -5,14 +5,19 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Developer;
+import seedu.address.model.Client.Client;
+import seedu.address.model.developer.Developer;
+import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Developer> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Developer> PREDICATE_SHOW_ALL_DEVELOPERS = unused -> true;
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +58,48 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a developer with the same identity as {@code developer} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Developer developer);
+    boolean hasDeveloper(Developer person);
+    boolean hasClient(Client client);
+    boolean hasProject(Project project);
 
     /**
-     * Deletes the given developer.
-     * The developer must exist in the address book.
+     * Deletes the given person.
+     * The person must exist in the address book.
      */
-    void deletePerson(Developer target);
+    void deleteDeveloper(Developer target);
+    void deleteClient(Client target);
+    void deleteProject(Project target);
 
     /**
-     * Adds the given developer.
-     * {@code developer} must not already exist in the address book.
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
      */
-    void addPerson(Developer developer);
+    void addDeveloper(Developer person);
+    void addClient(Client person);
+    void addProject(Project person);
 
     /**
-     * Replaces the given developer {@code target} with {@code editedDeveloper}.
+     * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The developer identity of {@code editedDeveloper} must not be the same as another existing developer in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setPerson(Developer target, Developer editedDeveloper);
+    void setDeveloper(Developer target, Developer editedDeveloper);
+    void setClient(Client target, Client editedClient);
+    void setProject(Project target, Project editedProject);
 
-    /** Returns an unmodifiable view of the filtered developer list */
-    ObservableList<Developer> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Developer> getFilteredDeveloperList();
+    ObservableList<Client> getFilteredClientList();
+    ObservableList<Project> getFilteredProjectList();
+
 
     /**
-     * Updates the filter of the filtered developer list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Developer> predicate);
+    void updateFilteredDeveloperList(Predicate<Developer> predicate);
+    void updateFilteredClientList(Predicate<Client> predicate);
+    void updateFilteredProjectList(Predicate<Project> predicate);
 }

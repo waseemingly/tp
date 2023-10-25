@@ -13,9 +13,12 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Client.Client;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Developer;
+import seedu.address.model.developer.Developer;
+import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
 import seedu.address.storage.Storage;
 
 /**
@@ -67,8 +70,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Developer> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Developer> getFilteredDeveloperList() {
+        return model.getFilteredDeveloperList();
+    }
+    @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return model.getFilteredClientList();
+    }
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return model.getFilteredProjectList();
     }
 
     @Override
