@@ -6,18 +6,16 @@ import seedu.address.model.commons.Name;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a Developer in the address book, extending the Person class.
+ * Represents a Developer in the address book, extending the Developer class.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Developer extends Person {
+public class Developer extends seedu.address.model.person.Developer {
     private final Salary salary;
     private final Date dateJoined;
     private final GithubId githubId;

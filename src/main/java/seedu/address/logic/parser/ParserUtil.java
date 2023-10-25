@@ -11,6 +11,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.GithubId;
+import seedu.address.model.developer.Rating;
 import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
@@ -167,5 +169,23 @@ public class ParserUtil {
             throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
+    }
+
+    public static GithubId parseGithubId(String githubid) throws ParseException {
+        requireNonNull(githubid);
+        String trimmedGithubId = githubid.trim();
+        if (!GithubId.isValidGithubId(trimmedGithubId)) {
+            throw new ParseException(GithubId.MESSAGE_CONSTRAINTS);
+        }
+        return new GithubId(trimmedGithubId);
+    }
+
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
     }
 }
