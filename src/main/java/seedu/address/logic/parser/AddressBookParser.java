@@ -9,7 +9,12 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.add.AddClientCommand;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
+import seedu.address.logic.commands.add.AddProjectCommand;
+import seedu.address.logic.parser.add.AddClientCommandParser;
+import seedu.address.logic.parser.add.AddDeveloperCommandParser;
+import seedu.address.logic.parser.add.AddProjectCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -48,6 +53,10 @@ public class AddressBookParser {
 
         case AddDeveloperCommand.COMMAND_WORD:
             return new AddDeveloperCommandParser().parse(arguments);
+        case AddClientCommand.COMMAND_WORD:
+            return new AddClientCommandParser().parse(arguments);
+        case AddProjectCommand.COMMAND_WORD:
+            return new AddProjectCommandParser().parse(arguments);
 
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);

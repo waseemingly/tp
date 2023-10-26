@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Client.Document;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
 import seedu.address.model.developer.GithubId;
@@ -188,4 +189,23 @@ public class ParserUtil {
         }
         return new Rating(trimmedRating);
     }
+
+    public static Document parseDocument(String doc) throws ParseException {
+        requireNonNull(doc);
+        String trimmedDoc = doc.trim();
+        if (!Document.isValidUrl(trimmedDoc)) {
+            throw new ParseException(Document.MESSAGE_CONSTRAINTS);
+        }
+        return new Document(trimmedDoc);
+    }
+
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
 }
