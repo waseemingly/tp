@@ -17,7 +17,7 @@ public class DateJoinedContainsKeywordsPredicate implements KeywordPredicate<Dev
     }
 
     @Override
-    public boolean test(seedu.address.model.developer.Developer developer) {
+    public boolean test(Developer developer) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(developer.getDateJoined().toString(), keyword));
     }

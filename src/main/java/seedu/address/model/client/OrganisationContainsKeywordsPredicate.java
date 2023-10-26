@@ -1,12 +1,13 @@
-package seedu.address.model.person;
+package seedu.address.model.client;
 
 import java.util.List;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.Client.Client;
+import seedu.address.model.person.KeywordPredicate;
 
 /**
- * Tests that a {@code Client}'s {@code Organisation} matches any of the keywords given.
+ * Tests that a {@code Developer}'s {@code Organisation} matches any of the keywords given.
  */
 public class OrganisationContainsKeywordsPredicate implements KeywordPredicate<Client> {
     private final List<String> keywords;
@@ -17,7 +18,6 @@ public class OrganisationContainsKeywordsPredicate implements KeywordPredicate<C
 
     @Override
     public boolean test(Client client) {
-        // Assuming that the Person class (which can be a Client) has a getOrganisation() method that returns a String representation of the organisation.
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getOrganisation().toString(), keyword));
     }

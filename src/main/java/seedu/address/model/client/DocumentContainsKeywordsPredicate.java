@@ -1,15 +1,15 @@
-package seedu.address.model.person;
+package seedu.address.model.client;
 
 import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.Client.Client;
+import seedu.address.model.person.KeywordPredicate;
 
 /**
- * Tests that a {@code Client}'s {@code Document} matches any of the keywords given.
+ * Tests that a {@code Developer}'s {@code Document} matches any of the keywords given.
  */
-public class DocumentContainsKeywordsPredicate implements KeywordPredicate<Client> {
+public class DocumentContainsKeywordsPredicate implements KeywordPredicate<seedu.address.model.client.Client> {
     private final List<String> keywords;
 
     public DocumentContainsKeywordsPredicate(List<String> keywords) {
@@ -17,8 +17,7 @@ public class DocumentContainsKeywordsPredicate implements KeywordPredicate<Clien
     }
 
     @Override
-    public boolean test(Client client) {
-        // Assuming that the Person class (which can be a Client) has a getDocument() method that returns a String representation of the document.
+    public boolean test(seedu.address.model.client.Client client) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getDocument().toString(), keyword));
     }

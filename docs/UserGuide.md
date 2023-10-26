@@ -119,9 +119,9 @@ Format: `edit-d INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JO
 * You can remove all the developer's projects by typing `p/` without specifying any project name after it.
 
 Example of usage: `edit-d 2 p/98989898 pr/Project2 pr/Project3`
-  * Edits `AMY`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
+* Edits `AMY`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
 
-Acceptable parameters: 
+Acceptable parameters:
 * `INDEX` must be a positive integer.
 * `NAME` and `PROJECT_NAME` can only consist of capital and small letters, spaces and hyphens.
 * `NAME` cannot be the same as another existing developer's name in the address book.
@@ -144,30 +144,18 @@ Role: Developer
 Salary: 6999
 Assigned Projects: Project1, Project2
 ```
-=======
-* When command fails
-    * Repetitive name
-        * `More than 1 developer with the NAME has been found, please input employee’s phone number:`
-    * Invalid input
-        * `Please input the employee details in the right format`
-    * No access error
-        * `You do not have access to modify this. Please contact your administrator.`
-    * Format error
-        * `Error! New user’s <PARTICULAR> does not follow the format: <FORMAT>`
-        * E.x.:  `Error! New user’s name does not follow the format:
-          Names can only consist of capital and small letters, spaces and hyphens.`
 
 When command fails due to an error, the respective error message will be displayed:
 * Non-existent developer
-  * `There is no employee with that name!`
+    * `There is no employee with that name!`
 * Non-existent project
-  * `There is no project with that name!`
+    * `There is no project with that name!`
 * Invalid command format
-  * `Please input the employee details in the correct format!`
+    * `Please input the employee details in the correct format!`
 * No edits in input command
-  * `At least one field to edit must be provided!`
+    * `At least one field to edit must be provided!`
 * Invalid command target
-  * `Invalid command target! You cannot call edit-d on the target.`
+    * `Invalid command target! You cannot call edit-d on the target.`
 
 Relevant UI mock-ups (???)
 
@@ -261,20 +249,20 @@ When command fails due to an error, the respective error message will be display
 
 Relevant UI mock-ups (???)
 
-### Search according to type and industry details: `search`
+### Find according to type and industry details: `Find`
 * What it does
-    * Every user can search for contacts related to the keyword (eg. by search prj name, members of the prj team will appear)
+    * Project managers can find developers and clients for contacts related to the keyword (eg. by Find project name, members of the project team will appear)
 * Format
-    * `Search p/<Project Name>`
-    * `Search r/<Role>`
-    * `Search n/<Name>`
+    * `find -d p/<Project Name>`
+    * `find -d r/<Role>`
+    * `find client n/<Name>`
 * Example
-    * `Search p/2103/T` (Prints everyone in 2103/T prj)
-    * `Search r/Senior Developer` (Prints everyone of the senior developer role)
-    * `Search n/Amy` (Prints everyone of the name Amy)
+    * `find -d p/2103/T` (Prints developers in 2103/T prj)
+    * `find -d r/Senior Developer` (Prints developers of the senior developer role)
+    * `find client n/Amy` (Prints everyone of the name Amy)
 * Acceptable Parameters
     * Incomplete inputs for string searches work too
-    * Anything beyond p/ and r/ and n/does not work
+    * Anything beyond p/ and r/ and n/ does not work
     * Name must be closely following  / for more accurate output (eg. n/Amy vs n/ Amy)
 * When command succeeds
     * `These are the project members for the project <Project Name>` followed by list of project members
@@ -282,14 +270,14 @@ Relevant UI mock-ups (???)
     * `This is Amy’s contact` / `These are the contact details for Amy` followed by Amy’s details or list of all the Amy’s contact
       `No relevant contact details can be found`
 * When command fails
-    * Missing header<br> `Please search with the correct input Search p/<Project Name> OR Search r/<Role> OR Search n/<Name>`
-    * Invalid input<br> `x/ is not a valid type to search, Please search with the correct input Search p/<Project Name> OR Search r/<Role> OR Search n/<Name>`
+    * Missing header<br> `Please find with the correct input find p/<Project Name> OR find r/<Role> OR find n/<Name>`
+    * Invalid input<br> `x/ is not a valid type to find, Please find with the correct input find p/<Project Name> OR find r/<Role> OR find n/<Name>`
 
 * Relevant UI mock-ups
 
-### Listing all developers : `list`
+### Listing all persons : `list`
 
-Shows a list of all developers in the address book.
+Shows a list of all persons in the address book.
 
 Format: `list TYPE`
 
@@ -299,19 +287,19 @@ Examples:
 * `list developers` lists all the developers
 * `list projects` lists all the projects
 
-### Deleting a developer : `delete`
+### Deleting a person : `delete`
 
-Deletes the specified developer from the address book.
+Deletes the specified person from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the developer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed developer list.
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd developer in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st developer in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Viewing help : `help`
 
@@ -350,11 +338,11 @@ Format: `exit`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**add**|Format: <br> <br> Example: <br><br>
-**edit** |Format: <br> <br> Example: <br><br>
-**search** |Format: <br> <br> Example: <br><br>
-**delete** |Format: <br> <br> Example: <br><br>
-**list** |Format: <br> `list developers` <br>  `list projects` <br> `list clients`
-**help** | `help`
+| Action     | Format, Examples                                                                                                                          |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**    | Format: <br> <br> Example: <br><br>                                                                                                       |
+| **edit**   | Format: <br> <br> Example: <br><br>                                                                                                       |
+| **delete** | Format: <br> <br> Example: <br><br>                                                                                                       |
+| **find**   | Format: <br> `find -d r/<Role>` `find client n/<Name>`<br> Example: <br> `find -d r/Senior Developer find client n/Amy`<br> |
+| **list**   | Format: <br> `list developers` <br>  `list projects` <br> `list clients`                                                                  |
+| **help**   | `help`                                                                                                                                    |
