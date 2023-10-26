@@ -1,12 +1,11 @@
 ---
 layout: page
-title: User 
+title: UserGuide
 pageNav: 3
 ---
-
 #### Welcome to CodeContact!
 
-#####Your personal project management tool to keep up with your schedules
+##### Your personal project management tool to keep up with your schedules
 
 > Seamlessly integrate information of your developers, clients, and projects, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers
 
@@ -16,14 +15,15 @@ CodeContact is a **desktop app for handling and synchronising project informatio
 
 > If you are familiar with CodeContact, jump to the table of contents to find what you are looking for.
 
-* Table of Contents
+* ###Table of Contents
   {:toc}
+--------------------------------------------------------------------------------------------------------------------
 1. Navigating the user guide
 2. Navigating the User Interface (GUI)
 3. Command Summary
 4. Available Features
 5. Frequently Asked Questions (FAQ)
---------------------------------------------------------------------------------------------------------------------
+   
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -34,7 +34,10 @@ CodeContact is a **desktop app for handling and synchronising project informatio
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codecontact.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Ui.png)<br>
+   For help navigating the GUI, click [here](#navigating)
+   
+1. 
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -50,6 +53,14 @@ CodeContact is a **desktop app for handling and synchronising project informatio
     * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+--------------------------------------------------------------------------------------------------------------------
+## Navigating the User Interface (GUI)
+
+
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
