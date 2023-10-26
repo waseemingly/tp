@@ -9,10 +9,11 @@ pageNav: 3
 ##### Your personal project management tool to keep up with your schedules
 
 > Seamlessly integrate information of your developers, clients, and projects, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers
-> 
-> CodeContact is a **desktop app for handling and synchronising project information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact management tasks done faster than traditional GUI apps.
+
+CodeContact is a **desktop app for handling and synchronising project information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact management tasks done faster than traditional GUI apps.
 
 > If you are new to CodeContact, here is how you can get started!
+
 > If you are familiar with CodeContact, jump to the table of contents to find what you are looking for.
 
 * Table of Contents
