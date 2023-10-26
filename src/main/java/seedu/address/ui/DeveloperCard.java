@@ -81,6 +81,7 @@ public class DeveloperCard extends UiPart<Region> {
         });
         rating.setMax(5);
         rating.autosize();
+        rating.setDisable(true);
         rating.setRating(developer.getRating().rating);
         address.setText(developer.getAddress().value);
         dateJoined.setText(String.valueOf(developer.getDateJoined().value));
