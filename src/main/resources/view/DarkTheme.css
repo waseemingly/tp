@@ -16,6 +16,19 @@
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
+ .rating > .container .button {
+            -fx-pref-width: 20 ;
+            -fx-pref-height: 20 ;
+            -fx-background-size: cover;
+            -fx-padding: 0;
+            -fx-border-style: none;
+ }
+ .rating:disabled {
+         -fx-background-color: transparent;
+         -fx-background-radius: 0;
+         -fx-border-style: none;
+         -fx-opacity: 1.0; /* Full opacity */
+ }
 
 .label-header {
     -fx-font-size: 32pt;

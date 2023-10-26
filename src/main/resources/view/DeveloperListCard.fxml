@@ -37,7 +37,7 @@
       <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
       <Label fx:id="dateJoined" styleClass="cell_small_label" text="\$dateJoined" />
       <Label fx:id="githubId" styleClass="cell_small_label" text="\$githubId" />
-         <Rating fx:id="rating" />
+         <Rating fx:id="rating" prefHeight="20.0" prefWidth="100.0" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

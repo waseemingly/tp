@@ -4,10 +4,23 @@ title: User Guide
 ---
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers
 
-It is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact management tasks done faster than traditional GUI apps.
+CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-  {:toc}
+  * [Quick Start](#quick-start)
+  * [Features](#features)
+    * [Adding new information `add`](#adding-new-information--add)
+    * [Editing information `edit`](#edit)
+    * [Finding information `search`](#search-according-to-type-and-industry-details--search)
+    * [Listing information `list`](#listing-information--list)
+    * [Delete information `delete`](#deleting-a-developer--delete)  
+    * [Help `help`](#viewing-help--help)
+    * [Clear entries `clear`](#clearing-all-entries--clear)
+    * [Exit program `exit`](#exiting-the-program--exit)
+  * [FAQ](#faq)
+  * [Known Issues](#known-issues)
+  * [Command Summary](#command-summary)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
@@ -110,7 +123,7 @@ It is a **desktop app for managing contacts, optimized for use via a Command Lin
 #### Edit developer details
 Edits the details of an existing developer in the address book.
 
-Format: `edit-d INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
+Format: `edit-developers INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
 
 * Edits the developer at the specified `INDEX` in the currently displayed developer list.
 * At least one of the optional fields must be provided.
@@ -118,10 +131,10 @@ Format: `edit-d INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JO
 * When editing projects, the existing assigned projects of the developer will be removed ie. adding of projects is not cumulative.
 * You can remove all the developer's projects by typing `p/` without specifying any project name after it.
 
-Example of usage: `edit-d 2 p/98989898 pr/Project2 pr/Project3`
-* Edits `AMY`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
+Example of usage: `edit-developers 2 p/98989898 pr/Project2 pr/Project3`
+  * Edits `AMY`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
 
-Acceptable parameters:
+Acceptable parameters: 
 * `INDEX` must be a positive integer.
 * `NAME` and `PROJECT_NAME` can only consist of capital and small letters, spaces and hyphens.
 * `NAME` cannot be the same as another existing developer's name in the address book.
@@ -144,25 +157,36 @@ Role: Developer
 Salary: 6999
 Assigned Projects: Project1, Project2
 ```
+* When command fails
+    * Repetitive name
+        * `More than 1 developer with the NAME has been found, please input employee’s phone number:`
+    * Invalid input
+        * `Please input the employee details in the right format`
+    * No access error
+        * `You do not have access to modify this. Please contact your administrator.`
+    * Format error
+        * `Error! New user’s <PARTICULAR> does not follow the format: <FORMAT>`
+        * E.x.:  `Error! New user’s name does not follow the format:
+          Names can only consist of capital and small letters, spaces and hyphens.`
 
 When command fails due to an error, the respective error message will be displayed:
 * Non-existent developer
-    * `There is no employee with that name!`
+  * `There is no employee with that name!`
 * Non-existent project
-    * `There is no project with that name!`
+  * `There is no project with that name!`
 * Invalid command format
-    * `Please input the employee details in the correct format!`
+  * `Please input the employee details in the correct format!`
 * No edits in input command
-    * `At least one field to edit must be provided!`
+  * `At least one field to edit must be provided!`
 * Invalid command target
-    * `Invalid command target! You cannot call edit-d on the target.`
+  * `Invalid command target! You cannot call edit-d on the target.`
 
 Relevant UI mock-ups (???)
 
 #### Edit client details
 Edits the details of an existing client in the address book.
 
-Format: `edit-c INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
+Format: `edit-clients INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
 
 * Edits the client at the specified `INDEX` in the currently displayed client list.
 * At least one of the optional fields must be provided.
@@ -170,7 +194,7 @@ Format: `edit-c INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJEC
 * When editing projects, the existing assigned projects of the client will be removed ie. adding of projects is not cumulative.
 * You can remove all the client's projects by typing `p/` without specifying any project name after it.
 
-Example of usage: `edit-c 3 p/bob@gmail.com`
+Example of usage: `edit-clients 3 p/bob@gmail.com`
 * Edits `BOB`'s email to `bob@gmail.com`.
 
 Acceptable parameters:
@@ -209,7 +233,7 @@ Relevant UI mock-ups (???)
 #### Edit project details
 Edits the details of an existing project in the address book.
 
-Format: `edit-p INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`
+Format: `edit-projects INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`
 
 * Edits the project at the specified `INDEX` in the currently displayed project list.
 * At least one of the optional fields must be provided.
@@ -245,7 +269,7 @@ When command fails due to an error, the respective error message will be display
 * No edits in input command
     * `At least one field to edit must be provided!`
 * Invalid command target
-    * `Invalid command target! You cannot call edit-d on the target.`
+    * `Invalid command target! You cannot call edit-developers on the target.`
 
 Relevant UI mock-ups (???)
 
@@ -275,31 +299,39 @@ Relevant UI mock-ups (???)
 
 * Relevant UI mock-ups
 
-### Listing all persons : `list`
+### Listing information : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all developers in the address book.
 
 Format: `list TYPE`
 
 * lists the specific type of thing you are asking
 
-Examples:
-* `list developers` lists all the developers
-* `list projects` lists all the projects
+Examples:`list developers`
+* lists all the developers
 
-### Deleting a person : `delete`
+Acceptable inputs: 
+* `developers` to list the developers
+* `clients` to list the clients
+* `projects` to list the projects
 
-Deletes the specified person from the address book.
+When command fails due to an error, the respective error message will be displayed:
+* Invalid input 
+    * `This is an invalid field to list, you can only list developers, clients or projects`
+
+### Deleting a developer : `delete`
+
+Deletes the specified developer from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the developer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed developer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd developer in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st developer in the results of the `find` command.
 
 ### Viewing help : `help`
 
@@ -328,6 +360,33 @@ Format: `exit`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: How can I launch CodeContact if the clicking on the JAR file does not work? <br>
+**A**: There are two possible methods to launch CodeContact.
+<br>
+* Method 1: For users familiar with the command prompt
+1. Open the command prompt
+1. Navigate to the directory where the JAR file is located using cd [JAR file location]
+1. Type java -jar CodeContact.jar and press enter
+1. CodeContact should launch
+<br> <br>
+* Method 2: For users that wish to create a script to launch Docedex (Recommended)
+1. Create a new text file
+2. Type the following into the text file:
+   `java -jar [JAR file location]/CodeContact.jar`
+3. Save the text file as CodeContact.bat (Windows) or CodeContact.sh (MacOS/Linux)
+4. Change the admin settings of the script to allow it to run as a program:
+   * Windows: Right-click on the script and select Properties. Under General , check
+   the box that says Allow this file to run as a program .
+   * MacOS/Linux: Open the terminal and navigate to the directory where the script is
+   located. Type `chmod +x [script name]` and press enter. ( `chmod +x` changes
+   permissions of the script to allow it to be executed.)
+5. Double-click on the script to launch CodeContact
+6. CodeContact should launch
+
+**Q**: How can i check my java version?<br>
+**A**: Open a command prompt and type `java -version` . If you do not have Java installed, you
+can download it [here](https://www.oracle.com/java/technologies/downloads/#java11)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
@@ -338,11 +397,15 @@ Format: `exit`
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                          |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**    | Format: <br> <br> Example: <br><br>                                                                                                       |
-| **edit**   | Format: <br> <br> Example: <br><br>                                                                                                       |
-| **delete** | Format: <br> <br> Example: <br><br>                                                                                                       |
-| **find**   | Format: <br> `find -d r/<Role>` `find client n/<Name>`<br> Example: <br> `find -d r/Senior Developer find client n/Amy`<br> |
-| **list**   | Format: <br> `list developers` <br>  `list projects` <br> `list clients`                                                                  |
-| **help**   | `help`                                                                                                                                    |
+Action | Format, Examples
+--------|------------------
+**add developers**|Format: <br> <br> Example: <br><br>
+**add clients**|Format: <br> <br> Example: <br><br>
+**add projects**|Format: <br> <br> Example: <br><br>
+**edit developers** |Format: <br>`edit-developers INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-developers 2 p/98989898 pr/Project2 pr/Project3` <br>
+**edit clients** |Format: <br>`edit-clients INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-clients 3 p/bob@gmail.com` <br>
+**edit projects** |Format: <br>`edit-projects INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`  <br> Example: <br> `edit-projects 1 d/Finish Feature-A by: 09-09-2023` <br>
+**search** |Format: <br> <br> Example: <br><br>
+**delete** |Format: <br> <br> Example: <br><br>
+**list** |Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`
+**help** | `help`

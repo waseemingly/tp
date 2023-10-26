@@ -45,7 +45,7 @@ public class ImportCommand extends Command{
             output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
             output += "\n";
         }
-        return new CommandResult(output);
+        return new CommandResult(output,TabIndex.Developer);
     }
 
     @Override

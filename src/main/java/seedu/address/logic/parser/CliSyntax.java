@@ -14,10 +14,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATEJOINED = new Prefix("d/");
     public static final Prefix PREFIX_ROLE = new Prefix("r/");
     public static final Prefix PREFIX_SALARY = new Prefix("s/");
-    //public static final Prefix PREFIX_USERNAME = new Prefix("u/");
-    //public static final Prefix PREFIX_PASSWORD = new Prefix("pa/");
     public static final Prefix PREFIX_GITHUBID = new Prefix("g/");
     public static final Prefix PREFIX_RATING = new Prefix("rt/");
+    public static final Prefix PREFIX_ORGANISATION = new Prefix("o/");
 
 
 }
