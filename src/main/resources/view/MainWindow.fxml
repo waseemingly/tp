@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="CodeContact" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/logo.png" />
   </icons>
   <scene>
     <Scene>
@@ -47,21 +47,21 @@
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
                <children>
-                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="tabPane" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Developers">
+                      <Tab fx:id="developerTab" text="Developers">
                            <content>
-                              <StackPane fx:id="developerListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                              <StackPane fx:id="developerListPanelPlaceholder" />
                            </content>
                         </Tab>
-                      <Tab text="Clients">
+                      <Tab fx:id="clientTab" text="Clients">
                            <content>
-                              <StackPane fx:id="clientListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                              <StackPane fx:id="clientListPanelPlaceholder" />
                            </content>
                         </Tab>
-                        <Tab text="Projects">
+                        <Tab fx:id="projectTab" text="Projects">
                            <content>
-                              <StackPane fx:id="projectListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                              <StackPane fx:id="projectListPanelPlaceholder" />
                            </content>
                         </Tab>
                     </tabs>

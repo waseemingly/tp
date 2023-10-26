@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -54,6 +55,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TabPane tabPane;
+
+    @FXML
+    private Tab developerTab;
+
+    @FXML
+    private Tab clientTab;
+
+    @FXML
+    private Tab projectTab;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -123,6 +133,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        tabPane= new TabPane();
+        // Create tabs
+        /*developerTab = new Tab("Developer");
+        clientTab = new Tab("Client");
+        projectTab = new Tab("Proct");*/
+
+
         developerListPanel = new DeveloperListPanel(logic.getFilteredDeveloperList());
         developerListPanelPlaceholder.getChildren().add(developerListPanel.getRoot());
 
@@ -131,6 +148,16 @@ public class MainWindow extends UiPart<Stage> {
 
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+
+        // Add content to the tabs (you can add any JavaFX Node)
+        developerTab.setContent(developerListPanelPlaceholder);
+        clientTab.setContent(clientListPanelPlaceholder);
+        projectTab.setContent(projectListPanelPlaceholder);
+
+        // Add tabs to the TabPane
+        tabPane.getTabs().addAll(developerTab, clientTab, projectTab);
+
+        //tabPane.getSelectionModel().select(1);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -202,6 +229,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            tabPane.getSelectionModel().select(commandResult.getIndex());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddDeveloperCommand;
+import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
@@ -18,7 +18,6 @@ import seedu.address.model.developer.Rating;
 import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
-import seedu.address.model.project.Project;
 
 /**
  * Parses input arguments and creates a new AddDeveloperCommand object
@@ -51,8 +50,8 @@ public class AddDeveloperCommandParser implements Parser<AddDeveloperCommand> {
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
         Set<String> projectList = new HashSet<>(argMultimap.getAllValues(PREFIX_PROJECT));
-        GithubId githubId = ParserUtil.parseGithubId(argMultimap.getValue(PREFIX_GITHUBID).get());
-        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
+        GithubId githubId = ParserUtil.parseGithubId(argMultimap.getValue(PREFIX_GITHUBID).orElse(""));
+        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
 
         Developer developer = new Developer(name, phone, email, address, role, projectList, salary,
                 dateJoined, githubId, rating);
