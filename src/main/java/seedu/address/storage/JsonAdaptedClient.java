@@ -6,19 +6,12 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Client.Client;
+import seedu.address.model.client.Client;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Client.Document;
-import seedu.address.model.commons.Date;
+import seedu.address.model.client.Document;
 import seedu.address.model.commons.Name;
-import seedu.address.model.developer.Developer;
-import seedu.address.model.developer.GithubId;
-import seedu.address.model.developer.Rating;
 import seedu.address.model.person.Role;
-import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
-import seedu.address.model.project.Project;
 
 public class JsonAdaptedClient {
 

@@ -273,20 +273,20 @@ When command fails due to an error, the respective error message will be display
 
 Relevant UI mock-ups (???)
 
-### Search according to type and industry details: `search`
+### Find according to type and industry details: `Find`
 * What it does
-    * Every user can search for contacts related to the keyword (eg. by search prj name, members of the prj team will appear)
+    * Project managers can find developers and clients for contacts related to the keyword (eg. by Find project name, members of the project team will appear)
 * Format
-    * `Search p/<Project Name>`
-    * `Search r/<Role>`
-    * `Search n/<Name>`
+    * `find -d p/<Project Name>`
+    * `find -d r/<Role>`
+    * `find client n/<Name>`
 * Example
-    * `Search p/2103/T` (Prints everyone in 2103/T prj)
-    * `Search r/Senior Developer` (Prints everyone of the senior developer role)
-    * `Search n/Amy` (Prints everyone of the name Amy)
+    * `find -d p/2103/T` (Prints developers in 2103/T prj)
+    * `find -d r/Senior Developer` (Prints developers of the senior developer role)
+    * `find client n/Amy` (Prints everyone of the name Amy)
 * Acceptable Parameters
     * Incomplete inputs for string searches work too
-    * Anything beyond p/ and r/ and n/does not work
+    * Anything beyond p/ and r/ and n/ does not work
     * Name must be closely following  / for more accurate output (eg. n/Amy vs n/ Amy)
 * When command succeeds
     * `These are the project members for the project <Project Name>` followed by list of project members
@@ -294,8 +294,8 @@ Relevant UI mock-ups (???)
     * `This is Amy’s contact` / `These are the contact details for Amy` followed by Amy’s details or list of all the Amy’s contact
       `No relevant contact details can be found`
 * When command fails
-    * Missing header<br> `Please search with the correct input Search p/<Project Name> OR Search r/<Role> OR Search n/<Name>`
-    * Invalid input<br> `x/ is not a valid type to search, Please search with the correct input Search p/<Project Name> OR Search r/<Role> OR Search n/<Name>`
+    * Missing header<br> `Please find with the correct input find p/<Project Name> OR find r/<Role> OR find n/<Name>`
+    * Invalid input<br> `x/ is not a valid type to find, Please find with the correct input find p/<Project Name> OR find r/<Role> OR find n/<Name>`
 
 * Relevant UI mock-ups
 

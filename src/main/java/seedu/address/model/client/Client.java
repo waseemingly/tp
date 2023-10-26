@@ -1,8 +1,6 @@
-package seedu.address.model.Client;
+package seedu.address.model.client;
 import seedu.address.model.commons.Name;
-import seedu.address.model.developer.Developer;
 import seedu.address.model.person.*;
-import seedu.address.model.project.Project;
 
 import java.util.Objects;
 import java.util.Set;
