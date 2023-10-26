@@ -16,7 +16,7 @@ CodeContact is a **desktop app for handling and synchronising project informatio
 
 > If you are familiar with CodeContact, jump to the table of contents to find what you are looking for.
 
-* Table of Contents
+* ###Table of Contents
   {:toc}
 --------------------------------------------------------------------------------------------------------------------
 1. Navigating the user guide
