@@ -1,12 +1,12 @@
 ---
 layout: page
-title: User 
+title: UserGuide
 pageNav: 3
 ---
 
 #### Welcome to CodeContact!
 
-#####Your personal project management tool to keep up with your schedules
+##### Your personal project management tool to keep up with your schedules
 
 > Seamlessly integrate information of your developers, clients, and projects, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers
 > 
