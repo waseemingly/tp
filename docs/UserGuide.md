@@ -20,6 +20,7 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
   * [FAQ](#faq)
   * [Known Issues](#known-issues)
   * [Command Summary](#command-summary)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
