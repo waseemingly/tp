@@ -1,14 +1,27 @@
 ---
 layout: page
-title: User Guide
+title: User 
 pageNav: 3
 ---
-Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers
 
-It is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact management tasks done faster than traditional GUI apps.
+#### Welcome to CodeContact!
+
+#####Your personal project management tool to keep up with your schedules
+
+> Seamlessly integrate information of your developers, clients, and projects, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers
+> 
+> CodeContact is a **desktop app for handling and synchronising project information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact management tasks done faster than traditional GUI apps.
+
+> If you are new to CodeContact, here is how you can get started!
+> If you are familiar with CodeContact, jump to the table of contents to find what you are looking for.
 
 * Table of Contents
   {:toc}
+1. Navigating the user guide
+2. Navigating the User Interface (GUI)
+3. Command Summary
+4. Available Features
+5. Frequently Asked Questions (FAQ)
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
