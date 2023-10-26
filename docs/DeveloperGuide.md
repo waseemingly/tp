@@ -121,8 +121,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Developer` objects (which are contained in a `UniqueDeveloperList` object), and similarly so for `Client` and `Project` objects.
+* stores the currently 'selected' `Developer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Developer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -153,6 +153,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Developer Feature
+
+This feature allows users to add a developer to the bottom of the list of currently existing developers. Users are able to add any valid developer to the list. If a record of the same developer already exists in the list, the command will not be allowed and an error will be thrown to alert user.
+
+Example Use: `add-d n/John Doe p/98765432 e/johnd@example.com`
+
+#### Implementation
+
+Upon entry of the add doctor command, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+
+Given below is an example usage scenario of how the add developer is executed step by step.
+
+Step 1. User launches the application
+
+Step 2. User inputs `add-d n/John Doe p/98765432 e/johnd@example.com` to save a developer.
+
+Step 3. The developer is added to the model’s list of developers if valid.
+
+The following sequence diagram illustrates how the add developer operation works:
+
+### Delete Doctor Feature
+
+Deletes a developer at the specified **one-based index** of list of currently existing/found developers. Users are able to delete any developer in the list. If an index larger than or equal to the size of the developer’s list is provided, the command will not be allowed and an error will be thrown to alert user.
+
+Example Use: `del-d 1`
+
+#### Implementation
+
+Upon entry of the delete developer command, a `DeleteDeveloperCommand` class is created. The `DeleteDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the doctor at specified **one-based index** is removed if the index provided is valid.
+
+Given below is an example usage scenario of how the delete developer command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `del-d 1` to delete the developer at index 1 (one-based indexing).
+
+Step 3. The developer at this index is removed if the index provided is valid.
+
+The following sequence diagram illustrates how the delete developer operation works:
 
 ### \[Proposed\] Undo/redo feature
 
@@ -238,7 +278,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
+### \[Proposed\] ListDeveloperDeadlines Command
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
