@@ -302,36 +302,31 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* an employee or employer within a software company
+* a project manager or someone with similar needs working within a software company
 
-**Value proposition**: combines contact management with role-specific features, making it easy for employees 
-to manage company contacts faster than a typical mouse/GUI driven app
+**Value proposition**: CodeContact aims to seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                                        | So that I can…​                                                                                |
-|----------|-----------------|---------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| `* * *`  | new user        | see usage instructions                                              | refer to instructions when I forget how to use the App                                         |
-| `* * *`  | company boss    | set up a new company profile                                        | allow employees of my organisation to use the App                                              |
-| `* * *`  | company boss    | view all employee's contacts and details                            | quickly communicate with my employees                                                          |
-| `* * *`  | HR staff        | add new employee details quickly                                    | keep the employee directory up-to-date                                                         |
-| `* * *`  | HR staff        | add new employees details directly from a file                      | import employee details easily                                                                 |
-| `* * *`  | HR staff        | delete employee details                                             | keep the employee directory updated when an employee leaves                                    |
-| `* * *`  | HR staff        | view restricted salary information of employees                     | review and make changes to it if necessary                                                     |
-| `* * *`  | HR staff        | view all the information of all the employees in the company        | quickly communicate with them regarding HR matters                                             |
-| `* * *`  | HR staff        | edit any information of all the employees in the company            | keep the employee directory updated                                                            |
-| `* * *`  | any employee    | login as a specific user                                            | access user-specific features                                                                  |
-| `* * *`  | any employee    | view the contact details of other employees                         | get in touch with them if necessary                                                            |
-| `* * *`  | any employee    | search up other employees' contacts based on their details          | to locate their information easily                                                             |
-| `* * *`  | developer       | view the project-specific roles and Github accounts of my teammates | contact the relevant team member for project-related issues                                    |
-| `* * *`  | project manager | edit the project-specific roles of project collaborators under me   | allow project collaborators to get in touch with the relevant people regarding project matters |
-| `* *`    | company boss    | set up a company information page                                   | allow employees to view the company's mission, vision, and values                              |
-| `* *`    | company boss    | view project manage reports on resource allocation                  | ensure projects are running efficiently                                                        |
-| `* *`    | employee        | view my company's information page                                  | be aligned with the organisation's mission, vision, and values                                 |
-| `* *`    | project manager | view a list of project collaborators and their contact information  | access contact details easily and quickly assemble teams for new projects                      |
+| Priority | As a …​         | I want to …​                                                                                   | So that I can…​                                                           |
+|----------|-----------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | project manager | add a list of Developers and their contact information                                         | access contact details easily and quickly assemble teams for new projects |
+| `* * *`  | project manager | add a list of Clients and their contact information                                            | access client details easily and know who is related to what project.     |
+| `* * *`  | project manager | add a list of Projects and their details                                                       | access project details easily and see who is related to the project       |
+| `* * *`  | project manager | delete information about a Client or Developer and the project details will update accordingly | don't repeat deleting several time                                        |
+| `* * *`  | project manager | edit the the details of the Developers added in                                                | constantly update the contact book                                        |
+| `* * *`  | project manager | edit the the details of the Clients added in                                                   | constantly update the contact book                                        |
+| `* * *`  | project manager | edit the the details of the Projects added in                                                  | constantly update any changes to the project                              |
+| `* * *`  | project manager | find the the Developers according to any details they have                                     | source for information related to developers easily                       |
+| `* * *`  | project manager | find the the Clients according to any details they have                                        | source for information related to clients easily                          |
+| `* * *`  | project manager | find the the Projects according to any details they have                                       | source for information related to projects easily                         |
+| `* * *`  | project manager | list different groups of people according to the different commands                            | view projects, clients and developers can be as different lists           |
+| `* * *`  | project manager | switch between tabs for Developers, Clients and Projects                                       | intuitively view the different data lists                                 |
+| `* *`    | project manager |                                                                                                |                                                                           |
+| `* *`    | project manager |                                                                                                |                                                                           |
 
 
 *{More to be added}*

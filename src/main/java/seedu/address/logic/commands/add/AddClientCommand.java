@@ -2,6 +2,7 @@ package seedu.address.logic.commands.add;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.storage.JsonSerializableAddressBook.MESSAGE_DUPLICATE_CLIENT;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -9,8 +10,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.client.Client;
 import seedu.address.model.Model;
-import seedu.address.model.developer.Developer;
 
 /**
  * Adds a client to the address book.
@@ -29,10 +30,8 @@ public class AddClientCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_ROLE + "ROLE "
             + "[" + PREFIX_PROJECT + "PROJECT]...\n"
-            + PREFIX_SALARY + "SALARY "
-            + PREFIX_ORGANISATION + "DATE JOINED (Optional) "
-            + PREFIX_GITHUBID + "GITHUBID "
-            + PREFIX_RATING + "RATING "
+            + PREFIX_ORGANISATION + "ORGANISATION "
+            + PREFIX_DOCUMENT + "DOCUMENT "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -41,32 +40,32 @@ public class AddClientCommand extends Command {
             + PREFIX_ROLE + "Developer "
             + PREFIX_PROJECT + "AndroidApp "
             + PREFIX_PROJECT + "CustomWebsite "
-            + PREFIX_SALARY + "4500 "
-            + PREFIX_DATEJOINED + "19-11-2023 ";
+            + PREFIX_ORGANISATION + "Google "
+            + PREFIX_DOCUMENT + "google.com ";
 
-    public static final String MESSAGE_SUCCESS = "New developer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DEVELOPER = "This developer already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_DEVELOPER = "This client already exists in the address book";
 
-    private final Developer toAdd;
+    private final Client toAdd;
 
     /**
      * Creates an AddDeveloperCommand to add the specified {@code Developer}
      */
-    public AddDeveloperCommand (Developer developer) {
-        requireNonNull(developer);
-        toAdd = developer;
+    public AddClientCommand (Client client) {
+        requireNonNull(client);
+        toAdd = client;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasDeveloper(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
+        if (model.hasClient(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
-        model.addDeveloper(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Developer);
+        model.addClient(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Client);
     }
 
     @Override
@@ -76,12 +75,12 @@ public class AddClientCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddDeveloperCommand)) {
+        if (!(other instanceof AddClientCommand)) {
             return false;
         }
 
-        AddDeveloperCommand otherAddDeveloperCommand = (AddDeveloperCommand) other;
-        return toAdd.equals(otherAddDeveloperCommand.toAdd);
+        AddClientCommand otherAddClientCommand = (AddClientCommand) other;
+        return toAdd.equals(otherAddClientCommand.toAdd);
     }
 
     @Override

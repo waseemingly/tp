@@ -17,6 +17,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_GITHUBID = new Prefix("g/");
     public static final Prefix PREFIX_RATING = new Prefix("rt/");
     public static final Prefix PREFIX_ORGANISATION = new Prefix("o/");
+    public static final Prefix PREFIX_DOCUMENT = new Prefix("do/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("dr/");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("dl/");
 
 
 }

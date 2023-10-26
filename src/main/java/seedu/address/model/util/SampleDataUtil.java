@@ -5,8 +5,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.Client.Client;
-import seedu.address.model.Client.Document;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
@@ -16,7 +14,6 @@ import seedu.address.model.developer.Rating;
 import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
-import seedu.address.model.project.Project;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

@@ -1,4 +1,4 @@
-package seedu.address.model.Client;
+package seedu.address.model.client;
 
 /**
  * Represents a document with a URL, ensuring it is a valid URL.
