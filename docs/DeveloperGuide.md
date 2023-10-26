@@ -174,7 +174,7 @@ Step 3. The developer is added to the model’s list of developers if valid.
 
 The following sequence diagram illustrates how the add developer operation works:
 
-### Delete Doctor Feature
+### Delete Developer Feature
 
 Deletes a developer at the specified **one-based index** of list of currently existing/found developers. Users are able to delete any developer in the list. If an index larger than or equal to the size of the developer’s list is provided, the command will not be allowed and an error will be thrown to alert user.
 
@@ -193,6 +193,48 @@ Step 2. User executes `del-d 1` to delete the developer at index 1 (one-based in
 Step 3. The developer at this index is removed if the index provided is valid.
 
 The following sequence diagram illustrates how the delete developer operation works:
+
+### Find Feature
+
+#### Implementation
+
+The find feature is facilitated by a map-based strategy, associating specific prefixes (e.g., "find-developer n/" or "find-client r/") with corresponding predicates, allowing dynamic generation of filtering criteria based on user input.
+
+Implemented operations include:
+- `FindCommandParser#parse()`: Interprets the user's input and generates the appropriate predicate to filter the list of developers or clients.
+- `Model#updateFilteredPersonList()`: Updates the list displayed in the UI based on the provided predicate.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step:
+
+**Step 1.** The user launches the application. The list of developers and clients are displayed.
+
+**Step 2.** To filter developers by name, the user executes the command `find-developer n/ alice bob`. The application recognizes the "developer n/" prefix and uses the `NameContainsKeywordsPredicate` to generate a filtering criteria. The list in the UI is updated to only display developers named Alice or Bob.
+
+**Step 3.** Next, the user wants to find clients from a specific organisation. They use the command `find-client o/ Google`. The "find-client o/" prefix maps to the `OrganisationContainsKeywordsPredicate` and filters clients associated with Google.
+
+**Step 4.** If the user provides an unrecognized prefix, e.g., `find-developer z/ alice`, an error message is displayed informing them of the correct command format.
+
+> :information_source: **Note:** While the user can search by multiple keywords, each keyword maps to an entire word in the attributes. For example, searching for "Ali" will not return "Alice".
+
+The following sequence diagram provides an overview of how the find operation is executed:
+
+[Diagram would be inserted here illustrating the parsing of the command, identification of the appropriate predicate, and subsequent filtering of the list.]
+
+### Design Considerations:
+
+**Aspect:** Implementation of the predicate map:
+
+**Alternative 1 (current choice):**
+- Use a long chain of `if-else` conditions for each attribute.
+    - **Pros:** Explicit parsing logic for each attribute.
+    - **Cons:** Code becomes lengthy and hard to maintain. Adding a new attribute involves modifying the parsing logic, increasing the risk of errors.
+
+**Alternative 2:**
+- Use a map linking prefixes to their corresponding predicate constructors.
+    - **Pros:** Simplifies the parsing process. Adding a new attribute to search becomes as simple as adding a new entry in the map.
+    - **Cons:** A potential mismatch between the prefix and its predicate can lead to wrong results.
+
+Given the benefits of a more maintainable and scalable codebase, we've decided to go with the first alternative. Future enhancements might include fuzzy search.
 
 ### \[Proposed\] Undo/redo feature
 

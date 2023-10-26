@@ -12,7 +12,7 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
   * [Features](#features)
     * [Adding new information `add`](#adding-new-information--add)
     * [Editing information `edit`](#edit)
-    * [Finding information `search`](#search-according-to-type-and-industry-details--search)
+    * [Finding information `find`](#find-according-to-type-and-industry-details--find)
     * [Listing information `list`](#listing-information--list)
     * [Delete information `delete`](#deleting-a-developer--delete)  
     * [Help `help`](#viewing-help--help)
@@ -277,13 +277,13 @@ Relevant UI mock-ups (???)
 * What it does
     * Project managers can find developers and clients for contacts related to the keyword (eg. by Find project name, members of the project team will appear)
 * Format
-    * `find -d p/<Project Name>`
-    * `find -d r/<Role>`
-    * `find client n/<Name>`
+    * `find-developer p/<Project Name>`
+    * `find-developer r/<Role>`
+    * `find-client n/<Name>`
 * Example
-    * `find -d p/2103/T` (Prints developers in 2103/T prj)
-    * `find -d r/Senior Developer` (Prints developers of the senior developer role)
-    * `find client n/Amy` (Prints everyone of the name Amy)
+    * `find-developer p/2103/T` (Prints developers in 2103/T prj)
+    * `find-developer r/Senior Developer` (Prints developers of the senior developer role)
+    * `find-client n/Amy` (Prints everyone of the name Amy)
 * Acceptable Parameters
     * Incomplete inputs for string searches work too
     * Anything beyond p/ and r/ and n/ does not work
@@ -397,15 +397,17 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**add developers**|Format: <br> <br> Example: <br><br>
-**add clients**|Format: <br> <br> Example: <br><br>
-**add projects**|Format: <br> <br> Example: <br><br>
-**edit developers** |Format: <br>`edit-developer INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-developers 2 p/98989898 pr/Project2 pr/Project3` <br>
-**edit clients** |Format: <br>`edit-client INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-clients 3 p/bob@gmail.com` <br>
-**edit projects** |Format: <br>`edit-project INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`  <br> Example: <br> `edit-projects 1 d/Finish Feature-A by: 09-09-2023` <br>
-**search** |Format: <br> <br> Example: <br><br>
-**delete** |Format: <br> <br> Example: <br><br>
-**list** |Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`
-**help** | `help`
+| Action              | Format, Examples                                                                                                                                                                                                                                             |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add developers**  | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
+| **add clients**     | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
+| **add projects**    | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
+| **edit developers** | Format: <br>`edit-developer INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-developers 2 p/98989898 pr/Project2 pr/Project3` <br> |
+| **edit clients**    | Format: <br>`edit-client INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-clients 3 p/bob@gmail.com` <br>                          |
+| **edit projects**   | Format: <br>`edit-project INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`  <br> Example: <br> `edit-projects 1 d/Finish Feature-A by: 09-09-2023` <br>                                                                                   |
+| **find developers** | Format: <br>`find-developer p/<Project Name>` <br> Example: <br>`find-developer p/2103/T` <br>                                                                                                                                                               |
+| **find clients**    | Format: <br>`find-client n/<Name>` <br> Example: <br>`find-client n/Amy` <br>                                                                                                                                                                                |
+| **find projects**   | Format: <br>`find-project dr/description` <br> Example: <br>`find-project dr/school semester project` <br>                                                                                                                                                   |
+| **delete**          | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
+| **list**            | Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`                                                                                                                                                                                     |
+| **help**            | `help`                                                                                                                                                                                                                                                       |
