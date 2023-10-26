@@ -8,15 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.Client.Client;
-import seedu.address.model.developer.Developer;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 
-import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
@@ -57,13 +53,14 @@ public class ProjectCard extends UiPart<Region> {
         this.project = project;
         id.setText(displayedIndex + ". ");
         name.setText(project.getName());
+        description.setText(project.getProjectDescription().get().desc);
         TableColumn dateCol = new TableColumn("Date");
         dateCol.setMinWidth(100);
         dateCol.setCellValueFactory(
                 new PropertyValueFactory<>("date"));
 
         TableColumn descriptionCol = new TableColumn("Description");
-        descriptionCol.setMinWidth(100);
+        descriptionCol.setMinWidth(250);
         descriptionCol.setCellValueFactory(
                 new PropertyValueFactory<>("description"));
 
