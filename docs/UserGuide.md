@@ -12,7 +12,7 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
     * [Adding new information `add`](#adding-new-information--add)
     * [Editing information `edit`](#edit)
     * [Finding information `search`](#search-according-to-type-and-industry-details--search)
-    * [Listing information `list`](#listing-all-developers--list)
+    * [Listing information `list`](#listing-information--list)
     * [Delete information `delete`](#deleting-a-developer--delete)  
     * [Help `help`](#viewing-help--help)
     * [Clear entries `clear`](#clearing-all-entries--clear)
