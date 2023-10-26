@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -32,7 +34,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private DeveloperListPanel developerListPanel;
+    private ClientListPanel clientListPanel;
+    private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,7 +47,23 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane developerListPanelPlaceholder;
+    @FXML
+    private StackPane clientListPanelPlaceholder;
+    @FXML
+    private StackPane projectListPanelPlaceholder;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab developerTab;
+
+    @FXML
+    private Tab clientTab;
+
+    @FXML
+    private Tab projectTab;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,8 +133,31 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        tabPane= new TabPane();
+        // Create tabs
+        /*developerTab = new Tab("Developer");
+        clientTab = new Tab("Client");
+        projectTab = new Tab("Proct");*/
+
+
+        developerListPanel = new DeveloperListPanel(logic.getFilteredDeveloperList());
+        developerListPanelPlaceholder.getChildren().add(developerListPanel.getRoot());
+
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
+        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+
+        // Add content to the tabs (you can add any JavaFX Node)
+        developerTab.setContent(developerListPanelPlaceholder);
+        clientTab.setContent(clientListPanelPlaceholder);
+        projectTab.setContent(projectListPanelPlaceholder);
+
+        // Add tabs to the TabPane
+        tabPane.getTabs().addAll(developerTab, clientTab, projectTab);
+
+        //tabPane.getSelectionModel().select(1);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -166,8 +209,14 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public DeveloperListPanel getDeveloperListPanel() {
+        return developerListPanel;
+    }
+    public ClientListPanel getClientListPanel() {
+        return clientListPanel;
+    }
+    public ProjectListPanel getProjectListPanel() {
+        return projectListPanel;
     }
 
     /**
@@ -180,6 +229,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            tabPane.getSelectionModel().select(commandResult.getIndex());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

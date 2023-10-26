@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.developer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,32 +8,30 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateDeveloperException;
+import seedu.address.model.person.exceptions.DeveloperNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A developer is considered unique by comparing using {@code Developer#isSamePerson(Developer)}. As such, adding and updating of
- * persons uses Developer#isSamePerson(Developer) for equality so as to ensure that the developer being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a developer uses Developer#equals(Object) so
- * as to ensure that the developer with exactly the same fields will be removed.
+ * A list of developers that enforces uniqueness between its elements and does not allow nulls.
+ * A developer is considered unique by comparing using {@code Developer#isSameDeveloper(Developer)}.
+ * As such, adding and updating of developers use Developer#isSameDeveloper(Developer) for equality to ensure that the developer being added or updated is unique in terms of identity in the UniqueDeveloperList.
+ * However, the removal of a developer uses Developer#equals(Object) to ensure that the developer with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Developer#isSamePerson(Developer)
+ * @see Developer#isSameDeveloper(Developer)
  */
-public class UniquePersonList implements Iterable<Developer> {
+public class UniqueDeveloperList implements Iterable<Developer> {
 
     private final ObservableList<Developer> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Developer> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Developer> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent developer as the given argument.
      */
     public boolean contains(Developer toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameDeveloper);
     }
 
     /**
@@ -43,7 +41,7 @@ public class UniquePersonList implements Iterable<Developer> {
     public void add(Developer toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateDeveloperException();
         }
         internalList.add(toAdd);
     }
@@ -53,16 +51,16 @@ public class UniquePersonList implements Iterable<Developer> {
      * {@code target} must exist in the list.
      * The developer identity of {@code editedDeveloper} must not be the same as another existing developer in the list.
      */
-    public void setPerson(Developer target, Developer editedDeveloper) {
+    public void setDeveloper(Developer target, Developer editedDeveloper) {
         requireAllNonNull(target, editedDeveloper);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new DeveloperNotFoundException();
         }
 
-        if (!target.isSamePerson(editedDeveloper) && contains(editedDeveloper)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameDeveloper(editedDeveloper) && contains(editedDeveloper)) {
+            throw new DuplicateDeveloperException();
         }
 
         internalList.set(index, editedDeveloper);
@@ -75,11 +73,11 @@ public class UniquePersonList implements Iterable<Developer> {
     public void remove(Developer toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new DeveloperNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setDevelopers(UniqueDeveloperList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,10 +86,10 @@ public class UniquePersonList implements Iterable<Developer> {
      * Replaces the contents of this list with {@code developers}.
      * {@code developers} must not contain duplicate developers.
      */
-    public void setPersons(List<Developer> developers) {
+    public void setDevelopers(List<Developer> developers) {
         requireAllNonNull(developers);
-        if (!personsAreUnique(developers)) {
-            throw new DuplicatePersonException();
+        if (!developersAreUnique(developers)) {
+            throw new DuplicateDeveloperException();
         }
 
         internalList.setAll(developers);
@@ -116,12 +114,12 @@ public class UniquePersonList implements Iterable<Developer> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniqueDeveloperList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
-        return internalList.equals(otherUniquePersonList.internalList);
+        UniqueDeveloperList otherUniqueDeveloperList = (UniqueDeveloperList) other;
+        return internalList.equals(otherUniqueDeveloperList.internalList);
     }
 
     @Override
@@ -137,10 +135,10 @@ public class UniquePersonList implements Iterable<Developer> {
     /**
      * Returns true if {@code developers} contains only unique developers.
      */
-    private boolean personsAreUnique(List<Developer> developers) {
+    private boolean developersAreUnique(List<Developer> developers) {
         for (int i = 0; i < developers.size() - 1; i++) {
             for (int j = i + 1; j < developers.size(); j++) {
-                if (developers.get(i).isSamePerson(developers.get(j))) {
+                if (developers.get(i).isSameDeveloper(developers.get(j))) {
                     return false;
                 }
             }

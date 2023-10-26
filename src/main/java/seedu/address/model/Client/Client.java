@@ -1,5 +1,6 @@
 package seedu.address.model.Client;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
@@ -12,14 +13,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * Represents a Client in the address book, extending the Developer class.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Client extends Developer {
+public class Client extends Person {
     private final Name organisation;
     private final Document document;
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Role role, Set<Project> projects,
+    public Client(Name name, Phone phone, Email email, Address address, Role role, Set<String> projects,
                   Name organisation, Document document) {
         super(name, phone, email, address, role, projects);
         requireAllNonNull(organisation, document);
@@ -33,6 +34,15 @@ public class Client extends Developer {
 
     public Document getDocument() {
         return document;
+    }
+
+    public boolean isSameClient(Client otherClient) {
+        if (otherClient == this) {
+            return true;
+        }
+
+        return otherClient != null
+                && otherClient.getName().equals(getName());
     }
 
     @Override

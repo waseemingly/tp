@@ -6,12 +6,13 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.Client.Client;
+import seedu.address.model.developer.Developer;
 
 import java.util.Comparator;
 
 
 /**
- * A UI component that displays information of a {@code Developer}.
+ * A UI component that displays information of a {@code Client}.
  */
 public class ClientCard extends UiPart<Region> {
 
@@ -36,21 +37,22 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
     @FXML
     private Label role;
+    @FXML
+    private Label address;
     @FXML
     private Label organisation;
     @FXML
     private Label document;
 
+
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Developer} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public ClientCard (Client client, int displayedIndex) {
         super(FXML);
@@ -60,12 +62,11 @@ public class ClientCard extends UiPart<Region> {
         phone.setText(client.getPhone().value);
         email.setText(client.getEmail().value);
         role.setText(client.getRole().role);
-        address.setText(client.getAddress().value);
         organisation.setText(client.getOrganisation().fullName);
         document.setText(client.getDocument().toString());
 
+        address.setText(client.getAddress().value);
         client.getProjects().stream()
-                .sorted(Comparator.comparing(tag -> tag.getProjectName().fullName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getProjectName().fullName)));
+                .forEach(tag -> tags.getChildren().add(new Label(tag)));
     }
 }

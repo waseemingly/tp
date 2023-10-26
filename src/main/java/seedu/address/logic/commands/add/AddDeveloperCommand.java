@@ -1,20 +1,23 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.add;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Developer;
+import seedu.address.model.developer.Developer;
 
 /**
  * Adds a developer to the address book.
  */
 public class AddDeveloperCommand extends Command {
 
-    public static final String COMMAND_WORD = "adddeveloper";
+    public static final String COMMAND_WORD = "add-developer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a developer to the address book. "
             + "Parameters: "
@@ -35,7 +38,7 @@ public class AddDeveloperCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_ROLE + "Developer "
             + PREFIX_PROJECT + "AndroidApp "
-            + PREFIX_PROJECT + "CustomWebsite"
+            + PREFIX_PROJECT + "CustomWebsite "
             + PREFIX_SALARY + "4500 "
             + PREFIX_DATEJOINED + "19-11-2023 ";
 
@@ -61,7 +64,7 @@ public class AddDeveloperCommand extends Command {
         }
 
         model.addDeveloper(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Developer);
     }
 
     @Override

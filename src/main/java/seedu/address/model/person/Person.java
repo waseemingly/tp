@@ -6,13 +6,12 @@ import java.util.*;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.commons.Name;
-import seedu.address.model.project.Project;
 
 /**
- * Represents a Developer in the address book.
+ * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Developer {
+public class Person {
 
     // Identity fields
     private final Name name;
@@ -23,12 +22,12 @@ public class Developer {
 
     // Data fields
     private final Address address;
-    private final Set<Project> projects = new HashSet<>();
+    private final Set<String> projects = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Developer (Name name, Phone phone, Email email, Address address, Role role, Set<Project> projects) {
+    public Person(Name name, Phone phone, Email email, Address address, Role role, Set<String> projects) {
         requireAllNonNull(name, phone, email, address, role, projects);
         this.name = name;
         this.phone = phone;
@@ -64,7 +63,7 @@ public class Developer {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Project> getProjects() {
+    public Set<String> getProjects() {
         return Collections.unmodifiableSet(projects);
     }
 
@@ -72,13 +71,13 @@ public class Developer {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Developer otherDeveloper) {
-        if (otherDeveloper == this) {
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
             return true;
         }
 
-        return otherDeveloper != null
-                && otherDeveloper.getName().equals(getName());
+        return otherPerson != null
+                && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -92,17 +91,17 @@ public class Developer {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Developer)) {
+        if (!(other instanceof Person)) {
             return false;
         }
 
-        Developer otherDeveloper = (Developer) other;
-        return name.equals(otherDeveloper.name)
-                && phone.equals(otherDeveloper.phone)
-                && email.equals(otherDeveloper.email)
-                && address.equals(otherDeveloper.address)
-                && role.equals(otherDeveloper.role)
-                && projects.equals(otherDeveloper.projects);
+        Person otherPerson = (Person) other;
+        return name.equals(otherPerson.name)
+                && phone.equals(otherPerson.phone)
+                && email.equals(otherPerson.email)
+                && address.equals(otherPerson.address)
+                && role.equals(otherPerson.role)
+                && projects.equals(otherPerson.projects);
     }
 
     @Override

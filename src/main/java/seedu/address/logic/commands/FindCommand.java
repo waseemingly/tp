@@ -5,12 +5,12 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.DateJoinedContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.KeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Developer;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.ProjectContainsKeywordsPredicate;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
@@ -66,9 +66,10 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredDeveloperList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_DEVELOPERS_LISTED_OVERVIEW, model.getFilteredDeveloperList().size()),
+                TabIndex.Developer);
     }
 
 
