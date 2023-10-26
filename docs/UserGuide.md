@@ -124,7 +124,7 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
 #### Edit developer details
 Edits the details of an existing developer in the address book.
 
-Format: `edit-developers INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
+Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
 
 * Edits the developer at the specified `INDEX` in the currently displayed developer list.
 * At least one of the optional fields must be provided.
@@ -132,7 +132,7 @@ Format: `edit-developers INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 * When editing projects, the existing assigned projects of the developer will be removed ie. adding of projects is not cumulative.
 * You can remove all the developer's projects by typing `p/` without specifying any project name after it.
 
-Example of usage: `edit-developers 2 p/98989898 pr/Project2 pr/Project3`
+Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
   * Edits `AMY`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
 
 Acceptable parameters: 
@@ -187,7 +187,7 @@ Relevant UI mock-ups (???)
 #### Edit client details
 Edits the details of an existing client in the address book.
 
-Format: `edit-clients INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
+Format: `edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
 
 * Edits the client at the specified `INDEX` in the currently displayed client list.
 * At least one of the optional fields must be provided.
@@ -195,7 +195,7 @@ Format: `edit-clients INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/
 * When editing projects, the existing assigned projects of the client will be removed ie. adding of projects is not cumulative.
 * You can remove all the client's projects by typing `p/` without specifying any project name after it.
 
-Example of usage: `edit-clients 3 p/bob@gmail.com`
+Example of usage: `edit-client 3 p/bob@gmail.com`
 * Edits `BOB`'s email to `bob@gmail.com`.
 
 Acceptable parameters:
@@ -234,21 +234,20 @@ Relevant UI mock-ups (???)
 #### Edit project details
 Edits the details of an existing project in the address book.
 
-Format: `edit-projects INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`
+Format: `edit-project INDEX [desc/DESCRIPTION] [d/DEADLINE]...`
 
 * Edits the project at the specified `INDEX` in the currently displayed project list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing deadlines, the existing deadlines will be removed ie. adding of projects is not cumulative.
 * You can remove all the current deadlines by typing `d/` without specifying any deadline.
+* The name of a project cannot be edited.
 
-Example of usage: `edit-p 1 d/Finish Feature-A by: 09-09-2023`
+Example of usage: `edit-project 1 d/Finish Feature-A by: 09-09-2023`
 * Deletes existing project deadlines and adds new deadline `Finish Feature-A by: 09-09-2023`
 
 Acceptable parameters:
 * `INDEX` must be a positive integer.
-* `NAME` can only consist of capital and small letters, spaces and hyphens.
-* `NAME` cannot be the same as another existing project's name in the address book.
 * `DEADLINE` should be of the format `DEADLINE_DESCRIPTION by: DATE`, where `DATE` is in `dd-MM-yyyy` format.
 
 When command succeeds, CLI shows: (??)
@@ -403,9 +402,9 @@ Action | Format, Examples
 **add developers**|Format: <br> <br> Example: <br><br>
 **add clients**|Format: <br> <br> Example: <br><br>
 **add projects**|Format: <br> <br> Example: <br><br>
-**edit developers** |Format: <br>`edit-developers INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-developers 2 p/98989898 pr/Project2 pr/Project3` <br>
-**edit clients** |Format: <br>`edit-clients INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-clients 3 p/bob@gmail.com` <br>
-**edit projects** |Format: <br>`edit-projects INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`  <br> Example: <br> `edit-projects 1 d/Finish Feature-A by: 09-09-2023` <br>
+**edit developers** |Format: <br>`edit-developer INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-developers 2 p/98989898 pr/Project2 pr/Project3` <br>
+**edit clients** |Format: <br>`edit-client INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-clients 3 p/bob@gmail.com` <br>
+**edit projects** |Format: <br>`edit-project INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`  <br> Example: <br> `edit-projects 1 d/Finish Feature-A by: 09-09-2023` <br>
 **search** |Format: <br> <br> Example: <br><br>
 **delete** |Format: <br> <br> Example: <br><br>
 **list** |Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`
