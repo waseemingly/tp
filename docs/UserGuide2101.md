@@ -17,12 +17,13 @@ pageNav: 3
 
 * Table of Contents
   {:toc}
+  --------------------------------------------------------------------------------------------------------------------
 1. Navigating the user guide
 2. Navigating the User Interface (GUI)
 3. Command Summary
 4. Available Features
 5. Frequently Asked Questions (FAQ)
---------------------------------------------------------------------------------------------------------------------
+   
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
