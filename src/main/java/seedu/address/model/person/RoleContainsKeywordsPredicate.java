@@ -4,11 +4,12 @@ import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.developer.Developer;
 
 /**
- * Tests that a {@code Person}'s {@code Role} matches any of the keywords given.
+ * Tests that a {@code Developer}'s {@code Role} matches any of the keywords given.
  */
-public class RoleContainsKeywordsPredicate implements KeywordPredicate<Person> {
+public class RoleContainsKeywordsPredicate implements KeywordPredicate<Developer> {
     private final List<String> keywords;
 
     public RoleContainsKeywordsPredicate(List<String> keywords) {
@@ -16,9 +17,9 @@ public class RoleContainsKeywordsPredicate implements KeywordPredicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Developer developer) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getRole().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(developer.getRole().toString(), keyword));
     }
 
     @Override

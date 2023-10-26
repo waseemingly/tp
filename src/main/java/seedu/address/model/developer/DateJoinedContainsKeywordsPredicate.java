@@ -1,13 +1,13 @@
-package seedu.address.model.person;
+package seedu.address.model.developer;
 
 import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.developer.Developer;
+import seedu.address.model.person.KeywordPredicate;
 
 /**
- * Tests that a {@code Person}'s {@code DateJoined} matches any of the keywords given.
+ * Tests that a {@code Developer}'s {@code DateJoined} matches any of the keywords given.
  */
 public class DateJoinedContainsKeywordsPredicate implements KeywordPredicate<Developer> {
     private final List<String> keywords;
@@ -17,7 +17,7 @@ public class DateJoinedContainsKeywordsPredicate implements KeywordPredicate<Dev
     }
 
     @Override
-    public boolean test(Developer developer) {
+    public boolean test(seedu.address.model.developer.Developer developer) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(developer.getDateJoined().toString(), keyword));
     }

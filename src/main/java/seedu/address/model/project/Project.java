@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.commons.Name;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Project in the address book.
@@ -33,6 +34,9 @@ public class Project {
     }
     public Project(String projectName) {
         this(new Name(projectName),new Description(""),new HashSet<>());
+    }
+    public String getName() {
+        return projectName.fullName;
     }
     
     @Override
@@ -79,5 +83,13 @@ public class Project {
      */
     public Set<Deadline> getProjectDeadlines() {
         return Collections.unmodifiableSet(deadlines);
+    }
+    public boolean isSameProject(Project otherProject) {
+        if (otherProject == this) {
+            return true;
+        }
+
+        return otherProject != null
+                && otherProject.getName().equals(getName());
     }
 }

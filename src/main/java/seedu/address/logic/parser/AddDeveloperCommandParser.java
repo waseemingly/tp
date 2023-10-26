@@ -4,37 +4,41 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddDeveloperCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.GithubId;
+import seedu.address.model.developer.Rating;
 import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddDeveloperCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddDeveloperCommandParser implements Parser<AddDeveloperCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddDeveloperCommand
+     * and returns an AddDeveloperCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddDeveloperCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATEJOINED,
-                PREFIX_USERNAME, PREFIX_PASSWORD, PREFIX_ROLE, PREFIX_SALARY, PREFIX_PROJECT);
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ROLE, PREFIX_PROJECT, PREFIX_SALARY,
+                PREFIX_DATEJOINED, PREFIX_GITHUBID, PREFIX_RATING);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_USERNAME,
-                PREFIX_PASSWORD, PREFIX_SALARY, PREFIX_ROLE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_SALARY, PREFIX_ROLE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDeveloperCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
@@ -46,11 +50,14 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .orElse(new SimpleDateFormat("dd-MM-yyyy").format(new java.util.Date())));
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
-        Set<Project> projectList = ParserUtil.parseProjects(argMultimap.getAllValues(PREFIX_PROJECT));
+        Set<String> projectList = new HashSet<>(argMultimap.getAllValues(PREFIX_PROJECT));
+        GithubId githubId = ParserUtil.parseGithubId(argMultimap.getValue(PREFIX_GITHUBID).get());
+        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
 
-        Person person = new Person(name, phone, email, address, dateJoined,role, salary,projectList);
+        Developer developer = new Developer(name, phone, email, address, role, projectList, salary,
+                dateJoined, githubId, rating);
 
-        return new AddCommand(person);
+        return new AddDeveloperCommand(developer);
     }
 
     /**

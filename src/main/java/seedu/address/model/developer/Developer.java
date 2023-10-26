@@ -1,20 +1,21 @@
 package seedu.address.model.developer;
 
 
-import seedu.address.model.commons.Date;
-import seedu.address.model.commons.Name;
-import seedu.address.model.person.*;
-import seedu.address.model.project.Project;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.commons.Date;
+import seedu.address.model.commons.Name;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 
 /**
- * Represents a Developer in the address book, extending the Person class.
+ * Represents a Developer in the address book, extending the Developer class.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Developer extends Person {
@@ -26,7 +27,7 @@ public class Developer extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Developer(Name name, Phone phone, Email email, Address address, Role role, Set<Project> projects,
+    public Developer(Name name, Phone phone, Email email, Address address, Role role, Set<String> projects,
                      Salary salary, Date dateJoined, GithubId githubId, Rating rating) {
         super(name, phone, email, address, role, projects);
         requireAllNonNull(salary, dateJoined, githubId, rating);
@@ -42,6 +43,14 @@ public class Developer extends Person {
 
     public Date getDateJoined() {
         return dateJoined;
+    }
+    public boolean isSameDeveloper(Developer otherDeveloper) {
+        if (otherDeveloper == this) {
+            return true;
+        }
+
+        return otherDeveloper != null
+                && otherDeveloper.getName().equals(getName());
     }
 
     public GithubId getGithubId() {

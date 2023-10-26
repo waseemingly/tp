@@ -7,62 +7,60 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.developer.Developer;
 
 /**
- * Adds a person to the address book.
+ * Adds a developer to the address book.
  */
-public class AddCommand extends Command {
+public class AddDeveloperCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addDeveloper";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a developer to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_DATEJOINED + "DATE JOINED (Optional) "
             + PREFIX_ROLE + "ROLE "
-            + PREFIX_SALARY + "SALARY "
-            + PREFIX_USERNAME + "USERNAME "
-            + PREFIX_PASSWORD + "PASSWORD "
             + "[" + PREFIX_PROJECT + "PROJECT]...\n"
+            + PREFIX_SALARY + "SALARY "
+            + PREFIX_DATEJOINED + "DATE JOINED (Optional) "
+            + PREFIX_GITHUBID + "GITHUBID "
+            + PREFIX_RATING + "RATING "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_DATEJOINED + "19-11-2023 "
             + PREFIX_ROLE + "Developer "
-            + PREFIX_SALARY + "4500 "
-            + PREFIX_USERNAME + "JDoe "
-            + PREFIX_PASSWORD + "JDoe12345! "
             + PREFIX_PROJECT + "AndroidApp "
-            + PREFIX_PROJECT + "CustomWebsite";
+            + PREFIX_PROJECT + "CustomWebsite"
+            + PREFIX_SALARY + "4500 "
+            + PREFIX_DATEJOINED + "19-11-2023 ";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New developer added: %1$s";
+    public static final String MESSAGE_DUPLICATE_DEVELOPER = "This developer already exists in the address book";
 
-    private final Person toAdd;
+    private final Developer toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddDeveloperCommand to add the specified {@code Developer}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddDeveloperCommand (Developer developer) {
+        requireNonNull(developer);
+        toAdd = developer;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasDeveloper(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
         }
 
-        model.addPerson(toAdd);
+        model.addDeveloper(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
@@ -73,12 +71,12 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddDeveloperCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddDeveloperCommand otherAddDeveloperCommand = (AddDeveloperCommand) other;
+        return toAdd.equals(otherAddDeveloperCommand.toAdd);
     }
 
     @Override
