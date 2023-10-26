@@ -2,11 +2,14 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import org.controlsfx.control.Rating;
 import seedu.address.model.developer.Developer;
 
 
@@ -45,6 +48,11 @@ public class DeveloperCard extends UiPart<Region> {
     private Label role;
     @FXML
     private Label salary;
+
+    @FXML
+    private Label githubId;
+    @FXML
+    private Rating rating;
     @FXML
     private FlowPane tags;
 
@@ -59,7 +67,21 @@ public class DeveloperCard extends UiPart<Region> {
         phone.setText(developer.getPhone().value);
         email.setText(developer.getEmail().value);
         role.setText(developer.getRole().role);
+        githubId.setText(developer.getGithubId().username);
+        rating.setPartialRating(true);
+        rating.setUpdateOnHover(false);
+        rating.setOnMousePressed(null);
+        rating.setOnMouseEntered(null);
+        //rating.setDisable(true);
+        rating.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 
+            }
+        });
+        rating.setMax(5);
+        rating.autosize();
+        rating.setRating(developer.getRating().rating);
         address.setText(developer.getAddress().value);
         dateJoined.setText(String.valueOf(developer.getDateJoined().value));
         salary.setText(String.valueOf(developer.getSalary().salary));

@@ -68,7 +68,8 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredDeveloperList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_DEVELOPERS_LISTED_OVERVIEW, model.getFilteredDeveloperList().size()));
+                String.format(Messages.MESSAGE_DEVELOPERS_LISTED_OVERVIEW, model.getFilteredDeveloperList().size()),
+                TabIndex.Developer);
     }
 
 

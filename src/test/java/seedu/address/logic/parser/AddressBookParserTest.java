@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddDeveloperCommand;
+import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteDeveloperCommand;
 import seedu.address.logic.commands.EditCommand;
