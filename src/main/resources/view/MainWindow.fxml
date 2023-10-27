@@ -73,7 +73,7 @@
       </VBox>
          <stylesheets>
             <URL value="@Extensions.css" />
-            <URL value="@DarkTheme.css" />
+            <URL value="@LightTheme.css" />
          </stylesheets>
     </Scene>
   </scene>
