@@ -19,7 +19,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX = "The developer index provided is invalid";
     public static final String MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX = "The client index provided is invalid";
     public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is invalid";
-
+    public static final String MESSAGE_INAPPLICABLE_PREFIX_USED = "You tried to edit an inapplicable field! Please check " +
+            "the prefixes used and try again. \n%1$s";
+    
     public static final String MESSAGE_DEVELOPERS_LISTED_OVERVIEW =
                 "These are the %1$d developers with matching information";
     public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW =
