@@ -9,15 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.Client.Client;
-import seedu.address.model.developer.Developer;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 
-import java.util.Comparator;
 import java.util.stream.Collectors;
 
 

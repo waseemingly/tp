@@ -1,15 +1,18 @@
 package seedu.address.model.developer;
 
 
-import seedu.address.model.commons.Date;
-import seedu.address.model.commons.Name;
-import seedu.address.model.person.*;
-import seedu.address.model.project.Project;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.commons.Date;
+import seedu.address.model.commons.Name;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 
 /**
  * Represents a Developer in the address book, extending the Developer class.

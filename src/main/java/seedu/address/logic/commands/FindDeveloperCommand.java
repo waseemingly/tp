@@ -2,71 +2,74 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.developer.DateJoinedContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.SalaryContainsKeywordsPredicate;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.DateJoinedContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.KeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.ProjectContainsKeywordsPredicate;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
-import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FindDeveloperCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "find-developer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Please Find with the correct input "
             + "Find pr/<Project Name> OR Find r/<Role> OR Find n/<Name>.\n"
             + "Example: " + COMMAND_WORD + " n/ alice bob charlie";
 
-    private KeywordPredicate<Developer> predicate;
+    private KeywordPredicate<? extends Person> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate namePredicate) {
+    public FindDeveloperCommand(NameContainsKeywordsPredicate namePredicate) {
         this.predicate = namePredicate;
     }
 
-    public FindCommand(RoleContainsKeywordsPredicate rolePredicate) {
+    public FindDeveloperCommand(RoleContainsKeywordsPredicate rolePredicate) {
         this.predicate = rolePredicate;
     }
 
-    public FindCommand(AddressContainsKeywordsPredicate addressPredicate) {
+    public FindDeveloperCommand(AddressContainsKeywordsPredicate addressPredicate) {
         this.predicate = addressPredicate;
     }
 
-    public FindCommand(DateJoinedContainsKeywordsPredicate dateJoinedPredicate) {
+    public FindDeveloperCommand(DateJoinedContainsKeywordsPredicate dateJoinedPredicate) {
         this.predicate = dateJoinedPredicate;
     }
 
-    public FindCommand(EmailContainsKeywordsPredicate emailPredicate) {
+    public FindDeveloperCommand(EmailContainsKeywordsPredicate emailPredicate) {
         this.predicate = emailPredicate;
     }
 
-    public FindCommand(PhoneContainsKeywordsPredicate phonePredicate) {
+    public FindDeveloperCommand(PhoneContainsKeywordsPredicate phonePredicate) {
         this.predicate = phonePredicate;
     }
 
-    public FindCommand(SalaryContainsKeywordsPredicate salaryPredicate) {
+    public FindDeveloperCommand(SalaryContainsKeywordsPredicate salaryPredicate) {
         this.predicate = salaryPredicate;
     }
 
 
-    public FindCommand(ProjectContainsKeywordsPredicate projectPredicate) {
+    public FindDeveloperCommand(ProjectContainsKeywordsPredicate projectPredicate) {
         this.predicate = projectPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredDeveloperList(predicate);
+        model.updateFilteredDeveloperList((Predicate<Developer>) predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_DEVELOPERS_LISTED_OVERVIEW, model.getFilteredDeveloperList().size()),
                 TabIndex.Developer);
@@ -80,12 +83,12 @@ public class FindCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof FindDeveloperCommand)) {
             return false;
         }
 
-        FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        FindDeveloperCommand otherFindDeveloperCommand = (FindDeveloperCommand) other;
+        return predicate.equals(otherFindDeveloperCommand.predicate);
     }
 
     @Override
