@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.project.Project;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,7 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Developer> filteredDevelopers;
     private final FilteredList<Client> filteredClients;
-    private final FilteredList<Project> filteredProjects;
+    private final FilteredList<seedu.address.model.project.Project> filteredProjects;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -177,24 +176,24 @@ public class ModelManager implements Model {
         filteredClients.setPredicate(predicate);
     }
     @Override
-    public boolean hasProject(Project project) {
+    public boolean hasProject(seedu.address.model.project.Project project) {
         requireNonNull(project);
         return addressBook.hasProject(project);
     }
 
     @Override
-    public void deleteProject(Project target) {
+    public void deleteProject(seedu.address.model.project.Project target) {
         addressBook.removeProject(target);
     }
 
     @Override
-    public void addProject(Project project) {
+    public void addProject(seedu.address.model.project.Project project) {
         addressBook.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override
-    public void setProject(Project target, Project editedProject) {
+    public void setProject(seedu.address.model.project.Project target, seedu.address.model.project.Project editedProject) {
         requireAllNonNull(target, editedProject);
 
         addressBook.setProject(target, editedProject);
@@ -207,12 +206,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Project> getFilteredProjectList() {
+    public ObservableList<seedu.address.model.project.Project> getFilteredProjectList() {
         return filteredProjects;
     }
 
     @Override
-    public void updateFilteredProjectList(Predicate<Project> predicate) {
+    public void updateFilteredProjectList(Predicate<seedu.address.model.project.Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
     }

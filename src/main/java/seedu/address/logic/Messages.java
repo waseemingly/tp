@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.project.Project;
 
 /**
  * Container for user visible messages.
@@ -85,11 +84,11 @@ public class Messages {
         return builder.toString();
     }
 
-    public static Object format(Project project) {
+    public static Object format(seedu.address.model.project.Project project) {
         final StringBuilder builder = new StringBuilder();
         builder.append(project.getName())
                 .append(";\nDescription: ")
-                .append(project.getProjectDescription().get())
+                .append(project.getProjectDescription())
                 .append(";\nDeadlines:\n");
         project.getProjectDeadlines().forEach(builder::append);
         return builder.toString();

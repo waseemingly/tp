@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 public class Project {
 
     private final Name projectName;
-    private final Optional<Description> description;
+    private final Description description;
     private final Set<Deadline> deadlines = new HashSet<>();
 
 
@@ -30,7 +30,7 @@ public class Project {
     public Project(Name projectName, Description desc, Set<Deadline> deadlines) {
         requireAllNonNull(projectName, desc, deadlines);
         this.projectName = projectName;
-        this.description = Optional.ofNullable(desc);
+        this.description = desc;
         this.deadlines.addAll(deadlines);
     }
     public Project(String projectName) {
@@ -74,7 +74,7 @@ public class Project {
         return projectName;
     }
 
-    public Optional<Description> getProjectDescription() {
+    public Description getProjectDescription() {
         return description;
     }
 

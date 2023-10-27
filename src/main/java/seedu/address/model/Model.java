@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
@@ -16,7 +15,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Developer> PREDICATE_SHOW_ALL_DEVELOPERS = unused -> true;
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
-    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    Predicate<seedu.address.model.project.Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -61,7 +60,7 @@ public interface Model {
      */
     boolean hasDeveloper(Developer person);
     boolean hasClient(Client client);
-    boolean hasProject(Project project);
+    boolean hasProject(seedu.address.model.project.Project project);
 
     /**
      * Deletes the given person.
@@ -69,7 +68,7 @@ public interface Model {
      */
     void deleteDeveloper(Developer target);
     void deleteClient(Client target);
-    void deleteProject(Project target);
+    void deleteProject(seedu.address.model.project.Project target);
 
     /**
      * Adds the given person.
@@ -77,7 +76,7 @@ public interface Model {
      */
     void addDeveloper(Developer person);
     void addClient(Client person);
-    void addProject(Project person);
+    void addProject(seedu.address.model.project.Project person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -86,12 +85,12 @@ public interface Model {
      */
     void setDeveloper(Developer target, Developer editedDeveloper);
     void setClient(Client target, Client editedClient);
-    void setProject(Project target, Project editedProject);
+    void setProject(seedu.address.model.project.Project target, seedu.address.model.project.Project editedProject);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Developer> getFilteredDeveloperList();
     ObservableList<Client> getFilteredClientList();
-    ObservableList<Project> getFilteredProjectList();
+    ObservableList<seedu.address.model.project.Project> getFilteredProjectList();
 
 
     /**
@@ -100,5 +99,5 @@ public interface Model {
      */
     void updateFilteredDeveloperList(Predicate<Developer> predicate);
     void updateFilteredClientList(Predicate<Client> predicate);
-    void updateFilteredProjectList(Predicate<Project> predicate);
+    void updateFilteredProjectList(Predicate<seedu.address.model.project.Project> predicate);
 }

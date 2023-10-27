@@ -233,15 +233,15 @@ Relevant UI mock-ups (???)
 #### Edit project details
 Edits the details of an existing project in the address book.
 
-Format: `edit-projects INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`
+Format: `edit-projects INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [dl/DEADLINE]...`
 
 * Edits the project at the specified `INDEX` in the currently displayed project list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing deadlines, the existing deadlines will be removed ie. adding of projects is not cumulative.
-* You can remove all the current deadlines by typing `d/` without specifying any deadline.
+* You can remove all the current deadlines by typing `dl/` without specifying any deadline.
 
-Example of usage: `edit-p 1 d/Finish Feature-A by: 09-09-2023`
+Example of usage: `edit-p 1 dl/Finish Feature-A by: 09-09-2023`
 * Deletes existing project deadlines and adds new deadline `Finish Feature-A by: 09-09-2023`
 
 Acceptable parameters:
@@ -256,8 +256,8 @@ Here are the updated project details:
 Name: Project1
 Description: Project1's deliverable is a CLI chatbot to manage tasks.
 Deadlines: 
-    1. Finish Feature-A by: 09-09-2023.
-    2. Finish Feature-B by: 20-09-2023.
+    1. Finish Feature-A by: 09-09-2023
+    2. Finish Feature-B by: 20-09-2023
     3. Release first iteration by: 30-09-2023.
 ```
 

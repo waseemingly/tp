@@ -19,20 +19,21 @@ import seedu.address.model.Model;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.GithubId;
+import seedu.address.model.developer.Rating;
 import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
-import seedu.address.model.project.Project;
 
 /**
- * Represents an edit command.
+ * Edits the details of an existing developer in the address book.
  */
-public abstract class EditCommand extends Command {
+public class EditDeveloperCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Developer: %1$s";
+    public static final String COMMAND_WORD = "edit-developer";
+    public static final String MESSAGE_EDIT_DEVELOPER_SUCCESS = "Edited Developer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "The details in the address book are already as given.";
+    public static final String MESSAGE_DUPLICATE_DEVELOPER = "The details of the developer in the address book are already as given.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the developer identified "
             + "by the index number used in the displayed developer list. "
@@ -42,72 +43,73 @@ public abstract class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_PROJECT + "PROJECT]"
-            + "[" + PREFIX_DATEJOINED + "DATE JOINED]"
-            + "[" + PREFIX_ROLE + "ROLE]"
-            + "[" + PREFIX_SALARY + "SALARY]"
+            + "[" + PREFIX_ROLE + "ROLE] "
+            + "[" + PREFIX_PROJECT + "PROJECT]...\n"
+            + "[" + PREFIX_SALARY + "SALARY] "
+            + "[" + PREFIX_DATEJOINED + "DATE JOINED] "
+            + "[" + PREFIX_GITHUBID + "GITHUBID] "
+            + "[" + PREFIX_RATING + "RATING] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     private final Index index;
 
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditDeveloperDescriptor editDeveloperDescriptor;
 
 
     /**
      * @param index of the developer in the filtered developer list to edit
-     * @param editPersonDescriptor details to edit the developer with
+     * @param editDeveloperDescriptor details to edit the developer with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditDeveloperCommand(Index index, EditDeveloperDescriptor editDeveloperDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editDeveloperDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editDeveloperDescriptor = new EditDeveloperDescriptor(editDeveloperDescriptor);
     }
 
     /**
      * Creates and returns a {@code Developer} with the details of {@code developerToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editDeveloperDescriptor}.
      */
-    static Developer createEditedPerson(Developer developerToEdit, EditPersonDescriptor editPersonDescriptor) {
+    static Developer createEditedDeveloper(Developer developerToEdit, EditDeveloperDescriptor editDeveloperDescriptor) {
         assert developerToEdit != null;
 
-        /*Name updatedName = editPersonDescriptor.getName().orElse(developerToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(developerToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(developerToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(developerToEdit.getAddress());
-        Date updatedDateJoined = editPersonDescriptor.getDateJoined().orElse(developerToEdit.getDateJoined());
-        Role updatedRole = editPersonDescriptor.getRole().orElse(developerToEdit.getRole());
-        Salary updatedSalary = editPersonDescriptor.getSalary().orElse(developerToEdit.getSalary());
-        Set<Project> updatedProjects = editPersonDescriptor.getProjects().orElse(developerToEdit.getProjects());
-
+        Name updatedName = editDeveloperDescriptor.getName().orElse(developerToEdit.getName());
+        Phone updatedPhone = editDeveloperDescriptor.getPhone().orElse(developerToEdit.getPhone());
+        Email updatedEmail = editDeveloperDescriptor.getEmail().orElse(developerToEdit.getEmail());
+        Address updatedAddress = editDeveloperDescriptor.getAddress().orElse(developerToEdit.getAddress());
+        Date updatedDateJoined = editDeveloperDescriptor.getDateJoined().orElse(developerToEdit.getDateJoined());
+        Role updatedRole = editDeveloperDescriptor.getRole().orElse(developerToEdit.getRole());
+        Salary updatedSalary = editDeveloperDescriptor.getSalary().orElse(developerToEdit.getSalary());
+        Set<String> updatedProjects = editDeveloperDescriptor.getProjects().orElse(developerToEdit.getProjects());
+        GithubId updatedGithubId = editDeveloperDescriptor.getGithubId().orElse(developerToEdit.getGithubId());
+        Rating updatedRating = editDeveloperDescriptor.getRating().orElse(developerToEdit.getRating());
+        
         return new Developer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedDateJoined,updatedRole,updatedSalary, updatedProjects);*/
-        return null;
+                updatedRole, updatedProjects, updatedSalary, updatedDateJoined, updatedGithubId, updatedRating);
     }
-
+    
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        /*List<Developer> lastShownList = model.getFilteredPersonList();
+        List<Developer> lastShownList = model.getFilteredDeveloperList();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
         }
 
         Developer developerToEdit = lastShownList.get(index.getZeroBased());
-        Developer editedDeveloper = createEditedPerson(developerToEdit, editPersonDescriptor);
+        Developer editedDeveloper = createEditedDeveloper(developerToEdit, editDeveloperDescriptor);
 
-        if (!developerToEdit.isSamePerson(editedDeveloper) && model.hasPerson(editedDeveloper)) {
-            throw new CommandException(EditCommand.MESSAGE_DUPLICATE_PERSON);
+        if (!developerToEdit.isSamePerson(editedDeveloper) && model.hasDeveloper(editedDeveloper)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
         }
 
-        model.setPerson(developerToEdit, editedDeveloper);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedDeveloper)));
-*/
-        return null;
+        model.setDeveloper(developerToEdit, editedDeveloper);
+        model.updateFilteredDeveloperList(Model.PREDICATE_SHOW_ALL_DEVELOPERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_DEVELOPER_SUCCESS, Messages.format(editedDeveloper)), TabIndex.Developer);
     }
 
 
@@ -122,16 +124,16 @@ public abstract class EditCommand extends Command {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+        EditDeveloperCommand otherEditDeveloperCommand = (EditDeveloperCommand) other;
+        return index.equals(otherEditDeveloperCommand.index)
+                && editDeveloperDescriptor.equals(otherEditDeveloperCommand.editDeveloperDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editDeveloperDescriptor", editDeveloperDescriptor)
                 .toString();
     }
 
@@ -139,23 +141,25 @@ public abstract class EditCommand extends Command {
      * Stores the details to edit the developer with. Each non-empty field value will replace the
      * corresponding field value of the developer.
      */
-    public static class EditPersonDescriptor {
+    public static class EditDeveloperDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Project> projects;
+        private Set<String> projects;
         private Date dateJoined;
         private Role role;
         private Salary salary;
+        private GithubId githubId;
+        private Rating rating;
 
-        public EditPersonDescriptor() {}
+        public EditDeveloperDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditDeveloperDescriptor(EditDeveloperDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -164,6 +168,8 @@ public abstract class EditCommand extends Command {
             setDateJoined(toCopy.dateJoined);
             setRole(toCopy.role);
             setSalary(toCopy.salary);
+            setGithubId(toCopy.githubId);
+            setRating(toCopy.rating);
         }
 
         /**
@@ -171,11 +177,9 @@ public abstract class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(
-                    name, phone, email, address, projects, dateJoined, role, salary);
+                    name, phone, email, address, projects, dateJoined, role, salary, githubId, rating);
         }
-
-        // Getter and setter methods for each field
-
+        
         public void setName(Name name) {
             this.name = name;
         }
@@ -208,15 +212,14 @@ public abstract class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setProjects(Set<Project> projects) {
+        public void setProjects(Set<String> projects) {
             this.projects = (projects != null) ? new HashSet<>(projects) : null;
         }
 
-        public Optional<Set<Project>> getProjects() {
+        public Optional<Set<String>> getProjects() {
             return (projects != null) ? Optional.of(Collections.unmodifiableSet(projects)) : Optional.empty();
         }
-
-
+        
         public void setDateJoined(Date dateJoined) {
             this.dateJoined = dateJoined;
         }
@@ -241,6 +244,21 @@ public abstract class EditCommand extends Command {
             return Optional.ofNullable(salary);
         }
 
+        public void setGithubId(GithubId githubId) {
+            this.githubId = githubId;
+        }
+        
+        public Optional<GithubId> getGithubId() {
+            return Optional.ofNullable(githubId);
+        }
+        
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
+        
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -248,19 +266,19 @@ public abstract class EditCommand extends Command {
                 return true;
             }
 
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditDeveloperDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(projects, otherEditPersonDescriptor.projects)
-                    && Objects.equals(dateJoined, otherEditPersonDescriptor.dateJoined)
-                    && Objects.equals(role, otherEditPersonDescriptor.role)
-                    && Objects.equals(salary, otherEditPersonDescriptor.salary);
+            EditDeveloperDescriptor otherEditDeveloperDescriptor = (EditDeveloperDescriptor) other;
+            return Objects.equals(name, otherEditDeveloperDescriptor.name)
+                    && Objects.equals(phone, otherEditDeveloperDescriptor.phone)
+                    && Objects.equals(email, otherEditDeveloperDescriptor.email)
+                    && Objects.equals(address, otherEditDeveloperDescriptor.address)
+                    && Objects.equals(projects, otherEditDeveloperDescriptor.projects)
+                    && Objects.equals(dateJoined, otherEditDeveloperDescriptor.dateJoined)
+                    && Objects.equals(role, otherEditDeveloperDescriptor.role)
+                    && Objects.equals(salary, otherEditDeveloperDescriptor.salary);
         }
 
         @Override
@@ -274,6 +292,8 @@ public abstract class EditCommand extends Command {
                     .add("dateJoined", dateJoined)
                     .add("role", role)
                     .add("salary", salary)
+                    .add("githubId", githubId)
+                    .add("rating", rating)
                     .toString();
         }
     }

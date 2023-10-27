@@ -43,7 +43,7 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(Project source) {
 
         projectName = source.getProjectName().fullName;
-        description = source.getProjectDescription().toString();
+        description = source.getProjectDescription().desc;
         deadlines.addAll(source.getProjectDeadlines().stream()
                 .map(Deadline::getStringRepresentation).collect(Collectors.toList()));
     }
