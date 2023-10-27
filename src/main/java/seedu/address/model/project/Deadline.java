@@ -86,7 +86,7 @@ public class Deadline {
     }
 
     public String getStringRepresentation() {
-        return date.toString()+","+desc.toString()+","+priority.toString();
+        return date.toString()+","+desc.toString()+","+priority.toString()+","+(isDone? "1" : "0");
     }
 
     @Override
@@ -101,5 +101,9 @@ public class Deadline {
                 .add("description", desc)
                 .add("priority", priority)
                 .toString();
+    }
+
+    public boolean getIsDone() {
+        return isDone;
     }
 }
