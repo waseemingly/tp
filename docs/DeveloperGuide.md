@@ -154,6 +154,49 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit features
+#### Implementation
+The original edit feature from AB-3 has been extended to account for the editing of projects and specific people - developers
+and clients. The edit command will be parsed to return 1 of 3 different commands, depending on the 
+object to be edited.
+
+The `AddressBookParser` will return the respective parser for the command depending on the user input in accordance to the
+respective command words defined in `CliSyntax`. Namely,
+* `edit-developer` will return an `EditDeveloperCommandParser` that parses the user input and creates an `EditDeveloperCommand`
+* `edit-client` will return an `EditClientCommandParser` that parses the user input and creates an `EditClientCommand`
+* `edit-project` will return an `EditProjectCommandParser` that parses the user input and creates an `EditProjectCommand`
+
+Each instance of `EditDeveloperCommand`, `EditClientCommand`, and `EditProjectCommand` objects have 2 private fields:
+1. an instance of `Index` containing the index of the target object to edit in the currently displayed list, and 
+2. an instance of `EditDeveloperDescriptor`, `EditClientDescriptor`, or `EditProjectDescriptor` respectively, which 
+contains the edited fields to update the target object with.
+
+Executing the command will replace the existing object in the current `model` with the new object with the edited fields.
+
+Other than extending the commands, parsers, and descriptors to account for `Developer`, `Client`, and `Project` separately,
+some changes to the sequence of interactions between the `Logic` and `Model` components were also made. When the
+`EditDeveloperCommandParser` and `EditClientCommandParser` parses edits to a `Project` assigned to a `Developer` or `Client`,
+it calls `Model##----` to check whether there is an existing `Project` with that name.
+
+**Example usage scenario**
+
+Given below is an example usage scenario where the user edits the projects assigned to a `Developer` using the `edit-developer`
+command.
+
+Step 1. ....
+
+#### Design considerations
+**Aspect: Command syntax**
+* Alternative 1 (current choice): Have separate commands for each `Developer`, `Client`, and `Project`. Executing the command
+automatically switches user to the respective tab.
+  * Pros: More specific and straightforward, allowed parameters in command are easier to navigate for users. More flexible
+    as do not need to be in respective tab to edit.
+  * Cons: More classes to create, user needs to type more.
+* Alternative 2: Have one general `edit` command. The edit will be made based on the current tab displayed.
+  * Pros: User as can be less specific when typing command.
+  * Cons: User needs to ensure that intended tab is open. Allowed parameters are less clearly defined, can lead to 
+  confusion and mistakes.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
