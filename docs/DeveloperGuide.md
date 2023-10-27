@@ -122,7 +122,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Developer` objects (which are contained in a `UniqueDeveloperList` object), and similarly so for `Client` and `Project` objects.
-* stores the currently 'selected' `Developer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Developer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Developer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Developer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change. This is similar for `Client` and `Project` objects.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -162,7 +162,7 @@ Example Use: `add-d n/John Doe p/98765432 e/johnd@example.com`
 
 #### Implementation
 
-Upon entry of the add doctor command, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+Upon entry of the add developer command, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
 
 Given below is an example usage scenario of how the add developer is executed step by step.
 
@@ -174,7 +174,7 @@ Step 3. The developer is added to the model’s list of developers if valid.
 
 The following sequence diagram illustrates how the add developer operation works:
 
-### Delete Doctor Feature
+### Delete Developer Feature
 
 Deletes a developer at the specified **one-based index** of list of currently existing/found developers. Users are able to delete any developer in the list. If an index larger than or equal to the size of the developer’s list is provided, the command will not be allowed and an error will be thrown to alert user.
 
@@ -193,6 +193,33 @@ Step 2. User executes `del-d 1` to delete the developer at index 1 (one-based in
 Step 3. The developer at this index is removed if the index provided is valid.
 
 The following sequence diagram illustrates how the delete developer operation works:
+### \[Proposed\] Import feature
+This feature will allow project managers to import existing spreadsheets of developer and client data in the specified format in CSV
+#### Proposed Implementation
+
+There are 2 implementations: CLI and GUI
+
+##### CLI Implementation
+Upon entry of the import developer command, an `ImportDeveloperCommand` class is created. The `ImportDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a list of `Developer` objects are added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+
+Given below is an example usage scenario of how the import developer is executed step by step.
+
+Step 1. User launches the application
+
+Step 2. User inputs `import-developer developers.csv` to indicate path and filename of where the spreadsheet of developers is located.
+
+Step 3. The developers are added to the model’s list of developers if valid the column names are valid and each row of input is valid.
+
+The implementation follows likewise for clients.
+
+The following sequence diagram illustrates how the add developer operation works:
+
+##### GUI Implentation
+A new menu item will be added under File called `Import developers` and `Import clients`
+
+Clicking it will lead to a window to select the location of the respective file in csv format.
+
+The backend implementation of logic follows the CLI implementation by creating a `ImportDeveloperCommand` or `ImportClientCommand`
 
 ### \[Proposed\] Undo/redo feature
 
