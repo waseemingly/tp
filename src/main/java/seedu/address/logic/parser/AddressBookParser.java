@@ -11,10 +11,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteDeveloperCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindClientCommand;
 import seedu.address.logic.commands.FindDeveloperCommand;
+import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListClientCommand;
@@ -99,9 +99,6 @@ public class AddressBookParser {
 
         case FindProjectCommand.COMMAND_WORD:
             return new FindProjectCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
             
         case ListClientCommand.COMMAND_WORD:
             return new ListClientCommand();

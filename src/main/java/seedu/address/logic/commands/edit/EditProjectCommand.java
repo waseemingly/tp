@@ -105,7 +105,7 @@ public class EditProjectCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditProjectCommand)) {
             return false;
         }
 
