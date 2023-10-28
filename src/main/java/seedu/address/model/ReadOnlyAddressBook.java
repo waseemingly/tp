@@ -3,7 +3,6 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.project.Project;
 
 /**
  * Unmodifiable view of an address book
@@ -16,7 +15,7 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Developer> getDeveloperList();
     ObservableList<Client> getClientList();
-    ObservableList<Project> getProjectList();
+    ObservableList<seedu.address.model.project.Project> getProjectList();
 
 
 }

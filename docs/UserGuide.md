@@ -256,8 +256,8 @@ Here are the updated project details:
 Name: Project1
 Description: Project1's deliverable is a CLI chatbot to manage tasks.
 Deadlines: 
-    1. Finish Feature-A by: 09-09-2023.
-    2. Finish Feature-B by: 20-09-2023.
+    1. Finish Feature-A by: 09-09-2023
+    2. Finish Feature-B by: 20-09-2023
     3. Release first iteration by: 30-09-2023.
 ```
 

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 
 /**
@@ -20,11 +21,12 @@ public class AddProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "add-project";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book.\n"
+            + Deadline.MESSAGE_CONSTRAINTS + "\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "[" + PREFIX_DEADLINE + "DEADLINE]...\n"
+            + "[" + PREFIX_DEADLINE + "DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...\n"
             + "Example: \n" + COMMAND_WORD + " "
             + PREFIX_NAME + "JuiceApp "
             + PREFIX_DESCRIPTION + "App to allow for different juices to be ordered "
