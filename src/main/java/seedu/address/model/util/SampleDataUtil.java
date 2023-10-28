@@ -22,9 +22,9 @@ public class SampleDataUtil {
     public static Developer[] getSamplePersons() {
         return new Developer[] {
             new seedu.address.model.developer.Developer(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), new Role("Dev"), getProjectSet(), new Salary("5000"), new Date("15-12-2019"), new GithubId("mahidharah"), new Rating("5.0")),
+                new Address("Blk 30 Geylang Street 29, #06-40"), new Role("Developer"), getProjectSet(), new Salary("5000"), new Date("15-12-2019"), new GithubId("mahidharah"), new Rating("5.0")),
             new seedu.address.model.developer.Developer(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Role("Dev"), getProjectSet("AndroidApp", "customWebsite"), new Salary("6000"), new Date("16-11-2020"), new GithubId("mahidharah1"), new Rating("5.0")),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Role("Developer"), getProjectSet("AndroidApp", "customWebsite"), new Salary("6000"), new Date("16-11-2020"), new GithubId("mahidharah1"), new Rating("5.0")),
             new seedu.address.model.developer.Developer(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Role("Developer"), getProjectSet("AndroidApp"), new Salary("4500"), new Date("20-10-2020"), new GithubId("mahidharah2"), new Rating("5.0")),
             new Developer(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),

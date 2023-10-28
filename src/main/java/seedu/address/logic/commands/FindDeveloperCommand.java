@@ -9,6 +9,8 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.developer.DateJoinedContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.GithubIdContainsKeywordsPredicate;
+import seedu.address.model.developer.RatingContainsKeywordsPredicate;
 import seedu.address.model.developer.SalaryContainsKeywordsPredicate;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
@@ -63,6 +65,13 @@ public class FindDeveloperCommand extends Command {
 
 
     public FindDeveloperCommand(ProjectContainsKeywordsPredicate projectPredicate) {
+        this.predicate = projectPredicate;
+    }
+
+    public FindDeveloperCommand(RatingContainsKeywordsPredicate projectPredicate) {
+        this.predicate = projectPredicate;
+    }
+    public FindDeveloperCommand(GithubIdContainsKeywordsPredicate projectPredicate) {
         this.predicate = projectPredicate;
     }
 
