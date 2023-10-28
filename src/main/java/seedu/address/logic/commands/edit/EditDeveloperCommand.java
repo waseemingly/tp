@@ -123,7 +123,7 @@ public class EditDeveloperCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditDeveloperCommand)) {
             return false;
         }
 
