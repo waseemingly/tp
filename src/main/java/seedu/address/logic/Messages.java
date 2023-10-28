@@ -16,18 +16,18 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_FILE = "File does not exist!\n";
-    public static final String MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX = "The developer index provided is invalid";
-    public static final String MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX = "The client index provided is invalid";
-    public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is invalid";
+    public static final String MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX = "The developer index provided is invalid!";
+    public static final String MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX = "The client index provided is invalid!";
+    public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is invalid!";
     public static final String MESSAGE_INAPPLICABLE_PREFIX_USED = "You tried to edit an inapplicable field! Please check " +
             "the prefixes used and try again. \n%1$s";
-    
+    public static final String MESSAGE_NONEXISTENT_PROJECT = "There is no existing Project with the name: %1$s!";
     public static final String MESSAGE_DEVELOPERS_LISTED_OVERVIEW =
-                "These are the %1$d developers with matching information";
+                "These are the %1$d developers with matching information.";
     public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW =
-            "These are the %1$d clients with matching information";
+            "These are the %1$d clients with matching information.";
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW =
-            "These are the %1$d projects with matching information";
+            "These are the %1$d projects with matching information.";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 

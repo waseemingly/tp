@@ -12,9 +12,15 @@ import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.add.AddClientCommand;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.add.AddProjectCommand;
+import seedu.address.logic.commands.edit.EditClientCommand;
+import seedu.address.logic.commands.edit.EditDeveloperCommand;
+import seedu.address.logic.commands.edit.EditProjectCommand;
 import seedu.address.logic.parser.add.AddClientCommandParser;
 import seedu.address.logic.parser.add.AddDeveloperCommandParser;
 import seedu.address.logic.parser.add.AddProjectCommandParser;
+import seedu.address.logic.parser.edit.EditClientCommandParser;
+import seedu.address.logic.parser.edit.EditDeveloperCommandParser;
+import seedu.address.logic.parser.edit.EditProjectCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -61,9 +67,13 @@ public class AddressBookParser {
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
+        case EditDeveloperCommand.COMMAND_WORD:
+            return new EditDeveloperCommandParser().parse(arguments);
+        case EditClientCommand.COMMAND_WORD:
+            return new EditClientCommandParser().parse(arguments);
+        case EditProjectCommand.COMMAND_WORD:
+            return new EditProjectCommandParser().parse(arguments);
+            
         case DeleteDeveloperCommand.COMMAND_WORD:
             return new DeleteDeveloperCommandParser().parse(arguments);
 

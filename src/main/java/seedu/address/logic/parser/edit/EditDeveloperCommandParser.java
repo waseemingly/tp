@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.edit;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -23,11 +23,14 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.EditDeveloperCommand;
+import seedu.address.logic.commands.edit.EditDeveloperCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Project;
+import seedu.address.model.developer.Developer;
 
 /**
  * Parses input arguments and creates a new EditDeveloperCommand object
@@ -56,7 +59,11 @@ public class EditDeveloperCommandParser implements Parser<EditDeveloperCommand> 
                     EditDeveloperCommand.MESSAGE_USAGE), pe);
         }
 
-        for (Prefix p : EditDeveloperCommand.unusedPrefixes) {
+        if (!argMultimap.hasMappings()) {
+            throw new ParseException(EditDeveloperCommand.MESSAGE_NOT_EDITED);
+        }
+        
+        for (Prefix p : Developer.unusedPrefixes) {
             if (argMultimap.getValue(p).isPresent()) {
                 throw new ParseException(String.format(Messages.MESSAGE_INAPPLICABLE_PREFIX_USED,
                         EditDeveloperCommand.MESSAGE_USAGE));
@@ -64,7 +71,7 @@ public class EditDeveloperCommandParser implements Parser<EditDeveloperCommand> 
         }
         
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_PROJECT, PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_GITHUBID, PREFIX_RATING);
+                PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_GITHUBID, PREFIX_RATING);
 
         EditDeveloperCommand.EditDeveloperDescriptor editDeveloperDescriptor = new EditDeveloperCommand.EditDeveloperDescriptor();
 
@@ -92,28 +99,30 @@ public class EditDeveloperCommandParser implements Parser<EditDeveloperCommand> 
         if (argMultimap.getValue(PREFIX_GITHUBID).isPresent()) {
             editDeveloperDescriptor.setGithubId(ParserUtil.parseGithubId(argMultimap.getValue(PREFIX_GITHUBID).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_PROJECT)).ifPresent(editDeveloperDescriptor::setProjects);
+        if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
+            editDeveloperDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
+        }
+        parseProjectsForEdit(argMultimap.getAllValues(PREFIX_PROJECT)).ifPresent(editDeveloperDescriptor::setProjects);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        if (!editDeveloperDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditDeveloperCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditDeveloperCommand(index, editDeveloperDescriptor);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> tags} into a {@code Set<String>} if {@code projects} is non-empty.
+     * If {@code projects} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<String>} containing zero tags.
      */
-    private Optional<Set<Project>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<String>> parseProjectsForEdit(Collection<String> projects) throws ParseException {
+        assert projects != null;
 
-        if (tags.isEmpty()) {
+        if (projects.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseProjects(tagSet));
+        Collection<String> projectSet = projects.size() == 1 && projects.contains("") ? Collections.emptySet() : projects;
+        return Optional.of(ParserUtil.parseProjectsWithCheck(projectSet));
     }
-
 }
