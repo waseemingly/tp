@@ -122,7 +122,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Developer` objects (which are contained in a `UniqueDeveloperList` object), and similarly so for `Client` and `Project` objects.
-* stores the currently 'selected' `Developer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Developer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Developer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Developer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change. This is similar for `Client` and `Project` objects.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -154,6 +154,49 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit features
+#### Implementation
+The original edit feature from AB-3 has been extended to account for the editing of projects and specific people - developers
+and clients. The edit command will be parsed to return 1 of 3 different commands, depending on the 
+object to be edited.
+
+The `AddressBookParser` will return the respective parser for the command depending on the user input in accordance to the
+respective command words defined in `CliSyntax`. Namely,
+* `edit-developer` will return an `EditDeveloperCommandParser` that parses the user input and creates an `EditDeveloperCommand`
+* `edit-client` will return an `EditClientCommandParser` that parses the user input and creates an `EditClientCommand`
+* `edit-project` will return an `EditProjectCommandParser` that parses the user input and creates an `EditProjectCommand`
+
+Each instance of `EditDeveloperCommand`, `EditClientCommand`, and `EditProjectCommand` objects have 2 private fields:
+1. an instance of `Index` containing the index of the target object to edit in the currently displayed list, and 
+2. an instance of `EditDeveloperDescriptor`, `EditClientDescriptor`, or `EditProjectDescriptor` respectively, which 
+contains the edited fields to update the target object with.
+
+Executing the command will replace the existing object in the current `model` with the new object with the edited fields.
+
+Other than extending the commands, parsers, and descriptors to account for `Developer`, `Client`, and `Project` separately,
+some changes to the sequence of interactions between the `Logic` and `Model` components were also made. When the
+`EditDeveloperCommandParser` and `EditClientCommandParser` parses edits to a `Project` assigned to a `Developer` or `Client`,
+it calls `Model##----` to check whether there is an existing `Project` with that name.
+
+**Example usage scenario**
+
+Given below is an example usage scenario where the user edits the projects assigned to a `Developer` using the `edit-developer`
+command.
+
+Step 1. ....
+
+#### Design considerations
+**Aspect: Command syntax**
+* Alternative 1 (current choice): Have separate commands for each `Developer`, `Client`, and `Project`. Executing the command
+automatically switches user to the respective tab.
+  * Pros: More specific and straightforward, allowed parameters in command are easier to navigate for users. More flexible
+    as do not need to be in respective tab to edit.
+  * Cons: More classes to create, user needs to type more.
+* Alternative 2: Have one general `edit` command. The edit will be made based on the current tab displayed.
+  * Pros: User as can be less specific when typing command.
+  * Cons: User needs to ensure that intended tab is open. Allowed parameters are less clearly defined, can lead to 
+  confusion and mistakes.
+
 ### Add Developer Feature
 
 This feature allows users to add a developer to the bottom of the list of currently existing developers. Users are able to add any valid developer to the list. If a record of the same developer already exists in the list, the command will not be allowed and an error will be thrown to alert user.
@@ -162,7 +205,7 @@ Example Use: `add-d n/John Doe p/98765432 e/johnd@example.com`
 
 #### Implementation
 
-Upon entry of the add doctor command, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+Upon entry of the add developer command, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
 
 Given below is an example usage scenario of how the add developer is executed step by step.
 
@@ -193,6 +236,33 @@ Step 2. User executes `del-d 1` to delete the developer at index 1 (one-based in
 Step 3. The developer at this index is removed if the index provided is valid.
 
 The following sequence diagram illustrates how the delete developer operation works:
+### \[Proposed\] Import feature
+This feature will allow project managers to import existing spreadsheets of developer and client data in the specified format in CSV
+#### Proposed Implementation
+
+There are 2 implementations: CLI and GUI
+
+##### CLI Implementation
+Upon entry of the import developer command, an `ImportDeveloperCommand` class is created. The `ImportDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a list of `Developer` objects are added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+
+Given below is an example usage scenario of how the import developer is executed step by step.
+
+Step 1. User launches the application
+
+Step 2. User inputs `import-developer developers.csv` to indicate path and filename of where the spreadsheet of developers is located.
+
+Step 3. The developers are added to the model’s list of developers if valid the column names are valid and each row of input is valid.
+
+The implementation follows likewise for clients.
+
+The following sequence diagram illustrates how the add developer operation works:
+
+##### GUI Implentation
+A new menu item will be added under File called `Import developers` and `Import clients`
+
+Clicking it will lead to a window to select the location of the respective file in csv format.
+
+The backend implementation of logic follows the CLI implementation by creating a `ImportDeveloperCommand` or `ImportClientCommand`
 
 ### Find Feature
 

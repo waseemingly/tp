@@ -1,7 +1,8 @@
 package seedu.address.logic.commands.add;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.storage.JsonSerializableAddressBook.MESSAGE_DUPLICATE_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -35,6 +36,9 @@ public class AddProjectCommand extends Command {
 
     private final Project toAdd;
 
+    /**
+     * Creates an AddProjectCommand to add the specified {@code Developer}
+     */
     public AddProjectCommand(Project project) {
         requireNonNull(project);
         toAdd = project;
