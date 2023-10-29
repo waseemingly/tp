@@ -22,12 +22,21 @@ public class Messages {
     public static final String MESSAGE_INAPPLICABLE_PREFIX_USED = "You tried to edit an inapplicable field! Please check " +
             "the prefixes used and try again. \n%1$s";
     public static final String MESSAGE_NONEXISTENT_PROJECT = "There is no existing Project with the name: %1$s!";
-    public static final String MESSAGE_DEVELOPERS_LISTED_OVERVIEW =
-                "These are the %1$d developers with matching information.";
-    public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW =
-            "These are the %1$d clients with matching information.";
-    public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW =
-            "These are the %1$d projects with matching information.";
+    public static String getMessageDevelopersListedOverview(int count) {
+        return count == 1
+                ? "This is the 1 developer with matching information."
+                : String.format("These are the %d developers with matching information.", count);
+    }
+    public static String getMessageClientsListedOverview(int count) {
+        return count == 1
+                ? "This is the 1 client with matching information."
+                : String.format("These are the %d clients with matching information.", count);
+    }
+    public static String getMessageProjectsListedOverview(int count) {
+        return count == 1
+                ? "This is the 1 project with matching information."
+                : String.format("These are the %d projects with matching information.", count);
+    }
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
