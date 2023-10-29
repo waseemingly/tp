@@ -42,8 +42,8 @@ public class EditProjectCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DEADLINE + "DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "Finish Feature-A by: 09-09-2023"
-            + PREFIX_DEADLINE + "Finish Feature-B by: 20-09-2023";
+            + PREFIX_DEADLINE + "31-12-2019,Develop front end interface,HIGH,0 "
+            + PREFIX_DEADLINE + "01-02-2020,Develop back end,HIGH,0";
 
     private final Index index;
 
