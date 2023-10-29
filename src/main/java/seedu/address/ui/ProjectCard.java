@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,6 +39,9 @@ public class ProjectCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
+
+    @FXML
+    private ProgressBar progress;
     @FXML
     private Label id;
     @FXML
@@ -76,6 +80,7 @@ public class ProjectCard extends UiPart<Region> {
         table.getColumns().addAll(doneCol, priorityCol,dateCol,descriptionCol);
         ObservableList<Data> data = FXCollections.observableList(project.getProjectDeadlines().stream()
                 .map(deadline ->new Data(deadline)).collect(Collectors.toList()));
+        progress.setProgress(data.stream().filter(t->t.getIsDone()).count()*1.0/data.size());
         table.setItems(data);
     }
     public static class Data {
