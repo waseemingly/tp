@@ -1,20 +1,32 @@
 package seedu.address.logic.parser.find;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.find.FindClientCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.AddressClientContainsKeywordsPredicate;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.DocumentContainsKeywordsPredicate;
+import seedu.address.model.client.EmailClientContainsKeywordsPredicate;
+import seedu.address.model.client.NameClientContainsKeywordsPredicate;
 import seedu.address.model.client.OrganisationContainsKeywordsPredicate;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.PhoneContainsKeywordsPredicate;
-import seedu.address.model.person.ProjectContainsKeywordsPredicate;
-import seedu.address.model.person.RoleContainsKeywordsPredicate;
+import seedu.address.model.client.PhoneClientContainsKeywordsPredicate;
+import seedu.address.model.client.ProjectClientContainsKeywordsPredicate;
+import seedu.address.model.client.RoleClientContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindClientCommand object
@@ -32,33 +44,62 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE));
         }
 
-        if (trimmedArgs.startsWith("n/")) {
-            String[] nameKeywords = trimmedArgs.replaceFirst("n/", "").split("\\s+");
-            return new FindClientCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (trimmedArgs.startsWith("r/")) {
-            String[] roleKeywords = trimmedArgs.replaceFirst("r/", "").split("\\s+");
-            return new FindClientCommand(new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
-        } else if (trimmedArgs.startsWith("a/")) {
-            String[] addressKeywords = trimmedArgs.replaceFirst("a/", "").split("\\s+");
-            return new FindClientCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
-        } else if (trimmedArgs.startsWith("e/")) {
-            String[] emailKeywords = trimmedArgs.replaceFirst("e/", "").split("\\s+");
-            return new FindClientCommand(new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
-        } else if (trimmedArgs.startsWith("ph/")) {
-            String[] phoneKeywords = trimmedArgs.replaceFirst("ph/", "").split("\\s+");
-            return new FindClientCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
-        } else if (trimmedArgs.startsWith("pr/")) {
-            String[] projectKeywords = trimmedArgs.replaceFirst("pr/", "").split("\\s+");
-            return new FindClientCommand(new ProjectContainsKeywordsPredicate(Arrays.asList(projectKeywords)));
-        } else if (trimmedArgs.startsWith("d/")) {
-            String[] nameKeywords = trimmedArgs.replaceFirst("d/", "").split("\\s+");
-            return new FindClientCommand(new DocumentContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (trimmedArgs.startsWith("o/")) {
-            String[] phoneKeywords = trimmedArgs.replaceFirst("o/", "").split("\\s+");
-            return new FindClientCommand(new OrganisationContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
-        } else {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ROLE, PREFIX_ADDRESS,
+                PREFIX_EMAIL, PREFIX_PHONE, PREFIX_PROJECT, PREFIX_DOCUMENT, PREFIX_ORGANISATION);
+
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE));
         }
+
+        Predicate<Client> finalPredicate = buildPredicate(argMultimap);
+
+        return new FindClientCommand(finalPredicate);
+    }
+
+    private Predicate<Client> buildPredicate(ArgumentMultimap argMultimap) {
+        Predicate<Client> finalPredicate = client -> true;
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            String[] nameKeywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
+            finalPredicate = finalPredicate.and(new NameClientContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
+            String[] roleKeywords = argMultimap.getValue(PREFIX_ROLE).get().split("\\s+");
+            finalPredicate = finalPredicate.and(new RoleClientContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            String[] addressKeywords = argMultimap.getValue(PREFIX_ADDRESS).get().split("\\s+");
+            finalPredicate = finalPredicate.and(new AddressClientContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            String[] emailKeywords = argMultimap.getValue(PREFIX_EMAIL).get().split("\\s+");
+            finalPredicate = finalPredicate.and(new EmailClientContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            String[] phoneKeywords = argMultimap.getValue(PREFIX_PHONE).get().split("\\s+");
+            finalPredicate = finalPredicate.and(new PhoneClientContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_PROJECT).isPresent()) {
+            String[] projectKeywords = argMultimap.getValue(PREFIX_PROJECT).get().split("\\s+");
+            finalPredicate = finalPredicate.and(new ProjectClientContainsKeywordsPredicate(Arrays.asList(projectKeywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_DOCUMENT).isPresent()) {
+            String[] documentKeywords = argMultimap.getValue(PREFIX_DOCUMENT).get().split("\\s+");
+            finalPredicate = finalPredicate.and(new DocumentContainsKeywordsPredicate(Arrays.asList(documentKeywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_ORGANISATION).isPresent()) {
+            String[] organisationKeywords = argMultimap.getValue(PREFIX_ORGANISATION).get().split("\\s+");
+            finalPredicate = finalPredicate.and(new OrganisationContainsKeywordsPredicate(Arrays.asList(organisationKeywords)));
+        }
+
+        return finalPredicate;
     }
 }

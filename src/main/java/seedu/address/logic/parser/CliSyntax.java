@@ -20,6 +20,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_DOCUMENT = new Prefix("do/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("dr/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("dl/");
-
-
 }
