@@ -39,6 +39,31 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code word} as a partial word match.
+     * Ignores case, and it matches the word even if it's only a part of a larger word.
+     * <br>examples:<pre>
+     * containsPartialWordIgnoreCase("ABc def", "abc") == true
+     * containsPartialWordIgnoreCase("ABc def", "DEF") == true
+     * containsPartialWordIgnoreCase("ABc def", "AB") == true
+     * </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty
+     */
+    public static boolean containsPartialWordIgnoreCase(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+
+        String preppedSentence = sentence;
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(wordInSentence -> wordInSentence.toLowerCase().contains(preppedWord.toLowerCase()));
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
