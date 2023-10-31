@@ -10,7 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.project.Project;
 
 /**
  * API of the Logic component
@@ -35,7 +34,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of developers */
     ObservableList<Developer> getFilteredDeveloperList();
     ObservableList<Client> getFilteredClientList();
-    ObservableList<Project> getFilteredProjectList();
+    ObservableList<seedu.address.model.project.Project> getFilteredProjectList();
 
     /**
      * Returns the user prefs' address book file path.

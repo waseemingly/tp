@@ -18,7 +18,7 @@ import seedu.address.model.commons.Date;
 public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline should be of the format dd-MM-yyyy,<DESCRIPTION>,<HIGH|MEDIUM|LOW>,<0|1>\n" +
-                    "Eg: 31-12-2019, Develop front end interface, HIGH, 0";
+                    "Eg: 31-12-2019,Develop front end interface,HIGH,0";
     public static final String VALIDATION_REGEX = "^[0-3]\\d-[01]\\d-\\d{4},[^,]+,(HIGH|MEDIUM|LOW),(0|1)$";
     
     private final Date date;
@@ -45,7 +45,6 @@ public class Deadline {
         this.desc = new Description(output[1]);
         this.priority= Priority.valueOf(output[2]);
         this.isDone = output[3].contains("1");
-
     }
     /**
      * Returns true if a given string is a valid date.
@@ -86,7 +85,7 @@ public class Deadline {
     }
 
     public String getStringRepresentation() {
-        return date.toString()+","+desc.toString()+","+priority.toString();
+        return date.toString()+","+desc.toString()+","+priority.toString()+","+(isDone? "1" : "0");
     }
 
     @Override
@@ -101,5 +100,9 @@ public class Deadline {
                 .add("description", desc)
                 .add("priority", priority)
                 .toString();
+    }
+
+    public boolean getIsDone() {
+        return isDone;
     }
 }

@@ -1,19 +1,22 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.find;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.FindDeveloperCommand;
+import seedu.address.logic.commands.find.FindDeveloperCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.developer.DateJoinedContainsKeywordsPredicate;
+import seedu.address.model.developer.GithubIdContainsKeywordsPredicate;
+import seedu.address.model.developer.RatingContainsKeywordsPredicate;
+import seedu.address.model.developer.SalaryContainsKeywordsPredicate;
+import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.ProjectContainsKeywordsPredicate;
 import seedu.address.model.person.RoleContainsKeywordsPredicate;
-import seedu.address.model.developer.SalaryContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindDeveloperCommand object
@@ -34,10 +37,10 @@ public class FindDeveloperCommandParser implements Parser<FindDeveloperCommand> 
             if (trimmedArgs.startsWith("n/")) {
                 String[] nameKeywords = trimmedArgs.replaceFirst("n/", "").split("\\s+");
                 return new FindDeveloperCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-            } else if (trimmedArgs.startsWith("r/")) {
+            } else if (trimmedArgs.startsWith("ro/")) {
                 String[] roleKeywords = trimmedArgs.replaceFirst("r/", "").split("\\s+");
                 return new FindDeveloperCommand(new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
-            } else if (trimmedArgs.startsWith("developer a/")) {
+            } else if (trimmedArgs.startsWith("a/")) {
                 String[] addressKeywords = trimmedArgs.replaceFirst("a/", "").split("\\s+");
                 return new FindDeveloperCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
             } else if (trimmedArgs.startsWith("d/")) {
@@ -55,6 +58,12 @@ public class FindDeveloperCommandParser implements Parser<FindDeveloperCommand> 
             } else if (trimmedArgs.startsWith("s/")) {
                 String[] salaryKeywords = trimmedArgs.replaceFirst("s/", "").split("\\s+");
                 return new FindDeveloperCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(salaryKeywords)));
+            } else if (trimmedArgs.startsWith("ra/")) {
+                String[] ratingKeywords = trimmedArgs.replaceFirst("ra/", "").split("\\s+");
+                return new FindDeveloperCommand(new RatingContainsKeywordsPredicate(Arrays.asList(ratingKeywords)));
+            } else if (trimmedArgs.startsWith("g/")) {
+                String[] githubKeywords = trimmedArgs.replaceFirst("g/", "").split("\\s+");
+                return new FindDeveloperCommand(new GithubIdContainsKeywordsPredicate(Arrays.asList(githubKeywords)));
             } else {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDeveloperCommand.MESSAGE_USAGE));

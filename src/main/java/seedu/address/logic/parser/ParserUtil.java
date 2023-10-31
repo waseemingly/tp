@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Date;
@@ -127,6 +129,47 @@ public class ParserUtil {
         }
         return projectSet;
     }
+    /**
+     * Parses {@code Collection<String> projects} and checks whether each String is the name of an existing project.
+     * 
+     * @param projects The Collection of projects to check.
+     * @returns A HashSet of Strings if check is successful.
+     * @throws ParseException if one of the Strings in projects is not the name of an existing project.
+     */
+    public static Set<String> parseProjectsWithCheck(Collection<String> projects) throws ParseException {
+        requireNonNull(projects);
+        final Set<String> projectSet = new HashSet<>();
+        
+        for (String p : projects) {
+            if (!Project.isValidProject(p)) {
+                throw new ParseException(String.format(Messages.MESSAGE_NONEXISTENT_PROJECT, p));
+            } else {
+                projectSet.add(p);
+            }
+        }
+        return projectSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> deadlines} into a {@code Set<Deadline>}.
+     *
+     * @param deadlines The Collection of deadlines to parse.
+     * @returns A HashSet of Deadlines if parsing is successful.
+     * @throws ParseException if format is invalid.
+     */
+    public static Set<Deadline> parseDeadlines(Collection<String> deadlines) throws ParseException {
+        requireNonNull(deadlines);
+        final Set<Deadline> deadlineSet = new HashSet<>();
+        for (String str : deadlines) {
+            if (!Deadline.isValidDeadline(str)) {
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));
+            } else {
+                deadlineSet.add(new Deadline(str));
+            }
+        }
+        return deadlineSet;
+    }
+    
     /**
      * Parses a {@code String dateJoined} into a {@code DateJoined}.
      * Leading and trailing whitespaces will be trimmed.

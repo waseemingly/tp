@@ -13,7 +13,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.client.Client;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.project.Project;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -75,7 +74,7 @@ class JsonSerializableAddressBook {
             addressBook.addClient(client);
         }
         for (JsonAdaptedProject jsonAdaptedProject : projects) {
-            Project project = jsonAdaptedProject.toModelType();
+            seedu.address.model.project.Project project = jsonAdaptedProject.toModelType();
             if (addressBook.hasProject(project)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
             }

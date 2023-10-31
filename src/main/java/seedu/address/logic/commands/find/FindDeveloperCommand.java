@@ -1,14 +1,19 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.find;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.getMessageDevelopersListedOverview;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
 import seedu.address.model.developer.DateJoinedContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.GithubIdContainsKeywordsPredicate;
+import seedu.address.model.developer.RatingContainsKeywordsPredicate;
 import seedu.address.model.developer.SalaryContainsKeywordsPredicate;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
@@ -66,13 +71,22 @@ public class FindDeveloperCommand extends Command {
         this.predicate = projectPredicate;
     }
 
+    public FindDeveloperCommand(RatingContainsKeywordsPredicate projectPredicate) {
+        this.predicate = projectPredicate;
+    }
+    public FindDeveloperCommand(GithubIdContainsKeywordsPredicate projectPredicate) {
+        this.predicate = projectPredicate;
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredDeveloperList((Predicate<Developer>) predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_DEVELOPERS_LISTED_OVERVIEW, model.getFilteredDeveloperList().size()),
-                TabIndex.Developer);
+
+        int resultCount = model.getFilteredDeveloperList().size();
+        String message = getMessageDevelopersListedOverview(resultCount);
+
+        return new CommandResult(message, TabIndex.Developer);
     }
 
 

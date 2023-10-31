@@ -9,7 +9,7 @@ import seedu.address.model.person.KeywordPredicate;
 /**
  * Tests that a {@code Developer}'s {@code Document} matches any of the keywords given.
  */
-public class DocumentContainsKeywordsPredicate implements KeywordPredicate<seedu.address.model.client.Client> {
+public class DocumentContainsKeywordsPredicate implements KeywordPredicate<Client> {
     private final List<String> keywords;
 
     public DocumentContainsKeywordsPredicate(List<String> keywords) {
@@ -17,7 +17,7 @@ public class DocumentContainsKeywordsPredicate implements KeywordPredicate<seedu
     }
 
     @Override
-    public boolean test(seedu.address.model.client.Client client) {
+    public boolean test(Client client) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getDocument().toString(), keyword));
     }
