@@ -6,12 +6,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.add.AddClientCommand;
+import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
@@ -25,14 +28,22 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
     //                  Name organisation, Document document
 
     public AddClientCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ROLE, PREFIX_PROJECT,
-                PREFIX_ORGANISATION, PREFIX_DOCUMENT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ADDRESS, PREFIX_PROJECT, PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_GITHUBID,
+                PREFIX_RATING, PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION, PREFIX_DEADLINE);
+
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ROLE, PREFIX_ORGANISATION, PREFIX_DOCUMENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE));
+        }
+
+        for (Prefix p : Client.unusedPrefixes) {
+            if (argMultimap.getValue(p).isPresent()) {
+                throw new ParseException(String.format(Messages.MESSAGE_INAPPLICABLE_PREFIX_USED,
+                        AddClientCommand.MESSAGE_USAGE));
+            }
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
