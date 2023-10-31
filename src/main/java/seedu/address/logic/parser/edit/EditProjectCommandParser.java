@@ -78,7 +78,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editProjectDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
-        parseDeadlinesForEdit(argMultimap.getAllValues(PREFIX_PROJECT)).ifPresent(editProjectDescriptor::setDeadlines);
+        parseDeadlinesForEdit(argMultimap.getAllValues(PREFIX_DEADLINE)).ifPresent(editProjectDescriptor::setDeadlines);
 
         if (!editProjectDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditProjectCommand.MESSAGE_NOT_EDITED);

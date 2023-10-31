@@ -129,7 +129,6 @@ public class ParserUtil {
         }
         return projectSet;
     }
-
     /**
      * Parses {@code Collection<String> projects} and checks whether each String is the name of an existing project.
      * 
