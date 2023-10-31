@@ -19,7 +19,7 @@ import seedu.address.logic.commands.DeleteDeveloperCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.find.FindDeveloperCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListClientCommand;
+import seedu.address.logic.commands.list.ListClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.find;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -99,7 +100,6 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
             String[] organisationKeywords = argMultimap.getValue(PREFIX_ORGANISATION).get().split("\\s+");
             finalPredicate = finalPredicate.and(new OrganisationContainsKeywordsPredicate(Arrays.asList(organisationKeywords)));
         }
-
         return finalPredicate;
     }
 }
