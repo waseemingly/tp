@@ -8,18 +8,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteDeveloperCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindClientCommand;
-import seedu.address.logic.commands.FindDeveloperCommand;
-import seedu.address.logic.commands.FindProjectCommand;
+import seedu.address.logic.commands.find.FindClientCommand;
+import seedu.address.logic.commands.find.FindDeveloperCommand;
+import seedu.address.logic.commands.find.FindProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
-import seedu.address.logic.commands.ListClientCommand;
-import seedu.address.logic.commands.ListDeveloperCommand;
-import seedu.address.logic.commands.ListProjectCommand;
+import seedu.address.logic.commands.list.ListClientCommand;
+import seedu.address.logic.commands.list.ListDeveloperCommand;
+import seedu.address.logic.commands.list.ListProjectCommand;
 import seedu.address.logic.commands.add.AddClientCommand;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.add.AddProjectCommand;
@@ -33,6 +35,9 @@ import seedu.address.logic.parser.edit.EditClientCommandParser;
 import seedu.address.logic.parser.edit.EditDeveloperCommandParser;
 import seedu.address.logic.parser.edit.EditProjectCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.find.FindClientCommandParser;
+import seedu.address.logic.parser.find.FindDeveloperCommandParser;
+import seedu.address.logic.parser.find.FindProjectCommandParser;
 
 /**
  * Parses user input.
@@ -99,7 +104,7 @@ public class AddressBookParser {
 
         case FindProjectCommand.COMMAND_WORD:
             return new FindProjectCommandParser().parse(arguments);
-            
+
         case ListClientCommand.COMMAND_WORD:
             return new ListClientCommand();
 
@@ -108,6 +113,12 @@ public class AddressBookParser {
 
         case ListProjectCommand.COMMAND_WORD:
             return new ListProjectCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

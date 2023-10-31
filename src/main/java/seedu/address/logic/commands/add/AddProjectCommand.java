@@ -55,6 +55,7 @@ public class AddProjectCommand extends Command {
         }
 
         model.addProject(toAdd);
+        model.commitAddressBook(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Project);
     }
 

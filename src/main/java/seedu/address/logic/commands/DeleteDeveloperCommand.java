@@ -42,6 +42,7 @@ public class DeleteDeveloperCommand extends Command {
 
         Developer developerToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteDeveloper(developerToDelete);
+        model.commitAddressBook(model);
         return new CommandResult(String.format(MESSAGE_DELETE_DEVELOPER_SUCCESS, Messages.format(developerToDelete)),TabIndex.Developer);
     }
 
