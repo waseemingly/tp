@@ -1,8 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.delete;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
@@ -42,7 +45,7 @@ public class DeleteClientCommand extends Command {
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteClient(clientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, Messages.format(clientToDelete)),TabIndex.Client);
+        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, Messages.format(clientToDelete)), TabIndex.Client);
     }
 
     @Override
