@@ -26,6 +26,8 @@ import seedu.address.logic.commands.add.AddProjectCommand;
 import seedu.address.logic.commands.edit.EditClientCommand;
 import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.logic.commands.edit.EditProjectCommand;
+import seedu.address.logic.commands.imports.ImportDeveloperCommand;
+import seedu.address.logic.commands.imports.ImportClientCommand;
 import seedu.address.logic.parser.add.AddClientCommandParser;
 import seedu.address.logic.parser.add.AddDeveloperCommandParser;
 import seedu.address.logic.parser.add.AddProjectCommandParser;
@@ -33,6 +35,8 @@ import seedu.address.logic.parser.edit.EditClientCommandParser;
 import seedu.address.logic.parser.edit.EditDeveloperCommandParser;
 import seedu.address.logic.parser.edit.EditProjectCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.imports.ImportClientCommandParser;
+import seedu.address.logic.parser.imports.ImportDeveloperCommandParser;
 import seedu.address.logic.parser.find.FindClientCommandParser;
 import seedu.address.logic.parser.find.FindDeveloperCommandParser;
 import seedu.address.logic.parser.find.FindProjectCommandParser;
@@ -77,8 +81,12 @@ public class AddressBookParser {
             return new AddClientCommandParser().parse(arguments);
         case AddProjectCommand.COMMAND_WORD:
             return new AddProjectCommandParser().parse(arguments);
-        case ImportCommand.COMMAND_WORD:
-            return new ImportCommandParser().parse(arguments);
+
+        case ImportDeveloperCommand.COMMAND_WORD:
+            return new ImportDeveloperCommandParser().parse(arguments);
+        case ImportClientCommand.COMMAND_WORD:
+            return new ImportClientCommandParser().parse(arguments);
+
         case EditDeveloperCommand.COMMAND_WORD:
             return new EditDeveloperCommandParser().parse(arguments);
         case EditClientCommand.COMMAND_WORD:

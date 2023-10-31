@@ -1,10 +1,15 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.imports;
 
 import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.commands.imports.ImportDeveloperCommand;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.GithubId;
+import seedu.address.model.developer.Rating;
 import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
@@ -17,10 +22,10 @@ import java.util.Set;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_FILE;
 
-public class ImportCommandParser implements Parser<ImportCommand>{
+public class ImportDeveloperCommandParser implements Parser<ImportDeveloperCommand> {
 
     @Override
-    public ImportCommand parse(String fileName) throws ParseException {
+    public ImportDeveloperCommand parse(String fileName) throws ParseException {
         try {
             FileWriter myWriter = new FileWriter("filename.txt");
             myWriter.write("Files in Java might be tricky, but it is fun enough!");
@@ -31,7 +36,7 @@ public class ImportCommandParser implements Parser<ImportCommand>{
             String splitBy = ",";
             boolean isValid = checkColumnNames(br.readLine());
             if(!isValid){
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportDeveloperCommand.MESSAGE_USAGE));
             }
             ArrayList<Developer> toAddList = new ArrayList<>();
             while ((line = br.readLine()) != null)   //returns a Boolean value
@@ -42,25 +47,28 @@ public class ImportCommandParser implements Parser<ImportCommand>{
                 Email email = ParserUtil.parseEmail(employee[2]);
                 Address address = ParserUtil.parseAddress(employee[3]);
                 Date dateJoined = ParserUtil.parseDateJoined(employee[4]);
-                Role role = ParserUtil.parseRole(employee[7]);
-                Salary salary = ParserUtil.parseSalary(employee[8]);
+                Role role = ParserUtil.parseRole(employee[5]);
+                Salary salary = ParserUtil.parseSalary(employee[6]);
+                GithubId githubId = ParserUtil.parseGithubId(employee[7]);
+                Rating rating = ParserUtil.parseRating(employee[8]);
                 ArrayList<String> projects = new ArrayList<>();
                 for(int i=9;i< employee.length;i++) {
                     projects.add(employee[i]);
                 }
-                Set<Project> projectList = ParserUtil.parseProjects(projects);
+                Set<String> projectList = ParserUtil.parseProjectsWithCheck(projects);
 
-                //Developer developer = new Developer(name, phone, email, address, dateJoined,role, salary,projectList);
-                //toAddList.add(developer);
+                Developer developer = new Developer(name, phone, email, address,role,projectList, salary, dateJoined, githubId, rating);
+                toAddList.add(developer);
 
             }
-            return new ImportCommand(toAddList);
+            return new ImportDeveloperCommand(toAddList);
         } catch (FileNotFoundException ex) {
             throw new ParseException(MESSAGE_INVALID_FILE);
         } catch (IOException e) {
             throw new ParseException("Error reading line from file " + fileName);
         }
     }
+    //Name, Contact Number, Email, Address, Date Joined, Role, Salary, githubId, Rating, Projects"
     private boolean checkColumnNames(String line) {
         String[] columnNames = line.split(",");
         if (!columnNames[0].contains("Name")) {
@@ -84,10 +92,10 @@ public class ImportCommandParser implements Parser<ImportCommand>{
         if (!columnNames[6].contains("Salary")) {
             return false;
         }
-        if (!columnNames[7].contains("Username")) {
+        if (!columnNames[7].contains("GithubId")) {
             return false;
         }
-        if (!columnNames[8].contains("Password")) {
+        if (!columnNames[8].contains("Rating")) {
             return false;
         }
         if (!columnNames[9].contains("Projects")) {
