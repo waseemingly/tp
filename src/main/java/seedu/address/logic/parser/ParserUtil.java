@@ -13,12 +13,13 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Password;
+import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.DeveloperRoles;
 import seedu.address.model.developer.GithubId;
 import seedu.address.model.developer.Rating;
-import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Deadline;
@@ -194,13 +195,22 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code Role} is invalid.
      */
-    public static Role parseRole(String role) throws ParseException {
+    public static DeveloperRoles parseDeveloperRole(String role) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
-        if (!Role.isValidRole(trimmedRole)) {
-            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        if (!DeveloperRoles.isValidRole(trimmedRole)) {
+            throw new ParseException(DeveloperRoles.NO_SUCH_DEVELOPER_ROLE);
         }
-        return new Role(trimmedRole);
+        return new DeveloperRoles(trimmedRole);
+    }
+
+    public static ClientRoles parseClientRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!ClientRoles.isValidRole(trimmedRole)) {
+            throw new ParseException(ClientRoles.NO_SUCH_CLIENT_ROLE);
+        }
+        return new ClientRoles(trimmedRole);
     }
     /**
      * Parses a {@code String salary} into a {@code Salary}.

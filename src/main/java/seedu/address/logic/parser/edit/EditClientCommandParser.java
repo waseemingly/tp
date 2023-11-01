@@ -88,7 +88,7 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
             editClientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
-            editClientDescriptor.setRole(ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
+            editClientDescriptor.setRole(ParserUtil.parseClientRole(argMultimap.getValue(PREFIX_ROLE).get()));
         }
         if (argMultimap.getValue(PREFIX_ORGANISATION).isPresent()) {
             editClientDescriptor.setOrganisation(ParserUtil.parseName(argMultimap.getValue(PREFIX_ORGANISATION).get()));

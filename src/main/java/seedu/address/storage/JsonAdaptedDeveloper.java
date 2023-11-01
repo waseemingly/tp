@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,12 +12,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.DeveloperRoles;
 import seedu.address.model.developer.GithubId;
 import seedu.address.model.developer.Rating;
-import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
-import seedu.address.model.project.Project;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -123,12 +121,12 @@ class JsonAdaptedDeveloper {
 
 
         if (role == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DeveloperRoles.class.getSimpleName()));
         }
-        if (!Role.isValidRole(role)) {
-            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        if (!DeveloperRoles.isValidRole(role)) {
+            throw new IllegalValueException(DeveloperRoles.NO_SUCH_DEVELOPER_ROLE);
         }
-        final Role modelRole = new Role(role);
+        final DeveloperRoles modelRole = new DeveloperRoles(role);
 
         if (salary == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));

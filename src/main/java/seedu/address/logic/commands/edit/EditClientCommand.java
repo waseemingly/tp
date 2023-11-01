@@ -20,9 +20,9 @@ import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Name;
-import seedu.address.model.person.Role;
 import seedu.address.model.person.*;
 
 /**
@@ -79,7 +79,7 @@ public class EditClientCommand extends Command {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
-        Role updatedRole = editClientDescriptor.getRole().orElse(clientToEdit.getRole());
+        ClientRoles updatedRole = editClientDescriptor.getRole().orElse(clientToEdit.getRole());
         Set<String> updatedProjects = editClientDescriptor.getProjects().orElse(clientToEdit.getProjects());
         Name updatedOrganisation = editClientDescriptor.getOrganisation().orElse(clientToEdit.getOrganisation());
         Document updatedDocument = editClientDescriptor.getDocument().orElse(clientToEdit.getDocument());
@@ -147,7 +147,7 @@ public class EditClientCommand extends Command {
         private Email email;
         private Address address;
         private Set<String> projects;
-        private Role role;
+        private ClientRoles role;
         private Name organisation;
         private Document document;
         
@@ -232,11 +232,11 @@ public class EditClientCommand extends Command {
             return Optional.ofNullable(document);
         }
 
-        public void setRole(Role role) {
+        public void setRole(ClientRoles role) {
             this.role = role;
         }
 
-        public Optional<Role> getRole() {
+        public Optional<ClientRoles> getRole() {
             return Optional.ofNullable(role);
         }
 

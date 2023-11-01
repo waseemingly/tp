@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Client;
 
+import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Name;
-import seedu.address.model.person.Role;
 import seedu.address.model.person.*;
 
 public class JsonAdaptedClient {
@@ -91,12 +91,12 @@ public class JsonAdaptedClient {
         final Address modelAddress = new Address(address);
 
         if (role == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientRoles.class.getSimpleName()));
         }
-        if (!Role.isValidRole(role)) {
-            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        if (!ClientRoles.isValidRole(role)) {
+            throw new IllegalValueException(ClientRoles.NO_SUCH_CLIENT_ROLE);
         }
-        final Role modelRole = new Role(role);
+        final ClientRoles modelRole = new ClientRoles(role);
 
         if (organisation == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
