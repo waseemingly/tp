@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Password;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
@@ -251,4 +252,12 @@ public class ParserUtil {
         return new Description(trimmedDescription);
     }
 
+    public static String parsePassword(String pw) throws ParseException {
+        requireNonNull(pw);
+        String trimmedPw = pw.trim();
+        if (!Password.isValidPassword(trimmedPw)) {
+            throw new ParseException(Password.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedPw;
+    }
 }

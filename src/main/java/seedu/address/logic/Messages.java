@@ -101,7 +101,7 @@ public class Messages {
                 .append(";\nDescription: ")
                 .append(project.getProjectDescription())
                 .append(";\nDeadlines:\n");
-        project.getProjectDeadlines().forEach(builder::append);
+        project.getProjectDeadlines().forEach(t -> builder.append(t.getStringRepresentation()));
         return builder.toString();
     }
 }
