@@ -94,6 +94,7 @@ public class EditProjectCommand extends Command {
 
         model.setProject(projectToEdit, editedProject);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
+        model.commitAddressBook(model);
         return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, Messages.format(editedProject)), TabIndex.Project);
     }
 

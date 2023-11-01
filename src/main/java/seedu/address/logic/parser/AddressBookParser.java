@@ -9,6 +9,12 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.find.FindClientCommand;
+import seedu.address.logic.commands.find.FindDeveloperCommand;
+import seedu.address.logic.commands.find.FindProjectCommand;
+import seedu.address.logic.commands.list.ListClientCommand;
+import seedu.address.logic.commands.list.ListDeveloperCommand;
+import seedu.address.logic.commands.list.ListProjectCommand;
 import seedu.address.logic.commands.add.AddClientCommand;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.add.AddProjectCommand;
@@ -26,6 +32,10 @@ import seedu.address.logic.parser.edit.EditProjectCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.imports.ImportClientCommandParser;
 import seedu.address.logic.parser.imports.ImportDeveloperCommandParser;
+
+import seedu.address.logic.parser.find.FindClientCommandParser;
+import seedu.address.logic.parser.find.FindDeveloperCommandParser;
+import seedu.address.logic.parser.find.FindProjectCommandParser;
 
 /**
  * Parses user input.
@@ -46,7 +56,6 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -74,18 +83,18 @@ public class AddressBookParser {
             case ImportClientCommand.COMMAND_WORD:
                 return new ImportClientCommandParser().parse(arguments);
 
-            case ImportCommand.COMMAND_WORD:
-                return new ImportDeveloperCommandParser().parse(arguments);
+        case ImportCommand.COMMAND_WORD:
+            return new ImportDeveloperCommandParser().parse(arguments);
 
-            case EditDeveloperCommand.COMMAND_WORD:
-                return new EditDeveloperCommandParser().parse(arguments);
-            case EditClientCommand.COMMAND_WORD:
-                return new EditClientCommandParser().parse(arguments);
-            case EditProjectCommand.COMMAND_WORD:
-                return new EditProjectCommandParser().parse(arguments);
-
-            case DeleteDeveloperCommand.COMMAND_WORD:
-                return new DeleteDeveloperCommandParser().parse(arguments);
+        case EditDeveloperCommand.COMMAND_WORD:
+            return new EditDeveloperCommandParser().parse(arguments);
+        case EditClientCommand.COMMAND_WORD:
+            return new EditClientCommandParser().parse(arguments);
+        case EditProjectCommand.COMMAND_WORD:
+            return new EditProjectCommandParser().parse(arguments);
+            
+        case DeleteDeveloperCommand.COMMAND_WORD:
+            return new DeleteDeveloperCommandParser().parse(arguments);
 
             case ClearCommand.COMMAND_WORD:
                 return new ClearCommand();
@@ -107,6 +116,11 @@ public class AddressBookParser {
 
             case ListProjectCommand.COMMAND_WORD:
                 return new ListProjectCommand();
+            case UndoCommand.COMMAND_WORD:
+                return new UndoCommand();
+
+            case RedoCommand.COMMAND_WORD:
+                return new RedoCommand();
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();

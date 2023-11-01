@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.project.Project;
@@ -104,4 +105,7 @@ public interface Model {
     void updateFilteredDeveloperList(Predicate<Developer> predicate);
     void updateFilteredClientList(Predicate<Client> predicate);
     void updateFilteredProjectList(Predicate<seedu.address.model.project.Project> predicate);
+    void commitAddressBook(Model model);
+    void undoAddressBook(Model model) throws CommandException;
+    void redoAddressBook(Model model) throws CommandException;
 }
