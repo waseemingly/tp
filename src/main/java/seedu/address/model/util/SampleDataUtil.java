@@ -3,6 +3,7 @@ package seedu.address.model.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -60,10 +61,10 @@ public class SampleDataUtil {
 
     public static Project[] getSampleProjects() {
         return new Project[] {
-                new Project(new Name("CodeContact"), new Description("test"), getDeadlineSet("")),
-                new Project(new Name("TeamTrekker"), new Description("test"), getDeadlineSet("")),
-                new Project(new Name("Oribital"), new Description("test"), getDeadlineSet("")),
-                new Project(new Name("Appollo"), new Description("test"), getDeadlineSet("")),
+                new Project(new Name("CodeContact"), new Description("test"), getDeadlineList("")),
+                new Project(new Name("TeamTrekker"), new Description("test"), getDeadlineList("")),
+                new Project(new Name("Oribital"), new Description("test"), getDeadlineList("")),
+                new Project(new Name("Appollo"), new Description("test"), getDeadlineList("")),
         };
     }
 
@@ -83,9 +84,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    public static Set<Deadline> getDeadlineSet(String... deadlines) {
-        return Arrays.stream(deadlines)
-                .map(t->new Deadline(t))
-                .collect(Collectors.toSet());
+    public static List<Deadline> getDeadlineList(String... deadlines) {
+        List<Deadline> deadlineList = new ArrayList<>();
+        for (String s : deadlines) {
+            deadlineList.add(new Deadline(s, deadlineList.size() + 1));
+        }
+        return deadlineList;
     }
 }
