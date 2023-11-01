@@ -70,9 +70,12 @@ public class AddClientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
+        String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+        TabIndex index = TabIndex.Client;
+
         model.addClient(toAdd);
-        model.commitAddressBook(model);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Client);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
     @Override

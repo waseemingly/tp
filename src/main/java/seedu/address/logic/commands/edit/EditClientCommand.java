@@ -103,10 +103,13 @@ public class EditClientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
+        String successMessage = String.format(MESSAGE_EDIT_CLIENT_SUCCESS, Messages.format(editedClient));
+        TabIndex index = TabIndex.Client;
+
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
-        model.commitAddressBook(model);
-        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, Messages.format(editedClient)), TabIndex.Client);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
 

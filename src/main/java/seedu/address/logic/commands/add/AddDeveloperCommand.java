@@ -72,9 +72,12 @@ public class AddDeveloperCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
         }
 
+        String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+        TabIndex index = TabIndex.Developer;
+
         model.addDeveloper(toAdd);
-        model.commitAddressBook(model);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Developer);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
     @Override

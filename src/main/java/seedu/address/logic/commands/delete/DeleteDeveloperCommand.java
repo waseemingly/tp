@@ -30,7 +30,7 @@ public class DeleteDeveloperCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteDeveloperCommand (Index targetIndex) {
+    public DeleteDeveloperCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -44,9 +44,12 @@ public class DeleteDeveloperCommand extends Command {
         }
 
         Developer developerToDelete = lastShownList.get(targetIndex.getZeroBased());
+        String successMessage = String.format(MESSAGE_DELETE_DEVELOPER_SUCCESS, Messages.format(developerToDelete));
+        TabIndex index = TabIndex.Developer;
+
         model.deleteDeveloper(developerToDelete);
-        model.commitAddressBook(model);
-        return new CommandResult(String.format(MESSAGE_DELETE_DEVELOPER_SUCCESS, Messages.format(developerToDelete)),TabIndex.Developer);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
     @Override

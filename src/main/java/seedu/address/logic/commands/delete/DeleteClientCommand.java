@@ -44,8 +44,12 @@ public class DeleteClientCommand extends Command {
         }
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        String successMessage = String.format(MESSAGE_DELETE_CLIENT_SUCCESS, Messages.format(clientToDelete));
+        TabIndex index = TabIndex.Client;
+
         model.deleteClient(clientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, Messages.format(clientToDelete)), TabIndex.Client);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
     @Override

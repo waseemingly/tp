@@ -54,9 +54,12 @@ public class AddProjectCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
 
+        String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+        TabIndex index = TabIndex.Project;
+
         model.addProject(toAdd);
-        model.commitAddressBook(model);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Project);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
     @Override
