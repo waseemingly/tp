@@ -36,7 +36,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, TabIndex index) {
-        this(feedbackToUser, false, false,index);
+        this(feedbackToUser, false, false, index);
     }
 
     public String getFeedbackToUser() {

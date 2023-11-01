@@ -2,10 +2,15 @@ package seedu.address.model.developer;
 
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
 
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
 import seedu.address.model.person.Address;
@@ -24,6 +29,9 @@ public class Developer extends Person {
     private final GithubId githubId;
     private final Rating rating;
 
+    public static final Prefix[] unusedPrefixes = new Prefix[]{ PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION,
+            PREFIX_DEADLINE };
+    
     /**
      * Every field must be present and not null.
      */

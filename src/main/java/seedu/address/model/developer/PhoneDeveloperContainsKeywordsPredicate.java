@@ -1,24 +1,24 @@
-package seedu.address.model.person;
+package seedu.address.model.developer;
 
 import java.util.List;
-
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.KeywordPredicate;
 
 /**
  * Tests that a {@code Developer}'s {@code Phone} matches any of the keywords given.
  */
-public class PhoneContainsKeywordsPredicate implements KeywordPredicate<Person> {
+public class PhoneDeveloperContainsKeywordsPredicate implements KeywordPredicate<Developer> {
     private final List<String> keywords;
 
-    public PhoneContainsKeywordsPredicate(List<String> keywords) {
+    public PhoneDeveloperContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Developer developer) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getPhone().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(developer.getPhone().value, keyword));
     }
 
     @Override
@@ -28,12 +28,12 @@ public class PhoneContainsKeywordsPredicate implements KeywordPredicate<Person> 
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PhoneContainsKeywordsPredicate)) {
+        if (!(other instanceof PhoneDeveloperContainsKeywordsPredicate)) {
             return false;
         }
 
-        PhoneContainsKeywordsPredicate otherPhoneContainsKeywordsPredicate = (PhoneContainsKeywordsPredicate) other;
-        return keywords.equals(otherPhoneContainsKeywordsPredicate.keywords);
+        PhoneDeveloperContainsKeywordsPredicate otherPredicate = (PhoneDeveloperContainsKeywordsPredicate) other;
+        return keywords.equals(otherPredicate.keywords);
     }
 
     @Override

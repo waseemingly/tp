@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
+import java.text.SimpleDateFormat;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Comparator;
+import java.util.Date;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -64,10 +68,10 @@ public class DeveloperCard extends UiPart<Region> {
         this.developer = developer;
         id.setText(displayedIndex + ". ");
         name.setText(developer.getName().fullName);
-        phone.setText(developer.getPhone().value);
-        email.setText(developer.getEmail().value);
-        role.setText(developer.getRole().role);
-        githubId.setText(developer.getGithubId().username);
+        phone.setText("Contact: "+developer.getPhone().value);
+        email.setText("Email: "+developer.getEmail().value);
+        role.setText("Role: "+developer.getRole().role);
+        githubId.setText("GitHub ID: "+developer.getGithubId().username);
         rating.setPartialRating(true);
         rating.setUpdateOnHover(false);
         rating.setOnMousePressed(null);
@@ -83,9 +87,17 @@ public class DeveloperCard extends UiPart<Region> {
         rating.autosize();
         rating.setDisable(true);
         rating.setRating(developer.getRating().rating);
-        address.setText(developer.getAddress().value);
-        dateJoined.setText(String.valueOf(developer.getDateJoined().value));
-        salary.setText(String.valueOf(developer.getSalary().salary));
+        address.setText("Address: "+developer.getAddress().value);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date joined = developer.getDateJoined().value;
+        // Calculate the period between the two dates
+        Period period = Period.between(joined.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
+        // Extract years and months from the period
+        int years = period.getYears();
+        int months = period.getMonths();
+        dateJoined.setText("Date Joined: "+dateFormat.format(joined) + "\n(" + years + " years " + months + " months)");
+        salary.setText("Salary: $" + developer.getSalary().salary);
         developer.getProjects().stream()
                 .sorted(Comparator.comparing(tag -> tag))
                 .forEach(tag -> tags.getChildren().add(new Label(tag)));

@@ -1,7 +1,16 @@
 package seedu.address.logic.commands.add;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -50,7 +59,7 @@ public class AddDeveloperCommand extends Command {
     /**
      * Creates an AddDeveloperCommand to add the specified {@code Developer}
      */
-    public AddDeveloperCommand (Developer developer) {
+    public AddDeveloperCommand(Developer developer) {
         requireNonNull(developer);
         toAdd = developer;
     }
@@ -64,6 +73,7 @@ public class AddDeveloperCommand extends Command {
         }
 
         model.addDeveloper(toAdd);
+        model.commitAddressBook(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Developer);
     }
 

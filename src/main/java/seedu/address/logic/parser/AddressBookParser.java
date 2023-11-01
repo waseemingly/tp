@@ -9,13 +9,33 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.find.FindClientCommand;
+import seedu.address.logic.commands.find.FindDeveloperCommand;
+import seedu.address.logic.commands.find.FindProjectCommand;
+import seedu.address.logic.commands.list.ListClientCommand;
+import seedu.address.logic.commands.list.ListDeveloperCommand;
+import seedu.address.logic.commands.list.ListProjectCommand;
 import seedu.address.logic.commands.add.AddClientCommand;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.add.AddProjectCommand;
+import seedu.address.logic.commands.edit.EditClientCommand;
+import seedu.address.logic.commands.edit.EditDeveloperCommand;
+import seedu.address.logic.commands.edit.EditProjectCommand;
+import seedu.address.logic.commands.imports.ImportDeveloperCommand;
+import seedu.address.logic.commands.imports.ImportClientCommand;
 import seedu.address.logic.parser.add.AddClientCommandParser;
 import seedu.address.logic.parser.add.AddDeveloperCommandParser;
 import seedu.address.logic.parser.add.AddProjectCommandParser;
+import seedu.address.logic.parser.edit.EditClientCommandParser;
+import seedu.address.logic.parser.edit.EditDeveloperCommandParser;
+import seedu.address.logic.parser.edit.EditProjectCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.imports.ImportClientCommandParser;
+import seedu.address.logic.parser.imports.ImportDeveloperCommandParser;
+
+import seedu.address.logic.parser.find.FindClientCommandParser;
+import seedu.address.logic.parser.find.FindDeveloperCommandParser;
+import seedu.address.logic.parser.find.FindProjectCommandParser;
 
 /**
  * Parses user input.
@@ -27,8 +47,9 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+    private static boolean isLocked=true;
 
-  /**
+    /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
@@ -48,46 +69,96 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+        if(isLocked==false) {
+            switch (commandWord) {
 
-        switch (commandWord) {
-
-        case AddDeveloperCommand.COMMAND_WORD:
-            return new AddDeveloperCommandParser().parse(arguments);
-        case AddClientCommand.COMMAND_WORD:
-            return new AddClientCommandParser().parse(arguments);
-        case AddProjectCommand.COMMAND_WORD:
-            return new AddProjectCommandParser().parse(arguments);
+            case AddDeveloperCommand.COMMAND_WORD:
+                return new AddDeveloperCommandParser().parse(arguments);
+            case AddClientCommand.COMMAND_WORD:
+                return new AddClientCommandParser().parse(arguments);
+            case AddProjectCommand.COMMAND_WORD:
+                return new AddProjectCommandParser().parse(arguments);
+            case ImportDeveloperCommand.COMMAND_WORD:
+                return new ImportDeveloperCommandParser().parse(arguments);
+            case ImportClientCommand.COMMAND_WORD:
+                return new ImportClientCommandParser().parse(arguments);
 
         case ImportCommand.COMMAND_WORD:
-            return new ImportCommandParser().parse(arguments);
+            return new ImportDeveloperCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
+        case EditDeveloperCommand.COMMAND_WORD:
+            return new EditDeveloperCommandParser().parse(arguments);
+        case EditClientCommand.COMMAND_WORD:
+            return new EditClientCommandParser().parse(arguments);
+        case EditProjectCommand.COMMAND_WORD:
+            return new EditProjectCommandParser().parse(arguments);
+            
         case DeleteDeveloperCommand.COMMAND_WORD:
             return new DeleteDeveloperCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-        case FindDeveloperCommand.COMMAND_WORD:
-            return new FindDeveloperCommandParser().parse(arguments);
+            case FindDeveloperCommand.COMMAND_WORD:
+                return new FindDeveloperCommandParser().parse(arguments);
 
-        case FindClientCommand.COMMAND_WORD:
-            return new FindClientCommandParser().parse(arguments);
+            case FindClientCommand.COMMAND_WORD:
+                return new FindClientCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case FindProjectCommand.COMMAND_WORD:
+                return new FindProjectCommandParser().parse(arguments);
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ListClientCommand.COMMAND_WORD:
+                return new ListClientCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case ListDeveloperCommand.COMMAND_WORD:
+                return new ListDeveloperCommand();
 
-        default:
-            logger.finer("This user input caused a ParseException: " + userInput);
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            case ListProjectCommand.COMMAND_WORD:
+                return new ListProjectCommand();
+            case UndoCommand.COMMAND_WORD:
+                return new UndoCommand();
+
+            case RedoCommand.COMMAND_WORD:
+                return new RedoCommand();
+
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+
+            case LockCommand.COMMAND_WORD:
+                return new LockCommand();
+
+            case ChangePasswordCommand.COMMAND_WORD:
+                return new ChangePasswordCommandParser().parse(arguments);
+
+            default:
+                logger.finer("This user input caused a ParseException: " + userInput);
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
         }
+        else {
+            switch (commandWord) {
+            case UnlockCommand.COMMAND_WORD:
+                return new UnlockCommandParser().parse(arguments);
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+
+            default:
+                logger.finer("This user input caused a ParseException: " + userInput);
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+        }
+    }
+    public static void lock(){
+        isLocked=true;
+    }
+    public static void unlock(){
+        isLocked=false;
     }
 }

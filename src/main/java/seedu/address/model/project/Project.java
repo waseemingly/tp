@@ -1,13 +1,29 @@
 package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.commons.Name;
 import seedu.address.model.person.Person;
 
@@ -18,9 +34,15 @@ import seedu.address.model.person.Person;
 public class Project {
 
     private final Name projectName;
-    private final Optional<Description> description;
+    private final Description description;
     private final Set<Deadline> deadlines = new HashSet<>();
+    public static final Prefix[] unusedPrefixes = new Prefix[]{ PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
+            PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE, 
+            PREFIX_PROJECT, PREFIX_ROLE };
 
+    public static final Prefix[] unusedPrefixesForEdit = new Prefix[]{ PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
+            PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE,
+            PREFIX_PROJECT, PREFIX_ROLE, PREFIX_NAME };
 
     /**
      * Constructs a {@code Tag}.
@@ -30,7 +52,7 @@ public class Project {
     public Project(Name projectName, Description desc, Set<Deadline> deadlines) {
         requireAllNonNull(projectName, desc, deadlines);
         this.projectName = projectName;
-        this.description = Optional.ofNullable(desc);
+        this.description = desc;
         this.deadlines.addAll(deadlines);
     }
     public Project(String projectName) {
@@ -74,7 +96,7 @@ public class Project {
         return projectName;
     }
 
-    public Optional<Description> getProjectDescription() {
+    public Description getProjectDescription() {
         return description;
     }
 
@@ -92,5 +114,14 @@ public class Project {
 
         return otherProject != null
                 && otherProject.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if a given String is a valid project name.
+     * 
+     * @param test The String to test.
+     */
+    public static boolean isValidProject(String test) {
+        return true;
     }
 }

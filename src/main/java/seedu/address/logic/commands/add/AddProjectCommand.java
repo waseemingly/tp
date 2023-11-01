@@ -1,7 +1,8 @@
 package seedu.address.logic.commands.add;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.storage.JsonSerializableAddressBook.MESSAGE_DUPLICATE_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -10,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 
 /**
@@ -19,11 +21,12 @@ public class AddProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "add-project";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book.\n"
+            + Deadline.MESSAGE_CONSTRAINTS + "\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "[" + PREFIX_DEADLINE + "DEADLINE]...\n"
+            + "[" + PREFIX_DEADLINE + "DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...\n"
             + "Example: \n" + COMMAND_WORD + " "
             + PREFIX_NAME + "JuiceApp "
             + PREFIX_DESCRIPTION + "App to allow for different juices to be ordered "
@@ -35,6 +38,9 @@ public class AddProjectCommand extends Command {
 
     private final Project toAdd;
 
+    /**
+     * Creates an AddProjectCommand to add the specified {@code Developer}
+     */
     public AddProjectCommand(Project project) {
         requireNonNull(project);
         toAdd = project;
@@ -49,6 +55,7 @@ public class AddProjectCommand extends Command {
         }
 
         model.addProject(toAdd);
+        model.commitAddressBook(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Project);
     }
 

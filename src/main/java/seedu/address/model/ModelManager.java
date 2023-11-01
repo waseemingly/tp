@@ -11,9 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.project.Project;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,7 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Developer> filteredDevelopers;
     private final FilteredList<Client> filteredClients;
-    private final FilteredList<Project> filteredProjects;
+    private final FilteredList<seedu.address.model.project.Project> filteredProjects;
+    private final VersionedAddressBook versionedAddressBook;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         filteredDevelopers = new FilteredList<>(this.addressBook.getDeveloperList());
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
+        versionedAddressBook = new VersionedAddressBook(this.addressBook);
 
     }
 
@@ -118,9 +120,9 @@ public class ModelManager implements Model {
         addressBook.setDeveloper(target, editedDeveloper);
     }
 
-// Similarly, create methods for Client and Project
+    // Similarly, create methods for Client and Project
 
-//=========== Filtered Developer List Accessors =============================================================
+    //=========== Filtered Developer List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Developer} backed by the internal list of
@@ -156,11 +158,10 @@ public class ModelManager implements Model {
     @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
-
         addressBook.setClient(target, editedClient);
     }
 
-//=========== Filtered Client List Accessors =============================================================
+    //=========== Filtered Client List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
@@ -177,44 +178,60 @@ public class ModelManager implements Model {
         filteredClients.setPredicate(predicate);
     }
     @Override
-    public boolean hasProject(Project project) {
+    public boolean hasProject(seedu.address.model.project.Project project) {
         requireNonNull(project);
         return addressBook.hasProject(project);
     }
 
     @Override
-    public void deleteProject(Project target) {
+    public void deleteProject(seedu.address.model.project.Project target) {
         addressBook.removeProject(target);
     }
 
     @Override
-    public void addProject(Project project) {
+    public void addProject(seedu.address.model.project.Project project) {
         addressBook.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override
-    public void setProject(Project target, Project editedProject) {
+    public void setProject(seedu.address.model.project.Project target, seedu.address.model.project.Project editedProject) {
         requireAllNonNull(target, editedProject);
 
         addressBook.setProject(target, editedProject);
     }
 
-//=========== Filtered Project List Accessors =============================================================
+    //=========== Filtered Project List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Project> getFilteredProjectList() {
+    public ObservableList<seedu.address.model.project.Project> getFilteredProjectList() {
         return filteredProjects;
     }
 
     @Override
-    public void updateFilteredProjectList(Predicate<Project> predicate) {
+    public void updateFilteredProjectList(Predicate<seedu.address.model.project.Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
+    }
+
+    //=========== Undo/Redo Accessors =============================================================
+    @Override
+    public void commitAddressBook(Model model) {
+        versionedAddressBook.commit(model);
+    }
+
+    @Override
+    public void undoAddressBook(Model model) throws CommandException {
+        versionedAddressBook.undo(model);
+    }
+
+    @Override
+    public void redoAddressBook(Model model) throws CommandException {
+        versionedAddressBook.redo(model);
     }
 
     @Override
@@ -233,7 +250,8 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredDevelopers.equals(otherModelManager.filteredDevelopers)
                 && filteredClients.equals(otherModelManager.filteredClients)
-                && filteredProjects.equals(otherModelManager.filteredProjects);
+                && filteredProjects.equals(otherModelManager.filteredProjects)
+                && versionedAddressBook.equals(otherModelManager.versionedAddressBook);
     }
 
 }
