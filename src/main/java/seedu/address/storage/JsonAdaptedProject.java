@@ -80,7 +80,7 @@ class JsonAdaptedProject {
         }
 
         // Parse and validate the set of deadlines
-        final Set<Deadline> modelDeadlines = new HashSet<>();
+        final List<Deadline> modelDeadlines = new ArrayList<>();
         for (String deadline : deadlines) {
             if (!Deadline.isValidDeadline(deadline)) {
                 throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);

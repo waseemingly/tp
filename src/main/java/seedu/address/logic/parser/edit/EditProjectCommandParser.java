@@ -18,6 +18,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -88,11 +89,11 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Deadline>} if {@code deadlines} is non-empty.
+     * Parses {@code Collection<String> tags} into a {@code List<Deadline>} if {@code deadlines} is non-empty.
      * If {@code deadlines} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Deadline>} containing zero tags.
+     * {@code List<Deadline>} containing zero tags.
      */
-    private Optional<Set<Deadline>> parseDeadlinesForEdit(Collection<String> deadlines) throws ParseException {
+    private Optional<List<Deadline>> parseDeadlinesForEdit(Collection<String> deadlines) throws ParseException {
         assert deadlines != null;
 
         if (deadlines.isEmpty()) {

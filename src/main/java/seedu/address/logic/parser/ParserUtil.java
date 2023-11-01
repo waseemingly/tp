@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -115,7 +116,7 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedProject)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Project(new Name(trimmedProject),new Description(""),new HashSet<Deadline>());
+        return new Project(new Name(trimmedProject), new Description(""), new ArrayList<Deadline>());
     }
 
     /**
@@ -151,15 +152,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> deadlines} into a {@code Set<Deadline>}.
+     * Parses {@code Collection<String> deadlines} into a {@code List<Deadline>}.
      *
      * @param deadlines The Collection of deadlines to parse.
-     * @returns A HashSet of Deadlines if parsing is successful.
+     * @returns An ArrayList of Deadlines if parsing is successful.
      * @throws ParseException if format is invalid.
      */
-    public static Set<Deadline> parseDeadlines(Collection<String> deadlines) throws ParseException {
+    public static List<Deadline> parseDeadlines(Collection<String> deadlines) throws ParseException {
         requireNonNull(deadlines);
-        final Set<Deadline> deadlineSet = new HashSet<>();
+        final List<Deadline> deadlineSet = new ArrayList<>();
         for (String str : deadlines) {
             if (!Deadline.isValidDeadline(str)) {
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));

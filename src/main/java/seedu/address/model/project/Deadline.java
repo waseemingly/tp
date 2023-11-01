@@ -88,6 +88,24 @@ public class Deadline {
         return date.toString()+","+desc.toString()+","+priority.toString()+","+(isDone? "1" : "0");
     }
 
+    /**
+     * Returns a String representation of the Deadline such that it is marked as completed.
+     * 
+     * @return A String representing the Deadline if it was completed.
+     */
+    public String getDoneStringRepresentation() {
+        return date.toString()+","+desc.toString()+","+priority.toString()+","+("1");
+    }
+
+    /**
+     * Returns a String representation of the Deadline such that it is marked as incomplete.
+     *
+     * @return A String representing the Deadline if it was incomplete.
+     */
+    public String getUndoneStringRepresentation() {
+        return date.toString()+","+desc.toString()+","+priority.toString()+","+("0");
+    }
+    
     @Override
     public int hashCode() {
         return Objects.hash(date, desc, priority);
