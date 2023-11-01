@@ -30,14 +30,26 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="role" styleClass="cell_small_label" text="\$role" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
-      <Label fx:id="dateJoined" styleClass="cell_small_label" text="\$dateJoined" />
-      <Label fx:id="githubId" styleClass="cell_small_label" text="\$githubId" />
-         <Rating fx:id="rating" prefHeight="20.0" prefWidth="100.0" />
+         <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="15.0" spacing="5">
+            <children>
+               <VBox prefWidth="350.0">
+                  <children>
+                  <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+                  <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+                  <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+                  <Label fx:id="dateJoined" styleClass="cell_small_label" text="\$dateJoined" />
+                  </children>
+               </VBox>
+               <VBox prefWidth="300.0">
+                  <children>
+                  <Label fx:id="role" styleClass="cell_small_label" text="\$role" />
+                  <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
+                  <Label fx:id="githubId" styleClass="cell_small_label" text="\$githubId" />
+                     <Rating fx:id="rating" prefHeight="20.0" prefWidth="100.0" />
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />

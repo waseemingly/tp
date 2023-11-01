@@ -71,6 +71,7 @@ public class AddClientCommand extends Command {
         }
 
         model.addClient(toAdd);
+        model.commitAddressBook(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Client);
     }
 

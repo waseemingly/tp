@@ -1,18 +1,20 @@
 package seedu.address.logic.commands.find;
 
 import static java.util.Objects.requireNonNull;
+
 import static seedu.address.logic.Messages.getMessageProjectsListedOverview;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+
+import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
-import seedu.address.model.person.KeywordPredicate;
-import seedu.address.model.project.DeadlineContainsKeywordsPredicate;
-import seedu.address.model.project.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -22,22 +24,17 @@ public class FindProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "find-project";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Please Find with the correct input "
-            + "Find pr/<Project Name> OR Find r/<Role> OR Find n/<Name>.\n"
-            + "Example: " + COMMAND_WORD + " n/ alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find projects based on various attributes.\n"
+            + "Parameters: "
+            + "[" + PREFIX_PROJECT + "PROJECT_NAME_KEYWORDS] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION_KEYWORDS] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE_KEYWORDS]\n"
+            + "Example: " + COMMAND_WORD + " pr/MyProject\n";
 
-    private KeywordPredicate<Project> predicate;
+    private Predicate<Project> predicate;
 
-    public FindProjectCommand(ProjectNameContainsKeywordsPredicate namePredicate) {
-        this.predicate = namePredicate;
-    }
-
-    public FindProjectCommand(DescriptionContainsKeywordsPredicate rolePredicate) {
-        this.predicate = rolePredicate;
-    }
-
-    public FindProjectCommand(DeadlineContainsKeywordsPredicate addressPredicate) {
-        this.predicate = addressPredicate;
+    public FindProjectCommand(Predicate<Project> predicate) {
+        this.predicate = predicate;
     }
 
     @Override
@@ -51,14 +48,12 @@ public class FindProjectCommand extends Command {
         return new CommandResult(message, TabIndex.Project);
     }
 
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof FindProjectCommand)) {
             return false;
         }

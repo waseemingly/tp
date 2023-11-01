@@ -112,6 +112,7 @@ public class EditDeveloperCommand extends Command {
 
         model.setDeveloper(developerToEdit, editedDeveloper);
         model.updateFilteredDeveloperList(Model.PREDICATE_SHOW_ALL_DEVELOPERS);
+        model.commitAddressBook(model);
         return new CommandResult(String.format(MESSAGE_EDIT_DEVELOPER_SUCCESS, Messages.format(editedDeveloper)), TabIndex.Developer);
     }
 
