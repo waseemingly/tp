@@ -36,6 +36,7 @@
 }
 
 .tab .tab-label {
+    -fx-font-size: 13pt;
     -fx-alignment: CENTER;
     -fx-text-fill: black; /* Change font color to black */
     -fx-font-weight: bold;
@@ -43,12 +44,13 @@
 }
 
 .tab-pane:top *.tab-header-area {
+    -fx-size: 35;
     -fx-padding: 0 0; /* Updated padding for top tab pane */
 }
 
 .tab-pane {
     -fx-background-color: transparent;
-    -fx-tab-min-width: 200px; /* Adjusted minimum tab width */
+    -fx-tab-min-width: 212px; /* Adjusted minimum tab width */
     -fx-tab-min-height: 33px;
     -fx-tab-max-height: 33px;
 }
@@ -86,7 +88,7 @@
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 20pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: #333333; /* Dark gray text color for column headers */
 }

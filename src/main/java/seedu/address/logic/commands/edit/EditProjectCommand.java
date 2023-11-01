@@ -93,9 +93,13 @@ public class EditProjectCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
 
+        String successMessage = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, Messages.format(editedProject));
+        TabIndex index = TabIndex.developers;
+
         model.setProject(projectToEdit, editedProject);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, Messages.format(editedProject)), TabIndex.Project);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
 

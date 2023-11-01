@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.TabIndex;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
 
@@ -25,6 +27,7 @@ public class ModelManager implements Model {
     private final FilteredList<Developer> filteredDevelopers;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<seedu.address.model.project.Project> filteredProjects;
+    private final VersionedAddressBook versionedAddressBook;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +42,7 @@ public class ModelManager implements Model {
         filteredDevelopers = new FilteredList<>(this.addressBook.getDeveloperList());
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
+        versionedAddressBook = new VersionedAddressBook(this.addressBook);
 
     }
 
@@ -117,9 +121,9 @@ public class ModelManager implements Model {
         addressBook.setDeveloper(target, editedDeveloper);
     }
 
-// Similarly, create methods for Client and Project
+    // Similarly, create methods for Client and Project
 
-//=========== Filtered Developer List Accessors =============================================================
+    //=========== Filtered Developer List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Developer} backed by the internal list of
@@ -155,11 +159,10 @@ public class ModelManager implements Model {
     @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
-
         addressBook.setClient(target, editedClient);
     }
 
-//=========== Filtered Client List Accessors =============================================================
+    //=========== Filtered Client List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
@@ -199,7 +202,7 @@ public class ModelManager implements Model {
         addressBook.setProject(target, editedProject);
     }
 
-//=========== Filtered Project List Accessors =============================================================
+    //=========== Filtered Project List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
@@ -214,6 +217,32 @@ public class ModelManager implements Model {
     public void updateFilteredProjectList(Predicate<seedu.address.model.project.Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
+    }
+
+    //=========== Undo/Redo Accessors =============================================================
+    @Override
+    public void commitAddressBook(Model model, String message, TabIndex index) {
+        versionedAddressBook.commit(model, message, index);
+    }
+
+    @Override
+    public void undoAddressBook(Model model) throws CommandException {
+        versionedAddressBook.undo(model);
+    }
+
+    @Override
+    public void redoAddressBook(Model model) throws CommandException {
+        versionedAddressBook.redo(model);
+    }
+
+    @Override
+    public String getPreviousCommand() {
+        return versionedAddressBook.getPreviousMessage();
+    }
+
+    @Override
+    public TabIndex getPreviousTabIndex() {
+        return versionedAddressBook.getPreviousTabIndex();
     }
 
     @Override
@@ -232,7 +261,8 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredDevelopers.equals(otherModelManager.filteredDevelopers)
                 && filteredClients.equals(otherModelManager.filteredClients)
-                && filteredProjects.equals(otherModelManager.filteredProjects);
+                && filteredProjects.equals(otherModelManager.filteredProjects)
+                && versionedAddressBook.equals(otherModelManager.versionedAddressBook);
     }
 
 }

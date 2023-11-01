@@ -46,9 +46,10 @@ public class ImportDeveloperCommand extends Command {
             if (model.hasDeveloper(toAdd)) {
                 output += toAdd.getName().fullName + MESSAGE_DUPLICATE_DEVELOPER;
             }
-
-            model.addDeveloper(toAdd);
-            output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+            else {
+                model.addDeveloper(toAdd);
+                output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+            }
             output += "\n";
         }
         return new CommandResult(output, TabIndex.Developer);

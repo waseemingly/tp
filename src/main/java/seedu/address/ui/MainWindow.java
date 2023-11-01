@@ -160,6 +160,7 @@ public class MainWindow extends UiPart<Stage> {
         //tabPane.getSelectionModel().select(1);
 
         resultDisplay = new ResultDisplay();
+        resultDisplay.setFeedbackToUser("Welcome to CodeContact!\nUnlock to continue.");
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

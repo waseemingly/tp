@@ -5,8 +5,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.TabIndex;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
@@ -15,7 +18,10 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Developer> PREDICATE_SHOW_ALL_DEVELOPERS = unused -> true;
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
-    Predicate<seedu.address.model.project.Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    Predicate<Developer> PREDICATE_SHOW_NO_DEVELOPER = unused -> false;
+    Predicate<Client> PREDICATE_SHOW_NO_CLIENT = unused -> false;
+    Predicate<Project> PREDICATE_SHOW_NO_PROJECT = unused -> false;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -100,4 +106,10 @@ public interface Model {
     void updateFilteredDeveloperList(Predicate<Developer> predicate);
     void updateFilteredClientList(Predicate<Client> predicate);
     void updateFilteredProjectList(Predicate<seedu.address.model.project.Project> predicate);
+    void commitAddressBook(Model model, String message, TabIndex index);
+    void undoAddressBook(Model model) throws CommandException;
+    void redoAddressBook(Model model) throws CommandException;
+
+    String getPreviousCommand();
+    TabIndex getPreviousTabIndex();
 }

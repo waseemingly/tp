@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.delete;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,6 +7,9 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.developer.Developer;
@@ -27,7 +30,7 @@ public class DeleteDeveloperCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteDeveloperCommand (Index targetIndex) {
+    public DeleteDeveloperCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -41,8 +44,12 @@ public class DeleteDeveloperCommand extends Command {
         }
 
         Developer developerToDelete = lastShownList.get(targetIndex.getZeroBased());
+        String successMessage = String.format(MESSAGE_DELETE_DEVELOPER_SUCCESS, Messages.format(developerToDelete));
+        TabIndex index = TabIndex.Developer;
+
         model.deleteDeveloper(developerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_DEVELOPER_SUCCESS, Messages.format(developerToDelete)),TabIndex.Developer);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
     @Override
