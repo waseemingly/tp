@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,24 +57,28 @@ public class ProjectCard extends UiPart<Region> {
         name.setText(project.getName());
         description.setText(project.getProjectDescription().desc);
         TableColumn dateCol = new TableColumn("Date");
-        dateCol.setMinWidth(100);
+        dateCol.setMinWidth(95);
         dateCol.setCellValueFactory(
                 new PropertyValueFactory<>("date"));
 
         TableColumn descriptionCol = new TableColumn("Description");
-        descriptionCol.setMinWidth(250);
+        descriptionCol.setMinWidth(260);
         descriptionCol.setCellValueFactory(
                 new PropertyValueFactory<>("description"));
 
         TableColumn priorityCol = new TableColumn("Priority");
-        priorityCol.setMinWidth(100);
+        priorityCol.setMinWidth(95);
         priorityCol.setCellValueFactory(
                 new PropertyValueFactory<>("priority"));
         TableColumn doneCol = new TableColumn("Done");
-        doneCol.setMinWidth(100);
+        doneCol.setMinWidth(95);
         doneCol.setCellValueFactory(
                 new PropertyValueFactory<>("isDone"));
-        table.getColumns().addAll(doneCol, priorityCol,dateCol,descriptionCol);
+        TableColumn indexCol = new TableColumn("#");
+        indexCol.setMinWidth(20);
+        indexCol.setCellValueFactory(
+                new PropertyValueFactory<>("index"));
+        table.getColumns().addAll(indexCol, doneCol, priorityCol,dateCol,descriptionCol);
         ObservableList<Data> data = FXCollections.observableList(project.getProjectDeadlines().stream()
                 .map(deadline ->new Data(deadline)).collect(Collectors.toList()));
         table.setItems(data);
@@ -84,44 +89,46 @@ public class ProjectCard extends UiPart<Region> {
         private final SimpleStringProperty priority;
 
         private final SimpleBooleanProperty isDone;
+        private final SimpleIntegerProperty index;
+        
         private Data(Deadline deadline){
             date = new SimpleStringProperty(deadline.getDate().toString());
             description = new SimpleStringProperty(deadline.getDescription().desc);
             priority = new SimpleStringProperty(deadline.getPriority().toString());
             isDone = new SimpleBooleanProperty(deadline.getIsDone());
-
+            index = new SimpleIntegerProperty(deadline.getNum());
         }
+        
+        public int getIndex() { return index.get(); }
+        public void setIndex(int num) { this.index.set(num);}
         public String getDate() {
             return date.get();
         }
 
-
         public void setDate(String date) {
             this.date.set(date);
         }
+     
         public boolean getIsDone() {
             return isDone.get();
         }
 
-
         public void setIsDone(boolean isDone) {
             this.isDone.set(isDone);
         }
-
+        
         public String getDescription() {
             return description.get();
         }
-
-
+        
         public void setDescription(String description) {
             this.description.set(description);
         }
-
+        
         public String getPriority() {
             return priority.get();
         }
-
-
+        
         public void setPriority(String priority) {
             this.priority.set(priority);
         }

@@ -26,18 +26,12 @@ public class Deadline {
     private final Priority priority;
 
     private final boolean isDone;
+    private final int num;
 
     /**
      * Every field must be present and not null.
      */
-    public Deadline(Date date, Description desc, Priority priority, boolean isDone) {
-        requireAllNonNull(date, desc,priority,isDone);
-        this.date = date;
-        this.desc = desc;
-        this.priority = priority;
-        this.isDone = isDone;
-    }
-    public Deadline (String str) {
+    public Deadline (String str, int num) {
         requireNonNull(str);
         checkArgument(isValidDeadline(str), MESSAGE_CONSTRAINTS);
         String[] output = str.split(",");
@@ -45,7 +39,9 @@ public class Deadline {
         this.desc = new Description(output[1]);
         this.priority= Priority.valueOf(output[2]);
         this.isDone = output[3].contains("1");
+        this.num = num;
     }
+    
     /**
      * Returns true if a given string is a valid date.
      */
@@ -65,6 +61,10 @@ public class Deadline {
     
     public Priority getPriority() {
         return priority;
+    }
+    
+    public int getNum() {
+        return num;
     }
 
     @Override
@@ -114,6 +114,7 @@ public class Deadline {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("index", num)
                 .add("date", date)
                 .add("description", desc)
                 .add("priority", priority)

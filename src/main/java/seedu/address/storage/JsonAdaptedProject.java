@@ -85,7 +85,7 @@ class JsonAdaptedProject {
             if (!Deadline.isValidDeadline(deadline)) {
                 throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
             }
-            modelDeadlines.add(new Deadline(deadline));
+            modelDeadlines.add(new Deadline(deadline, modelDeadlines.size() + 1));
         }
 
         return new Project(modelName, modelDescription, modelDeadlines);

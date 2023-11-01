@@ -36,8 +36,13 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Description desc = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         List<String> deadlineList = argMultimap.getAllValues(PREFIX_DEADLINE);
+        List<Deadline> deadlines = new ArrayList<>();
+        
+        for (String s : deadlineList) {
+            deadlines.add(new Deadline(s, deadlines.size() + 1));
+        }
 
-        Project project = new Project(name, desc, deadlineList.stream().map(t->new Deadline(t)).collect(Collectors.toList()));
+        Project project = new Project(name, desc, deadlines);
 
         return new AddProjectCommand(project);
     }

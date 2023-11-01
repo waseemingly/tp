@@ -165,7 +165,7 @@ public class ParserUtil {
             if (!Deadline.isValidDeadline(str)) {
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));
             } else {
-                deadlineSet.add(new Deadline(str));
+                deadlineSet.add(new Deadline(str, deadlineSet.size() + 1));
             }
         }
         return deadlineSet;

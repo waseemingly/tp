@@ -520,7 +520,7 @@
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 20pt;
+    -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: #333333; /* Dark gray text color for column headers */
 }
