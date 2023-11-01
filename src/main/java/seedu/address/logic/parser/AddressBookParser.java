@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.delete.DeleteClientCommand;
+import seedu.address.logic.commands.delete.DeleteDeveloperCommand;
 import seedu.address.logic.commands.find.FindClientCommand;
 import seedu.address.logic.commands.find.FindDeveloperCommand;
 import seedu.address.logic.commands.find.FindProjectCommand;
@@ -26,13 +28,14 @@ import seedu.address.logic.commands.imports.ImportClientCommand;
 import seedu.address.logic.parser.add.AddClientCommandParser;
 import seedu.address.logic.parser.add.AddDeveloperCommandParser;
 import seedu.address.logic.parser.add.AddProjectCommandParser;
+import seedu.address.logic.parser.delete.DeleteClientCommandParser;
+import seedu.address.logic.parser.delete.DeleteDeveloperCommandParser;
 import seedu.address.logic.parser.edit.EditClientCommandParser;
 import seedu.address.logic.parser.edit.EditDeveloperCommandParser;
 import seedu.address.logic.parser.edit.EditProjectCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.imports.ImportClientCommandParser;
 import seedu.address.logic.parser.imports.ImportDeveloperCommandParser;
-
 import seedu.address.logic.parser.find.FindClientCommandParser;
 import seedu.address.logic.parser.find.FindDeveloperCommandParser;
 import seedu.address.logic.parser.find.FindProjectCommandParser;
@@ -88,55 +91,64 @@ public class AddressBookParser {
 
         case EditDeveloperCommand.COMMAND_WORD:
             return new EditDeveloperCommandParser().parse(arguments);
+
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);
+
         case EditProjectCommand.COMMAND_WORD:
             return new EditProjectCommandParser().parse(arguments);
             
         case DeleteDeveloperCommand.COMMAND_WORD:
             return new DeleteDeveloperCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case DeleteClientCommand.COMMAND_WORD:
+            return new DeleteClientCommandParser().parse(arguments);
 
-            case FindDeveloperCommand.COMMAND_WORD:
-                return new FindDeveloperCommandParser().parse(arguments);
+        //case DeleteProjectCommand.COMMAND_WORD:
+        //    return new DeleteProjectCommandParser().parse(arguments);
 
-            case FindClientCommand.COMMAND_WORD:
-                return new FindClientCommandParser().parse(arguments);
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case FindProjectCommand.COMMAND_WORD:
-                return new FindProjectCommandParser().parse(arguments);
+        case FindDeveloperCommand.COMMAND_WORD:
+            return new FindDeveloperCommandParser().parse(arguments);
 
-            case ListClientCommand.COMMAND_WORD:
-                return new ListClientCommand();
+        case FindClientCommand.COMMAND_WORD:
+            return new FindClientCommandParser().parse(arguments);
 
-            case ListDeveloperCommand.COMMAND_WORD:
-                return new ListDeveloperCommand();
+        case FindProjectCommand.COMMAND_WORD:
+            return new FindProjectCommandParser().parse(arguments);
 
-            case ListProjectCommand.COMMAND_WORD:
-                return new ListProjectCommand();
-            case UndoCommand.COMMAND_WORD:
-                return new UndoCommand();
+        case ListClientCommand.COMMAND_WORD:
+            return new ListClientCommand();
 
-            case RedoCommand.COMMAND_WORD:
-                return new RedoCommand();
+        case ListDeveloperCommand.COMMAND_WORD:
+            return new ListDeveloperCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ListProjectCommand.COMMAND_WORD:
+            return new ListProjectCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
-            case LockCommand.COMMAND_WORD:
-                return new LockCommand();
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
-            case ChangePasswordCommand.COMMAND_WORD:
-                return new ChangePasswordCommandParser().parse(arguments);
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            default:
-                logger.finer("This user input caused a ParseException: " + userInput);
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case LockCommand.COMMAND_WORD:
+            return new LockCommand();
+
+        case ChangePasswordCommand.COMMAND_WORD:
+            return new ChangePasswordCommandParser().parse(arguments);
+
+        default:
+            logger.finer("This user input caused a ParseException: " + userInput);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
         }
         else {
