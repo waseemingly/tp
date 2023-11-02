@@ -5,7 +5,6 @@ import java.util.Set;
 
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
-import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Project;

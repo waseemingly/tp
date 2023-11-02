@@ -22,9 +22,9 @@ import seedu.address.model.Model;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.DeveloperRoles;
 import seedu.address.model.developer.GithubId;
 import seedu.address.model.developer.Rating;
-import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
 
@@ -52,7 +52,7 @@ public class EditDeveloperCommand extends Command {
             + "[" + PREFIX_DATEJOINED + "DATE JOINED] "
             + "[" + PREFIX_GITHUBID + "GITHUBID] "
             + "[" + PREFIX_RATING + "RATING] "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: \n" + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
     
@@ -85,7 +85,7 @@ public class EditDeveloperCommand extends Command {
         Email updatedEmail = editDeveloperDescriptor.getEmail().orElse(developerToEdit.getEmail());
         Address updatedAddress = editDeveloperDescriptor.getAddress().orElse(developerToEdit.getAddress());
         Date updatedDateJoined = editDeveloperDescriptor.getDateJoined().orElse(developerToEdit.getDateJoined());
-        Role updatedRole = editDeveloperDescriptor.getRole().orElse(developerToEdit.getRole());
+        DeveloperRoles updatedRole = editDeveloperDescriptor.getRole().orElse(developerToEdit.getRole());
         Salary updatedSalary = editDeveloperDescriptor.getSalary().orElse(developerToEdit.getSalary());
         Set<String> updatedProjects = editDeveloperDescriptor.getProjects().orElse(developerToEdit.getProjects());
         GithubId updatedGithubId = editDeveloperDescriptor.getGithubId().orElse(developerToEdit.getGithubId());
@@ -155,7 +155,7 @@ public class EditDeveloperCommand extends Command {
         private Address address;
         private Set<String> projects;
         private Date dateJoined;
-        private Role role;
+        private DeveloperRoles role;
         private Salary salary;
         private GithubId githubId;
         private Rating rating;
@@ -235,11 +235,11 @@ public class EditDeveloperCommand extends Command {
             return Optional.ofNullable(dateJoined);
         }
 
-        public void setRole(Role role) {
+        public void setRole(DeveloperRoles role) {
             this.role = role;
         }
 
-        public Optional<Role> getRole() {
+        public Optional<DeveloperRoles> getRole() {
             return Optional.ofNullable(role);
         }
 

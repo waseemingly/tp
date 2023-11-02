@@ -7,20 +7,101 @@ Seamlessly integrate contact, client, and project management, simplifying access
 
 CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-  * [Quick Start](#quick-start)
-  * [Features](#features)
-    * [Adding new information `add`](#adding-new-information--add)
-    * [Editing information `edit`](#edit)
-    * [Finding information `find`](#find-according-to-type-and-industry-details--find)
-    * [Listing information `list`](#listing-information--list)
-    * [Delete information `delete`](#deleting-a-developer--delete)  
-    * [Help `help`](#viewing-help--help)
-    * [Clear entries `clear`](#clearing-all-entries--clear)
-    * [Exit program `exit`](#exiting-the-program--exit)
-  * [FAQ](#faq)
-  * [Known Issues](#known-issues)
-  * [Command Summary](#command-summary)
+## Table of Contents
+* How can this guide help me?
+* Navigating this guide
+    * Glossary
+        * Definitions
+        * Parameter Information
+            * Common parameters
+            * Developer parameters
+            * Client parameters
+            * Project parameters
+    * Format
+        * General Formatting
+        * Command Format
+* Navigating the Graphical User Interface (GUI)
+* [Quick Start](#quick-start)
+* CodeContact Tutorial
+* [Features](#features)
+
+| Description             |        Developer         |        Client         |      Project       |
+|:------------------------|:------------------------:|:---------------------:|:------------------:|
+| Adding new information  |     `add-developer`      |     `add-client`      |   `add-project`    |
+| Editing information     |     `edit-developer`     |     `edit-client`     |   `edit-project`   |
+| Importing information   |    `import-developer`    |    `import-client`    |         -          |
+| Deleting information    |    `delete-developer`    |    `delete-client`    |  `delete-project`  |
+| Finding information     |     `find-developer`     |     `find-client`     |   `find-project`   |
+| Listing information     |     `list-developer`     |     `list-client`     |   `list-project`   |
+| Adding new role         |   `add-developer-role`   |   `add-client-role`   |         -          |
+| Deleting role           | `delete-developer-role`  | `delete-client-role`  |         -          |
+
+* Lock `lock`
+* Unlock `unlock`
+* Change password `change-password`
+* [Help `help`](#viewing-help--help)
+* [Clear entries `clear`](#clearing-all-entries--clear)
+* [Exit program `exit`](#exiting-the-program--exit)
+* [FAQ](#faq)
+* [Known Issues](#known-issues)
+* [Command Summary](#command-summary)
+-------------------------------------------------------------------------------------
+## How can this guide help me?
+
+If you are a new user, we hope to first inform you on how you can [get started](#quick-start) using CodeContact.
+
+As you use CodeContact, you may also have questions on how to perform certain actions within the
+application. This guide thus contains a comprehensive list of [Features](#features) offered with CodeContact, as well as
+explanations on when and how to use them.
+
+Further questions are also answered within a [FAQ](#faq) section below.
+
+Confused about the terms or formatting used in this guide? Learn how to **navigate this guide** [here](#navigating-this-guide).
+
+Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
+[here](#navigating-the-graphical-user-interface--gui-).
+------------------------------------------------------------------------------------------
+## Navigating this guide
+
+### Glossary
+
+### Definitions
+
+| Term          | Definition                                                                                                                |
+|---------------|---------------------------------------------------------------------------------------------------------------------------|
+| Parameter     | Parameters are specific details you would include about the devloper/client/project.(eg. name, date joined, description)  |
+| Command       | An input from the user that tells CodeContact to perform an action (i.e. add a client)                                    |
+| GUI           | Graphical User Interface (GUI) represents the visual display of CodeContact that users can see.                           |
+| GUI Component | A subsection of the Graphical User Interface. For more information on specific GUI components, refer to [this section](). |
+| CLI           | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                     |
+| Character     | Any letter or symbol that is recognized by the computer, and can form a line of text (eg. `a` , `+` , `$` ).              |
+| JSON          | [Javascript Object Notation](https://en.wikipedia.org/wiki/JSON)                                                          |
+| JAR file      | [Java Archive File](https://en.wikipedia.org/wiki/JAR_(file_format))                                                      |
+| CSV file      | [Comma-separated Values File](https://en.wikipedia.org/wiki/Comma-separated_values)                                            |
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Parameter Information
+Within the tables below, you can find out more about the parameters that CodeContact supports. These parameters come in handy when crafting commands in CodeContact.
+
+Here are some notes about these parameters.
+
+* Each parameter comes with **constraints**. These constraints detail the specific formats of text that
+  each parameter accepts as valid user input.
+    * Not following these constraints will **result in an error** when entering the command.
+      *Nonetheless, CodeContact will not stop working. Rather, a message will be provided to you on
+      how to correct your command.
+
+#### Common Parameters
+| Parameter | Description                      | Constraints | Valid Examples | Invalid Examples |
+|---|----------------------------------|---|---|---|
+|`n/`| name of developer/client/project | alphanumeric characters and spaces, and it should not be blank | Tom Hanks, Elizabeth 2 | 成龍, 潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran|
+
+
+
+
+-----------------------------------------------------------------------------------------------
+## Navigating the Graphical User Interface (GUI)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -76,8 +157,7 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
 </div>
 
 ### Adding new information : `add`
-* What it does:
-    * Manager can add a new employee to the list of people into the data one by one
+Manager can add a new employee to the list of people into the data one by one.
 * Format
     * `create new employee`
     * `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE s/SALARY pr/{PROJECT1, PROJECT2…}`
@@ -120,6 +200,25 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
         * `Error! New user’s {MISSING_PARTICULARS} are missing.`
 * Relevant UI mock-ups
 
+### Main feature
+#### developer specific feature
+Description of what feature does.
+
+Format: `command format`
+* notes about command eg. at least one of the optional fields must be provided etc.
+
+Example of usage: `example`
+* what the example does eg. Edits `Amy`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
+
+When command succeeds, CLI shows:
+```
+Edited Client:
+etc
+```
+
+#### client specific feature
+etc.
+
 ### Edit
 #### Edit developer details
 Edits the details of an existing developer in the address book.
@@ -131,58 +230,23 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 * Existing values will be updated to the input values.
 * When editing projects, the existing assigned projects of the developer will be removed ie. adding of projects is not cumulative.
 * You can remove all the developer's projects by typing `p/` without specifying any project name after it.
-
-Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
-  * Edits `AMY`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
-
-Acceptable parameters: 
-* `INDEX` must be a positive integer.
-* `NAME` and `PROJECT_NAME` can only consist of capital and small letters, spaces and hyphens.
 * `NAME` cannot be the same as another existing developer's name in the address book.
-* `PHONE_NUMBER` has to 8 digits without spaces.
-* `EMAIL` has to be of the format `<TEXT>@<TEXT>`.
-* `DATE_JOINED` has to be of format `dd-MM-yyyy` (e.g. `31-12-2019`).
-* `ROLE` has to be.......??
-* `SALARY` has to be at least 4 digits.
 * `PROJECT_NAME` should be the name of an existing project.
 
-When command succeeds, CLI shows:          (??)
+Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
+* Edits `Amy`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
+
+When command succeeds, CLI shows:         
 ```
-Here are the updated employee details:
-Name: AMY
-Contact Number: 98989898
+Edited Developer: Amy
+Phone: 98989898
 Email: amy@u.nus.edu
 Address: NUS UTOWN
 Date Joined: 06-09-2023
 Role: Developer
 Salary: 6999
-Assigned Projects: Project1, Project2
+Projects: Project1, Project2
 ```
-* When command fails
-    * Repetitive name
-        * `More than 1 developer with the NAME has been found, please input employee’s phone number:`
-    * Invalid input
-        * `Please input the employee details in the right format`
-    * No access error
-        * `You do not have access to modify this. Please contact your administrator.`
-    * Format error
-        * `Error! New user’s <PARTICULAR> does not follow the format: <FORMAT>`
-        * E.x.:  `Error! New user’s name does not follow the format:
-          Names can only consist of capital and small letters, spaces and hyphens.`
-
-When command fails due to an error, the respective error message will be displayed:
-* Non-existent developer
-  * `There is no employee with that name!`
-* Non-existent project
-  * `There is no project with that name!`
-* Invalid command format
-  * `Please input the employee details in the correct format!`
-* No edits in input command
-  * `At least one field to edit must be provided!`
-* Invalid command target
-  * `Invalid command target! You cannot call edit-d on the target.`
-
-Relevant UI mock-ups (???)
 
 #### Edit client details
 Edits the details of an existing client in the address book.
@@ -195,41 +259,19 @@ Format: `edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/P
 * When editing projects, the existing assigned projects of the client will be removed ie. adding of projects is not cumulative.
 * You can remove all the client's projects by typing `p/` without specifying any project name after it.
 
-Example of usage: `edit-client 3 p/bob@gmail.com`
-* Edits `BOB`'s email to `bob@gmail.com`.
+Example of usage: `edit-client 3 e/bob@gmail.com`
+* Edits `Bob`'s email to `bob@gmail.com`.
 
-Acceptable parameters:
-* `INDEX` must be a positive integer.
-* `NAME`, `PROJECT_NAME` and `ORGANISATION` can only consist of capital and small letters, spaces and hyphens.
-* `NAME` cannot be the same as another existing client's name in the address book.
-* `PHONE_NUMBER` has to 8 digits without spaces.
-* `EMAIL` has to be of the format `<TEXT>@<TEXT>`.
-* `PROJECT_NAME` should be the name of an existing project.
-
-When command succeeds, CLI shows: (??)
+When command succeeds, CLI shows:
 ```
-Here are the updated employee details:
-Name: BOB
-Contact Number: 87654321
-Email: bob@gmail.com
-Address: Blk 123 Banana Road
-Projects: Project1
-Organisation: Banana
+Edited Client: Bob; 
+Phone: 87654321; 
+Email: bob@gmail.com; 
+Address: Blk 123 Banana Road; 
+Organisation: Google; 
+Document: google.com
+Projects: ProjectA
 ```
-
-When command fails due to an error, the respective error message will be displayed:
-* Non-existent client
-    * `There is no client with that name!`
-* Non-existent project
-    * `There is no project with that name!`
-* Invalid command format
-    * `Please input the client details in the correct format!`
-* No edits in input command
-    * `At least one field to edit must be provided!`
-* Invalid command target
-    * `Invalid command target! You cannot call edit-d on the target.`
-
-Relevant UI mock-ups (???)
 
 #### Edit project details
 Edits the details of an existing project in the address book.
@@ -243,35 +285,16 @@ Format: `edit-project INDEX [desc/DESCRIPTION] [d/DEADLINE]...`
 * You can remove all the current deadlines by typing `d/` without specifying any deadline.
 * The name of a project cannot be edited.
 
-Example of usage: `edit-project 1 d/Finish Feature-A by: 09-09-2023`
-* Deletes existing project deadlines and adds new deadline `Finish Feature-A by: 09-09-2023`
+Example of usage: `edit-project 1 dl/19-12-2023,Design backend,HIGH,0`
+* Deletes existing project deadlines and adds new deadline `Design backend by: 19-12-2023, priority: HIGH (undone)`
 
-Acceptable parameters:
-* `INDEX` must be a positive integer.
-* `DEADLINE` should be of the format `DEADLINE_DESCRIPTION by: DATE`, where `DATE` is in `dd-MM-yyyy` format.
-
-When command succeeds, CLI shows: (??)
+When command succeeds, CLI shows:
 ```
-Here are the updated project details:
-Name: Project1
-Description: Project1's deliverable is a CLI chatbot to manage tasks.
-Deadlines: 
-    1. Finish Feature-A by: 09-09-2023
-    2. Finish Feature-B by: 20-09-2023
-    3. Release first iteration by: 30-09-2023.
+Edited Project: JuiceApp;
+Description: Juice ordering app;
+Deadlines:
+1. Design backend by: 19-12-2023, priority: HIGH (undone)
 ```
-
-When command fails due to an error, the respective error message will be displayed:
-* Non-existent project
-    * `There is no project with that name!`
-* Invalid command format
-    * `Please input the project details in the correct format!`
-* No edits in input command
-    * `At least one field to edit must be provided!`
-* Invalid command target
-    * `Invalid command target! You cannot call edit-developers on the target.`
-
-Relevant UI mock-ups (???)
 
 ### Find according to type and industry details: `Find`
 * What it does
@@ -310,13 +333,13 @@ Format: `list TYPE`
 Examples:`list developers`
 * lists all the developers
 
-Acceptable inputs: 
+Acceptable inputs:
 * `developers` to list the developers
 * `clients` to list the clients
 * `projects` to list the projects
 
 When command fails due to an error, the respective error message will be displayed:
-* Invalid input 
+* Invalid input
     * `This is an invalid field to list, you can only list developers, clients or projects`
 
 ### Deleting a developer : `delete`
@@ -368,18 +391,18 @@ Format: `exit`
 1. Navigate to the directory where the JAR file is located using cd [JAR file location]
 1. Type java -jar CodeContact.jar and press enter
 1. CodeContact should launch
-<br> <br>
+   <br> <br>
 * Method 2: For users that wish to create a script to launch Docedex (Recommended)
 1. Create a new text file
 2. Type the following into the text file:
    `java -jar [JAR file location]/CodeContact.jar`
 3. Save the text file as CodeContact.bat (Windows) or CodeContact.sh (MacOS/Linux)
 4. Change the admin settings of the script to allow it to run as a program:
-   * Windows: Right-click on the script and select Properties. Under General , check
-   the box that says Allow this file to run as a program .
-   * MacOS/Linux: Open the terminal and navigate to the directory where the script is
-   located. Type `chmod +x [script name]` and press enter. ( `chmod +x` changes
-   permissions of the script to allow it to be executed.)
+    * Windows: Right-click on the script and select Properties. Under General , check
+      the box that says Allow this file to run as a program .
+    * MacOS/Linux: Open the terminal and navigate to the directory where the script is
+      located. Type `chmod +x [script name]` and press enter. ( `chmod +x` changes
+      permissions of the script to allow it to be executed.)
 5. Double-click on the script to launch CodeContact
 6. CodeContact should launch
 
