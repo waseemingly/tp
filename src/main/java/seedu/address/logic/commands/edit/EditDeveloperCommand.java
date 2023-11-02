@@ -52,7 +52,7 @@ public class EditDeveloperCommand extends Command {
             + "[" + PREFIX_DATEJOINED + "DATE JOINED] "
             + "[" + PREFIX_GITHUBID + "GITHUBID] "
             + "[" + PREFIX_RATING + "RATING] "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: \n" + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
     

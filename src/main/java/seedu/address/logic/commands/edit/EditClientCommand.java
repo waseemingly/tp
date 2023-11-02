@@ -47,7 +47,7 @@ public class EditClientCommand extends Command {
             + "[" + PREFIX_PROJECT + "PROJECT]...\n"
             + "[" + PREFIX_ORGANISATION + "ORGANISATION] "
             + "[" + PREFIX_DOCUMENT + "DOCUMENT] "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: \n" + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
