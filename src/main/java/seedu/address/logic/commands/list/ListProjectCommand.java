@@ -23,6 +23,7 @@ public class ListProjectCommand extends Command {
         assert model != null : "Model cannot be null";
         requireNonNull(model);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        model.updateFilteredProjectDeadlineList(unused -> true);
         return new CommandResult(MESSAGE_SUCCESS, TabIndex.Project);
     }
 }

@@ -28,6 +28,7 @@ import seedu.address.logic.commands.deleteRoles.DeleteDeveloperRoleCommand;
 import seedu.address.logic.commands.find.FindClientCommand;
 import seedu.address.logic.commands.find.FindDeveloperCommand;
 import seedu.address.logic.commands.find.FindProjectCommand;
+import seedu.address.logic.commands.find.FindDeadlineCommand;
 import seedu.address.logic.commands.list.ListClientCommand;
 import seedu.address.logic.commands.list.ListDeveloperCommand;
 import seedu.address.logic.commands.list.ListProjectCommand;
@@ -60,6 +61,7 @@ import seedu.address.logic.parser.imports.ImportDeveloperCommandParser;
 import seedu.address.logic.parser.find.FindClientCommandParser;
 import seedu.address.logic.parser.find.FindDeveloperCommandParser;
 import seedu.address.logic.parser.find.FindProjectCommandParser;
+import seedu.address.logic.parser.find.FindDeadlineCommandParser;
 import seedu.address.logic.parser.mark.MarkDeadlineCommandParser;
 import seedu.address.logic.parser.mark.UnmarkDeadlineCommandParser;
 
@@ -118,6 +120,8 @@ public class AddressBookParser {
 
             case ImportClientCommand.COMMAND_WORD:
                 return new ImportClientCommandParser().parse(arguments);
+            case FindDeadlineCommand.COMMAND_WORD:
+                return new FindDeadlineCommandParser().parse(arguments);
 
             case ImportCommand.COMMAND_WORD:
                 return new ImportDeveloperCommandParser().parse(arguments);
