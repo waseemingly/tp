@@ -25,26 +25,28 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
 * [CodeContact Tutorial](#codecontact-tutorial--for-new-users-)
 * [Features](#features)
 
-| Description             |        Developer         |        Client         |      Project       |
-|:------------------------|:------------------------:|:---------------------:|:------------------:|
-| Adding new information  |     `add-developer`      |     `add-client`      |   `add-project`    |
-| Editing information     |     `edit-developer`     |     `edit-client`     |   `edit-project`   |
-| Importing information   |    `import-developer`    |    `import-client`    |         -          |
-| Deleting information    |    `delete-developer`    |    `delete-client`    |  `delete-project`  |
-| Finding information     |     `find-developer`     |     `find-client`     |   `find-project`   |
-| Listing information     |     `list-developer`     |     `list-client`     |   `list-project`   |
-| Adding new role         |   `add-developer-role`   |   `add-client-role`   |         -          |
-| Deleting role           | `delete-developer-role`  | `delete-client-role`  |         -          |
-*
-   * Find Deadline `find-deadline`
-   * Lock `lock`
-   * Unlock `unlock`
-   * Change password `change-password`
-   * Undo `undo`
-   * Redo `redo`
-   *  [Help `help`](#viewing-help--help)
-   * [Clear entries `clear`](#clearing-all-entries--clear)
-   * [Exit program `exit`](#exiting-the-program--exit)
+| Description                   |                                 Developer                                 |                              Client                              |      Project       |
+|:------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------:|
+| Adding new information        |                              `add-developer`                              |                           `add-client`                           |   `add-project`    |
+| Editing information           |                             `edit-developer`                              |                          `edit-client`                           |   `edit-project`   |
+| Importing information         |                            `import-developer`                             |                         `import-client`                          |         -          |
+| Deleting information          |                            `delete-developer`                             |                         `delete-client`                          |  `delete-project`  |
+| Finding information           |                             `find-developer`                              |                          `find-client`                           |   `find-project`   |
+| Listing information           |                             `list-developer`                              |                          `list-client`                           |   `list-project`   |
+| [Adding new role](#add-roles) |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |         -          |
+| [Deleting role](#delete-roles)| [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |         -          |
+
+* Mark deadline as done `mark-deadline`
+* Mark deadline as undone `unmark-deadline`
+* Find Deadline `find-deadline`
+* Lock `lock`
+* Unlock `unlock`
+* Change password `change-password`
+* [Undo `undo`](#undo--undo)
+* [Redo `redo`](#redo--redo)
+* [Help `help`](#viewing-help--help)
+* [Clear entries `clear`](#clearing-all-entries--clear)
+* [Exit program `exit`](#exiting-the-program--exit)
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
@@ -277,7 +279,7 @@ etc
 etc.
 
 ### Edit
-#### Edit developer details
+#### Edit developer details : `edit-developer`
 Edits the details of an existing developer in the address book.
 
 Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
@@ -305,7 +307,7 @@ Salary: 6999
 Projects: Project1, Project2
 ```
 
-#### Edit client details
+#### Edit client details : `edit-client`
 Edits the details of an existing client in the address book.
 
 Format: `edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
@@ -330,7 +332,7 @@ Document: google.com
 Projects: ProjectA
 ```
 
-#### Edit project details
+#### Edit project details : `edit-project`
 Edits the details of an existing project in the address book.
 
 Format: `edit-project INDEX [desc/DESCRIPTION] [d/DEADLINE]...`
@@ -538,7 +540,7 @@ Password changed successfully.
 
 
 ### Add roles
-#### Add developer roles: `add-developer-role`
+#### Add developer roles : `add-developer-role`
 Adds new developer roles into the system.
 
 Format: `add-developer-role ROLE_NAME`
@@ -559,7 +561,7 @@ New role for developer added: UIDesigner
 Relevant UI mock-ups: <br>
 ![Ui](images/addDeveloperRole.png)
 
-#### Add client roles: `add-client-role`
+#### Add client roles : `add-client-role`
 Adds new client roles into the system.
 
 Format: `add-client-role ROLE_NAME`
@@ -580,7 +582,7 @@ Relevant UI mock-ups: <br>
 ![Ui](images/addClientRole.png)
 
 ### Delete roles
-#### Delete developer roles: `delete-developer-role`
+#### Delete developer roles : `delete-developer-role`
 Delete developer roles from the system.
 
 Format: `delete-developer-role ROLE_NAME`
@@ -601,7 +603,7 @@ Relevant UI mock-ups: <br>
 If there are still developers with this Role:
 ![Ui](images/deleteDeveloperRoleErr.png)
 
-#### Delete client roles: `delete-client-role`
+#### Delete client roles : `delete-client-role`
 Delete client roles from the system.
 
 Format: `delete-client-role ROLE_NAME`
@@ -609,7 +611,7 @@ Format: `delete-client-role ROLE_NAME`
 * There are 4 preset roles in the list of roles: `HR`,`Manager`,`Developer`,`Client`. These roles cannot be deleted.
 * You will not be able to delete a client role if there are clients in the list with that role.
 
-Examples of usage:`delete-client-role Boss`
+Example of usage: `delete-client-role Boss`
 * Deletes the Boss from the list of developer roles.
 * You can no longer add clients with Boss as their roles.
 
@@ -621,6 +623,34 @@ Relevant UI mock-ups: <br>
 ![Ui](images/deleteClientRole.png) <br>
 If there are still clients with this Role:
 ![Ui](images/deleteClientRoleErr.png)
+
+### Mark deadline as done : `mark-deadline`
+Marks the indicated deadline for the project as done.
+
+Format: `mark-deadline PROJECT_INDEX DEADLINE_INDEX`
+* `PROJECT_INDEX` and `DEADLINE_INDEX` must be valid indexes of existing projects and deadlines.
+
+Example of usage: `mark-deadline 2 1`
+* Marks the 1st deadline of the 2nd project in the currently displayed project list as done.
+
+When command succeeds, CLI shows:
+```
+The deadline has been marked as completed!
+```
+
+### Mark deadline as undone : `unmark-deadline`
+Marks the indicated deadline for the project as undone.
+
+Format: `unmark-deadline PROJECT_INDEX DEADLINE_INDEX`
+* `PROJECT_INDEX` and `DEADLINE_INDEX` must be valid indexes of existing projects and deadlines.
+
+Example of usage: `unmark-deadline 2 1`
+* Marks the 1st deadline of the 2nd project in the currently displayed project list as undone.
+
+When command succeeds, CLI shows:
+```
+The deadline has been marked as undone!
+```
 
 ### Undo : `undo`
 
