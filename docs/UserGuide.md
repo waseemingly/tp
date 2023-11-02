@@ -22,7 +22,7 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
         * Command Format
 * Navigating the Graphical User Interface (GUI)
 * [Quick Start](#quick-start)
-* CodeContact Tutorial
+* [CodeContact Tutorial](#codecontact-tutorial--for-new-users-)
 * [Features](#features)
 
 | Description                   |                                 Developer                                 |                              Client                              |      Project       |
@@ -38,6 +38,7 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
 
 * Mark deadline as done `mark-deadline`
 * Mark deadline as undone `unmark-deadline`
+* Find Deadline `find-deadline`
 * Lock `lock`
 * Unlock `unlock`
 * Change password `change-password`
@@ -49,6 +50,7 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
+
 -------------------------------------------------------------------------------------
 ## How can this guide help me?
 
@@ -120,20 +122,73 @@ Here are some notes about these parameters.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-    * `list developers` : Lists all developers.
-
-    * `n/Amy p/12345678 e/any.u.nus.edu a/NUS UTOWN d/06-09-2023 r/Developer s/4999 pr/{PROJECT1, PROJECT2…}` : Adds a contact named `John Doe` to the Address Book.
-
-    * `delete developer 3` : Deletes the 3rd contact shown in the current list.
-
-    * `clear` : Deletes all contacts.
-
-    * `exit` : Exits the app.
+1. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+## CodeContact Tutorial (for new users)
+This is a tutorial for **first-time** CodeContact users.
+1. Launch CodeContact.You may refer to the instructions [here](#quick-start)
+    * On launch, CodeContact will not contain any doctor or patient records.
+
+
+1. You will be asked to **enter a password** to unlock CodeContact. 
+    *  Enter the command `unlock pw/Password123!` in the command box
+
+
+1. You can **change the password** to unlock CodeContact.
+    * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box
+    * ❗Note: You can always lock and unlock CodeContact using the `lock` and `unlock` commands
+
+
+1. Let us try **adding a project** to our CodeContact.
+    * Enter the command `add-project n/AndroidApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0 `
+
+
+1. We can then **add a developer** to our CodeContact.
+    * Enter the command `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp s/4500 d/19-11-2023 g/johng rt/3`
+    * Try adding more developers with different details for each parameter!
+    * Remember to add a new project or [role](#add-roles) if you which to add new developers with other roles and project.
+
+
+1. We can also **add a client** to our CodeContact.
+    * Enter the command `add-client n/Amy p/88765423 e/amy@example.com a/31, Clementi Ave 6, #03-12 r/Client pr/AndroidApp o/Google do/google.com`
+    * Try adding more clients with different details for each parameter!
+    * Remember to add a new project or [role](#add-roles) if you which to add new client with other roles and project.
+
+
+1. Let us try **editing the name** of a developer stored in CodeContact.
+    * Enter the command `edit-developer 1 n/Jhonny`
+    * Try editing other parameters or developers and projects too!
+    * More details of what you can edit can be found [here](#edit)
+
+
+1. We can also easily **find** for information in CodeContact. 
+    * Enter the command `find-developer n/John s/4500`
+    * Try looking for other information and search with multiple parameters!
+    * More details of what you can find can be found [here](#find)
+
+
+1. You can always **show the full list** after finding in CodeContact.
+    * Enter the command `list-developer`, `list-client` or `list-project`.
+
+
+1. You can **delete developers, clients or projects** in CodeContact.
+    * Enter the command `delete-developer 3` to delete the 3rd developer in CodeContact
+
+
+1. If you realise that you did not delete this developer, you can undo this action in CodeContact.
+    * Enter the command `undo` and it will revert your previous actions.
+
+
+1. If you realise you actually want it deleted, you can redo this action in CodeContact.
+    * Enter the command `redo` and it will redo your previous actions.
+
+
+Congratulations! You are now ready to use CodeContact!
+
+To view all our features, you may visit our [Features](#features) section
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -299,6 +354,74 @@ Description: Juice ordering app;
 Deadlines:
 1. Design backend by: 19-12-2023, priority: HIGH (undone)
 ```
+### Import information
+#### Import developers `import-developer`
+Takes in a CSV file and populates the internal list of developers if the file is formatted correctly
+
+Format: `import-developer [FILENAME]`
+* Note that the CSV file has to be in the same folder as the JAR file for the command to function correctly.
+* The CSV file has to strictly follow the column header names and order for the import to function appropriately.
+* The command will abort if any of the rows have invalid data format
+* Example of valid CSV:
+```
+Name, Contact Number, Email, Address, Date Joined, Role, Salary, GithubId, Rating, Projects,,
+faiz,87654321,faiz@u.com,utown,12-12-2020,Developer,3333,Faizgit,5,AndroidApp,ProjectB,
+John,123456789,john@email.com,123 Main St,01-01-2021,Developer,4000,JohnDesigns,4,AndroidApp,ProjectB,
+Sarah,987654321,sarah@email.com,456 Elm St,05-10-2019,Developer,6000,SarahManager,5,AndroidApp,ProjectB,ProjectC
+Alex,555555555,alex@email.com,789 Oak St,03-01-2022,Developer,5500,AlexDev,4,AndroidApp,ProjectB,
+Emily,111111111,emily@email.com,321 Pine St,08-10-2018,Developer,4800,EmilyAnalyst,4,AndroidApp,ProjectB,
+Michael,999999999,michael@email.com,567 Birch St,06-03-2020,Developer,7000,MichaelEngineer,5,AndroidApp,ProjectB,
+```
+
+Example of usage: `import-developer developers.csv`
+* imports `developers.csv` and adds a new developer for each row of data.
+
+When command succeeds, CLI shows:
+```
+New developer added: faiz; 
+Phone: 87654321; 
+Email: faiz@u.com; 
+Address: utown; 
+Date Joined: 12-12-2020; 
+Role: Developer; 
+Salary: 3333; 
+Projects: ProjectBAndroidApp
+```
+for each developer successfully added
+
+#### Import clients `import-client`
+Takes in a CSV file and populates the internal list of clients if the file is formatted correctly
+
+Format: `import-client [FILENAME]`
+* Note that the CSV file has to be in the same folder as the JAR file for the command to function correctly.
+* The CSV file has to strictly follow the column header names and order for the import to function appropriately.
+* The command will abort if any of the rows have invalid data format
+* Example of valid CSV:
+```
+Name, Contact Number, Email, Address, Role, Organisation, Document, Projects,
+Mahi,87554321,mahi@u.com,utown,HR,Google,docs.google.com/abd,AndroidApp,ProjectB
+Jane,654321876,jane@email.com,456 Oak St,HR,Acme Corp,acme.com/docs,AndroidApp,ProjectB
+Robert,987123456,robert@email.com,789 Elm St,HR,Tech Solutions,techdocs.com/123,AndroidApp,ProjectB
+Maria,321987654,maria@email.com,123 Maple St,HR,Innovate Inc,innovate.com/docs,AndroidApp,
+Chris,876543219,chris@email.com,567 Pine St,HR,Data Insights,datainsights.com/docs,AndroidApp,
+Laura,888555555,laura@email.com,101 Birch St,HR,Software Systems,software.com/docs,AndroidApp,
+```
+
+Example of usage: `import-client clients.csv`
+* imports `clients.csv` and adds a new client for each row of data.
+
+When command succeeds, CLI shows:
+```
+New client added: Mahi; 
+Phone: 87554321; 
+Email: mahi@u.com; 
+Address: utown; 
+Organisation: Google; 
+Role: HR; 
+Document: docs.google.com/abd; 
+Projects: ProjectBAndroidApp
+```
+for each client successfully added
 
 ### Find according to type and industry details: `Find`
 * What it does
@@ -361,6 +484,60 @@ When command succeeds, CLI shows:
 ```
 Listed all developers
 ```
+### Find deadlines `find-deadline`
+Finds deadlines in project tab based on date and/or priority
+
+Format: `find-deadline [d/DATE] [pri/PRIORITY]`
+* When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date
+* When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown
+
+Example of usage: `find-deadline d/20-11-2023 pri/MEDIUM`
+* Shows deadlines due before or on `20-11-2023` and with `MEDIUM` priority.
+
+When command succeeds, CLI shows:
+```
+These are the 3 projects with matching information.
+```
+### Lock `lock`
+Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
+except `unlock`, `help`, and `delete`
+
+Format: `lock`
+
+When command succeeds, CLI shows:
+```
+Locked all data
+```
+
+
+### Unlock `unlock`
+Unlocks the system by making all the information visible and allows all commands to be parsed.
+
+Format: `unlock pw/Password123!`
+* Default password is `Password123!`
+* You are highly recommended to change to a diffent password
+
+When command succeeds, CLI shows:
+```
+Unlocked all data
+```
+
+
+
+### Change password `change-password`
+Allows for password to be changed, given the current password and new password matches criteria
+
+Format: `change-password pw/[CURRENT_PASSWORD] npw/[NEW_PASSWORD]`
+* Password must be at least 8 characters long and contain at least one digit, one lowercase letter,
+  one uppercase letter, and one special character.
+
+Example of usage: `change-password pw/Password123! npw/NewPass987!`
+
+When command succeeds, CLI shows:
+```
+Password changed successfully.
+```
+
 
 ### Add roles
 #### Add developer roles : `add-developer-role`
@@ -484,7 +661,7 @@ Format: `undo`
 * If you made 5 changes and you wish to undo, you can enter the command `undo` 5 times. The system will remind you when 
 you cannot undo anymore.
 * `undo` works for all `edit`, `add-TYPE` and `delete` commands.
-* **IMPORTANT**:exclamation `undo` does not work for all adding and deleting role functions. Undoing an 
+* ❗**IMPORTANT**❗ `undo` does not work for all adding and deleting role functions. Undoing an 
 `add-developer-role` will not delete that role.
 
 Examples of usage: `undo`
