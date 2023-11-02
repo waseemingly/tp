@@ -25,8 +25,7 @@ public class DeleteClientRoleCommand extends Command {
             + "as there are clients of this role";
     public static final String MESSAGE_CANNOT_DELETE_PREXISTS = "You are not allowed to delete this client role.";
     public static final String MESSAGE_CANNOT_DELETE_NONEXISTING = "This client role does not exist. ";
-    public static final String MESSAGE_EXISTING_CLIENT_ROLES = "These are the existing client roles: \n"
-            + ClientRoles.printRoles();
+    public static final String MESSAGE_EXISTING_CLIENT_ROLES = "These are the existing client roles: \n";
 
     private final String toAdd;
 
@@ -42,13 +41,14 @@ public class DeleteClientRoleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!ClientRoles.isRemovableRole(model, toAdd)) { //if when u search role result != 1
+        if (ClientRoles.isRemovableRole(model, toAdd)) { //if when u search role result != 1
             if (!ClientRoles.isNoRepeat()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_REPEAT);
             } else if (!ClientRoles.isNotDefault()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_PREXISTS);
             } else if (ClientRoles.isNotInList()) {
-                throw new CommandException(MESSAGE_CANNOT_DELETE_NONEXISTING + MESSAGE_EXISTING_CLIENT_ROLES);
+                throw new CommandException(MESSAGE_CANNOT_DELETE_NONEXISTING + MESSAGE_EXISTING_CLIENT_ROLES
+                        + ClientRoles.printRoles());
             }
         }
 
