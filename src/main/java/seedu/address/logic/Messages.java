@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.DeveloperRoles;
 
 /**
  * Container for user visible messages.
@@ -107,4 +108,11 @@ public class Messages {
         project.getProjectDeadlines().forEach(t -> builder.append(t.getStringRepresentation()));
         return builder.toString();
     }
+
+    public static String format(String role) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(role);
+        return builder.toString();
+    }
+
 }

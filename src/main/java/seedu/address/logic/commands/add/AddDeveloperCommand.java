@@ -29,7 +29,7 @@ public class AddDeveloperCommand extends Command {
     public static final String COMMAND_WORD = "add-developer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a developer to the address book. "
-            + "Parameters: "
+            + "\n Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
@@ -49,7 +49,9 @@ public class AddDeveloperCommand extends Command {
             + PREFIX_PROJECT + "AndroidApp "
             + PREFIX_PROJECT + "CustomWebsite "
             + PREFIX_SALARY + "4500 "
-            + PREFIX_DATEJOINED + "19-11-2023 ";
+            + PREFIX_DATEJOINED + "19-11-2023 "
+            + PREFIX_GITHUBID + "johng "
+            + PREFIX_RATING + "3";
 
     public static final String MESSAGE_SUCCESS = "New developer added: %1$s";
     public static final String MESSAGE_DUPLICATE_DEVELOPER = "This developer already exists in the address book";
