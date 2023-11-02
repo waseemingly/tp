@@ -15,6 +15,7 @@ import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Deadline;
 
 /**
@@ -144,6 +145,12 @@ public class ModelManager implements Model {
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
+    }
+    
+    
+    public String areProjectsValid(Person person) {
+        requireNonNull(person);
+        return addressBook.areProjectsValid(person);
     }
 
     @Override

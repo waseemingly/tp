@@ -133,22 +133,17 @@ public class ParserUtil {
         return projectSet;
     }
     /**
-     * Parses {@code Collection<String> projects} and checks whether each String is the name of an existing project.
+     * Parses {@code Collection<String> projects} into a {@code Set<String>}.
      * 
-     * @param projects The Collection of projects to check.
-     * @returns A HashSet of Strings if check is successful.
-     * @throws ParseException if one of the Strings in projects is not the name of an existing project.
+     * @param projects The Collection of projects to parse.
+     * @returns A HashSet of String.
      */
-    public static Set<String> parseProjectsWithCheck(Collection<String> projects) throws ParseException {
+    public static Set<String> parseProjectsToSet(Collection<String> projects) {
         requireNonNull(projects);
         final Set<String> projectSet = new HashSet<>();
         
         for (String p : projects) {
-            if (!Project.isValidProject(p)) {
-                throw new ParseException(String.format(Messages.MESSAGE_NONEXISTENT_PROJECT, p));
-            } else {
                 projectSet.add(p);
-            }
         }
         return projectSet;
     }

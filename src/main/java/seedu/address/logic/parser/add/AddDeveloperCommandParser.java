@@ -57,7 +57,7 @@ public class AddDeveloperCommandParser implements Parser<AddDeveloperCommand> {
                 .orElse(new SimpleDateFormat("dd-MM-yyyy").format(new java.util.Date())));
         DeveloperRoles role = ParserUtil.parseDeveloperRole(argMultimap.getValue(PREFIX_ROLE).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
-        Set<String> projectList = ParserUtil.parseProjectsWithCheck(argMultimap.getAllValues(PREFIX_PROJECT));
+        Set<String> projectList = ParserUtil.parseProjectsToSet(argMultimap.getAllValues(PREFIX_PROJECT));
         GithubId githubId = ParserUtil.parseGithubId(argMultimap.getValue(PREFIX_GITHUBID).orElse(""));
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
 

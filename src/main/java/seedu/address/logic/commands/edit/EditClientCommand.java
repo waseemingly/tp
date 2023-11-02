@@ -102,7 +102,11 @@ public class EditClientCommand extends Command {
         if (!clientToEdit.isSamePerson(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
-
+        String res = model.areProjectsValid(editedClient);
+        if (res != null) {
+            throw new CommandException(String.format(Messages.MESSAGE_NONEXISTENT_PROJECT, res));
+        }
+        
         String successMessage = String.format(MESSAGE_EDIT_CLIENT_SUCCESS, Messages.format(editedClient));
         TabIndex index = TabIndex.Client;
 

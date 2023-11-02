@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
@@ -11,6 +12,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.UniqueDeveloperList;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 
@@ -37,6 +39,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
+    /// Project Validation
+    /**
+     * Returns a boolean representing whether the projects assigned to the Person exist.
+     * 
+     * @param person The person to check.
+     */
+    public String areProjectsValid(Person person) {
+        Set<String> projects = person.getProjects();
+        for (String p : projects) {
+            if (!this.hasProject(p)) {
+                return p;
+            }
+        }
+        return null;
+    }
+            
     //// List Overwrite Operations
 
     public void setDevelopers(List<Developer> developers) {
@@ -101,6 +119,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// Project-level Operations
 
     public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return projects.contains(project);
+    }
+    
+    public boolean hasProject(String project) {
         requireNonNull(project);
         return projects.contains(project);
     }
