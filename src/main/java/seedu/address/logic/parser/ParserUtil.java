@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -11,12 +12,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Password;
+import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.DeveloperRoles;
 import seedu.address.model.developer.GithubId;
 import seedu.address.model.developer.Rating;
-import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
 import seedu.address.model.project.Deadline;
@@ -115,7 +118,7 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedProject)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Project(new Name(trimmedProject),new Description(""),new HashSet<Deadline>());
+        return new Project(new Name(trimmedProject), new Description(""), new ArrayList<Deadline>());
     }
 
     /**
@@ -151,20 +154,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> deadlines} into a {@code Set<Deadline>}.
+     * Parses {@code Collection<String> deadlines} into a {@code List<Deadline>}.
      *
      * @param deadlines The Collection of deadlines to parse.
-     * @returns A HashSet of Deadlines if parsing is successful.
+     * @returns An ArrayList of Deadlines if parsing is successful.
      * @throws ParseException if format is invalid.
      */
-    public static Set<Deadline> parseDeadlines(Collection<String> deadlines) throws ParseException {
+    public static List<Deadline> parseDeadlines(Collection<String> deadlines) throws ParseException {
         requireNonNull(deadlines);
-        final Set<Deadline> deadlineSet = new HashSet<>();
+        final List<Deadline> deadlineSet = new ArrayList<>();
         for (String str : deadlines) {
             if (!Deadline.isValidDeadline(str)) {
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));
             } else {
-                deadlineSet.add(new Deadline(str));
+                deadlineSet.add(new Deadline(str, deadlineSet.size() + 1));
             }
         }
         return deadlineSet;
@@ -192,13 +195,22 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code Role} is invalid.
      */
-    public static Role parseRole(String role) throws ParseException {
+    public static DeveloperRoles parseDeveloperRole(String role) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
-        if (!Role.isValidRole(trimmedRole)) {
-            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        if (!DeveloperRoles.isValidRole(trimmedRole)) {
+            throw new ParseException(DeveloperRoles.NO_SUCH_DEVELOPER_ROLE);
         }
-        return new Role(trimmedRole);
+        return new DeveloperRoles(trimmedRole);
+    }
+
+    public static ClientRoles parseClientRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!ClientRoles.isValidRole(trimmedRole)) {
+            throw new ParseException(ClientRoles.NO_SUCH_CLIENT_ROLE);
+        }
+        return new ClientRoles(trimmedRole);
     }
     /**
      * Parses a {@code String salary} into a {@code Salary}.
@@ -251,4 +263,12 @@ public class ParserUtil {
         return new Description(trimmedDescription);
     }
 
+    public static String parsePassword(String pw) throws ParseException {
+        requireNonNull(pw);
+        String trimmedPw = pw.trim();
+        if (!Password.isValidPassword(trimmedPw)) {
+            throw new ParseException(Password.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedPw;
+    }
 }

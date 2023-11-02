@@ -17,7 +17,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Role;
 
 /**
  * Represents a Developer in the address book, extending the Developer class.
@@ -28,6 +27,7 @@ public class Developer extends Person {
     private final Date dateJoined;
     private final GithubId githubId;
     private final Rating rating;
+    private final DeveloperRoles role;
 
     public static final Prefix[] unusedPrefixes = new Prefix[]{ PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION,
             PREFIX_DEADLINE };
@@ -35,14 +35,15 @@ public class Developer extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Developer(Name name, Phone phone, Email email, Address address, Role role, Set<String> projects,
+    public Developer(Name name, Phone phone, Email email, Address address, DeveloperRoles role, Set<String> projects,
                      Salary salary, Date dateJoined, GithubId githubId, Rating rating) {
-        super(name, phone, email, address, role, projects);
+        super(name, phone, email, address, projects);
         requireAllNonNull(salary, dateJoined, githubId, rating);
         this.salary = salary;
         this.dateJoined = dateJoined;
         this.githubId = githubId;
         this.rating = rating;
+        this.role = role;
     }
 
     public Salary getSalary() {
@@ -67,6 +68,9 @@ public class Developer extends Person {
 
     public Rating getRating() {
         return rating;
+    }
+    public DeveloperRoles getRole() {
+        return role;
     }
 
     @Override

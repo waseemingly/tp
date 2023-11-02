@@ -1,8 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.list;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
 
 /**
@@ -20,6 +23,7 @@ public class ListProjectCommand extends Command {
         assert model != null : "Model cannot be null";
         requireNonNull(model);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        model.updateFilteredProjectDeadlineList(unused -> true);
         return new CommandResult(MESSAGE_SUCCESS, TabIndex.Project);
     }
 }

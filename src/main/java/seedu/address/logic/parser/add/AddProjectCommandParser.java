@@ -3,12 +3,16 @@ package seedu.address.logic.parser.add;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.add.AddProjectCommand;
+import seedu.address.logic.commands.edit.EditProjectCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Name;
@@ -22,20 +26,33 @@ import seedu.address.model.project.Project;
 public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
     public AddProjectCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_DEADLINE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ADDRESS, PREFIX_PROJECT, PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_GITHUBID,
+                PREFIX_RATING, PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION, PREFIX_DEADLINE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
 
+        for (Prefix p : Project.unusedPrefixes) {
+            if (argMultimap.getValue(p).isPresent()) {
+                throw new ParseException(String.format(Messages.MESSAGE_INAPPLICABLE_PREFIX_USED,
+                        AddProjectCommand.MESSAGE_USAGE));
+            }
+        }
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Description desc = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Set<String> deadlineList = new HashSet<>(argMultimap.getAllValues(PREFIX_DEADLINE));
+        List<String> deadlineList = argMultimap.getAllValues(PREFIX_DEADLINE);
+        List<Deadline> deadlines = new ArrayList<>();
+        
+        for (String s : deadlineList) {
+            deadlines.add(new Deadline(s, deadlines.size() + 1));
+        }
 
-        Project project = new Project(name, desc, deadlineList.stream().map(t->new Deadline(t)).collect(Collectors.toSet()));
+        Project project = new Project(name, desc, deadlines);
 
         return new AddProjectCommand(project);
     }

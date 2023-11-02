@@ -7,9 +7,9 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Name;
 import seedu.address.model.person.Address;
+import seedu.address.model.client.ClientRoles;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Role;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -50,11 +50,11 @@ public class ImportClientCommandParser implements Parser<ImportClientCommand> {
                 Phone phone = ParserUtil.parsePhone(clientData[1]);
                 Email email = ParserUtil.parseEmail(clientData[2]);
                 Address address = ParserUtil.parseAddress(clientData[3]);
-                Role role = ParserUtil.parseRole(clientData[4]);
+                ClientRoles role = ParserUtil.parseClientRole(clientData[4]);
                 Name organisation = ParserUtil.parseName(clientData[5]);
                 Document document = ParserUtil.parseDocument(clientData[6]);
                 ArrayList<String> projects = new ArrayList<>();
-                for(int i=7;i< clientData.length;i++) {
+                for (int i = 7; i < clientData.length; i++) {
                     projects.add(clientData[i]);
                 }
                 Set<String> projectList = ParserUtil.parseProjectsWithCheck(projects);

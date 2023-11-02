@@ -20,9 +20,9 @@ import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Name;
-import seedu.address.model.person.Role;
 import seedu.address.model.person.*;
 
 /**
@@ -47,7 +47,7 @@ public class EditClientCommand extends Command {
             + "[" + PREFIX_PROJECT + "PROJECT]...\n"
             + "[" + PREFIX_ORGANISATION + "ORGANISATION] "
             + "[" + PREFIX_DOCUMENT + "DOCUMENT] "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: \n" + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -79,7 +79,7 @@ public class EditClientCommand extends Command {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
-        Role updatedRole = editClientDescriptor.getRole().orElse(clientToEdit.getRole());
+        ClientRoles updatedRole = editClientDescriptor.getRole().orElse(clientToEdit.getRole());
         Set<String> updatedProjects = editClientDescriptor.getProjects().orElse(clientToEdit.getProjects());
         Name updatedOrganisation = editClientDescriptor.getOrganisation().orElse(clientToEdit.getOrganisation());
         Document updatedDocument = editClientDescriptor.getDocument().orElse(clientToEdit.getDocument());
@@ -103,9 +103,13 @@ public class EditClientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
+        String successMessage = String.format(MESSAGE_EDIT_CLIENT_SUCCESS, Messages.format(editedClient));
+        TabIndex index = TabIndex.Client;
+
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, Messages.format(editedClient)), TabIndex.Client);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
 
@@ -143,7 +147,7 @@ public class EditClientCommand extends Command {
         private Email email;
         private Address address;
         private Set<String> projects;
-        private Role role;
+        private ClientRoles role;
         private Name organisation;
         private Document document;
         
@@ -228,11 +232,11 @@ public class EditClientCommand extends Command {
             return Optional.ofNullable(document);
         }
 
-        public void setRole(Role role) {
+        public void setRole(ClientRoles role) {
             this.role = role;
         }
 
-        public Optional<Role> getRole() {
+        public Optional<ClientRoles> getRole() {
             return Optional.ofNullable(role);
         }
 

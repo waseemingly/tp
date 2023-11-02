@@ -47,9 +47,10 @@ public class ImportClientCommand extends Command {
             if (model.hasClient(toAdd)) {
                 output += toAdd.getName().fullName + MESSAGE_DUPLICATE_CLIENT;
             }
-
-            model.addClient(toAdd);
-            output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+            else {
+                model.addClient(toAdd);
+                output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+            }
             output += "\n";
         }
         return new CommandResult(output, TabIndex.Client);

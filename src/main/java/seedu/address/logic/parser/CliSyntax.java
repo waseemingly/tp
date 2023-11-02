@@ -20,6 +20,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_DOCUMENT = new Prefix("do/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("dr/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("dl/");
+    public static final Prefix PREFIX_PASSWORD = new Prefix("pw/");
+    public static final Prefix PREFIX_NEW_PASSWORD = new Prefix("npw/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("pri/");
 
 
 }

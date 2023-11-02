@@ -29,7 +29,7 @@ public class AddDeveloperCommand extends Command {
     public static final String COMMAND_WORD = "add-developer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a developer to the address book. "
-            + "Parameters: "
+            + "\n Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
@@ -39,8 +39,8 @@ public class AddDeveloperCommand extends Command {
             + PREFIX_SALARY + "SALARY "
             + PREFIX_DATEJOINED + "DATE JOINED (Optional) "
             + PREFIX_GITHUBID + "GITHUBID "
-            + PREFIX_RATING + "RATING "
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_RATING + "RATING \n"
+            + "Example: \n" + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
@@ -49,7 +49,9 @@ public class AddDeveloperCommand extends Command {
             + PREFIX_PROJECT + "AndroidApp "
             + PREFIX_PROJECT + "CustomWebsite "
             + PREFIX_SALARY + "4500 "
-            + PREFIX_DATEJOINED + "19-11-2023 ";
+            + PREFIX_DATEJOINED + "19-11-2023 "
+            + PREFIX_GITHUBID + "johng "
+            + PREFIX_RATING + "3";
 
     public static final String MESSAGE_SUCCESS = "New developer added: %1$s";
     public static final String MESSAGE_DUPLICATE_DEVELOPER = "This developer already exists in the address book";
@@ -72,8 +74,12 @@ public class AddDeveloperCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
         }
 
+        String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+        TabIndex index = TabIndex.Developer;
+
         model.addDeveloper(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), TabIndex.Developer);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
     @Override

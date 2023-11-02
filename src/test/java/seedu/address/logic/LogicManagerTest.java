@@ -20,7 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListClientCommand;
+import seedu.address.logic.commands.list.ListClientCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
