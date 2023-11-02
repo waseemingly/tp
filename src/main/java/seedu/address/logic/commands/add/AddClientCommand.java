@@ -69,6 +69,11 @@ public class AddClientCommand extends Command {
         if (model.hasClient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
+        
+        String res = model.areProjectsValid(toAdd);
+        if (res != null) {
+            throw new CommandException(String.format(Messages.MESSAGE_NONEXISTENT_PROJECT, res));
+        }
 
         String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
         TabIndex index = TabIndex.Client;

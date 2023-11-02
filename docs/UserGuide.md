@@ -393,26 +393,6 @@ for each client successfully added
 
 * Relevant UI mock-ups
 
-### Listing information : `list`
-
-Shows a list of all developers in the address book.
-
-Format: `list-TYPE`
-
-* lists the specific type of thing you are asking
-
-Examples:`list developers`
-* lists all the developers
-
-Acceptable inputs:
-* `developers` to list the developers
-* `clients` to list the clients
-* `projects` to list the projects
-
-When command fails due to an error, the respective error message will be displayed:
-* Invalid input
-    * `This is an invalid field to list, you can only list developers, clients or projects`
-
 ### Deleting a developer : `delete`
 
 Deletes the specified developer from the address book.
@@ -427,6 +407,27 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd developer in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st developer in the results of the `find` command.
 
+### Listing information : `list`
+
+Shows a list of all developers in the address book.
+
+Format: `list-TYPE`
+
+* Lists the specific type of thing you are asking.
+
+Examples of usage:`list-developer`
+* Lists all the developers.
+
+Acceptable parameters:
+* `developer` to list the developers
+* `client` to list the clients
+* `project` to list the projects
+
+When command succeeds, CLI shows:
+
+```
+Listed all developers
+```
 ### Find deadlines `find-deadline`
 Finds deadlines in project tab based on date and/or priority
 
@@ -472,7 +473,7 @@ Allows for password to be changed, given the current password and new password m
 
 Format: `change-password pw/[CURRENT_PASSWORD] npw/[NEW_PASSWORD]`
 * Password must be at least 8 characters long and contain at least one digit, one lowercase letter,
-one uppercase letter, and one special character.
+  one uppercase letter, and one special character.
 
 Example of usage: `change-password pw/Password123! npw/NewPass987!`
 
@@ -480,6 +481,155 @@ When command succeeds, CLI shows:
 ```
 Password changed successfully.
 ```
+
+
+### Add roles
+#### Add developer roles: `add-developer-role`
+Adds new developer roles into the system.
+
+Format: `add-developer-role ROLE_NAME`
+* Adds the ROLE_NAME to list of developer roles.
+* There are 3 preset roles in the list of roles: `Frontend Developer`,`Backend Developer`,`Developer`.
+* You will not be able to add a developer to a role that does not exist in this list of developer roles.
+
+Examples of usage:`add-developer-role UIDesigner`
+* Adds the UIDesigner role to list of developer roles.
+* You can now add developers with UIDesigner as their roles.
+
+When command succeeds, CLI shows:
+
+```
+New role for developer added: UIDesigner
+```
+
+Relevant UI mock-ups: <br>
+![Ui](images/addDeveloperRole.png)
+
+#### Add client roles: `add-client-role`
+Adds new client roles into the system.
+
+Format: `add-client-role ROLE_NAME`
+* Adds the ROLE_NAME to list of client roles.
+* There are 4 preset roles in the list of roles: `HR`,`Manager`,`Developer`,`Client`.
+* You will not be able to add a client to a role that does not exist in this list of client roles.
+
+Examples of usage:`add-client-role Boss`
+* Adds the Boss role to list of developer roles.
+* You can now add clients with Boss as their roles.
+
+When command succeeds, CLI shows:
+
+```
+New role for client added: Boss
+```
+Relevant UI mock-ups: <br>
+![Ui](images/addClientRole.png)
+
+### Delete roles
+#### Delete developer roles: `delete-developer-role`
+Delete developer roles from the system.
+
+Format: `delete-developer-role ROLE_NAME`
+* Deletes the ROLE_NAME to list of developer roles.
+* There are 3 preset roles in the list of roles: `Frontend Developer`,`Backend Developer`,`Developer`. These roles cannot be deleted.
+* You will not be able to delete a developer role if there are developers in the list with that role.
+
+Examples of usage:`delete-developer-role UI Manager`
+* Deletes the UIDesigner from the list of developer roles.
+* You can no longer add developers with UIDesigner as their roles.
+
+When command succeeds, CLI shows:
+```
+Role for developers deleted: UIDesigner
+```
+Relevant UI mock-ups: <br>
+![Ui](images/deleteDeveloperRole.png) <br>
+If there are still developers with this Role:
+![Ui](images/deleteDeveloperRoleErr.png)
+
+#### Delete client roles: `delete-client-role`
+Delete client roles from the system.
+
+Format: `delete-client-role ROLE_NAME`
+* Deletes the ROLE_NAME to list of developer roles.
+* There are 4 preset roles in the list of roles: `HR`,`Manager`,`Developer`,`Client`. These roles cannot be deleted.
+* You will not be able to delete a client role if there are clients in the list with that role.
+
+Examples of usage:`delete-client-role Boss`
+* Deletes the Boss from the list of developer roles.
+* You can no longer add clients with Boss as their roles.
+
+When command succeeds, CLI shows:
+```
+Role for clients deleted: Boss
+```
+Relevant UI mock-ups: <br>
+![Ui](images/deleteClientRole.png) <br>
+If there are still clients with this Role:
+![Ui](images/deleteClientRoleErr.png)
+
+### Undo : `undo`
+
+Undo the previous command you entered.
+
+Format: `undo`
+* Each time you type undo, you move back one stage.
+* If you made 5 changes and you wish to undo, you can enter the command `undo` 5 times. The system will remind you when 
+you cannot undo anymore.
+* `undo` works for all `edit`, `add-TYPE` and `delete` commands.
+* **IMPORTANT**:exclamation `undo` does not work for all adding and deleting role functions. Undoing an 
+`add-developer-role` will not delete that role.
+
+Examples of usage: `undo`
+
+* You just deleted a new developer and you wish to `undo`.
+
+When command succeeds, CLI shows:
+```
+Undo successful! The change below has been undone: 
+Deleted Developer: Amy; 
+Phone: 83566674; 
+Email: amy@example.com; 
+Address: 42, Clementi Ave 7, #02-2; 
+Date Joined: 23-11-2023; 
+Role: Frontend Developer; 
+Salary: 5000; 
+Projects: CustomWebsiteAndroidApp
+```
+Relevant UI mock-ups: <br>
+![Ui](images/undo.png)
+
+
+### Redo : `redo`
+
+Redo the previous command you undid.
+
+Format: `redo`
+* Each time you type redo, you move forward one stage.
+* You can only `redo` if you have `undo` before.
+* If you undid 5 changes and you wish to redo, you can enter the command `redo` 5 times. The system will remind you when
+  you cannot redo anymore.
+* `redo` works for all `edit`, `add-TYPE` and `delete` commands.
+* **IMPORTANT**:exclamation `redo` does not work for all adding and deleting role functions. Redoing an
+  `delete-developer-role` will not delete that role.
+
+Examples of usage: 
+* You just `undo` delete developer and you wish to `redo` to add it back.
+  When command succeeds, CLI shows:
+```
+Redo successful! The change below has been redone:
+Deleted Developer: Amy; 
+Phone: 83566674; 
+Email: amy@example.com; 
+Address: 42, Clementi Ave 7, #02-2; 
+Date Joined: 23-11-2023; 
+Role: Frontend Developer; 
+Salary: 5000; 
+Projects: CustomWebsiteAndroidApp
+```
+Relevant UI mock-ups: <br>
+![Ui](images/redo.png)
+
 
 ### Viewing help : `help`
 

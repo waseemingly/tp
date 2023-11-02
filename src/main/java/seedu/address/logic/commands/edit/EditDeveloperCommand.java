@@ -109,6 +109,10 @@ public class EditDeveloperCommand extends Command {
         if (!developerToEdit.isSameDeveloper(editedDeveloper) && model.hasDeveloper(editedDeveloper)) {
             throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
         }
+        String res = model.areProjectsValid(editedDeveloper);
+        if (res != null) {
+            throw new CommandException(String.format(Messages.MESSAGE_NONEXISTENT_PROJECT, res));
+        }
 
         String successMessage = String.format(MESSAGE_EDIT_DEVELOPER_SUCCESS, Messages.format(editedDeveloper));
         TabIndex index = TabIndex.Developer;

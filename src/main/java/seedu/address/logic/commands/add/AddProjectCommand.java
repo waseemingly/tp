@@ -59,7 +59,6 @@ public class AddProjectCommand extends Command {
 
         model.addProject(toAdd);
         model.commitAddressBook(model, successMessage, index);
-        Project.addProjectName(toAdd);
         return new CommandResult(successMessage, index);
     }
 

@@ -9,6 +9,7 @@ import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 
@@ -69,6 +70,14 @@ public interface Model {
     boolean hasClient(Client client);
     boolean hasProject(seedu.address.model.project.Project project);
 
+    /**
+     * Returns null if the projects assigned to a person exist and are valid, returns the invalid project name otherwise.
+     * 
+     * @param person The person to check.
+     * @returns The String of the invalid project name, or null if all projects are valid.
+     */
+    String areProjectsValid(Person person);
+    
     /**
      * Deletes the given person.
      * The person must exist in the address book.

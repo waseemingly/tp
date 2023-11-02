@@ -57,7 +57,7 @@ public class ImportClientCommandParser implements Parser<ImportClientCommand> {
                 for (int i = 7; i < clientData.length; i++) {
                     projects.add(clientData[i]);
                 }
-                Set<String> projectList = ParserUtil.parseProjectsWithCheck(projects);
+                Set<String> projectList = ParserUtil.parseProjectsToSet(projects);
 
                 // Create a Client object
                 Client client = new Client(name, phone, email, address, role, projectList, organisation, document);
