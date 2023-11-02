@@ -3,6 +3,7 @@ package seedu.address.logic.commands.edit;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -72,7 +73,7 @@ public class EditProjectCommand extends Command {
         Name name = projectToEdit.getProjectName();
         Description updatedDescription = editProjectDescriptor.getDescription()
                 .orElse(projectToEdit.getProjectDescription());
-        Set<Deadline> updatedDeadlines = editProjectDescriptor.getDeadlines().orElse(projectToEdit.getProjectDeadlines());
+        List<Deadline> updatedDeadlines = editProjectDescriptor.getDeadlines().orElse(projectToEdit.getProjectDeadlines());
 
         return new seedu.address.model.project.Project(name, updatedDescription, updatedDeadlines);
     }
@@ -92,9 +93,13 @@ public class EditProjectCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
 
+        String successMessage = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, Messages.format(editedProject));
+        TabIndex index = TabIndex.developers;
+
         model.setProject(projectToEdit, editedProject);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, Messages.format(editedProject)), TabIndex.Project);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
 
@@ -128,7 +133,7 @@ public class EditProjectCommand extends Command {
      */
     public static class EditProjectDescriptor {
         private Description desc;
-        private Set<Deadline> deadlines;
+        private List<Deadline> deadlines;
 
         public EditProjectDescriptor() {}
 
@@ -157,12 +162,12 @@ public class EditProjectCommand extends Command {
             return Optional.ofNullable(desc);
         }
 
-        public void setDeadlines(Set<Deadline> deadlines) {
-            this.deadlines = (deadlines != null) ? new HashSet<>(deadlines) : null;
+        public void setDeadlines(List<Deadline> deadlines) {
+            this.deadlines = (deadlines != null) ? new ArrayList<>(deadlines) : null;
         }
 
-        public Optional<Set<Deadline>> getDeadlines() {
-            return (deadlines != null) ? Optional.of(Collections.unmodifiableSet(deadlines)) : Optional.empty();
+        public Optional<List<Deadline>> getDeadlines() {
+            return (deadlines != null) ? Optional.of(Collections.unmodifiableList(deadlines)) : Optional.empty();
         }
         
         @Override
