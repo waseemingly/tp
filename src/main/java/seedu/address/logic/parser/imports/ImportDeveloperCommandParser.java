@@ -53,7 +53,7 @@ public class ImportDeveloperCommandParser implements Parser<ImportDeveloperComma
                 for(int i=9;i< employee.length;i++) {
                     projects.add(employee[i]);
                 }
-                Set<String> projectList = ParserUtil.parseProjectsWithCheck(projects);
+                Set<String> projectList = ParserUtil.parseProjectsToSet(projects);
 
                 Developer developer = new Developer(name, phone, email, address,role,projectList, salary, dateJoined, githubId, rating);
                 toAddList.add(developer);

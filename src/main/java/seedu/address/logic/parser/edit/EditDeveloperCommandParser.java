@@ -123,6 +123,6 @@ public class EditDeveloperCommandParser implements Parser<EditDeveloperCommand> 
             return Optional.empty();
         }
         Collection<String> projectSet = projects.size() == 1 && projects.contains("") ? Collections.emptySet() : projects;
-        return Optional.of(ParserUtil.parseProjectsWithCheck(projectSet));
+        return Optional.of(ParserUtil.parseProjectsToSet(projectSet));
     }
 }

@@ -52,8 +52,6 @@ public class Project {
             PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE,
             PREFIX_PROJECT, PREFIX_ROLE, PREFIX_NAME };
     
-    private static final Set<String> projectNameList = new HashSet<>();
-
     /**
      * Constructs a {@code Tag}.
      *
@@ -180,31 +178,8 @@ public class Project {
         return otherProject != null
                 && otherProject.getName().equals(getName());
     }
-
-    /**
-     * Returns true if a given String is a valid project name.
-     * 
-     * @param test The String to test.
-     */
-    public static boolean isValidProject(String test) {
-        return projectNameList.contains(test);
-    }
-
-    /**
-     * Adds the name of the project to projectNameList.
-     * 
-     * @param project The project with the name to add.
-     */
-    public static void addProjectName(Project project) {
-        projectNameList.add(project.getProjectName().fullName);
-    }
-
-    /**
-     * Deletes the name of the project from projectNameList.
-     *
-     * @param project The project with the name to delete.
-     */
-    public static void deleteProjectName(Project project) {
-        projectNameList.remove(project.getProjectName().fullName);
+    
+    public boolean isSameProject(String projectName) {
+        return projectName.equals(getName());
     }
 }

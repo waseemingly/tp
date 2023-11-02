@@ -73,6 +73,10 @@ public class AddDeveloperCommand extends Command {
         if (model.hasDeveloper(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
         }
+        String res = model.areProjectsValid(toAdd);
+        if (res != null) {
+            throw new CommandException(String.format(Messages.MESSAGE_NONEXISTENT_PROJECT, res));
+        }
 
         String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
         TabIndex index = TabIndex.Developer;
