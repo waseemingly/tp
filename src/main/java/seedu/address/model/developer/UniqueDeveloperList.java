@@ -3,11 +3,14 @@ package seedu.address.model.developer;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.client.Client;
 import seedu.address.model.person.exceptions.DuplicateDeveloperException;
 import seedu.address.model.person.exceptions.DeveloperNotFoundException;
 
@@ -93,6 +96,17 @@ public class UniqueDeveloperList implements Iterable<Developer> {
         }
 
         internalList.setAll(developers);
+    }
+
+    public void updateDeveloperProjects(String project) {
+        iterator().forEachRemaining(
+                developer -> {
+                    Set<String> newprojectset = new HashSet<>(developer.getProjects());
+                    newprojectset.remove(project);
+                    setDeveloper(developer, new Developer(developer.getName(), developer.getPhone(), developer.getEmail(),
+                            developer.getAddress(), developer.getRole(), newprojectset,
+                            developer.getSalary(), developer.getDateJoined(), developer.getGithubId(), developer.getRating()));
+                });
     }
 
     /**

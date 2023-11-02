@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.DeveloperRoles;
 
 /**
  * Container for user visible messages.
@@ -61,19 +62,19 @@ public class Messages {
     public static String format(Developer developer) {
         final StringBuilder builder = new StringBuilder();
         builder.append(developer.getName())
-                .append("; Phone: ")
+                .append("; \nPhone: ")
                 .append(developer.getPhone())
-                .append("; Email: ")
+                .append("; \nEmail: ")
                 .append(developer.getEmail())
-                .append("; Address: ")
+                .append("; \nAddress: ")
                 .append(developer.getAddress())
-                .append("; Date Joined: ")
+                .append("; \nDate Joined: ")
                 .append(developer.getDateJoined())
-                .append("; Role: ")
+                .append("; \nRole: ")
                 .append(developer.getRole())
-                .append("; Salary: ")
+                .append("; \nSalary: ")
                 .append(developer.getSalary())
-                .append("; Projects: ");
+                .append("; \nProjects: ");
         developer.getProjects().forEach(builder::append);
         return builder.toString();
     }
@@ -81,19 +82,19 @@ public class Messages {
     public static String format(Client client) {
         final StringBuilder builder = new StringBuilder();
         builder.append(client.getName())
-                .append("; Phone: ")
+                .append("; \nPhone: ")
                 .append(client.getPhone())
-                .append("; Email: ")
+                .append("; \nEmail: ")
                 .append(client.getEmail())
-                .append("; Address: ")
+                .append("; \nAddress: ")
                 .append(client.getAddress())
-                .append("; Organisation: ")
+                .append("; \nOrganisation: ")
                 .append(client.getOrganisation())
-                .append("; Role: ")
+                .append("; \nRole: ")
                 .append(client.getRole())
-                .append("; Document: ")
+                .append("; \nDocument: ")
                 .append(client.getDocument())
-                .append("; Projects: ");
+                .append("; \nProjects: ");
         client.getProjects().forEach(builder::append);
         return builder.toString();
     }
@@ -104,7 +105,14 @@ public class Messages {
                 .append(";\nDescription: ")
                 .append(project.getProjectDescription())
                 .append(";\nDeadlines:\n");
-        project.getProjectDeadlines().forEach(t -> builder.append(t.getStringRepresentation()));
+        project.getProjectDeadlines().forEach(t -> builder.append(t.getPrintedStringRepresentation()).append("\n"));
         return builder.toString();
     }
+
+    public static String format(String role) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(role);
+        return builder.toString();
+    }
+
 }

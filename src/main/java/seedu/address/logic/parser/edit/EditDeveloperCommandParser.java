@@ -91,7 +91,7 @@ public class EditDeveloperCommandParser implements Parser<EditDeveloperCommand> 
             editDeveloperDescriptor.setDateJoined(ParserUtil.parseDateJoined(argMultimap.getValue(PREFIX_DATEJOINED).get()));
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
-            editDeveloperDescriptor.setRole(ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get()));
+            editDeveloperDescriptor.setRole(ParserUtil.parseDeveloperRole(argMultimap.getValue(PREFIX_ROLE).get()));
         }
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             editDeveloperDescriptor.setSalary(ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get()));

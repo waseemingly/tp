@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.imports;
 
-import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.imports.ImportDeveloperCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -8,12 +7,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.DeveloperRoles;
 import seedu.address.model.developer.GithubId;
 import seedu.address.model.developer.Rating;
-import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
-import seedu.address.model.project.Project;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ public class ImportDeveloperCommandParser implements Parser<ImportDeveloperComma
                 Email email = ParserUtil.parseEmail(employee[2]);
                 Address address = ParserUtil.parseAddress(employee[3]);
                 Date dateJoined = ParserUtil.parseDateJoined(employee[4]);
-                Role role = ParserUtil.parseRole(employee[5]);
+                DeveloperRoles role = ParserUtil.parseDeveloperRole(employee[5]);
                 Salary salary = ParserUtil.parseSalary(employee[6]);
                 GithubId githubId = ParserUtil.parseGithubId(employee[7]);
                 Rating rating = ParserUtil.parseRating(employee[8]);

@@ -8,17 +8,15 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.add.AddClientCommand;
-import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Name;
-import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Role;
 
 /**
  * Parses input arguments and creates a new AddClientCommand object
@@ -51,7 +49,7 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+        ClientRoles role = ParserUtil.parseClientRole(argMultimap.getValue(PREFIX_ROLE).get());
         Set<String> projectList = new HashSet<>(argMultimap.getAllValues(PREFIX_PROJECT));
         Name organisation = ParserUtil.parseName(argMultimap.getValue(PREFIX_ORGANISATION).get());
         Document document = ParserUtil.parseDocument(argMultimap.getValue(PREFIX_DOCUMENT).get());

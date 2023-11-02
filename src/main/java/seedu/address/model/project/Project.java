@@ -51,6 +51,8 @@ public class Project {
     public static final Prefix[] unusedPrefixesForEdit = new Prefix[]{ PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
             PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE,
             PREFIX_PROJECT, PREFIX_ROLE, PREFIX_NAME };
+    
+    private static final Set<String> projectNameList = new HashSet<>();
 
     /**
      * Constructs a {@code Tag}.
@@ -185,6 +187,24 @@ public class Project {
      * @param test The String to test.
      */
     public static boolean isValidProject(String test) {
-        return true;
+        return projectNameList.contains(test);
+    }
+
+    /**
+     * Adds the name of the project to projectNameList.
+     * 
+     * @param project The project with the name to add.
+     */
+    public static void addProjectName(Project project) {
+        projectNameList.add(project.getProjectName().fullName);
+    }
+
+    /**
+     * Deletes the name of the project from projectNameList.
+     *
+     * @param project The project with the name to delete.
+     */
+    public static void deleteProjectName(Project project) {
+        projectNameList.remove(project.getProjectName().fullName);
     }
 }

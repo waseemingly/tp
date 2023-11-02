@@ -4,21 +4,19 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.text.SimpleDateFormat;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
-import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.DeveloperRoles;
 import seedu.address.model.developer.GithubId;
 import seedu.address.model.developer.Rating;
-import seedu.address.model.person.Role;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.*;
 
@@ -57,7 +55,7 @@ public class AddDeveloperCommandParser implements Parser<AddDeveloperCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Date dateJoined = ParserUtil.parseDateJoined(argMultimap.getValue(PREFIX_DATEJOINED)
                 .orElse(new SimpleDateFormat("dd-MM-yyyy").format(new java.util.Date())));
-        Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+        DeveloperRoles role = ParserUtil.parseDeveloperRole(argMultimap.getValue(PREFIX_ROLE).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
         Set<String> projectList = ParserUtil.parseProjectsWithCheck(argMultimap.getAllValues(PREFIX_PROJECT));
         GithubId githubId = ParserUtil.parseGithubId(argMultimap.getValue(PREFIX_GITHUBID).orElse(""));

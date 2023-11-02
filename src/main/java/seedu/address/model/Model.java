@@ -116,4 +116,5 @@ public interface Model {
 
     String getPreviousCommand();
     TabIndex getPreviousTabIndex();
+
 }
