@@ -84,6 +84,11 @@ public class Deadline {
                 && priority.equals(otherDeadline.priority);
     }
 
+    public String getPrintedStringRepresentation() {
+        return "" + num + ". " + desc.toString() + " by: " + date.toString() + ", priority: " + priority.toString()
+                + " (" + (isDone? "done)" : "undone)"); 
+    }
+    
     public String getStringRepresentation() {
         return date.toString()+","+desc.toString()+","+priority.toString()+","+(isDone? "1" : "0");
     }
