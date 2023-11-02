@@ -275,13 +275,13 @@ Relevant UI mock-ups (???)
 
 ### Find according to type and industry details: `Find`
 * What it does
-    * Project managers can find developers and clients for contacts related to the keyword (eg. by Find project name, members of the project team will appear)
+    * Project managers can find developers, clients and projects based on their attributes.
 * Format
-    * `find-developer p/<Project Name>`
-    * `find-developer r/<Role>`
-    * `find-client n/<Name>`
+    * `find-developer pr/<Project Name>`
+    * `find-developer r/<Role>, rt<Rating>`
+    * `find-client o/<Organisation>, r/<Role>`
 * Example
-    * `find-developer p/2103/T` (Prints developers in 2103/T prj)
+    * `find-developer pr/2103/T` (Prints developers in 2103/T prj)
     * `find-developer r/Senior Developer` (Prints developers of the senior developer role)
     * `find-client n/Amy` (Prints everyone of the name Amy)
 * Acceptable Parameters
