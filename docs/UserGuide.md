@@ -215,49 +215,125 @@ To view all our features, you may visit our [Features](#features) section
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Adding new information : `add`
-Manager can add a new employee to the list of people into the data one by one.
-* Format
-    * `create new employee`
-    * `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE s/SALARY pr/{PROJECT1, PROJECT2…}`
-* Example
-    * User types: `create new employee`
-    * CLI  shows: `Input employee details in the format below:`
-      `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DATE_JOINED r/ROLE `
-    * User types: `n/AMY p/87654321 e/amy@u.nus.edu a/NUS UTOWN d/06 Sep 2023 r/Developer s/4999`
-* Acceptable parameters
-    * Names can only consist of capital and small letters, spaces and hyphens.
-    * Contact number has to 8 digits without spaces
-    * Email has to be of the format `<TEXT>@<TEXT>`
-    * Date joined has to be of format `dd mmm yyyy `(E.x 09 Sept 2022)
-    * Salary has to be at least 4 digits
-    * Project should be valid project name already listed in the company, multiple projects have to be comma separated
-    * Password is at least 8 characters long, with a combination of uppercase letters, lowercase letters, numbers, and symbols
+### Add
+Project Manager can add developers, clients and projects.
+#### Add Developer: `add-developer`
+
+* Type in:
+  * `add-developer`
+* And populate his/her details with prefixes and fields by typing in
+  * `n/NAME` for the developer's name
+  * `p/PHONE_NUMBER` for the developer's phone number
+  * `e/EMAIL` for the developer's email
+  * `a/ADDRESS` for the developer's address
+  * `r/ROLE` for the developer's assigned role
+  * `pr/{PROJECT1, PROJECT2…}` for developer's assigned projects
+  * `s/SALARY` for the developer's salary
+  * `d/DATE_JOINED` for the date the developer joined
+  * `g/GITHUBID` for the developer's githubid
+  * `rt/RATING` for the assigned rating for the developer
+* In the following overall format
+  * `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE pr/PROJECT1 pr/PROJECT2 s/SALARY d/DATE_JOINED g/GITHUBID rt/RATING`
+  
+Example:
+
+`add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
+
 * When command succeeds
     * Continuing from the above example, CLI shows:
     ```
   The following user has been added:
-  Name: AMY
-    Contact Number: 87654321
-    Email: amy@u.nus.edu
-    Address: NUS UTOWN
-    Date Joined: 06 Sep 2023
-    Role: Developer
-    Salary: 4999
-    Assigned Projects:login
-    Username: amy
-    Password: Password123!
+    New developer added: Mahidharah; 
+    Phone: 81256788;
+    Email: aunus@nus.com;
+    Address: Blk 88 Lorong 8 Serangoon Gardens, #08-88;
+    Date Joined: 20-10-2020;
+    Role: Developer;
+    Salary: 8880;
+   Projects: AppolloOrbital
   ```
 * When command fails
     * User particular's error
-        * `Error! New user’s <PARTICULAR> already exists in <COMPANY_NAME>`
+        * `This developer already exists in the address book`
     * Format error
-        * `Error! New user’s <PARTICULAR> does not follow the format: <FORMAT>`
-        * E.g.:  `Error! New user’s name does not follow the format:
-          Names can only consist of capital and small letters, spaces and hyphens.`
-    * Missing particular's error
-        * `Error! New user’s {MISSING_PARTICULARS} are missing.`
-* Relevant UI mock-ups
+        * `<PARTICULAR> should ...`
+        * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
+    * Missing particular's error (when prefixes are missing)
+        * `Invalid command format!`
+
+#### Add Client: `add-client`
+
+* Type in:
+    * `add-client`
+* And populate his/her details with prefixes and fields by typing in
+    * `n/NAME` for the client's name
+    * `p/PHONE_NUMBER` for the client's phone number
+    * `e/EMAIL` for the client's email
+    * `a/ADDRESS` for the client's address
+    * `r/ROLE` for the client's role in their organisation
+    * `pr/{PROJECT1, PROJECT2…}` for client's assigned projects
+    * `o/ORGANISATION` for the organisation the client is representing
+    * `do/DOCUMENT` for the document associated with the client
+* In the following overall format
+    * `add-client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE pr/PROJECT1 pr/PROJECT2 o/ORGANISATION do/document`
+
+Example:
+
+`add-client n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/HR pr/Appollo pr/Orbital o/Google do/google.com`
+
+* When command succeeds
+    * Continuing from the above example, CLI shows:
+    ```
+  New client added: Mahidharah; 
+  Phone: 81256788;
+  Email: aunus@nus.com;
+  Address: Blk 88 Lorong 8 Serangoon Gardens, #08-88;
+  Organisation: Google;
+  Role: HR;
+  Document: google.com;
+  Projects: AppolloOrbital
+  ```
+* When command fails
+    * User particular's error
+        * `This client already exists in the address book`
+    * Format error
+        * `<PARTICULAR> should ...`
+        * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
+    * Missing particular's error (when prefixes are missing)
+        * `Invalid command format!`
+
+#### Add Project: `add-project`
+
+* Type in:
+    * `add-project`
+* And populate its details with prefixes and fields by typing in
+    * `n/NAME` for the project's name
+    * `dr/DESCRIPTION` for the project's description
+    * `dl/{DEADLINE1, DEADLINE2...}` for deadlines assocaterd with the project
+* In the following overall format
+    * `add-project n/NAME dr/DESCRIPTION dl/DEADLINE1 dl/DEADLINE2`
+
+Example:
+
+`add-project n/Tp dr/Team Project dl/19-12-2023,Design backend,HIGH,0 dl/21-12-2023,Design frontend,LOW,1`
+
+* When command succeeds
+    * Continuing from the above example, CLI shows:
+    ```
+  New project added: Tp;
+  Description: Team Project;
+  Deadlines:
+  1. Design backend by: 19-12-2023, priority: HIGH (undone)
+  2. Design frontend by: 21-12-2023, priority: LOW (done)
+  ```
+* When command fails
+    * User particular's error
+        * `This project already exists in the address book`
+    * Format error
+        * `<PARTICULAR> should ...`
+        * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
+    * Missing particular's error (when prefixes are missing)
+        * `Invalid command format!`
 
 ### Main feature
 #### developer specific feature
