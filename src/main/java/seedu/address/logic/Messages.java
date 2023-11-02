@@ -23,7 +23,7 @@ public class Messages {
     public static final String MESSAGE_INAPPLICABLE_PREFIX_USED = "You tried to edit an inapplicable field! Please check " +
             "the prefixes used and try again. \n%1$s";
     public static final String MESSAGE_NONEXISTENT_PROJECT = "There is no existing Project with the name: %1$s!";
-    public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW = ;
+
 
     public static String getMessageDevelopersListedOverview(int count) {
         return count == 1
