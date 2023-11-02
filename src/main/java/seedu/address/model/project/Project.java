@@ -16,13 +16,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.commons.Name;
 import seedu.address.model.person.Person;
@@ -35,7 +38,7 @@ public class Project {
 
     private final Name projectName;
     private final Description description;
-    private final Set<Deadline> deadlines = new HashSet<>();
+    private final List<Deadline> deadlines;
     public static final Prefix[] unusedPrefixes = new Prefix[]{ PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
             PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE, 
             PREFIX_PROJECT, PREFIX_ROLE };
@@ -49,14 +52,14 @@ public class Project {
      *
      * @param projectName A valid project name.
      */
-    public Project(Name projectName, Description desc, Set<Deadline> deadlines) {
+    public Project(Name projectName, Description desc, List<Deadline> deadlines) {
         requireAllNonNull(projectName, desc, deadlines);
         this.projectName = projectName;
         this.description = desc;
-        this.deadlines.addAll(deadlines);
+        this.deadlines = deadlines;
     }
     public Project(String projectName) {
-        this(new Name(projectName),new Description(""),new HashSet<>());
+        this(new Name(projectName),new Description(""),new ArrayList<>());
     }
     public String getName() {
         return projectName.fullName;
@@ -101,11 +104,58 @@ public class Project {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns a list with each element being the String representation of the respective deadline.
+     * The element at the given index is the String representation of the respective deadline such that it is completed.
+     * 
+     * @param index The index of the deadline to mark as completed.
+     * @return A list containing String representations of deadlines.
+     */
+    public List<String> markDeadlineStringRep(int index) {
+        List<String> res = new ArrayList<>();
+        for (int i = 0; i < deadlines.size() ; i++) {
+            if (i == index) {
+                res.add(deadlines.get(i).getDoneStringRepresentation());
+            } else {
+                res.add(deadlines.get(i).getStringRepresentation());
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Returns a list with each element being the String representation of the respective deadline.
+     * The element at the given index is the String representation of the respective deadline such that it is incomplete.
+     *
+     * @param index The index of the deadline to mark as incomplete.
+     * @return A list containing String representations of deadlines.
+     */
+    public List<String> unmarkDeadlineStringRep(int index) {
+        List<String> res = new ArrayList<>();
+        for (int i = 0; i < deadlines.size() ; i++) {
+            if (i == index) {
+                res.add(deadlines.get(i).getUndoneStringRepresentation());
+            } else {
+                res.add(deadlines.get(i).getStringRepresentation());
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Returns the size of the deadlines list.
+     * 
+     * @return An integer representing the size of the deadlines list.
+     */
+    public int deadlineListSize() {
+        return deadlines.size();
+    }
+    
+    /**
+     * Returns an immutable list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Deadline> getProjectDeadlines() {
-        return Collections.unmodifiableSet(deadlines);
+    public List<Deadline> getProjectDeadlines() {
+        return Collections.unmodifiableList(deadlines);
     }
     public boolean isSameProject(Project otherProject) {
         if (otherProject == this) {

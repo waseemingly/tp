@@ -110,10 +110,13 @@ public class EditDeveloperCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
         }
 
+        String successMessage = String.format(MESSAGE_EDIT_DEVELOPER_SUCCESS, Messages.format(editedDeveloper));
+        TabIndex index = TabIndex.Developer;
+
         model.setDeveloper(developerToEdit, editedDeveloper);
         model.updateFilteredDeveloperList(Model.PREDICATE_SHOW_ALL_DEVELOPERS);
-        model.commitAddressBook(model);
-        return new CommandResult(String.format(MESSAGE_EDIT_DEVELOPER_SUCCESS, Messages.format(editedDeveloper)), TabIndex.Developer);
+        model.commitAddressBook(model, successMessage, index);
+        return new CommandResult(successMessage, index);
     }
 
 

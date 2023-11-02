@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
@@ -220,8 +221,8 @@ public class ModelManager implements Model {
 
     //=========== Undo/Redo Accessors =============================================================
     @Override
-    public void commitAddressBook(Model model) {
-        versionedAddressBook.commit(model);
+    public void commitAddressBook(Model model, String message, TabIndex index) {
+        versionedAddressBook.commit(model, message, index);
     }
 
     @Override
@@ -232,6 +233,16 @@ public class ModelManager implements Model {
     @Override
     public void redoAddressBook(Model model) throws CommandException {
         versionedAddressBook.redo(model);
+    }
+
+    @Override
+    public String getPreviousCommand() {
+        return versionedAddressBook.getPreviousMessage();
+    }
+
+    @Override
+    public TabIndex getPreviousTabIndex() {
+        return versionedAddressBook.getPreviousTabIndex();
     }
 
     @Override

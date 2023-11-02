@@ -3,7 +3,9 @@ package seedu.address.logic.parser.add;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -43,9 +45,14 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Description desc = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Set<String> deadlineList = new HashSet<>(argMultimap.getAllValues(PREFIX_DEADLINE));
+        List<String> deadlineList = argMultimap.getAllValues(PREFIX_DEADLINE);
+        List<Deadline> deadlines = new ArrayList<>();
+        
+        for (String s : deadlineList) {
+            deadlines.add(new Deadline(s, deadlines.size() + 1));
+        }
 
-        Project project = new Project(name, desc, deadlineList.stream().map(t->new Deadline(t)).collect(Collectors.toSet()));
+        Project project = new Project(name, desc, deadlines);
 
         return new AddProjectCommand(project);
     }
