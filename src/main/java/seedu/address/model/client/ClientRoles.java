@@ -1,16 +1,18 @@
 package seedu.address.model.client;
+
+import static java.util.Objects.requireNonNull;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
-import javax.management.relation.Role;
-
+import seedu.address.model.Model;
 import seedu.address.model.developer.DeveloperRoles;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Developer's role in the company.
@@ -20,6 +22,10 @@ public class ClientRoles {
     private static List<ClientRoles> roles = new ArrayList<>();
     public static final String NO_SUCH_CLIENT_ROLE = "There is no such client role, "
             + "please create role before proceeding";
+    private static boolean noRepeat;
+    private static boolean notDefault;
+    private static boolean notInList;
+    private static String listOfRoles;
 
     public final String role;
 
@@ -33,6 +39,10 @@ public class ClientRoles {
         this.role = role;
     }
     static {
+        roles.add(new ClientRoles("Manager"));
+        roles.add(new ClientRoles("Developer"));
+        roles.add(new ClientRoles("HR"));
+        roles.add(new ClientRoles("Client"));
         loadClientRoles();
     }
 
@@ -52,6 +62,45 @@ public class ClientRoles {
         return roles.toString().contains(role);
     }
 
+    public static String printRoles() {
+        listOfRoles = roles.toString();
+        return listOfRoles;
+    }
+
+    public static boolean isRemovableRole(Model model, String role) {
+        // are there information using it
+        Predicate<Client> finalPredicate = client -> true;
+        finalPredicate = finalPredicate.and(new RoleClientContainsKeywordsPredicate(Arrays.asList(role)));
+        model.updateFilteredClientList(finalPredicate);
+        int size = model.getFilteredClientList().size();
+        if (size == 0) {
+            noRepeat = true;
+        } else {
+            noRepeat = false;
+        }
+
+        // is it a default role
+        if (role.contains("Manager") || role.contains("HR") || role.contains("Developer") || role.contains("Manager")) {
+            notDefault = false;
+        } else {
+            notDefault = true;
+        }
+
+        // is it even in the list
+        if (isValidRole(role)) {
+            notInList = false;
+        } else {
+            notInList = true;
+        }
+
+        if (noRepeat && notDefault && notInList) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
     public static void saveClientRoles() {
         try {
             // Save roles to a text file
@@ -67,14 +116,31 @@ public class ClientRoles {
     public static void loadClientRoles() {
         try (BufferedReader reader = new BufferedReader(new FileReader("ClientRoles.txt"))) {
             String line;
+            int lineCount = 1;
+
             while ((line = reader.readLine()) != null) {
-                roles.add(new ClientRoles(line));
+                if (lineCount >= 5) {
+                    roles.add(new ClientRoles(line));
+                }
+                lineCount++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+
+    public static boolean isNotDefault() {
+        return notDefault;
+    }
+
+    public static boolean isNoRepeat() {
+        return noRepeat;
+    }
+    public static boolean isNotInList() {
+        return notInList;
+    }
+
 
     @Override
     public String toString() {

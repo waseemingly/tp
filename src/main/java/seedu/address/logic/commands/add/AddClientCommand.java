@@ -29,7 +29,7 @@ public class AddClientCommand extends Command {
     //                  Name organisation, Document document
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book. "
-            + "Parameters: "
+            + "\n Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
@@ -38,7 +38,7 @@ public class AddClientCommand extends Command {
             + "[" + PREFIX_PROJECT + "PROJECT]...\n"
             + PREFIX_ORGANISATION + "ORGANISATION "
             + PREFIX_DOCUMENT + "DOCUMENT "
-            + "Example: " + COMMAND_WORD + " "
+            + "\n Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "

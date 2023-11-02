@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.AddRoles;
+package seedu.address.logic.parser.addRoles;
 
 import seedu.address.logic.commands.addRoles.AddClientRoleCommand;
 import seedu.address.logic.parser.Parser;
@@ -6,7 +6,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 import static java.util.Objects.requireNonNull;
 
-public class AddClientRoleParser implements Parser<AddClientRoleCommand> {
+public class AddClientRoleCommandParser implements Parser<AddClientRoleCommand> {
     @Override
     public AddClientRoleCommand parse(String args) throws ParseException {
         requireNonNull(args);

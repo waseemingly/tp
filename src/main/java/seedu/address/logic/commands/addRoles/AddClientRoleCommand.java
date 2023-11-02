@@ -11,7 +11,6 @@ import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.ClientRoles;
-import seedu.address.model.developer.DeveloperRoles;
 
 public class AddClientRoleCommand extends Command {
     public static final String COMMAND_WORD = "add-client-role";
@@ -41,7 +40,7 @@ public class AddClientRoleCommand extends Command {
         }
 
         String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
-        TabIndex index = TabIndex.Developer;
+        TabIndex index = TabIndex.Client;
 
         ClientRoles newRole = new ClientRoles(toAdd.toString());
         ClientRoles.addClientRole(newRole);
