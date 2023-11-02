@@ -31,8 +31,6 @@ public class UnmarkDeadlineCommand extends Command {
             + "displayed project list. \n"
             + "Parameters: "
             + "PROJECT_INDEX DEADLINE_INDEX \n"
-            + "DEADLINE_INDEX (must be a positive integer, representing the index of the deadline in the "
-            + "displayed deadline table) "
             + "Example: " + COMMAND_WORD + " 1 2";
 
     private final Index deadlineIndex;
