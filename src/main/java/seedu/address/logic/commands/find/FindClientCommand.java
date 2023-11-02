@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.getMessageClientsListedOverview;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.DocumentContainsKeywordsPredicate;
@@ -71,7 +74,7 @@ public class FindClientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredClientList((Predicate<Client>) predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()), TabIndex.Client);
+                String.format(Messages.MESSAGE_DEVELOPERS_LISTED_OVERVIEW, model.getFilteredDeveloperList().size()), TabIndex.Client);
     }
 
 

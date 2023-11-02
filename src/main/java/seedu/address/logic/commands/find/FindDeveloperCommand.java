@@ -1,11 +1,14 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.find;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.getMessageDevelopersListedOverview;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
 import seedu.address.model.developer.DateJoinedContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
@@ -79,9 +82,11 @@ public class FindDeveloperCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredDeveloperList((Predicate<Developer>) predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_DEVELOPERS_LISTED_OVERVIEW, model.getFilteredDeveloperList().size()),
-                TabIndex.Developer);
+
+        int resultCount = model.getFilteredDeveloperList().size();
+        String message = getMessageDevelopersListedOverview(resultCount);
+
+        return new CommandResult(message, TabIndex.Developer);
     }
 
 

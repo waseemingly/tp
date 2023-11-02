@@ -12,9 +12,9 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteDeveloperCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindClientCommand;
-import seedu.address.logic.commands.FindDeveloperCommand;
-import seedu.address.logic.commands.FindProjectCommand;
+import seedu.address.logic.commands.find.FindClientCommand;
+import seedu.address.logic.commands.find.FindDeveloperCommand;
+import seedu.address.logic.commands.find.FindProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListClientCommand;
@@ -37,6 +37,9 @@ import seedu.address.logic.parser.edit.EditProjectCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.imports.ImportClientCommandParser;
 import seedu.address.logic.parser.imports.ImportDeveloperCommandParser;
+import seedu.address.logic.parser.find.FindClientCommandParser;
+import seedu.address.logic.parser.find.FindDeveloperCommandParser;
+import seedu.address.logic.parser.find.FindProjectCommandParser;
 
 /**
  * Parses user input.

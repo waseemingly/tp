@@ -1,10 +1,11 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.find;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.FindDeveloperCommand;
+import seedu.address.logic.commands.find.FindDeveloperCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.developer.DateJoinedContainsKeywordsPredicate;
 import seedu.address.model.developer.GithubIdContainsKeywordsPredicate;

@@ -1,9 +1,12 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.find;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.getMessageProjectsListedOverview;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
 import seedu.address.model.person.KeywordPredicate;
 import seedu.address.model.project.DeadlineContainsKeywordsPredicate;
@@ -41,8 +44,11 @@ public class FindProjectCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredProjectList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_DEVELOPERS_LISTED_OVERVIEW, model.getFilteredDeveloperList().size()),TabIndex.Project);
+
+        int resultCount = model.getFilteredProjectList().size();
+        String message = getMessageProjectsListedOverview(resultCount);
+
+        return new CommandResult(message, TabIndex.Project);
     }
 
 
