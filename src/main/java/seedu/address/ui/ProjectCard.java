@@ -2,20 +2,28 @@ package seedu.address.ui;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.MainApp;
+import seedu.address.logic.commands.TabIndex;
+import seedu.address.model.commons.Date;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.stream.Collectors;
 
 
@@ -74,8 +82,61 @@ public class ProjectCard extends UiPart<Region> {
         priorityCol.setMinWidth(95);
         priorityCol.setCellValueFactory(
                 new PropertyValueFactory<>("priority"));
+        priorityCol.setCellFactory(column -> new TableCell<ProjectCard, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    // For empty cells, set no text and no background color
+                    setText("");
+                    setStyle(""); // Clear any previous styling
+                } else {
+                    setText(item); // Set the text
+
+                    // Customize cell color based on priority
+                    if ("HIGH".equals(item)) {
+                        // Set the cell background color for HIGH priority
+                        setStyle("-fx-background-color: #FFC0CB;");
+                    } else if ("MEDIUM".equals(item)) {
+                        // Set the cell background color for MEDIUM priority
+                        setStyle("-fx-background-color: #FFFFE0;");
+                    } else if ("LOW".equals(item)) {
+                        // Set the cell background color for LOW priority
+                        setStyle("-fx-background-color: #90EE90;");
+                    } else {
+                        // Handle any other cases or priority values
+                        setStyle(""); // Clear any previous styling
+                    }
+                }
+            }
+        });
         TableColumn doneCol = new TableColumn("Done");
         doneCol.setMinWidth(95);
+        Image imageTrue = new Image(MainApp.class.getResourceAsStream("/images/tick.png"));
+        Image imageFalse = new Image(MainApp.class.getResourceAsStream("/images/cross.png"));
+        doneCol.setCellFactory(col -> new TableCell<ProjectCard, Boolean>(){
+
+            private final ImageView imageView = new ImageView();
+
+            {
+                // initialize ImageView + set as graphic
+                imageView.setFitWidth(20);
+                imageView.setFitHeight(20);
+                setGraphic(imageView);
+            }
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                if (empty || item == null) {
+                    // no image for empty cells
+                    imageView.setImage(null);
+                } else {
+                    // set image for non-empty cell
+                    imageView.setImage(item ? imageTrue : imageFalse);
+                }
+            }
+
+        });
         doneCol.setCellValueFactory(
                 new PropertyValueFactory<>("isDone"));
         TableColumn indexCol = new TableColumn("#");
@@ -83,23 +144,35 @@ public class ProjectCard extends UiPart<Region> {
         indexCol.setCellValueFactory(
                 new PropertyValueFactory<>("index"));
         table.getColumns().addAll(indexCol, doneCol, priorityCol,dateCol,descriptionCol);
-        ObservableList<Data> data = FXCollections.observableList(project.getProjectDeadlines().stream()
+        ObservableList<Data> data = FXCollections.observableList(project.getProjectFilteredDeadlines().stream()
                 .map(deadline ->new Data(deadline)).collect(Collectors.toList()));
+        project.getProjectFilteredDeadlines().addListener(new ListChangeListener<Deadline>() {
+            @Override
+            public void onChanged(Change<? extends Deadline> c) {
+                ObservableList<Data> data = FXCollections.observableList(project.getProjectFilteredDeadlines().stream()
+                        .map(deadline ->new Data(deadline)).collect(Collectors.toList()));
+                progress.setProgress(data.stream().filter(t->t.getIsDone()).count()*1.0/data.size());
+                table.setItems(data);
+            }
+        });
+
         progress.setProgress(data.stream().filter(t->t.getIsDone()).count()*1.0/data.size());
         table.setItems(data);
     }
+
     public static class Data {
-        private final SimpleStringProperty date;
+        private final SimpleObjectProperty<Date> date;
         private final SimpleStringProperty description;
-        private final SimpleStringProperty priority;
+        private final SimpleObjectProperty<Priority> priority;
 
         private final SimpleBooleanProperty isDone;
         private final SimpleIntegerProperty index;
+        private final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         
         private Data(Deadline deadline){
-            date = new SimpleStringProperty(deadline.getDate().toString());
+            date = new SimpleObjectProperty(deadline.getDate());
             description = new SimpleStringProperty(deadline.getDescription().desc);
-            priority = new SimpleStringProperty(deadline.getPriority().toString());
+            priority = new SimpleObjectProperty(deadline.getPriority());
             isDone = new SimpleBooleanProperty(deadline.getIsDone());
             index = new SimpleIntegerProperty(deadline.getNum());
         }
@@ -107,11 +180,14 @@ public class ProjectCard extends UiPart<Region> {
         public int getIndex() { return index.get(); }
         public void setIndex(int num) { this.index.set(num);}
         public String getDate() {
+            return date.get().toString();
+        }
+        public Date getDateObject(){
             return date.get();
         }
 
-        public void setDate(String date) {
-            this.date.set(date);
+        public void setDate(String date) throws ParseException {
+            this.date.set(new seedu.address.model.commons.Date(date));
         }
      
         public boolean getIsDone() {
@@ -131,11 +207,11 @@ public class ProjectCard extends UiPart<Region> {
         }
         
         public String getPriority() {
-            return priority.get();
+            return priority.get().toString();
         }
         
         public void setPriority(String priority) {
-            this.priority.set(priority);
+            this.priority.set(Priority.valueOf(priority));
         }
 
     }

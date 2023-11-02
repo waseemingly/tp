@@ -24,7 +24,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.commons.Name;
@@ -39,6 +43,7 @@ public class Project {
     private final Name projectName;
     private final Description description;
     private final List<Deadline> deadlines;
+    private final FilteredList<Deadline> filteredDeadlines;
     public static final Prefix[] unusedPrefixes = new Prefix[]{ PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
             PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE, 
             PREFIX_PROJECT, PREFIX_ROLE };
@@ -57,6 +62,10 @@ public class Project {
         this.projectName = projectName;
         this.description = desc;
         this.deadlines = deadlines;
+        this.filteredDeadlines = new FilteredList<>(FXCollections.observableList(deadlines));
+    }
+    public void setPredicate (Predicate<Deadline> predicate) {
+        filteredDeadlines.setPredicate(predicate);
     }
     public Project(String projectName) {
         this(new Name(projectName),new Description(""),new ArrayList<>());
@@ -157,6 +166,10 @@ public class Project {
     public List<Deadline> getProjectDeadlines() {
         return Collections.unmodifiableList(deadlines);
     }
+    public FilteredList<Deadline> getProjectFilteredDeadlines() {
+        return filteredDeadlines;
+    }
+
     public boolean isSameProject(Project otherProject) {
         if (otherProject == this) {
             return true;

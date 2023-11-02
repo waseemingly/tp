@@ -15,6 +15,7 @@ import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.project.Deadline;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -217,6 +218,13 @@ public class ModelManager implements Model {
     public void updateFilteredProjectList(Predicate<seedu.address.model.project.Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
+        filteredProjects.forEach(e->e.setPredicate(u->true));
+    }
+
+    @Override
+    public void updateFilteredProjectDeadlineList(Predicate<Deadline> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.forEach(e->e.setPredicate(predicate));
     }
 
     //=========== Undo/Redo Accessors =============================================================
