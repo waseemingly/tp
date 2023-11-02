@@ -99,11 +99,31 @@ Here are some notes about these parameters.
       how to correct your command.
 
 #### Common Parameters
-| Parameter | Description                      | Constraints | Valid Examples | Invalid Examples |
-|---|----------------------------------|---|---|---|
-|`n/`| name of developer/client/project | alphanumeric characters and spaces, and it should not be blank | Tom Hanks, Elizabeth 2 | 成龍, 潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran|
-
-
+| Parameter | Description                              | Constraints                                                    | Valid Examples              | Invalid Examples                            |
+|-----------|------------------------------------------|----------------------------------------------------------------|-----------------------------|---------------------------------------------|
+| `n/`      | name of developer/client/project         | alphanumeric characters and spaces, and it should not be blank | Tom Hanks, Elizabeth 2      | 成龍, 潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran |
+| `p/`      | phone number of developer/client/project | numeric characters, and it should not be blank                 | 94566835                    |                                             |
+| `e/`      | email of developer/client/project        | alphanumeric characters, and it should not be blank            | amy@gmail.com               |                                             |
+| `a/`      | address of developer/client/project      | alphanumeric characters and spaces, and it should not be blank | 311, Clementi Ave 2, #02-25 |                                             |
+| `r/`      | role of developer/client/project         | alphabetical characters and spaces, and it should not be blank | Developer                   |                                             |
+| `pr/`     | project name of developer/client/project | alphanumeric characters and spaces, and it should not be blank | CS2103T                     |                                             |
+#### Developer Parameters
+| Parameter | Description                  | Constraints                                                                    | Valid Examples | Invalid Examples     |
+|-----------|------------------------------|--------------------------------------------------------------------------------|----------------|----------------------|
+| `g/`      | github username of developer | alphanumeric characters, and it should not be blank                            | johng, amy123  |                      |
+| `d/`      | date joined of developer     | numeric characters in DD-MM-YYYY format, and it should not be blank            | 19-11-2023     | 19/11/2023, 1/1/2023 |
+| `s/`      | salary of developer          | numeric characters, and it should not be blank                                 | 5000           |                      |
+| `rt/`     | rating of developer          | numeric characters with 1 decimal place and spaces, and it should not be blank | 5.0, 3.5       | 5,3                  |
+#### Client Parameters
+| Parameter | Description                 | Constraints                                                    | Valid Examples | Invalid Examples |
+|-----------|-----------------------------|----------------------------------------------------------------|----------------|------------------|
+| `o/`      | organisation name of client | alphanumeric characters and spaces, and it should not be blank | Google         |                  |
+| `do/`     | document name of client     | alphanumeric characters and spaces, and it should not be blank | google.com     |                  |
+#### Project Parameters
+| Parameter | Description            | Constraints | Valid Examples | Invalid Examples |
+|-----------|------------------------|---|---|--|
+| `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered | |
+| `dl/`      | deadline of project    | alphanumeric characters and spaces, and it should not be blank| 19-12-2023,Design backend,HIGH,0  | |
 
 
 -----------------------------------------------------------------------------------------------
@@ -423,31 +443,91 @@ Projects: ProjectBAndroidApp
 ```
 for each client successfully added
 
-### Find according to type and industry details: `Find`
-* What it does
-    * Project managers can find developers and clients for contacts related to the keyword (eg. by Find project name, members of the project team will appear)
-* Format
-    * `find-developer p/<Project Name>`
-    * `find-developer r/<Role>`
-    * `find-client n/<Name>`
-* Example
-    * `find-developer p/2103/T` (Prints developers in 2103/T prj)
-    * `find-developer r/Senior Developer` (Prints developers of the senior developer role)
-    * `find-client n/Amy` (Prints everyone of the name Amy)
-* Acceptable Parameters
-    * Incomplete inputs for string searches work too
-    * Anything beyond p/ and r/ and n/ does not work
-    * Name must be closely following  / for more accurate output (eg. n/Amy vs n/ Amy)
-* When command succeeds
-    * `These are the project members for the project <Project Name>` followed by list of project members
-    * `These are all the Senior Developers in this company` followed by list of senior developers
-    * `This is Amy’s contact` / `These are the contact details for Amy` followed by Amy’s details or list of all the Amy’s contact
-      `No relevant contact details can be found`
-* When command fails
-    * Missing header<br> `Please find with the correct input find p/<Project Name> OR find r/<Role> OR find n/<Name>`
-    * Invalid input<br> `x/ is not a valid type to find, Please find with the correct input find p/<Project Name> OR find r/<Role> OR find n/<Name>`
+### Find
+#### Find developer details
+Finds the details of an existing developer in the address book.
 
-* Relevant UI mock-ups
+Format: `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [gh/GITHUB_ID] [ra/RATING]`
+
+* Finds for developers based on the attributes provided.
+* At least one of the optional fields must be provided.
+* Existing values will be compared to the input values, and the results will include any items that match the provided criteria.
+* You can combine multiple attributes for a more specific search.
+* The search is case-insensitive, so you can use any case for the search criteria.
+
+Example of usage: `find-developer pr/2103T rt/5.0`
+* Prints developers in 2103/T project with a 5-star rating.
+
+When command succeeds, CLI shows:
+```
+This is the one developer with matching information
+Amy
+Contact: 98989898
+Email: amy@u.nus.edu
+Address: NUS UTOWN
+Date Joined: 06-09-2023
+Role: Senior Developer
+Salary: 6999
+Projects: CS2103T
+Rating: 5.0 Stars
+```
+
+#### Find client details
+Finds the details of an existing client in the address book.
+
+Format: `find-client [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [o/ORGANISATION] [pr/PROJECT] [d/DOCUMENT]`
+
+* Finds for clients based on the attributes provided.
+* At least one of the optional fields must be provided.
+* Existing values will be compared to the input values, and the results will include any items that match the provided criteria.
+* You can combine multiple attributes for a more specific search.
+* The search is case-insensitive, so you can use any case for the search criteria.
+
+Example of usage: `find-client o/Google r/Senior developer`
+* Prints clients from Google of the senior developer role
+
+When command succeeds, CLI shows:
+```
+These are the 2 clients with matching information
+John Doe
+Contact: 98989898
+Email: john@gmail.com
+Address: Google HQ
+Organisation: Google
+Role: Developer
+Projects: AndroidApp
+
+Alice Tan
+Contact: 98977543
+Email: alice@gmail.com
+Address: Google HQ
+Organisation: Google
+Role: Senior Developer
+Projects: CustomWebsite
+```
+
+#### Find project details
+Finds the details of an existing project in the address book.
+
+Format: `find-project [pr/PROJECT_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
+
+* Finds for projects based on the attributes provided.
+* At least one of the optional fields must be provided.
+* Existing values will be compared to the input values, and the results will include any items that match the provided criteria.
+* You can combine multiple attributes for a more specific search.
+* The search is case-insensitive, so you can use any case for the search criteria.
+
+Example of usage: `find-project pr/JuiceApp`
+* Prints projects with the name 2103T project.
+
+When command succeeds, CLI shows:
+```
+This is the one project with matching information
+Edited Project: JuiceApp;
+Description: Juice ordering app;
+Deadlines:
+1. Design backend by: 19-12-2023, priority: HIGH (undone)
+```
 
 ### Deleting a developer : `delete`
 
