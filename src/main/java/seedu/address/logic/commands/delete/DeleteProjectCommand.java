@@ -1,9 +1,5 @@
 package seedu.address.logic.commands.delete;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -13,41 +9,45 @@ import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.project.Project;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
- * Deletes a developer identified using it's displayed index from the address book.
+ * Deletes a project identified using it's displayed index from the address book.
  */
-public class DeleteDeveloperCommand extends Command {
+public class DeleteProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-developer";
+    public static final String COMMAND_WORD = "delete-project";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the developer identified by the index number used in the displayed developer list.\n"
+            + ": Deletes the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_DEVELOPER_SUCCESS = "Deleted Developer: %1$s";
+    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteDeveloperCommand(Index targetIndex) {
+    public DeleteProjectCommand (Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Developer> lastShownList = model.getFilteredDeveloperList();
+        List<Project> lastShownList = model.getFilteredProjectList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
         }
 
-        Developer developerToDelete = lastShownList.get(targetIndex.getZeroBased());
-        String successMessage = String.format(MESSAGE_DELETE_DEVELOPER_SUCCESS, Messages.format(developerToDelete));
-        TabIndex index = TabIndex.Developer;
-
-        model.deleteDeveloper(developerToDelete);
+        Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
+        String successMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS, Messages.format(projectToDelete));
+        TabIndex index = TabIndex.Project;
+        model.deleteProject(projectToDelete);
         model.commitAddressBook(model, successMessage, index);
         return new CommandResult(successMessage, index);
     }
@@ -59,11 +59,11 @@ public class DeleteDeveloperCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteDeveloperCommand)) {
+        if (!(other instanceof DeleteProjectCommand)) {
             return false;
         }
 
-        DeleteDeveloperCommand otherDeleteDeveloperCommand = (DeleteDeveloperCommand) other;
+        DeleteProjectCommand otherDeleteDeveloperCommand = (DeleteProjectCommand) other;
         return targetIndex.equals(otherDeleteDeveloperCommand.targetIndex);
     }
 

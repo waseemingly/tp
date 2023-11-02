@@ -22,6 +22,7 @@ import seedu.address.logic.commands.addRoles.AddClientRoleCommand;
 import seedu.address.logic.commands.addRoles.AddDeveloperRoleCommand;
 import seedu.address.logic.commands.delete.DeleteClientCommand;
 import seedu.address.logic.commands.delete.DeleteDeveloperCommand;
+import seedu.address.logic.commands.delete.DeleteProjectCommand;
 import seedu.address.logic.commands.deleteRoles.DeleteClientRoleCommand;
 import seedu.address.logic.commands.deleteRoles.DeleteDeveloperRoleCommand;
 import seedu.address.logic.commands.find.FindClientCommand;
@@ -47,6 +48,7 @@ import seedu.address.logic.parser.add.AddDeveloperCommandParser;
 import seedu.address.logic.parser.add.AddProjectCommandParser;
 import seedu.address.logic.parser.delete.DeleteClientCommandParser;
 import seedu.address.logic.parser.delete.DeleteDeveloperCommandParser;
+import seedu.address.logic.parser.delete.DeleteProjectCommandParser;
 import seedu.address.logic.parser.deleteRoles.DeleteClientRoleCommandParser;
 import seedu.address.logic.parser.deleteRoles.DeleteDeveloperRoleCommandParser;
 import seedu.address.logic.parser.edit.EditClientCommandParser;
@@ -135,8 +137,8 @@ public class AddressBookParser {
             case DeleteClientCommand.COMMAND_WORD:
                 return new DeleteClientCommandParser().parse(arguments);
 
-            //case DeleteProjectCommand.COMMAND_WORD:
-            //    return new DeleteProjectCommandParser().parse(arguments);
+            case DeleteProjectCommand.COMMAND_WORD:
+            return new DeleteProjectCommandParser().parse(arguments);
 
             case DeleteDeveloperRoleCommand.COMMAND_WORD:
                 return new DeleteDeveloperRoleCommandParser().parse(arguments);
