@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.model.Model;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.DeveloperRoles;
+import seedu.address.model.developer.RoleDeveloperContainsKeywordsPredicate;
 
 /**
  * Represents a Developer's role in the company.
@@ -68,37 +70,55 @@ public class ClientRoles {
     }
 
     public static boolean isRemovableRole(Model model, String role) {
-        // are there information using it
+        // check if anyone is using this role
         Predicate<Client> finalPredicate = client -> true;
-        finalPredicate = finalPredicate.and(new RoleClientContainsKeywordsPredicate(Arrays.asList(role)));
+
+        if (role.matches(".*\\s+.*")) {
+            List<String> keywords = List.of(role.split("\\s+"));
+            finalPredicate = finalPredicate.and(client -> keywords.contains(client.getRole()));
+        } else {
+            finalPredicate = finalPredicate.and(new RoleClientContainsKeywordsPredicate(Arrays.asList(role)));
+        }
         model.updateFilteredClientList(finalPredicate);
         int size = model.getFilteredClientList().size();
+
         if (size == 0) {
             noRepeat = true;
         } else {
             noRepeat = false;
         }
 
-        // is it a default role
-        if (role.contains("Manager") || role.contains("HR") || role.contains("Developer") || role.contains("Manager")) {
+        // check if this role is one of the defaults
+        if (role.equalsIgnoreCase("Manager")
+                || role.equalsIgnoreCase("Developer")
+                || role.equalsIgnoreCase("HR")
+                || role.equalsIgnoreCase("Client")) {
             notDefault = false;
         } else {
             notDefault = true;
         }
 
-        // is it even in the list
-        if (isValidRole(role)) {
+        // check if role is in the list
+
+        boolean roleExists = false;
+        for (ClientRoles cliRoles : roles) {
+            if (cliRoles.toString().equalsIgnoreCase(role)) {
+                roleExists = true;
+                break; // You can break early once a match is found
+            }
+        }
+
+        if (roleExists) {
             notInList = false;
         } else {
             notInList = true;
         }
 
-        if (noRepeat && notDefault && notInList) {
+        if (noRepeat && notDefault && !notInList) {
             return false;
         } else {
             return true;
         }
-
     }
 
     public static void saveClientRoles() {

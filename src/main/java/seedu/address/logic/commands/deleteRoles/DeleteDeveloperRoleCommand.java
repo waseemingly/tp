@@ -25,8 +25,7 @@ public class DeleteDeveloperRoleCommand extends Command{
             + "as there are developers of this role";
     public static final String MESSAGE_CANNOT_DELETE_PREXISTS = "You are not allowed to delete this developer role.";
     public static final String MESSAGE_CANNOT_DELETE_NONEXISTING = "This developer role does not exist. ";
-    public static final String MESSAGE_EXISTING_DEVELOPERS_ROLES = "These are the existing developer roles: \n"
-            + DeveloperRoles.printRoles();
+    public static final String MESSAGE_EXISTING_DEVELOPERS_ROLES = "These are the existing developer roles: \n";
 
     private final String toAdd;
 
@@ -41,13 +40,14 @@ public class DeleteDeveloperRoleCommand extends Command{
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!DeveloperRoles.isRemovableRole(model, toAdd)) {
+        if (DeveloperRoles.isRemovableRole(model, toAdd)) {
             if (!DeveloperRoles.isNoRepeat()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_REPEAT);
             } else if (!DeveloperRoles.isNotDefault()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_PREXISTS);
             } else if (DeveloperRoles.isNotInList()) {
-                throw new CommandException(MESSAGE_CANNOT_DELETE_NONEXISTING + MESSAGE_EXISTING_DEVELOPERS_ROLES);
+                throw new CommandException(MESSAGE_CANNOT_DELETE_NONEXISTING + MESSAGE_EXISTING_DEVELOPERS_ROLES
+                + DeveloperRoles.printRoles());
             }
         }
 

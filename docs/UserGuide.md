@@ -39,6 +39,8 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
 * Lock `lock`
 * Unlock `unlock`
 * Change password `change-password`
+* Undo `undo`
+* Redo `redo`
 * [Help `help`](#viewing-help--help)
 * [Clear entries `clear`](#clearing-all-entries--clear)
 * [Exit program `exit`](#exiting-the-program--exit)
@@ -326,7 +328,7 @@ Deadlines:
 
 Shows a list of all developers in the address book.
 
-Format: `list TYPE`
+Format: `list-TYPE`
 
 * lists the specific type of thing you are asking
 

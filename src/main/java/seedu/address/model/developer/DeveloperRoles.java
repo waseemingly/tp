@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.model.Model;
+import seedu.address.model.client.RoleClientContainsKeywordsPredicate;
 
 /**
  * Represents a Developer's role in the company.
@@ -49,42 +50,61 @@ public class DeveloperRoles {
         roles.add(role);
         saveDeveloperRoles();
     }
+    public static void deleteDeveloperRole(DeveloperRoles role) {
+        roles.remove(role);
+        saveDeveloperRoles();
+    }
 
     public static boolean isRemovableRole(Model model, String role) {
 
+        // check if anyone is using this role
         Predicate<Developer> finalPredicate = developer -> true;
-        finalPredicate = finalPredicate.and(new RoleDeveloperContainsKeywordsPredicate(Arrays.asList(role)));
+
+        if (role.matches(".*\\s+.*")) {
+            List<String> keywords = List.of(role.split("\\s+"));
+            finalPredicate = finalPredicate.and(developer -> keywords.contains(developer.getRole()));
+        } else {
+            finalPredicate = finalPredicate.and(new RoleDeveloperContainsKeywordsPredicate(Arrays.asList(role)));
+        }
         model.updateFilteredDeveloperList(finalPredicate);
         int size = model.getFilteredDeveloperList().size();
+
         if (size == 0) {
             noRepeat = true;
         } else {
             noRepeat = false;
         }
 
-        if (role.contains("Frontend Developer") || role.contains("Backend Developer") || role.contains("Developer")) {
+        // check if this role is one of the defaults
+        if (role.equalsIgnoreCase("Frontend Developer")
+                || role.equalsIgnoreCase("Backend Developer")
+                || role.equalsIgnoreCase("Developer")) {
             notDefault = false;
         } else {
             notDefault = true;
         }
 
-        // is it even in the list
-        if (isValidRole(role)) {
+        // check if role is in the list
+
+        boolean roleExists = false;
+        for (DeveloperRoles devRoles : roles) {
+            if (devRoles.toString().equalsIgnoreCase(role)) {
+                roleExists = true;
+                break; // You can break early once a match is found
+            }
+        }
+
+        if (roleExists) {
             notInList = false;
         } else {
             notInList = true;
         }
 
-        if (noRepeat && notDefault && notInList) {
+        if (noRepeat && notDefault && !notInList) {
             return false;
         } else {
             return true;
         }
-    }
-
-    public static void deleteDeveloperRole(DeveloperRoles role) {
-        roles.remove(role);
-        saveDeveloperRoles();
     }
 
     public static boolean isNotDefault() {
