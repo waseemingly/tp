@@ -3,13 +3,17 @@ package seedu.address.model.client;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Consumer;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicateClientException;
 import seedu.address.model.person.exceptions.ClientNotFoundException;
+import seedu.address.model.project.Project;
 
 /**
  * A list of clients that enforces uniqueness between its elements and does not allow nulls.
@@ -102,6 +106,16 @@ public class UniqueClientList implements Iterable<Client> {
         return internalUnmodifiableList;
     }
 
+    public void updateClientProjects(String project) {
+        iterator().forEachRemaining(
+                client -> {
+                    Set<String> newprojectset = new HashSet<>(client.getProjects());
+                    newprojectset.remove(project);
+                    setClient(client, new Client(client.getName(), client.getPhone(), client.getEmail(),
+                            client.getAddress(), client.getRole(), newprojectset,
+                            client.getOrganisation(), client.getDocument()));
+                });
+    }
     @Override
     public Iterator<Client> iterator() {
         return internalList.iterator();

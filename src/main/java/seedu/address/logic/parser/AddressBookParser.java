@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.delete.DeleteClientCommand;
 import seedu.address.logic.commands.delete.DeleteDeveloperCommand;
+import seedu.address.logic.commands.delete.DeleteProjectCommand;
 import seedu.address.logic.commands.find.FindClientCommand;
 import seedu.address.logic.commands.find.FindDeveloperCommand;
 import seedu.address.logic.commands.find.FindProjectCommand;
@@ -32,6 +33,7 @@ import seedu.address.logic.parser.add.AddDeveloperCommandParser;
 import seedu.address.logic.parser.add.AddProjectCommandParser;
 import seedu.address.logic.parser.delete.DeleteClientCommandParser;
 import seedu.address.logic.parser.delete.DeleteDeveloperCommandParser;
+import seedu.address.logic.parser.delete.DeleteProjectCommandParser;
 import seedu.address.logic.parser.edit.EditClientCommandParser;
 import seedu.address.logic.parser.edit.EditDeveloperCommandParser;
 import seedu.address.logic.parser.edit.EditProjectCommandParser;
@@ -108,8 +110,8 @@ public class AddressBookParser {
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
 
-        //case DeleteProjectCommand.COMMAND_WORD:
-        //    return new DeleteProjectCommandParser().parse(arguments);
+        case DeleteProjectCommand.COMMAND_WORD:
+            return new DeleteProjectCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

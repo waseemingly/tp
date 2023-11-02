@@ -11,6 +11,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.UniqueDeveloperList;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 
 /**
@@ -99,22 +100,24 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// Project-level Operations
 
-    public boolean hasProject(seedu.address.model.project.Project project) {
+    public boolean hasProject(Project project) {
         requireNonNull(project);
         return projects.contains(project);
     }
 
-    public void addProject(seedu.address.model.project.Project project) {
+    public void addProject(Project project) {
         projects.add(project);
     }
 
-    public void setProject(seedu.address.model.project.Project target, seedu.address.model.project.Project editedProject) {
+    public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
         projects.setProject(target, editedProject);
     }
 
-    public void removeProject(seedu.address.model.project.Project key) {
+    public void removeProject(Project key) {
         projects.remove(key);
+        clients.updateClientProjects(key.getName());
+        developers.updateDeveloperProjects(key.getName());
     }
 
     @Override
