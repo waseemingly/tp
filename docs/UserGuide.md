@@ -137,7 +137,7 @@ This is a tutorial for **first-time** CodeContact users.
 
 1. You can **change the password** to unlock CodeContact.
     * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box
-    * :exclamation Note: You can always lock and unlock CodeContact using the `lock` and `unlock` commands
+    * ❗Note: You can always lock and unlock CodeContact using the `lock` and `unlock` commands
 
 
 1. Let us try **adding a project** to our CodeContact.
@@ -631,7 +631,7 @@ Format: `undo`
 * If you made 5 changes and you wish to undo, you can enter the command `undo` 5 times. The system will remind you when 
 you cannot undo anymore.
 * `undo` works for all `edit`, `add-TYPE` and `delete` commands.
-* **IMPORTANT**:exclamation `undo` does not work for all adding and deleting role functions. Undoing an 
+* ❗**IMPORTANT**❗ `undo` does not work for all adding and deleting role functions. Undoing an 
 `add-developer-role` will not delete that role.
 
 Examples of usage: `undo`
