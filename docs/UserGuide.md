@@ -354,25 +354,32 @@ Example:
         * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
     * Missing particular's error (when prefixes are missing)
         * `Invalid command format!`
+### Delete
+#### Delete developer details : `delete-developer`
+Deletes developer in the address book.
 
-### Main feature
-#### developer specific feature
-Description of what feature does.
+Format: `delete-developer INDEX`
 
-Format: `command format`
-* notes about command eg. at least one of the optional fields must be provided etc.
+Example of usage: `delete-developer 2`
+* Deletes second developer from the list
 
-Example of usage: `example`
-* what the example does eg. Edits `Amy`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
 
-When command succeeds, CLI shows:
-```
-Edited Client:
-etc
-```
+#### Delete client : `delete-client`
+Deletes client in the address book.
 
-#### client specific feature
-etc.
+Format: `delete-client INDEX`
+
+Example of usage: `delete-client 3`
+* Deletes third client in list.
+
+
+#### Delete project details : `delete-project`
+Deletes the details of an existing project in the address book.
+
+Format: `delete-project INDEX`
+
+Example of usage: `delete-project 2`
+* Deletes second project from the list and updates developers and client detials accordingly
 
 ### Edit
 #### Edit developer details : `edit-developer`
