@@ -60,9 +60,9 @@ public class FindDeveloperCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameDeveloperContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredDeveloperList());
     }
 
     @Test
@@ -70,9 +70,9 @@ public class FindDeveloperCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredDeveloperList());
     }
 
     @Test
