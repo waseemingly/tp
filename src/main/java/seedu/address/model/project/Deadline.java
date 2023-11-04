@@ -49,19 +49,19 @@ public class Deadline {
             return false;
         return true;
     }
-    
+
     public Date getDate() {
         return date;
     }
-    
+
     public Description getDescription() {
         return desc;
     }
-    
+
     public Priority getPriority() {
         return priority;
     }
-    
+
     public int getNum() {
         return num;
     }
@@ -85,16 +85,16 @@ public class Deadline {
 
     public String getPrintedStringRepresentation() {
         return "" + num + ". " + desc.toString() + " by: " + date.toString() + ", priority: " + priority.toString()
-                + " (" + (isDone? "done)" : "undone)"); 
+                + " (" + (isDone? "done)" : "undone)");
     }
-    
+
     public String getStringRepresentation() {
         return date.toString()+","+desc.toString()+","+priority.toString()+","+(isDone? "1" : "0");
     }
 
     /**
      * Returns a String representation of the Deadline such that it is marked as completed.
-     * 
+     *
      * @return A String representing the Deadline if it was completed.
      */
     public String getDoneStringRepresentation() {
@@ -109,7 +109,7 @@ public class Deadline {
     public String getUndoneStringRepresentation() {
         return date.toString()+","+desc.toString()+","+priority.toString()+","+("0");
     }
-    
+
     @Override
     public int hashCode() {
         return Objects.hash(date, desc, priority);

@@ -13,7 +13,7 @@ public class Description {
 
 
     public static final String VALIDATION_REGEX = "^(?!\\\\s*$)[a-zA-Z0-9 ]+$";
-    
+
     public final String desc;
 
     /**

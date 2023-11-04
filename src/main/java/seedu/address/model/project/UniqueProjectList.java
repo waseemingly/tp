@@ -35,7 +35,7 @@ public class UniqueProjectList implements Iterable<Project> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameProject);
     }
-    
+
     public boolean contains(String toCheck) {
         requireNonNull(toCheck);
         for (Project p : internalList) {
