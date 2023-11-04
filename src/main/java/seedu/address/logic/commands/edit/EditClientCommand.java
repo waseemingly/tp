@@ -1,7 +1,14 @@
 package seedu.address.logic.commands.edit;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -23,7 +30,9 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Name;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 
 /**
  * Edits the details of an existing client in the address book.
@@ -57,7 +66,7 @@ public class EditClientCommand extends Command {
 
 
     /**
-     * @param index of the client in the filtered client list to edit
+     * @param index                of the client in the filtered client list to edit
      * @param editClientDescriptor details to edit the client with
      */
     public EditClientCommand(Index index, EditClientDescriptor editClientDescriptor) {
@@ -155,7 +164,8 @@ public class EditClientCommand extends Command {
         private Name organisation;
         private Document document;
 
-        public EditClientDescriptor() {}
+        public EditClientDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -180,68 +190,68 @@ public class EditClientCommand extends Command {
                     name, phone, email, address, projects, role, organisation, document);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setPhone(Phone phone) {
+            this.phone = phone;
         }
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setEmail(Email email) {
+            this.email = email;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
 
-        public void setProjects(Set<String> projects) {
-            this.projects = (projects != null) ? new HashSet<>(projects) : null;
+        public void setAddress(Address address) {
+            this.address = address;
         }
 
         public Optional<Set<String>> getProjects() {
             return (projects != null) ? Optional.of(Collections.unmodifiableSet(projects)) : Optional.empty();
         }
 
-        public void setOrganisation(Name organisation) {
-            this.organisation = organisation;
+        public void setProjects(Set<String> projects) {
+            this.projects = (projects != null) ? new HashSet<>(projects) : null;
         }
 
         public Optional<Name> getOrganisation() {
             return Optional.ofNullable(organisation);
         }
 
-        public void setDocument(Document document) {
-            this.document = document;
+        public void setOrganisation(Name organisation) {
+            this.organisation = organisation;
         }
 
         public Optional<Document> getDocument() {
             return Optional.ofNullable(document);
         }
 
-        public void setRole(ClientRoles role) {
-            this.role = role;
+        public void setDocument(Document document) {
+            this.document = document;
         }
 
         public Optional<ClientRoles> getRole() {
             return Optional.ofNullable(role);
+        }
+
+        public void setRole(ClientRoles role) {
+            this.role = role;
         }
 
         @Override

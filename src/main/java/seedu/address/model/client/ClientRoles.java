@@ -12,22 +12,27 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.model.Model;
-import seedu.address.model.developer.Developer;
-import seedu.address.model.developer.DeveloperRoles;
-import seedu.address.model.developer.RoleDeveloperContainsKeywordsPredicate;
 
 /**
  * Represents a Developer's role in the company.
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
 public class ClientRoles {
-    private static List<ClientRoles> roles = new ArrayList<>();
     public static final String NO_SUCH_CLIENT_ROLE = "There is no such client role, "
             + "please create role before proceeding";
+    private static List<ClientRoles> roles = new ArrayList<>();
     private static boolean noRepeat;
     private static boolean notDefault;
     private static boolean notInList;
     private static String listOfRoles;
+
+    static {
+        roles.add(new ClientRoles("Manager"));
+        roles.add(new ClientRoles("Developer"));
+        roles.add(new ClientRoles("HR"));
+        roles.add(new ClientRoles("Client"));
+        loadClientRoles();
+    }
 
     public final String role;
 
@@ -40,13 +45,6 @@ public class ClientRoles {
         requireNonNull(role);
         this.role = role;
     }
-    static {
-        roles.add(new ClientRoles("Manager"));
-        roles.add(new ClientRoles("Developer"));
-        roles.add(new ClientRoles("HR"));
-        roles.add(new ClientRoles("Client"));
-        loadClientRoles();
-    }
 
     public static void addClientRole(ClientRoles role) {
         roles.add(role);
@@ -57,6 +55,7 @@ public class ClientRoles {
         roles.remove(role);
         saveClientRoles();
     }
+
     /**
      * Returns true if a given string is a valid role.
      */
@@ -133,6 +132,7 @@ public class ClientRoles {
             e.printStackTrace();
         }
     }
+
     public static void loadClientRoles() {
         try (BufferedReader reader = new BufferedReader(new FileReader("ClientRoles.txt"))) {
             String line;
@@ -157,6 +157,7 @@ public class ClientRoles {
     public static boolean isNoRepeat() {
         return noRepeat;
     }
+
     public static boolean isNotInList() {
         return notInList;
     }

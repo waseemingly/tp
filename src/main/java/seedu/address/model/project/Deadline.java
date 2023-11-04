@@ -2,10 +2,7 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -30,13 +27,13 @@ public class Deadline {
     /**
      * Every field must be present and not null.
      */
-    public Deadline (String str, int num) {
+    public Deadline(String str, int num) {
         requireNonNull(str);
         checkArgument(isValidDeadline(str), MESSAGE_CONSTRAINTS);
         String[] output = str.split(",");
         this.date = new Date(output[0]);
         this.desc = new Description(output[1]);
-        this.priority= Priority.valueOf(output[2]);
+        this.priority = Priority.valueOf(output[2]);
         this.isDone = output[3].contains("1");
         this.num = num;
     }
@@ -85,11 +82,11 @@ public class Deadline {
 
     public String getPrintedStringRepresentation() {
         return "" + num + ". " + desc.toString() + " by: " + date.toString() + ", priority: " + priority.toString()
-                + " (" + (isDone? "done)" : "undone)");
+                + " (" + (isDone ? "done)" : "undone)");
     }
 
     public String getStringRepresentation() {
-        return date.toString()+","+desc.toString()+","+priority.toString()+","+(isDone? "1" : "0");
+        return date.toString() + "," + desc.toString() + "," + priority.toString() + "," + (isDone ? "1" : "0");
     }
 
     /**
@@ -98,7 +95,7 @@ public class Deadline {
      * @return A String representing the Deadline if it was completed.
      */
     public String getDoneStringRepresentation() {
-        return date.toString()+","+desc.toString()+","+priority.toString()+","+("1");
+        return date.toString() + "," + desc.toString() + "," + priority.toString() + "," + ("1");
     }
 
     /**
@@ -107,7 +104,7 @@ public class Deadline {
      * @return A String representing the Deadline if it was incomplete.
      */
     public String getUndoneStringRepresentation() {
-        return date.toString()+","+desc.toString()+","+priority.toString()+","+("0");
+        return date.toString() + "," + desc.toString() + "," + priority.toString() + "," + ("0");
     }
 
     @Override

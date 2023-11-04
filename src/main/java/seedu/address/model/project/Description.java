@@ -26,6 +26,7 @@ public class Description {
         checkArgument(isValidDescription(desc), MESSAGE_CONSTRAINTS);
         this.desc = desc;
     }
+
     /**
      * Returns true if a given string is a valid description.
      */

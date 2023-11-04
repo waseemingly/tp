@@ -13,19 +13,19 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.delete.DeleteDeveloperCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.find.FindDeveloperCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.add.AddDeveloperCommand;
+import seedu.address.logic.commands.delete.DeleteDeveloperCommand;
+import seedu.address.logic.commands.find.FindDeveloperCommand;
 import seedu.address.logic.commands.list.ListClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
+import seedu.address.testutil.DeveloperUtil;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.DeveloperUtil;
 
 public class AddressBookParserTest {
 
@@ -89,7 +89,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

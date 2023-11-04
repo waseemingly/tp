@@ -32,7 +32,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects = new UniqueProjectList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -40,6 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /// Project Validation
+
     /**
      * Returns a boolean representing whether the projects assigned to the Person exist.
      *

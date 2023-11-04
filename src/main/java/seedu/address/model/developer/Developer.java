@@ -23,14 +23,13 @@ import seedu.address.model.person.Phone;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Developer extends Person {
+    public static final Prefix[] unusedPrefixes = new Prefix[]{PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION,
+            PREFIX_DEADLINE};
     private final Salary salary;
     private final Date dateJoined;
     private final GithubId githubId;
     private final Rating rating;
     private final DeveloperRoles role;
-
-    public static final Prefix[] unusedPrefixes = new Prefix[]{ PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION,
-            PREFIX_DEADLINE };
 
     /**
      * Every field must be present and not null.
@@ -53,6 +52,7 @@ public class Developer extends Person {
     public Date getDateJoined() {
         return dateJoined;
     }
+
     public boolean isSameDeveloper(Developer otherDeveloper) {
         if (otherDeveloper == this) {
             return true;
@@ -69,6 +69,7 @@ public class Developer extends Person {
     public Rating getRating() {
         return rating;
     }
+
     public DeveloperRoles getRole() {
         return role;
     }

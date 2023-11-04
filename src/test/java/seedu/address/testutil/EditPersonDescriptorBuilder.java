@@ -4,10 +4,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.commons.Name;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Developer;
 import seedu.address.model.person.Email;
-import seedu.address.model.commons.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.Tag;
 

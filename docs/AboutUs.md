@@ -24,7 +24,6 @@ You can reach us at the email `mahidharah@gmail.com`
 
 [[github](http://github.com/emzm2023)]
 
-
 ### Wan Mingyu
 
 <img src="images/mingyu-wan.png" width="200px">

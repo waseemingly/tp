@@ -33,7 +33,7 @@ public class DeveloperUtil {
         sb.append(PREFIX_EMAIL + developer.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + developer.getAddress().value + " ");
         developer.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
