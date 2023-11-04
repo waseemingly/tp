@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Edit features
 #### Implementation
 The original edit feature from AB-3 has been extended to account for the editing of projects and specific people - developers
-and clients. The edit command will be parsed to return 1 of 3 different commands, depending on the 
+and clients. The edit command will be parsed to return 1 of 3 different commands, depending on the
 object to be edited.
 
 The `AddressBookParser` will return the respective parser for the command depending on the user input in accordance to the
@@ -167,8 +167,8 @@ respective command words defined in `CliSyntax`. Namely,
 * `edit-project` will return an `EditProjectCommandParser` that parses the user input and creates an `EditProjectCommand`
 
 Each instance of `EditDeveloperCommand`, `EditClientCommand`, and `EditProjectCommand` objects have 2 private fields:
-1. an instance of `Index` containing the index of the target object to edit in the currently displayed list, and 
-2. an instance of `EditDeveloperDescriptor`, `EditClientDescriptor`, or `EditProjectDescriptor` respectively, which 
+1. an instance of `Index` containing the index of the target object to edit in the currently displayed list, and
+2. an instance of `EditDeveloperDescriptor`, `EditClientDescriptor`, or `EditProjectDescriptor` respectively, which
 contains the edited fields to update the target object with.
 
 Executing the command will replace the existing object in the current `model` with the new object with the edited fields.
@@ -194,7 +194,7 @@ automatically switches user to the respective tab.
   * Cons: More classes to create, user needs to type more.
 * Alternative 2: Have one general `edit` command. The edit will be made based on the current tab displayed.
   * Pros: User as can be less specific when typing command.
-  * Cons: User needs to ensure that intended tab is open. Allowed parameters are less clearly defined, can lead to 
+  * Cons: User needs to ensure that intended tab is open. Allowed parameters are less clearly defined, can lead to
   confusion and mistakes.
 
 ### Add Developer Feature
@@ -473,16 +473,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The request is done by a non-HR staff.
 
   * 1a1. System informs user that user does not have the access rights to add a new employee.
-  
+
     Use case ends.
 
 * 3a. The given details are invalid or in an invalid format.
 
     * 3a1. System informs user there is an error and requests for correct input.
     * 3a2. User enters requested details again.
-        
+ 
       Steps 3a1-3a2 are repeated until details entered are valid.
-      
+
       Use case resumes at step 4.
 
 * *a. At any time, User chooses to cancel the action.
@@ -500,7 +500,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees:**
 1. User is logged into their account system.
-2. They only have the access rights to the user-specific features (eg. developers can only modify their personal 
+2. They only have the access rights to the user-specific features (eg. developers can only modify their personal
 particulars and no other information).
 
 **MSS**
@@ -521,9 +521,9 @@ particulars and no other information).
 * 4b. The login credentials has an invalid format.
   * 4b1. System informs user there is an error and requests for correct input.
   * 4b2. User enters requested details again.
-    
-    Step 4b1-4b2 are repeated until details entered are valid. 
-    
+
+    Step 4b1-4b2 are repeated until details entered are valid.
+
     Use case resumed at step 5.
 
 #### **Use case:** UC3 - Search for other employee's contacts
@@ -535,7 +535,7 @@ particulars and no other information).
 2. System identifies what role the user is (so that no irrelevant information is shown).
 
 **Guarantees:**
-1. User can view the contact information and details of other users based on the 
+1. User can view the contact information and details of other users based on the
 search keyword.
 2. User can only view relevant information their roles have access rights to.
 
@@ -553,14 +553,14 @@ with information that user's role has access rights to.
 * 3a. The search has an invalid type or format.
   * 3a1. System informs user there is an error and requests for correct input.
   * 3a2. User enters requested details again.
-    
-    Steps 3a1-3a2 are repeated until details entered are valid. 
-    
+
+    Steps 3a1-3a2 are repeated until details entered are valid.
+
     Use case resumes at step 4.
-  
+
 * 4a. There is no matching list of employees.
   * 4a1. System informs user that no relevant information is found
-    
+
     Use case ends.
 
 ### Non-Functional Requirements
@@ -575,7 +575,7 @@ with information that user's role has access rights to.
 * Should follow specific code design and usability guidelines
 * The user interface shall follow a consistent design pattern and layout throughout the application.
 * There shall be clear and intuitive pathways for accomplishing common tasks.
-* Users shall receive informative feedback on their actions (e.g., success messages, error messages) 
+* Users shall receive informative feedback on their actions (e.g., success messages, error messages)
 in a clear and user-friendly manner.
 * Context-sensitive help and tooltips shall be available to assist users in understanding complex features.
 * A comprehensive user manual or online documentation shall be provided to explain how to use the application.
@@ -583,9 +583,9 @@ in a clear and user-friendly manner.
 * The project is expected to adhere to a schedule that completes a milestone set every two weeks.
 * The projsct shall follow a iterative breadth-first development methodology
 * Automated testing suits shall be maintained and run for each build
-* Code review shall be conducted for all new code contrivution, with at least one team member 
+* Code review shall be conducted for all new code contrivution, with at least one team member
 reviewing each piece of code before it is merged
-* All project source code shall be stored in a version control system (e.g., Git), 
+* All project source code shall be stored in a version control system (e.g., Git),
 and commits should follow a consistent naming convention.
 * Coding standards and style guidelines shall be defined and followed consistently by all development team members.
 

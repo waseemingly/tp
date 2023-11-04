@@ -153,7 +153,7 @@ This is a tutorial for **first-time** CodeContact users.
     * On launch, CodeContact will not contain any doctor or patient records.
 
 
-1. You will be asked to **enter a password** to unlock CodeContact. 
+1. You will be asked to **enter a password** to unlock CodeContact.
     *  Enter the command `unlock pw/Password123!` in the command box
 
 
@@ -184,7 +184,7 @@ This is a tutorial for **first-time** CodeContact users.
     * More details of what you can edit can be found [here](#edit)
 
 
-1. We can also easily **find** for information in CodeContact. 
+1. We can also easily **find** for information in CodeContact.
     * Enter the command `find-developer n/John s/4500`
     * Try looking for other information and search with multiple parameters!
     * More details of what you can find can be found [here](#find)
@@ -254,7 +254,7 @@ Project Manager can add developers, clients and projects.
   * `rt/RATING` for the assigned rating for the developer
 * In the following overall format
   * `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE pr/PROJECT1 pr/PROJECT2 s/SALARY d/DATE_JOINED g/GITHUBID rt/RATING`
-  
+
 Example:
 
 `add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
@@ -263,7 +263,7 @@ Example:
     * Continuing from the above example, CLI shows:
     ```
   The following user has been added:
-    New developer added: Mahidharah; 
+    New developer added: Mahidharah;
     Phone: 81256788;
     Email: aunus@nus.com;
     Address: Blk 88 Lorong 8 Serangoon Gardens, #08-88;
@@ -304,7 +304,7 @@ Example:
 * When command succeeds
     * Continuing from the above example, CLI shows:
     ```
-  New client added: Mahidharah; 
+  New client added: Mahidharah;
   Phone: 81256788;
   Email: aunus@nus.com;
   Address: Blk 88 Lorong 8 Serangoon Gardens, #08-88;
@@ -398,7 +398,7 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
 * Edits `Amy`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
 
-When command succeeds, CLI shows:         
+When command succeeds, CLI shows:
 ```
 Edited Developer: Amy
 Phone: 98989898
@@ -426,11 +426,11 @@ Example of usage: `edit-client 3 e/bob@gmail.com`
 
 When command succeeds, CLI shows:
 ```
-Edited Client: Bob; 
-Phone: 87654321; 
-Email: bob@gmail.com; 
-Address: Blk 123 Banana Road; 
-Organisation: Google; 
+Edited Client: Bob;
+Phone: 87654321;
+Email: bob@gmail.com;
+Address: Blk 123 Banana Road;
+Organisation: Google;
 Document: google.com
 Projects: ProjectA
 ```
@@ -481,13 +481,13 @@ Example of usage: `import-developer developers.csv`
 
 When command succeeds, CLI shows:
 ```
-New developer added: faiz; 
-Phone: 87654321; 
-Email: faiz@u.com; 
-Address: utown; 
-Date Joined: 12-12-2020; 
-Role: Developer; 
-Salary: 3333; 
+New developer added: faiz;
+Phone: 87654321;
+Email: faiz@u.com;
+Address: utown;
+Date Joined: 12-12-2020;
+Role: Developer;
+Salary: 3333;
 Projects: ProjectBAndroidApp
 ```
 for each developer successfully added
@@ -515,13 +515,13 @@ Example of usage: `import-client clients.csv`
 
 When command succeeds, CLI shows:
 ```
-New client added: Mahi; 
-Phone: 87554321; 
-Email: mahi@u.com; 
-Address: utown; 
-Organisation: Google; 
-Role: HR; 
-Document: docs.google.com/abd; 
+New client added: Mahi;
+Phone: 87554321;
+Email: mahi@u.com;
+Address: utown;
+Organisation: Google;
+Role: HR;
+Document: docs.google.com/abd;
 Projects: ProjectBAndroidApp
 ```
 for each client successfully added
@@ -821,10 +821,10 @@ Undo the previous command you entered.
 
 Format: `undo`
 * Each time you type undo, you move back one stage.
-* If you made 5 changes and you wish to undo, you can enter the command `undo` 5 times. The system will remind you when 
+* If you made 5 changes, and you wish to undo, you can enter the command `undo` 5 times. The system will remind you when
 you cannot undo anymore.
 * `undo` works for all `edit`, `add-TYPE` and `delete` commands.
-* ❗**IMPORTANT**❗ `undo` does not work for all adding and deleting role functions. Undoing an 
+* ❗**IMPORTANT**❗ `undo` does not work for all adding and deleting role functions. Undoing an
 `add-developer-role` will not delete that role.
 
 Examples of usage: `undo`
@@ -833,14 +833,14 @@ Examples of usage: `undo`
 
 When command succeeds, CLI shows:
 ```
-Undo successful! The change below has been undone: 
-Deleted Developer: Amy; 
-Phone: 83566674; 
-Email: amy@example.com; 
-Address: 42, Clementi Ave 7, #02-2; 
-Date Joined: 23-11-2023; 
-Role: Frontend Developer; 
-Salary: 5000; 
+Undo successful! The change below has been undone:
+Deleted Developer: Amy;
+Phone: 83566674;
+Email: amy@example.com;
+Address: 42, Clementi Ave 7, #02-2;
+Date Joined: 23-11-2023;
+Role: Frontend Developer;
+Salary: 5000;
 Projects: CustomWebsiteAndroidApp
 ```
 Relevant UI mock-ups: <br>
@@ -860,18 +860,18 @@ Format: `redo`
 * **IMPORTANT**:exclamation `redo` does not work for all adding and deleting role functions. Redoing an
   `delete-developer-role` will not delete that role.
 
-Examples of usage: 
-* You just `undo` delete developer and you wish to `redo` to add it back.
+Examples of usage:
+* You just `undo` delete developer, and you wish to `redo` to add it back.
   When command succeeds, CLI shows:
 ```
 Redo successful! The change below has been redone:
-Deleted Developer: Amy; 
-Phone: 83566674; 
-Email: amy@example.com; 
-Address: 42, Clementi Ave 7, #02-2; 
-Date Joined: 23-11-2023; 
-Role: Frontend Developer; 
-Salary: 5000; 
+Deleted Developer: Amy;
+Phone: 83566674;
+Email: amy@example.com;
+Address: 42, Clementi Ave 7, #02-2;
+Date Joined: 23-11-2023;
+Role: Frontend Developer;
+Salary: 5000;
 Projects: CustomWebsiteAndroidApp
 ```
 Relevant UI mock-ups: <br>

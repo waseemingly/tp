@@ -168,7 +168,7 @@ public class ProjectCard extends UiPart<Region> {
         private final SimpleBooleanProperty isDone;
         private final SimpleIntegerProperty index;
         private final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        
+
         private Data(Deadline deadline){
             date = new SimpleObjectProperty(deadline.getDate());
             description = new SimpleStringProperty(deadline.getDescription().desc);
@@ -176,7 +176,7 @@ public class ProjectCard extends UiPart<Region> {
             isDone = new SimpleBooleanProperty(deadline.getIsDone());
             index = new SimpleIntegerProperty(deadline.getNum());
         }
-        
+
         public int getIndex() { return index.get(); }
         public void setIndex(int num) { this.index.set(num);}
         public String getDate() {
@@ -189,7 +189,7 @@ public class ProjectCard extends UiPart<Region> {
         public void setDate(String date) throws ParseException {
             this.date.set(new seedu.address.model.commons.Date(date));
         }
-     
+
         public boolean getIsDone() {
             return isDone.get();
         }
@@ -197,19 +197,18 @@ public class ProjectCard extends UiPart<Region> {
         public void setIsDone(boolean isDone) {
             this.isDone.set(isDone);
         }
-        
+
         public String getDescription() {
             return description.get();
         }
-        
+
         public void setDescription(String description) {
             this.description.set(description);
         }
-        
+
         public String getPriority() {
             return priority.get().toString();
         }
-        
         public void setPriority(String priority) {
             this.priority.set(Priority.valueOf(priority));
         }
