@@ -1,11 +1,5 @@
 package seedu.address.logic.parser.find;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-
-import java.util.function.Predicate;
-
 import seedu.address.logic.commands.find.FindDeadlineCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -14,6 +8,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Priority;
+
+import java.util.function.Predicate;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 public class FindDeadlineCommandParser implements Parser<FindDeadlineCommand> {
 

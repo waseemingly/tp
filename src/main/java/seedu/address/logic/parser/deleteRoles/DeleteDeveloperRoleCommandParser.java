@@ -1,10 +1,10 @@
 package seedu.address.logic.parser.deleteRoles;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.logic.commands.deleteRoles.DeleteDeveloperRoleCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import static java.util.Objects.requireNonNull;
 
 public class DeleteDeveloperRoleCommandParser implements Parser<DeleteDeveloperRoleCommand> {
     @Override

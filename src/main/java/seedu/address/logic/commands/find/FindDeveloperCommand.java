@@ -1,26 +1,17 @@
 package seedu.address.logic.commands.find;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.getMessageDevelopersListedOverview;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-
-import java.util.function.Predicate;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
 import seedu.address.model.developer.Developer;
+
+import java.util.function.Predicate;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.getMessageDevelopersListedOverview;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 public class FindDeveloperCommand extends Command {
 

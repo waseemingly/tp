@@ -1,12 +1,12 @@
 package seedu.address.model.project;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.commons.Date;
 
 import java.util.Objects;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.commons.Date;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Project's deadline in the address book.

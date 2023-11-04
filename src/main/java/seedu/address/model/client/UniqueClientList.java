@@ -1,17 +1,17 @@
 package seedu.address.model.client;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.ClientNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateClientException;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.ClientNotFoundException;
-import seedu.address.model.person.exceptions.DuplicateClientException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of clients that enforces uniqueness between its elements and does not allow nulls.

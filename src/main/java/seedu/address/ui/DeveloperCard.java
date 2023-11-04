@@ -1,13 +1,5 @@
 package seedu.address.ui;
 
-import java.text.SimpleDateFormat;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.Comparator;
-import java.util.Date;
-
-import org.controlsfx.control.Rating;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,6 +8,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.developer.Developer;
+
+import java.text.SimpleDateFormat;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Comparator;
+import java.util.Date;
+
+import org.controlsfx.control.Rating;
 
 
 /**

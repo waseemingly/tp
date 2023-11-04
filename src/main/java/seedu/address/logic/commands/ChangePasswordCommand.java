@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.model.Model;
 import seedu.address.model.Password;
+
+import static java.util.Objects.requireNonNull;
 
 public class ChangePasswordCommand extends Command {
     public static final String COMMAND_WORD = "change-password";

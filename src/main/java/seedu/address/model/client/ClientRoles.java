@@ -1,6 +1,6 @@
 package seedu.address.model.client;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.Model;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.model.Model;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Developer's role in the company.

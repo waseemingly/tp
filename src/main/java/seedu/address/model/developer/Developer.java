@@ -1,15 +1,6 @@
 package seedu.address.model.developer;
 
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
-
-import java.util.Objects;
-import java.util.Set;
-
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
@@ -17,6 +8,12 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+
+import java.util.Objects;
+import java.util.Set;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Represents a Developer in the address book, extending the Developer class.

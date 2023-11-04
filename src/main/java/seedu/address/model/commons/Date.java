@@ -1,10 +1,10 @@
 package seedu.address.model.commons;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the date a developer Joined. In the format: dd-MM-YYYY

@@ -1,6 +1,7 @@
 package seedu.address.commons.util;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataLoadingException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,8 +21,7 @@ import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataLoadingException;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Converts a Java object instance to JSON and vice versa

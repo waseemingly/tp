@@ -1,13 +1,11 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DEVELOPERS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
-
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.model.Model;
 import seedu.address.model.Password;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.*;
 
 public class UnlockCommand extends Command {
     public static final String COMMAND_WORD = "unlock";
