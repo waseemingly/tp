@@ -3,7 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 **CodeContact is a desktop application for managing your employee details in a software company.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).<br>
-  
+
 Example usages:
   * An HR of a software company can easily access the contact information of all employees so that he/she can quickly communicate with them regarding HR-related matters.
   * The project manager can use it to maintain a list of project collaborators and their contact information so that he/she can quickly assemble teams for new projects.
