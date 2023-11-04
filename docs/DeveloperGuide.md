@@ -480,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. System informs user there is an error and requests for correct input.
     * 3a2. User enters requested details again.
- 
+
       Steps 3a1-3a2 are repeated until details entered are valid.
 
       Use case resumes at step 4.

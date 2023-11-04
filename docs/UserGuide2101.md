@@ -23,7 +23,7 @@ CodeContact is a **desktop app for handling and synchronising project informatio
 3. Command Summary
 4. Available Features
 5. Frequently Asked Questions (FAQ)
-   
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -36,8 +36,8 @@ CodeContact is a **desktop app for handling and synchronising project informatio
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)<br>
    For help navigating the GUI, click [here](#navigating)
-   
-1. 
+
+
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -144,7 +144,7 @@ CodeContact is a **desktop app for handling and synchronising project informatio
     * CLI  shows: `Here are the employee details: AMY 87654321 amy@u.nus.edu NUS UTOWN 06 sept Developer 4999 amy password123`
     * User types: `n/AMY p/87654321 e/amy@u.nus.edu a/NUS UTOWN d/06 sept r/Developer s/4999 pr/{login} u/amy pa/password12345`
     * CLI  shows: `Here are the updated employee details: AMY 87654321 amy@u.nus.edu NUS UTOWN 06 sept Developer 6999 amy password123`
-* Acceptable parameters 
+* Acceptable parameters
     * Inputs are the same as adding an employee but you just change the particular details that you want to modify.
     * Names can only consist of capital and small letters, spaces and hyphens.
     * Contact number has to 8 digits without spaces

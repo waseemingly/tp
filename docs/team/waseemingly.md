@@ -28,7 +28,7 @@ Given below are my contributions to the project.
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 
-* **Documentation Contributions**: 
+* **Documentation Contributions**:
   * User Guide Contributions:
     * Added documentation for the features `edit` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()

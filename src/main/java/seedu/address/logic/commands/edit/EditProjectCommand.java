@@ -169,7 +169,7 @@ public class EditProjectCommand extends Command {
         public Optional<List<Deadline>> getDeadlines() {
             return (deadlines != null) ? Optional.of(Collections.unmodifiableList(deadlines)) : Optional.empty();
         }
-        
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {

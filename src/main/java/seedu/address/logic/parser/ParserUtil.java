@@ -45,7 +45,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
-    
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -134,14 +134,14 @@ public class ParserUtil {
     }
     /**
      * Parses {@code Collection<String> projects} into a {@code Set<String>}.
-     * 
+     *
      * @param projects The Collection of projects to parse.
      * @returns A HashSet of String.
      */
     public static Set<String> parseProjectsToSet(Collection<String> projects) {
         requireNonNull(projects);
         final Set<String> projectSet = new HashSet<>();
-        
+
         for (String p : projects) {
                 projectSet.add(p);
         }
@@ -167,7 +167,7 @@ public class ParserUtil {
         }
         return deadlineSet;
     }
-    
+
     /**
      * Parses a {@code String dateJoined} into a {@code DateJoined}.
      * Leading and trailing whitespaces will be trimmed.

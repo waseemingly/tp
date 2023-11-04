@@ -11,8 +11,8 @@ Given below are my contributions to the project.
 
 * **New Feature**: FEATURE1
   * What it does:
-  * Justification: 
-  * Highlights: 
+  * Justification:
+  * Highlights:
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 
@@ -20,7 +20,7 @@ Given below are my contributions to the project.
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
   * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
-    
+
 * **Code contributed**: [RepoSense link]()
 
 
@@ -42,11 +42,11 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
   * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
-    
+
 * **Contributions beyond the project team:**:
   * NOTHING
 
-  
+
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())
   * Integrated a new Github plugin (CircleCI) to the team repo

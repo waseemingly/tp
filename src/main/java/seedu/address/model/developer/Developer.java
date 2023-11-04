@@ -31,7 +31,7 @@ public class Developer extends Person {
 
     public static final Prefix[] unusedPrefixes = new Prefix[]{ PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION,
             PREFIX_DEADLINE };
-    
+
     /**
      * Every field must be present and not null.
      */

@@ -83,7 +83,7 @@ public class EditClientCommand extends Command {
         Set<String> updatedProjects = editClientDescriptor.getProjects().orElse(clientToEdit.getProjects());
         Name updatedOrganisation = editClientDescriptor.getOrganisation().orElse(clientToEdit.getOrganisation());
         Document updatedDocument = editClientDescriptor.getDocument().orElse(clientToEdit.getDocument());
-        
+
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedRole, updatedProjects, updatedOrganisation, updatedDocument);
     }
@@ -106,7 +106,7 @@ public class EditClientCommand extends Command {
         if (res != null) {
             throw new CommandException(String.format(Messages.MESSAGE_NONEXISTENT_PROJECT, res));
         }
-        
+
         String successMessage = String.format(MESSAGE_EDIT_CLIENT_SUCCESS, Messages.format(editedClient));
         TabIndex index = TabIndex.Client;
 
@@ -154,7 +154,7 @@ public class EditClientCommand extends Command {
         private ClientRoles role;
         private Name organisation;
         private Document document;
-        
+
         public EditClientDescriptor() {}
 
         /**
@@ -223,15 +223,15 @@ public class EditClientCommand extends Command {
         public void setOrganisation(Name organisation) {
             this.organisation = organisation;
         }
-        
+
         public Optional<Name> getOrganisation() {
             return Optional.ofNullable(organisation);
         }
-        
+
         public void setDocument(Document document) {
             this.document = document;
         }
-        
+
         public Optional<Document> getDocument() {
             return Optional.ofNullable(document);
         }

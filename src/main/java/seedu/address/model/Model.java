@@ -72,12 +72,12 @@ public interface Model {
 
     /**
      * Returns null if the projects assigned to a person exist and are valid, returns the invalid project name otherwise.
-     * 
+     *
      * @param person The person to check.
      * @returns The String of the invalid project name, or null if all projects are valid.
      */
     String areProjectsValid(Person person);
-    
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.

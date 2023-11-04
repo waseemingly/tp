@@ -26,7 +26,7 @@ public class Client extends Person {
 
     public static final Prefix[] unusedPrefixes = new Prefix[]{ PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
             PREFIX_GITHUBID, PREFIX_DESCRIPTION, PREFIX_DEADLINE };
-    
+
     /**
      * Every field must be present and not null.
      */

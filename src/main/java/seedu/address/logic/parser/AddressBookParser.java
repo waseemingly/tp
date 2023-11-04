@@ -134,7 +134,7 @@ public class AddressBookParser {
 
             case EditProjectCommand.COMMAND_WORD:
                 return new EditProjectCommandParser().parse(arguments);
-            
+
             case DeleteDeveloperCommand.COMMAND_WORD:
                 return new DeleteDeveloperCommandParser().parse(arguments);
 
@@ -188,7 +188,7 @@ public class AddressBookParser {
 
             case UnmarkDeadlineCommand.COMMAND_WORD:
                 return new UnmarkDeadlineCommandParser().parse(arguments);
-            
+
             case LockCommand.COMMAND_WORD:
                 return new LockCommand();
 

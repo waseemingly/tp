@@ -47,7 +47,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Description desc = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         List<String> deadlineList = argMultimap.getAllValues(PREFIX_DEADLINE);
         List<Deadline> deadlines = new ArrayList<>();
-        
+
         for (String s : deadlineList) {
             deadlines.add(new Deadline(s, deadlines.size() + 1));
         }

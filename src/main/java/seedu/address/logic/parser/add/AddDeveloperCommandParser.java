@@ -47,7 +47,7 @@ public class AddDeveloperCommandParser implements Parser<AddDeveloperCommand> {
                         AddDeveloperCommand.MESSAGE_USAGE));
             }
         }
-        
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());

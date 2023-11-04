@@ -146,8 +146,8 @@ public class ModelManager implements Model {
         requireNonNull(client);
         return addressBook.hasClient(client);
     }
-    
-    
+
+
     public String areProjectsValid(Person person) {
         requireNonNull(person);
         return addressBook.areProjectsValid(person);

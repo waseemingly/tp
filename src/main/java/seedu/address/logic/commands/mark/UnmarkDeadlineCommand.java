@@ -84,7 +84,7 @@ public class UnmarkDeadlineCommand extends Command {
         }
         return res;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

@@ -20,7 +20,6 @@ public class Deadline {
             "Deadline should be of the format dd-MM-yyyy,<DESCRIPTION>,<HIGH|MEDIUM|LOW>,<0|1>\n" +
                     "Eg: 31-12-2019,Develop front end interface,HIGH,0";
     public static final String VALIDATION_REGEX = "^[0-3]\\d-[01]\\d-\\d{4},[^,]+,(HIGH|MEDIUM|LOW),(0|1)$";
-    
     private final Date date;
     private final Description desc;
     private final Priority priority;
@@ -41,7 +40,7 @@ public class Deadline {
         this.isDone = output[3].contains("1");
         this.num = num;
     }
-    
+
     /**
      * Returns true if a given string is a valid date.
      */
