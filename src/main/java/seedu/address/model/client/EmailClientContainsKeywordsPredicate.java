@@ -1,10 +1,10 @@
 package seedu.address.model.client;
 
-import java.util.List;
-
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.KeywordPredicate;
+
+import java.util.List;
 
 /**
  * Tests that a {@code Client}'s {@code Email} matches any of the keywords given.

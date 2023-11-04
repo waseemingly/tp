@@ -1,10 +1,4 @@
 package seedu.address.logic.parser.add;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.add.AddClientCommand;
@@ -18,12 +12,27 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
+
 /**
  * Parses input arguments and creates a new AddClientCommand object
  */
 public class AddClientCommandParser implements Parser<AddClientCommand> {
     //Name name, Phone phone, Email email, Address address, Role role, Set<String> projects,
     //                  Name organisation, Document document
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 
     public AddClientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
@@ -57,13 +66,5 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Client client = new Client(name, phone, email, address, role, projectList, organisation, document);
 
         return new AddClientCommand(client);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

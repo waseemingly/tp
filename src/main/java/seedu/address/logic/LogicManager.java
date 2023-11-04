@@ -1,10 +1,5 @@
 package seedu.address.logic;
 
-import java.io.IOException;
-import java.nio.file.AccessDeniedException;
-import java.nio.file.Path;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -19,6 +14,11 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
 import seedu.address.storage.Storage;
+
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.Path;
+import java.util.logging.Logger;
 
 /**
  * The main LogicManager of the app.
@@ -73,10 +73,12 @@ public class LogicManager implements Logic {
     public ObservableList<Developer> getFilteredDeveloperList() {
         return model.getFilteredDeveloperList();
     }
+
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return model.getFilteredClientList();
     }
+
     @Override
     public ObservableList<seedu.address.model.project.Project> getFilteredProjectList() {
         return model.getFilteredProjectList();

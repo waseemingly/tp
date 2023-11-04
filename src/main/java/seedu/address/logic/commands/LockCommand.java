@@ -6,7 +6,7 @@ import seedu.address.model.Model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.*;
 
-public class LockCommand extends Command{
+public class LockCommand extends Command {
     public static final String COMMAND_WORD = "lock";
 
     public static final String MESSAGE_SUCCESS = "Locked all data";

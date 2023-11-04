@@ -9,7 +9,6 @@ import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
-import seedu.address.model.developer.Developer;
 
 import java.util.ArrayList;
 
@@ -33,7 +32,7 @@ public class ImportClientCommand extends Command {
      */
     public ImportClientCommand(ArrayList<Client> clientList) {
         requireNonNull(clientList);
-        for(Client i: clientList) {
+        for (Client i : clientList) {
             requireNonNull(i);
         }
         toAddList = clientList;
@@ -43,11 +42,10 @@ public class ImportClientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String output = "";
-        for(Client toAdd: toAddList) {
+        for (Client toAdd : toAddList) {
             if (model.hasClient(toAdd)) {
                 output += toAdd.getName().fullName + MESSAGE_DUPLICATE_CLIENT;
-            }
-            else {
+            } else {
                 model.addClient(toAdd);
                 output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
             }

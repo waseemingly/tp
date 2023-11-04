@@ -8,7 +8,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.developer.Developer;
 import seedu.address.model.project.Project;
 
 import java.util.List;
@@ -31,7 +30,7 @@ public class DeleteProjectCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteProjectCommand (Index targetIndex) {
+    public DeleteProjectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 

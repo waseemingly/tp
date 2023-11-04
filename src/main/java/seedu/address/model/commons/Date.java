@@ -20,7 +20,7 @@ public class Date {
      *
      * @param date A valid date string.
      */
-    public Date(String date){
+    public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         try {

@@ -1,15 +1,6 @@
 package seedu.address.model.developer;
 
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
-
-import java.util.Objects;
-import java.util.Set;
-
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
@@ -18,20 +9,25 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
+import java.util.Objects;
+import java.util.Set;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
+
 /**
  * Represents a Developer in the address book, extending the Developer class.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Developer extends Person {
+    public static final Prefix[] unusedPrefixes = new Prefix[]{PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION,
+            PREFIX_DEADLINE};
     private final Salary salary;
     private final Date dateJoined;
     private final GithubId githubId;
     private final Rating rating;
     private final DeveloperRoles role;
 
-    public static final Prefix[] unusedPrefixes = new Prefix[]{ PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION,
-            PREFIX_DEADLINE };
-    
     /**
      * Every field must be present and not null.
      */
@@ -53,6 +49,7 @@ public class Developer extends Person {
     public Date getDateJoined() {
         return dateJoined;
     }
+
     public boolean isSameDeveloper(Developer otherDeveloper) {
         if (otherDeveloper == this) {
             return true;
@@ -69,6 +66,7 @@ public class Developer extends Person {
     public Rating getRating() {
         return rating;
     }
+
     public DeveloperRoles getRole() {
         return role;
     }

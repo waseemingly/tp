@@ -32,7 +32,7 @@ public class ImportDeveloperCommand extends Command {
      */
     public ImportDeveloperCommand(ArrayList<Developer> developerList) {
         requireNonNull(developerList);
-        for(Developer i: developerList) {
+        for (Developer i : developerList) {
             requireNonNull(i);
         }
         toAddList = developerList;
@@ -42,11 +42,10 @@ public class ImportDeveloperCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String output = "";
-        for(Developer toAdd: toAddList) {
+        for (Developer toAdd : toAddList) {
             if (model.hasDeveloper(toAdd)) {
                 output += toAdd.getName().fullName + MESSAGE_DUPLICATE_DEVELOPER;
-            }
-            else {
+            } else {
                 model.addDeveloper(toAdd);
                 output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
             }

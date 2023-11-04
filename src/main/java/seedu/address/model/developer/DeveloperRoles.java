@@ -1,5 +1,6 @@
 package seedu.address.model.developer;
-import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.Model;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,14 +11,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.model.Model;
-import seedu.address.model.client.RoleClientContainsKeywordsPredicate;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Developer's role in the company.
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
 public class DeveloperRoles {
+    public static final String NO_SUCH_DEVELOPER_ROLE = "There is no such developer role, "
+            + "please create role before proceeding";
     private static List<DeveloperRoles> roles = new ArrayList<>();
     private static boolean noRepeat;
     private static boolean notDefault;
@@ -30,9 +32,6 @@ public class DeveloperRoles {
         roles.add(new DeveloperRoles("Developer"));
         loadDeveloperRoles();
     }
-
-    public static final String NO_SUCH_DEVELOPER_ROLE = "There is no such developer role, "
-            + "please create role before proceeding";
 
     public final String role;
 
@@ -50,6 +49,7 @@ public class DeveloperRoles {
         roles.add(role);
         saveDeveloperRoles();
     }
+
     public static void deleteDeveloperRole(DeveloperRoles role) {
         roles.remove(role);
         saveDeveloperRoles();
@@ -130,6 +130,7 @@ public class DeveloperRoles {
         listOfRoles = roles.toString();
         return listOfRoles;
     }
+
     public static void saveDeveloperRoles() {
         try {
             // Save roles to a text file
@@ -142,6 +143,7 @@ public class DeveloperRoles {
             e.printStackTrace();
         }
     }
+
     public static void loadDeveloperRoles() {
         try (BufferedReader reader = new BufferedReader(new FileReader("DeveloperRoles.txt"))) {
             String line;

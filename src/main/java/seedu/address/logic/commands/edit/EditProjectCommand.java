@@ -1,16 +1,5 @@
 package seedu.address.logic.commands.edit;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -24,6 +13,12 @@ import seedu.address.model.commons.Name;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
+
+import java.util.*;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 /**
  * Edits the details of an existing project in the address book.
@@ -52,7 +47,7 @@ public class EditProjectCommand extends Command {
 
 
     /**
-     * @param index of the project in the filtered project list to edit
+     * @param index                 of the project in the filtered project list to edit
      * @param editProjectDescriptor details to edit the project with
      */
     public EditProjectCommand(Index index, EditProjectDescriptor editProjectDescriptor) {
@@ -135,7 +130,8 @@ public class EditProjectCommand extends Command {
         private Description desc;
         private List<Deadline> deadlines;
 
-        public EditProjectDescriptor() {}
+        public EditProjectDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -154,22 +150,22 @@ public class EditProjectCommand extends Command {
                     desc, deadlines);
         }
 
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(desc);
+        }
+
         public void setDescription(Description desc) {
             this.desc = desc;
         }
 
-        public Optional<Description> getDescription() {
-            return Optional.ofNullable(desc);
+        public Optional<List<Deadline>> getDeadlines() {
+            return (deadlines != null) ? Optional.of(Collections.unmodifiableList(deadlines)) : Optional.empty();
         }
 
         public void setDeadlines(List<Deadline> deadlines) {
             this.deadlines = (deadlines != null) ? new ArrayList<>(deadlines) : null;
         }
 
-        public Optional<List<Deadline>> getDeadlines() {
-            return (deadlines != null) ? Optional.of(Collections.unmodifiableList(deadlines)) : Optional.empty();
-        }
-        
         @Override
         public boolean equals(Object other) {
             if (other == this) {

@@ -1,5 +1,14 @@
 package seedu.address.storage;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commons.Date;
+import seedu.address.model.commons.Name;
+import seedu.address.model.developer.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -7,16 +16,6 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.commons.Date;
-import seedu.address.model.commons.Name;
-import seedu.address.model.developer.Developer;
-import seedu.address.model.developer.DeveloperRoles;
-import seedu.address.model.developer.GithubId;
-import seedu.address.model.developer.Rating;
-import seedu.address.model.developer.Salary;
-import seedu.address.model.person.*;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -117,7 +116,6 @@ class JsonAdaptedDeveloper {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDateJoined = new Date(dateJoined);
-
 
 
         if (role == null) {

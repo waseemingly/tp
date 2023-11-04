@@ -31,6 +31,6 @@ public class UnlockCommand extends Command {
             AddressBookParser.unlock();
             return new CommandResult(MESSAGE_SUCCESS, TabIndex.Developer);
         }
-        return new CommandResult(String.format(MESSAGE_FAILURE,Password.MESSAGE_CONSTRAINTS),TabIndex.Developer);
+        return new CommandResult(String.format(MESSAGE_FAILURE, Password.MESSAGE_CONSTRAINTS), TabIndex.Developer);
     }
 }

@@ -1,38 +1,20 @@
 package seedu.address.logic.parser.edit;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.edit.EditProjectCommand;
+import seedu.address.logic.parser.*;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Project;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.edit.EditProjectCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Project;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new EditProjectCommand object
@@ -60,11 +42,11 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     EditProjectCommand.MESSAGE_USAGE), pe);
         }
-        
+
         if (!argMultimap.hasMappings()) {
             throw new ParseException(EditProjectCommand.MESSAGE_NOT_EDITED);
         }
-        
+
         for (Prefix p : Project.unusedPrefixesForEdit) {
             if (argMultimap.getValue(p).isPresent()) {
                 throw new ParseException(String.format(Messages.MESSAGE_INAPPLICABLE_PREFIX_USED,

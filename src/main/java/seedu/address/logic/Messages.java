@@ -1,13 +1,12 @@
 package seedu.address.logic;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.developer.DeveloperRoles;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Container for user visible messages.
@@ -24,25 +23,26 @@ public class Messages {
     public static final String MESSAGE_INAPPLICABLE_PREFIX_USED = "You tried to edit an inapplicable field! Please check " +
             "the prefixes used and try again. \n%1$s";
     public static final String MESSAGE_NONEXISTENT_PROJECT = "There is no existing Project with the name: %1$s!";
-
+    public static final String MESSAGE_DUPLICATE_FIELDS =
+            "Multiple values specified for the following single-valued field(s): ";
 
     public static String getMessageDevelopersListedOverview(int count) {
         return count == 1
                 ? "This is the 1 developer with matching information."
                 : String.format("These are the %d developers with matching information.", count);
     }
+
     public static String getMessageClientsListedOverview(int count) {
         return count == 1
                 ? "This is the 1 client with matching information."
                 : String.format("These are the %d clients with matching information.", count);
     }
+
     public static String getMessageProjectsListedOverview(int count) {
         return count == 1
                 ? "This is the 1 project with matching information."
                 : String.format("These are the %d projects with matching information.", count);
     }
-    public static final String MESSAGE_DUPLICATE_FIELDS =
-                "Multiple values specified for the following single-valued field(s): ";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

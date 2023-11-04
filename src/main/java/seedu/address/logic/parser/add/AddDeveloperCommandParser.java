@@ -1,24 +1,22 @@
 package seedu.address.logic.parser.add;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-
-import java.text.SimpleDateFormat;
-import java.util.Set;
-import java.util.stream.Stream;
-
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
-import seedu.address.model.developer.Developer;
-import seedu.address.model.developer.DeveloperRoles;
-import seedu.address.model.developer.GithubId;
-import seedu.address.model.developer.Rating;
-import seedu.address.model.developer.Salary;
-import seedu.address.model.person.*;
+import seedu.address.model.developer.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
+
+import java.text.SimpleDateFormat;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new AddDeveloperCommand object
@@ -26,8 +24,17 @@ import seedu.address.model.person.*;
 public class AddDeveloperCommandParser implements Parser<AddDeveloperCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the AddDeveloperCommand
      * and returns an AddDeveloperCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddDeveloperCommand parse(String args) throws ParseException {
@@ -47,7 +54,7 @@ public class AddDeveloperCommandParser implements Parser<AddDeveloperCommand> {
                         AddDeveloperCommand.MESSAGE_USAGE));
             }
         }
-        
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -65,14 +72,6 @@ public class AddDeveloperCommandParser implements Parser<AddDeveloperCommand> {
                 dateJoined, githubId, rating);
 
         return new AddDeveloperCommand(developer);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

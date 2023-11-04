@@ -1,15 +1,5 @@
 package seedu.address.logic.commands.edit;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -21,12 +11,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
-import seedu.address.model.developer.Developer;
-import seedu.address.model.developer.DeveloperRoles;
-import seedu.address.model.developer.GithubId;
-import seedu.address.model.developer.Rating;
-import seedu.address.model.developer.Salary;
-import seedu.address.model.person.*;
+import seedu.address.model.developer.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
+
+import java.util.*;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Edits the details of an existing developer in the address book.
@@ -55,14 +48,14 @@ public class EditDeveloperCommand extends Command {
             + "Example: \n" + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
-    
+
     private final Index index;
 
     private final EditDeveloperDescriptor editDeveloperDescriptor;
 
 
     /**
-     * @param index of the developer in the filtered developer list to edit
+     * @param index                   of the developer in the filtered developer list to edit
      * @param editDeveloperDescriptor details to edit the developer with
      */
     public EditDeveloperCommand(Index index, EditDeveloperDescriptor editDeveloperDescriptor) {
@@ -90,11 +83,11 @@ public class EditDeveloperCommand extends Command {
         Set<String> updatedProjects = editDeveloperDescriptor.getProjects().orElse(developerToEdit.getProjects());
         GithubId updatedGithubId = editDeveloperDescriptor.getGithubId().orElse(developerToEdit.getGithubId());
         Rating updatedRating = editDeveloperDescriptor.getRating().orElse(developerToEdit.getRating());
-        
+
         return new Developer(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedRole, updatedProjects, updatedSalary, updatedDateJoined, updatedGithubId, updatedRating);
     }
-    
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -164,7 +157,8 @@ public class EditDeveloperCommand extends Command {
         private GithubId githubId;
         private Rating rating;
 
-        public EditDeveloperDescriptor() {}
+        public EditDeveloperDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -190,85 +184,85 @@ public class EditDeveloperCommand extends Command {
             return CollectionUtil.isAnyNonNull(
                     name, phone, email, address, projects, dateJoined, role, salary, githubId, rating);
         }
-        
-        public void setName(Name name) {
-            this.name = name;
-        }
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setPhone(Phone phone) {
+            this.phone = phone;
         }
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setEmail(Email email) {
+            this.email = email;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
 
-        public void setProjects(Set<String> projects) {
-            this.projects = (projects != null) ? new HashSet<>(projects) : null;
+        public void setAddress(Address address) {
+            this.address = address;
         }
 
         public Optional<Set<String>> getProjects() {
             return (projects != null) ? Optional.of(Collections.unmodifiableSet(projects)) : Optional.empty();
         }
-        
-        public void setDateJoined(Date dateJoined) {
-            this.dateJoined = dateJoined;
+
+        public void setProjects(Set<String> projects) {
+            this.projects = (projects != null) ? new HashSet<>(projects) : null;
         }
 
         public Optional<Date> getDateJoined() {
             return Optional.ofNullable(dateJoined);
         }
 
-        public void setRole(DeveloperRoles role) {
-            this.role = role;
+        public void setDateJoined(Date dateJoined) {
+            this.dateJoined = dateJoined;
         }
 
         public Optional<DeveloperRoles> getRole() {
             return Optional.ofNullable(role);
         }
 
-        public void setSalary(Salary salary) {
-            this.salary = salary;
+        public void setRole(DeveloperRoles role) {
+            this.role = role;
         }
 
         public Optional<Salary> getSalary() {
             return Optional.ofNullable(salary);
         }
 
-        public void setGithubId(GithubId githubId) {
-            this.githubId = githubId;
+        public void setSalary(Salary salary) {
+            this.salary = salary;
         }
-        
+
         public Optional<GithubId> getGithubId() {
             return Optional.ofNullable(githubId);
         }
-        
-        public void setRating(Rating rating) {
-            this.rating = rating;
+
+        public void setGithubId(GithubId githubId) {
+            this.githubId = githubId;
         }
-        
+
         public Optional<Rating> getRating() {
             return Optional.ofNullable(rating);
+        }
+
+        public void setRating(Rating rating) {
+            this.rating = rating;
         }
 
         @Override

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.ChangePasswordCommand;
-import seedu.address.logic.commands.UnlockCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import static java.util.Objects.requireNonNull;
@@ -18,7 +17,7 @@ public class ChangePasswordCommandParser implements Parser<ChangePasswordCommand
         if (argMultimap.getValue(PREFIX_PASSWORD).isPresent() && argMultimap.getValue(PREFIX_NEW_PASSWORD).isPresent()) {
             String currentPw = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
             String newPw = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_NEW_PASSWORD).get());
-            return new ChangePasswordCommand(currentPw,newPw);
+            return new ChangePasswordCommand(currentPw, newPw);
         }
         throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangePasswordCommand.MESSAGE_USAGE));

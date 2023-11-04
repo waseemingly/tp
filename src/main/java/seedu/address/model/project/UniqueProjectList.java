@@ -1,15 +1,15 @@
 package seedu.address.model.project;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Iterator;
-import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
+
+import java.util.Iterator;
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of projects that enforces uniqueness between its elements and does not allow nulls.
@@ -17,7 +17,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
  * projects use Project#isSameProject(Project) for equality so as to ensure that the project being added or updated is
  * unique in terms of identity in the UniqueProjectList. However, the removal of a project uses Project#equals(Object) so
  * as to ensure that the project with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Project#isSameProject(Project)
@@ -35,7 +35,7 @@ public class UniqueProjectList implements Iterable<Project> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameProject);
     }
-    
+
     public boolean contains(String toCheck) {
         requireNonNull(toCheck);
         for (Project p : internalList) {

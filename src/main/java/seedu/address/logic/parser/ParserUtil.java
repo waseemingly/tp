@@ -1,13 +1,5 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Messages;
@@ -21,10 +13,16 @@ import seedu.address.model.developer.DeveloperRoles;
 import seedu.address.model.developer.GithubId;
 import seedu.address.model.developer.Rating;
 import seedu.address.model.developer.Salary;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
+
+import java.util.*;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -36,6 +34,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -45,7 +44,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
-    
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -132,18 +131,19 @@ public class ParserUtil {
         }
         return projectSet;
     }
+
     /**
      * Parses {@code Collection<String> projects} into a {@code Set<String>}.
-     * 
+     *
      * @param projects The Collection of projects to parse.
      * @returns A HashSet of String.
      */
     public static Set<String> parseProjectsToSet(Collection<String> projects) {
         requireNonNull(projects);
         final Set<String> projectSet = new HashSet<>();
-        
+
         for (String p : projects) {
-                projectSet.add(p);
+            projectSet.add(p);
         }
         return projectSet;
     }
@@ -152,8 +152,8 @@ public class ParserUtil {
      * Parses {@code Collection<String> deadlines} into a {@code List<Deadline>}.
      *
      * @param deadlines The Collection of deadlines to parse.
-     * @returns An ArrayList of Deadlines if parsing is successful.
      * @throws ParseException if format is invalid.
+     * @returns An ArrayList of Deadlines if parsing is successful.
      */
     public static List<Deadline> parseDeadlines(Collection<String> deadlines) throws ParseException {
         requireNonNull(deadlines);
@@ -167,7 +167,7 @@ public class ParserUtil {
         }
         return deadlineSet;
     }
-    
+
     /**
      * Parses a {@code String dateJoined} into a {@code DateJoined}.
      * Leading and trailing whitespaces will be trimmed.
@@ -207,6 +207,7 @@ public class ParserUtil {
         }
         return new ClientRoles(trimmedRole);
     }
+
     /**
      * Parses a {@code String salary} into a {@code Salary}.
      * Leading and trailing whitespaces will be trimmed.

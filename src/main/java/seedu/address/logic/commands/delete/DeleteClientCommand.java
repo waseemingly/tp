@@ -30,7 +30,7 @@ public class DeleteClientCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteClientCommand (Index targetIndex) {
+    public DeleteClientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 

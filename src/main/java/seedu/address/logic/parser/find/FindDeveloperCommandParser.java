@@ -1,37 +1,17 @@
 package seedu.address.logic.parser.find;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-
-import java.util.Arrays;
-import java.util.function.Predicate;
-
 import seedu.address.logic.commands.find.FindDeveloperCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.developer.DateJoinedContainsKeywordsPredicate;
-import seedu.address.model.developer.Developer;
-import seedu.address.model.developer.GithubIdContainsKeywordsPredicate;
-import seedu.address.model.developer.RatingContainsKeywordsPredicate;
-import seedu.address.model.developer.SalaryContainsKeywordsPredicate;
-import seedu.address.model.developer.AddressDeveloperContainsKeywordsPredicate;
-import seedu.address.model.developer.EmailDeveloperContainsKeywordsPredicate;
-import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
-import seedu.address.model.developer.PhoneDeveloperContainsKeywordsPredicate;
-import seedu.address.model.developer.ProjectDeveloperContainsKeywordsPredicate;
-import seedu.address.model.developer.RoleDeveloperContainsKeywordsPredicate;
+import seedu.address.model.developer.*;
+
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 public class FindDeveloperCommandParser implements Parser<FindDeveloperCommand> {
     public FindDeveloperCommand parse(String args) throws ParseException {

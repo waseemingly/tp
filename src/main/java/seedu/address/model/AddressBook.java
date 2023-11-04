@@ -1,11 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.client.Client;
@@ -15,6 +9,12 @@ import seedu.address.model.developer.UniqueDeveloperList;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -32,7 +32,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects = new UniqueProjectList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -40,9 +41,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /// Project Validation
+
     /**
      * Returns a boolean representing whether the projects assigned to the Person exist.
-     * 
+     *
      * @param person The person to check.
      */
     public String areProjectsValid(Person person) {
@@ -54,7 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         return null;
     }
-            
+
     //// List Overwrite Operations
 
     public void setDevelopers(List<Developer> developers) {
@@ -122,7 +124,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(project);
         return projects.contains(project);
     }
-    
+
     public boolean hasProject(String project) {
         requireNonNull(project);
         return projects.contains(project);

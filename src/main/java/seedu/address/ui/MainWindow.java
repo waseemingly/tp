@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -12,13 +10,14 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.controlsfx.control.Rating;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.logging.Logger;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -72,7 +71,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
 
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -101,6 +99,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -133,7 +132,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tabPane= new TabPane();
+        tabPane = new TabPane();
         // Create tabs
         /*developerTab = new Tab("Developer");
         clientTab = new Tab("Client");
@@ -213,9 +212,11 @@ public class MainWindow extends UiPart<Stage> {
     public DeveloperListPanel getDeveloperListPanel() {
         return developerListPanel;
     }
+
     public ClientListPanel getClientListPanel() {
         return clientListPanel;
     }
+
     public ProjectListPanel getProjectListPanel() {
         return projectListPanel;
     }

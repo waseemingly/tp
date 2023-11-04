@@ -1,11 +1,14 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.*;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.commons.Name;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Person in the address book.
@@ -49,7 +52,6 @@ public class Person {
     public Address getAddress() {
         return address;
     }
-
 
 
     /**

@@ -1,25 +1,20 @@
 package seedu.address.logic.parser.find;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
-
-import java.util.Arrays;
-import java.util.function.Predicate;
-
 import seedu.address.logic.commands.find.FindProjectCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.DeadlineContainsKeywordsPredicate;
 import seedu.address.model.project.DescriptionContainsKeywordsPredicate;
-
 import seedu.address.model.project.Project;
-
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
+
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new FindProjectCommand object

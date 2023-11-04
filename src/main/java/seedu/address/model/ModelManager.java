@@ -1,12 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -17,6 +10,13 @@ import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Deadline;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -55,14 +55,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -90,13 +90,13 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
     }
 
     @Override
@@ -141,13 +141,14 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredDevelopers.setPredicate(predicate);
     }
+
     @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
     }
-    
-    
+
+
     public String areProjectsValid(Person person) {
         requireNonNull(person);
         return addressBook.areProjectsValid(person);
@@ -186,6 +187,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
     }
+
     @Override
     public boolean hasProject(seedu.address.model.project.Project project) {
         requireNonNull(project);
@@ -225,13 +227,13 @@ public class ModelManager implements Model {
     public void updateFilteredProjectList(Predicate<seedu.address.model.project.Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
-        filteredProjects.forEach(e->e.setPredicate(u->true));
+        filteredProjects.forEach(e -> e.setPredicate(u -> true));
     }
 
     @Override
     public void updateFilteredProjectDeadlineList(Predicate<Deadline> predicate) {
         requireNonNull(predicate);
-        filteredProjects.forEach(e->e.setPredicate(predicate));
+        filteredProjects.forEach(e -> e.setPredicate(predicate));
     }
 
     //=========== Undo/Redo Accessors =============================================================
