@@ -1,20 +1,37 @@
 package seedu.address.logic.parser.edit;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.edit.EditProjectCommand;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Project;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.edit.EditProjectCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Project;
 
 /**
  * Parses input arguments and creates a new EditProjectCommand object
@@ -47,7 +64,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
             throw new ParseException(EditProjectCommand.MESSAGE_NOT_EDITED);
         }
 
-        for (Prefix p : Project.unusedPrefixesForEdit) {
+        for (Prefix p : Project.UNUSED_PREFIXES_FOR_EDIT) {
             if (argMultimap.getValue(p).isPresent()) {
                 throw new ParseException(String.format(Messages.MESSAGE_INAPPLICABLE_PREFIX_USED,
                         EditProjectCommand.MESSAGE_USAGE));
@@ -59,7 +76,8 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
         EditProjectCommand.EditProjectDescriptor editProjectDescriptor = new EditProjectCommand.EditProjectDescriptor();
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editProjectDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            editProjectDescriptor
+                    .setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         parseDeadlinesForEdit(argMultimap.getAllValues(PREFIX_DEADLINE)).ifPresent(editProjectDescriptor::setDeadlines);
 
@@ -81,7 +99,8 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
         if (deadlines.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> deadlineSet = deadlines.size() == 1 && deadlines.contains("") ? Collections.emptySet() : deadlines;
+        Collection<String> deadlineSet =
+                deadlines.size() == 1 && deadlines.contains("") ? Collections.emptySet() : deadlines;
         return Optional.of(ParserUtil.parseDeadlines(deadlineSet));
     }
 }

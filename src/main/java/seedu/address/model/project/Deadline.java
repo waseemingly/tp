@@ -1,12 +1,12 @@
 package seedu.address.model.project;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.commons.Date;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.commons.Date;
 
 /**
  * Represents a Project's deadline in the address book.
@@ -14,8 +14,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be of the format dd-MM-yyyy,<DESCRIPTION>,<HIGH|MEDIUM|LOW>,<0|1>\n" +
-                    "Eg: 31-12-2019,Develop front end interface,HIGH,0";
+            "Deadline should be of the format dd-MM-yyyy,<DESCRIPTION>,<HIGH|MEDIUM|LOW>,<0|1>\n"
+                    + "Eg: 31-12-2019,Develop front end interface,HIGH,0";
     public static final String VALIDATION_REGEX = "^[0-3]\\d-[01]\\d-\\d{4},[^,]+,(HIGH|MEDIUM|LOW),(0|1)$";
     private final Date date;
     private final Description desc;
@@ -42,8 +42,9 @@ public class Deadline {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDeadline(String text) {
-        if (text == null || !text.matches(VALIDATION_REGEX))
+        if (text == null || !text.matches(VALIDATION_REGEX)) {
             return false;
+        }
         return true;
     }
 

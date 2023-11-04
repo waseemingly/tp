@@ -1,5 +1,10 @@
 package seedu.address.logic.commands.mark;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -13,11 +18,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-
+/**
+ * Represents a command to mark a specific deadline within a project as completed.
+ * This command allows users to mark deadlines as done within a specified project.
+ */
 public class MarkDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "mark-deadline";
     public static final String MESSAGE_SUCCESS = "The deadline has been marked as completed!";
@@ -34,11 +38,24 @@ public class MarkDeadlineCommand extends Command {
     private final Index deadlineIndex;
     private final Index projIndex;
 
+    /**
+     * Creates a MarkDeadlineCommand to mark a specific deadline as completed within a project.
+     *
+     * @param projIndex     The index of the project containing the deadline to be marked.
+     * @param deadlineIndex The index of the deadline to be marked.
+     */
     public MarkDeadlineCommand(Index projIndex, Index deadlineIndex) {
         this.deadlineIndex = deadlineIndex;
         this.projIndex = projIndex;
     }
 
+    /**
+     * Executes the mark deadline operation by marking the specified deadline as completed within the project.
+     *
+     * @param model The model in which to mark the deadline as completed.
+     * @return A CommandResult indicating the success of the mark deadline operation.
+     * @throws CommandException If an error occurs during the execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -83,13 +100,18 @@ public class MarkDeadlineCommand extends Command {
         return res;
     }
 
+    /**
+     * Checks if this MarkDeadlineCommand is equal to another object.
+     *
+     * @param other The object to compare with this MarkDeadlineCommand.
+     * @return True if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof MarkDeadlineCommand)) {
             return false;
         }
@@ -99,6 +121,11 @@ public class MarkDeadlineCommand extends Command {
                 && projIndex.equals(otherMarkDeadlineCommand.projIndex);
     }
 
+    /**
+     * Generates a string representation of this MarkDeadlineCommand.
+     *
+     * @return A string representation of this object.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)

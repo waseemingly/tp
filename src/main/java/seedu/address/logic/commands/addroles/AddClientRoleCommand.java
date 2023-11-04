@@ -1,4 +1,7 @@
-package seedu.address.logic.commands.addRoles;
+package seedu.address.logic.commands.addroles;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -9,10 +12,10 @@ import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.ClientRoles;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-
+/**
+ * Represents a command to add a new role for clients to the address book.
+ * This allows users to define custom roles for clients.
+ */
 public class AddClientRoleCommand extends Command {
     public static final String COMMAND_WORD = "add-client-role";
 
@@ -25,13 +28,22 @@ public class AddClientRoleCommand extends Command {
     private final String toAdd;
 
     /**
-     * Creates an AddDeveloperRoleCommand to add the specified {@code Developer}
+     * Creates an AddClientRoleCommand to add a new client role with the specified name.
+     *
+     * @param role The name of the new client role to be added.
      */
     public AddClientRoleCommand(String role) {
         requireNonNull(role);
         toAdd = role;
     }
 
+    /**
+     * Executes the operation to add a new client role to the address book.
+     *
+     * @param model The model that contains the address book data.
+     * @return A CommandResult indicating the success or failure of the operation.
+     * @throws CommandException If an error occurs during the execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -48,6 +60,12 @@ public class AddClientRoleCommand extends Command {
         return new CommandResult(successMessage, index);
     }
 
+    /**
+     * Checks if this AddClientRoleCommand is equal to another object.
+     *
+     * @param other The object to compare with this AddClientRoleCommand.
+     * @return True if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -63,6 +81,11 @@ public class AddClientRoleCommand extends Command {
         return toAdd.equals(otherAddClientRoleCommand.toAdd);
     }
 
+    /**
+     * Generates a string representation of this AddClientRoleCommand.
+     *
+     * @return A string representation of this object.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)

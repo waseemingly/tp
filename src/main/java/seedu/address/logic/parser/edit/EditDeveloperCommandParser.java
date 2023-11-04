@@ -1,19 +1,36 @@
 package seedu.address.logic.parser.edit;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.edit.EditDeveloperCommand;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.developer.Developer;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.edit.EditDeveloperCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.developer.Developer;
 
 /**
  * Parses input arguments and creates a new EditDeveloperCommand object
@@ -45,7 +62,7 @@ public class EditDeveloperCommandParser implements Parser<EditDeveloperCommand> 
         if (!argMultimap.hasMappings()) {
             throw new ParseException(EditDeveloperCommand.MESSAGE_NOT_EDITED);
         }
-        for (Prefix p : Developer.unusedPrefixes) {
+        for (Prefix p : Developer.UNUSED_PREFIXES) {
             if (argMultimap.getValue(p).isPresent()) {
                 throw new ParseException(String.format(Messages.MESSAGE_INAPPLICABLE_PREFIX_USED,
                         EditDeveloperCommand.MESSAGE_USAGE));
@@ -55,7 +72,8 @@ public class EditDeveloperCommandParser implements Parser<EditDeveloperCommand> 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_GITHUBID, PREFIX_RATING);
 
-        EditDeveloperCommand.EditDeveloperDescriptor editDeveloperDescriptor = new EditDeveloperCommand.EditDeveloperDescriptor();
+        EditDeveloperCommand.EditDeveloperDescriptor editDeveloperDescriptor =
+                new EditDeveloperCommand.EditDeveloperDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editDeveloperDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -70,7 +88,8 @@ public class EditDeveloperCommandParser implements Parser<EditDeveloperCommand> 
             editDeveloperDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_DATEJOINED).isPresent()) {
-            editDeveloperDescriptor.setDateJoined(ParserUtil.parseDateJoined(argMultimap.getValue(PREFIX_DATEJOINED).get()));
+            editDeveloperDescriptor
+                    .setDateJoined(ParserUtil.parseDateJoined(argMultimap.getValue(PREFIX_DATEJOINED).get()));
         }
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
             editDeveloperDescriptor.setRole(ParserUtil.parseDeveloperRole(argMultimap.getValue(PREFIX_ROLE).get()));
@@ -104,7 +123,8 @@ public class EditDeveloperCommandParser implements Parser<EditDeveloperCommand> 
         if (projects.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> projectSet = projects.size() == 1 && projects.contains("") ? Collections.emptySet() : projects;
+        Collection<String> projectSet =
+                projects.size() == 1 && projects.contains("") ? Collections.emptySet() : projects;
         return Optional.of(ParserUtil.parseProjectsToSet(projectSet));
     }
 }

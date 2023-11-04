@@ -1,10 +1,10 @@
 package seedu.address.model.project;
 
+import java.util.List;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.KeywordPredicate;
-
-import java.util.List;
 
 /**
  * Tests that a {@code Developer}'s {@code Name} matches any of the keywords given.
@@ -19,7 +19,8 @@ public class DeadlineContainsKeywordsPredicate implements KeywordPredicate<Proje
     @Override
     public boolean test(Project project) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getProjectDeadlines().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getProjectDeadlines().toString(),
+                        keyword));
     }
 
     @Override
@@ -33,7 +34,8 @@ public class DeadlineContainsKeywordsPredicate implements KeywordPredicate<Proje
             return false;
         }
 
-        DeadlineContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (DeadlineContainsKeywordsPredicate) other;
+        DeadlineContainsKeywordsPredicate otherNameContainsKeywordsPredicate =
+                (DeadlineContainsKeywordsPredicate) other;
         return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
     }
 

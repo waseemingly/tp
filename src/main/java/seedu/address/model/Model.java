@@ -1,5 +1,8 @@
 package seedu.address.model;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.TabIndex;
@@ -9,9 +12,6 @@ import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -77,7 +77,8 @@ public interface Model {
     boolean hasProject(seedu.address.model.project.Project project);
 
     /**
-     * Returns null if the projects assigned to a person exist and are valid, returns the invalid project name otherwise.
+     * Returns null if the projects assigned to a person exist and are valid,
+     * returns the invalid project name otherwise.
      *
      * @param person The person to check.
      * @returns The String of the invalid project name, or null if all projects are valid.

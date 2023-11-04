@@ -1,5 +1,12 @@
 package seedu.address.logic.commands.find;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.getMessageProjectsListedOverview;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -7,15 +14,11 @@ import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
 import seedu.address.model.project.Deadline;
 
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.getMessageProjectsListedOverview;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-
+/**
+ * Represents a command to filter deadlines within projects based on specified criteria.
+ * This command allows users to search for deadlines based on dates and priority levels.
+ */
 public class FindDeadlineCommand extends Command {
-
     public static final String COMMAND_WORD = "find-deadline";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter deadlines within projects.\n"
@@ -26,10 +29,21 @@ public class FindDeadlineCommand extends Command {
 
     private final Predicate<Deadline> predicate;
 
+    /**
+     * Creates a FindDeadlineCommand with the specified predicate for filtering deadlines.
+     *
+     * @param predicate The predicate used to filter deadlines within projects.
+     */
     public FindDeadlineCommand(Predicate<Deadline> predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * Executes the find operation by updating the filtered project deadline list based on the given predicate.
+     *
+     * @param model The model to execute the command on.
+     * @return A CommandResult indicating the results of the find operation.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -42,6 +56,12 @@ public class FindDeadlineCommand extends Command {
         return new CommandResult(message, TabIndex.Project);
     }
 
+    /**
+     * Checks if this FindDeadlineCommand is equal to another object.
+     *
+     * @param other The object to compare with this FindDeadlineCommand.
+     * @return True if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -56,6 +76,11 @@ public class FindDeadlineCommand extends Command {
         return predicate.equals(otherFindDeadlineCommand.predicate);
     }
 
+    /**
+     * Generates a string representation of this FindDeadlineCommand.
+     *
+     * @return A string representation of this object.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)

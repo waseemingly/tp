@@ -1,6 +1,6 @@
 package seedu.address.model.client;
 
-import seedu.address.model.Model;
+import static java.util.Objects.requireNonNull;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.Model;
 
 /**
  * Represents a Developer's role in the company.
@@ -46,11 +46,21 @@ public class ClientRoles {
         this.role = role;
     }
 
+    /**
+     * Adds a client role to the list of client roles.
+     *
+     * @param role The client role to be added.
+     */
     public static void addClientRole(ClientRoles role) {
         roles.add(role);
         saveClientRoles();
     }
 
+    /**
+     * Deletes a client role from the list of client roles.
+     *
+     * @param role The client role to be deleted.
+     */
     public static void deleteClientRole(ClientRoles role) {
         roles.remove(role);
         saveClientRoles();
@@ -58,16 +68,31 @@ public class ClientRoles {
 
     /**
      * Returns true if a given string is a valid role.
+     *
+     * @param role The role to check for validity.
+     * @return {@code true} if the role is valid, {@code false} otherwise.
      */
     public static boolean isValidRole(String role) {
         return roles.toString().contains(role);
     }
 
+    /**
+     * Returns a string representation of the list of client roles.
+     *
+     * @return A string representation of the client roles.
+     */
     public static String printRoles() {
         listOfRoles = roles.toString();
         return listOfRoles;
     }
 
+    /**
+     * Checks if a role can be removed based on specific criteria.
+     *
+     * @param model The model for checking if the role is removable.
+     * @param role  The role to check for removal.
+     * @return {@code true} if the role can be removed, {@code false} otherwise.
+     */
     public static boolean isRemovableRole(Model model, String role) {
         // check if anyone is using this role
         Predicate<Client> finalPredicate = client -> true;
@@ -120,6 +145,9 @@ public class ClientRoles {
         }
     }
 
+    /**
+     * Saves the list of client roles to a text file.
+     */
     public static void saveClientRoles() {
         try {
             // Save roles to a text file
@@ -133,6 +161,9 @@ public class ClientRoles {
         }
     }
 
+    /**
+     * Loads the list of client roles from a text file.
+     */
     public static void loadClientRoles() {
         try (BufferedReader reader = new BufferedReader(new FileReader("ClientRoles.txt"))) {
             String line;
@@ -150,24 +181,49 @@ public class ClientRoles {
 
     }
 
+    /**
+     * Checks if the role is not one of the default roles.
+     *
+     * @return {@code true} if the role is not a default role, {@code false} otherwise.
+     */
     public static boolean isNotDefault() {
         return notDefault;
     }
 
+    /**
+     * Checks if the role is not repeated.
+     *
+     * @return {@code true} if the role is not repeated, {@code false} otherwise.
+     */
     public static boolean isNoRepeat() {
         return noRepeat;
     }
 
+    /**
+     * Checks if the role is not in the list of client roles.
+     *
+     * @return {@code true} if the role is not in the list, {@code false} otherwise.
+     */
     public static boolean isNotInList() {
         return notInList;
     }
 
-
+    /**
+     * Returns a string representation of this client role.
+     *
+     * @return A string representation of this client role.
+     */
     @Override
     public String toString() {
         return role;
     }
 
+    /**
+     * Checks if this client role is equal to another object.
+     *
+     * @param other The object to compare to.
+     * @return {@code true} if the client roles are equal, {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -183,9 +239,13 @@ public class ClientRoles {
         return role.equals(otherRole.role);
     }
 
+    /**
+     * Returns the hash code for this client role.
+     *
+     * @return The hash code for this client role.
+     */
     @Override
     public int hashCode() {
         return role.hashCode();
     }
-
 }

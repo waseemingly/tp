@@ -1,5 +1,16 @@
 package seedu.address.model.client;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+
+import java.util.Objects;
+import java.util.Set;
+
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.commons.Name;
 import seedu.address.model.person.Address;
@@ -7,19 +18,13 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
-import java.util.Objects;
-import java.util.Set;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
 /**
  * Represents a Client in the address book, extending the Developer class.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Client extends Person {
-    public static final Prefix[] unusedPrefixes = new Prefix[]{PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
-            PREFIX_GITHUBID, PREFIX_DESCRIPTION, PREFIX_DEADLINE};
+    public static final Prefix[] UNUSED_PREFIXES = new Prefix[]{PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
+        PREFIX_GITHUBID, PREFIX_DESCRIPTION, PREFIX_DEADLINE};
     private final Name organisation;
     private final Document document;
     private final ClientRoles role;
@@ -48,6 +53,13 @@ public class Client extends Person {
         return role;
     }
 
+    /**
+     * Returns true if the current client has the same name as the provided {@code otherClient}.
+     * This is used for checking if two clients are the same, ignoring their other attributes.
+     *
+     * @param otherClient The other client to compare with.
+     * @return `true` if the current client has the same name as the provided `otherClient`, `false` otherwise.
+     */
     public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
             return true;

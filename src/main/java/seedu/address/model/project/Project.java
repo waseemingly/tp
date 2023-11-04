@@ -1,9 +1,18 @@
 package seedu.address.model.project;
 
-import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
-import seedu.address.logic.parser.Prefix;
-import seedu.address.model.commons.Name;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,8 +20,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.model.commons.Name;
 
 /**
  * Represents a Project in the address book.
@@ -20,12 +31,13 @@ import static seedu.address.logic.parser.CliSyntax.*;
  */
 public class Project {
 
-    public static final Prefix[] unusedPrefixes = new Prefix[]{PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
-            PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE,
-            PREFIX_PROJECT, PREFIX_ROLE};
-    public static final Prefix[] unusedPrefixesForEdit = new Prefix[]{PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
-            PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE,
-            PREFIX_PROJECT, PREFIX_ROLE, PREFIX_NAME};
+    public static final Prefix[] UNUSED_PREFIXES = new Prefix[]{PREFIX_DATEJOINED, PREFIX_SALARY, PREFIX_RATING,
+        PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE,
+        PREFIX_PROJECT, PREFIX_ROLE};
+    public static final Prefix[] UNUSED_PREFIXES_FOR_EDIT = new Prefix[]{PREFIX_DATEJOINED, PREFIX_SALARY,
+        PREFIX_RATING,
+        PREFIX_GITHUBID, PREFIX_ADDRESS, PREFIX_DOCUMENT, PREFIX_EMAIL, PREFIX_ORGANISATION, PREFIX_PHONE,
+        PREFIX_PROJECT, PREFIX_ROLE, PREFIX_NAME};
     private final Name projectName;
     private final Description description;
     private final List<Deadline> deadlines;
@@ -115,7 +127,8 @@ public class Project {
 
     /**
      * Returns a list with each element being the String representation of the respective deadline.
-     * The element at the given index is the String representation of the respective deadline such that it is incomplete.
+     * The element at the given index is the String representation of
+     * the respective deadline such that it is incomplete.
      *
      * @param index The index of the deadline to mark as incomplete.
      * @return A list containing String representations of deadlines.
@@ -153,6 +166,12 @@ public class Project {
         return filteredDeadlines;
     }
 
+    /**
+     * Checks if this project is the same as another project based on their names.
+     *
+     * @param otherProject The other project to compare with.
+     * @return True if the projects have the same name, or both are the same object reference; false otherwise.
+     */
     public boolean isSameProject(Project otherProject) {
         if (otherProject == this) {
             return true;

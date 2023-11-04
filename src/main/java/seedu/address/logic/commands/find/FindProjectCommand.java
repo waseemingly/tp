@@ -1,17 +1,19 @@
 package seedu.address.logic.commands.find;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.getMessageProjectsListedOverview;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
-
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.getMessageProjectsListedOverview;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

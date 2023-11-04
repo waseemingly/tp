@@ -1,5 +1,13 @@
 package seedu.address.ui;
 
+import java.text.SimpleDateFormat;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Comparator;
+import java.util.Date;
+
+import org.controlsfx.control.Rating;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,14 +16,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.developer.Developer;
-
-import java.text.SimpleDateFormat;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.Comparator;
-import java.util.Date;
-
-import org.controlsfx.control.Rating;
 
 
 /**
@@ -92,12 +92,14 @@ public class DeveloperCard extends UiPart<Region> {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date joined = developer.getDateJoined().value;
         // Calculate the period between the two dates
-        Period period = Period.between(joined.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        Period period = Period.between(joined.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
         // Extract years and months from the period
         int years = period.getYears();
         int months = period.getMonths();
-        dateJoined.setText("Date Joined: " + dateFormat.format(joined) + "\n(" + years + " years " + months + " months)");
+        dateJoined.setText("Date Joined: " + dateFormat.format(joined) + "\n(" + years + " years " + months
+                + " months)");
         salary.setText("Salary: $" + developer.getSalary().salary);
         developer.getProjects().stream()
                 .sorted(Comparator.comparing(tag -> tag))
