@@ -14,20 +14,21 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.developer.Developer;
+import seedu.address.testutil.DeveloperBuilder;
 
 public class DeveloperTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Developer developer = new PersonBuilder().build();
+        Developer developer = new DeveloperBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> developer.getTags().remove(0));
     }
 
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameDeveloper(ALICE));
 
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));

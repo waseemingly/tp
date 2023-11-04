@@ -23,8 +23,12 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Developer;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.client.Client;
+import seedu.address.model.developer.Developer;
+import seedu.address.model.person.Person;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Project;
+import seedu.address.testutil.DeveloperBuilder;
 
 public class AddDeveloperCommandTest {
 
@@ -35,29 +39,29 @@ public class AddDeveloperCommandTest {
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Developer validDeveloper = new PersonBuilder().build();
+        ModelStubAcceptingDeveloperAdded modelStub = new ModelStubAcceptingDeveloperAdded();
+        Developer validDeveloper = new DeveloperBuilder().build();
 
         CommandResult commandResult = new AddDeveloperCommand(validDeveloper).execute(modelStub);
 
         assertEquals(String.format(AddDeveloperCommand.MESSAGE_SUCCESS, Messages.format(validDeveloper)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validDeveloper), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validDeveloper), modelStub.developersAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Developer validDeveloper = new PersonBuilder().build();
+        Developer validDeveloper = new DeveloperBuilder().build();
         AddDeveloperCommand addDeveloperCommand = new AddDeveloperCommand(validDeveloper);
-        ModelStub modelStub = new ModelStubWithPerson(validDeveloper);
+        ModelStub modelStub = new ModelStubWithDeveloper(validDeveloper);
 
-        assertThrows(CommandException.class, AddDeveloperCommand.MESSAGE_DUPLICATE_PERSON, () -> addDeveloperCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER, () -> addDeveloperCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Developer alice = new PersonBuilder().withName("Alice").build();
-        Developer bob = new PersonBuilder().withName("Bob").build();
+        Developer alice = new DeveloperBuilder().withName("Alice").build();
+        Developer bob = new DeveloperBuilder().withName("Bob").build();
         AddDeveloperCommand addAliceCommand = new AddDeveloperCommand(alice);
         AddDeveloperCommand addBobCommand = new AddDeveloperCommand(bob);
 
@@ -86,7 +90,7 @@ public class AddDeveloperCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all of its methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -120,8 +124,18 @@ public class AddDeveloperCommandTest {
         }
 
         @Override
-        public void addPerson(Developer developer) {
+        public void addDeveloper(Developer developer) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addClient (Client person) {
+
+        }
+
+        @Override
+        public void addProject (Project person) {
+
         }
 
         @Override
@@ -135,44 +149,129 @@ public class AddDeveloperCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Developer developer) {
+        public boolean hasDeveloper(Developer developer) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Developer target) {
+        public boolean hasClient (Client client) {
+            return false;
+        }
+
+        @Override
+        public boolean hasProject (Project project) {
+            return false;
+        }
+
+        @Override
+        public String areProjectsValid (Person person) {
+            return null;
+        }
+
+        @Override
+        public void deleteDeveloper(Developer target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Developer target, Developer editedDeveloper) {
+        public void deleteClient (Client target) {
+
+        }
+
+        @Override
+        public void deleteProject (Project target) {
+
+        }
+
+        @Override
+        public void setDeveloper(Developer target, Developer editedDeveloper) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Developer> getFilteredPersonList() {
+        public void setClient (Client target, Client editedClient) {
+
+        }
+
+        @Override
+        public void setProject (Project target, Project editedProject) {
+
+        }
+
+        @Override
+        public ObservableList<Developer> getFilteredDeveloperList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Developer> predicate) {
+        public ObservableList<Client> getFilteredClientList () {
+            return null;
+        }
+
+        @Override
+        public ObservableList<Project> getFilteredProjectList () {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredDeveloperList(Predicate<Developer> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredClientList (Predicate<Client> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredProjectList (Predicate<Project> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredProjectDeadlineList (Predicate<Deadline> predicate) {
+
+        }
+
+        @Override
+        public void commitAddressBook (Model model, String message, TabIndex index) {
+
+        }
+
+        @Override
+        public void undoAddressBook (Model model) throws CommandException {
+
+        }
+
+        @Override
+        public void redoAddressBook (Model model) throws CommandException {
+
+        }
+
+        @Override
+        public String getPreviousCommand () {
+            return null;
+        }
+
+        @Override
+        public TabIndex getPreviousTabIndex () {
+            return null;
         }
     }
 
     /**
      * A Model stub that contains a single developer.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithDeveloper extends ModelStub {
         private final Developer developer;
 
-        ModelStubWithPerson(Developer developer) {
+        ModelStubWithDeveloper(Developer developer) {
             requireNonNull(developer);
             this.developer = developer;
         }
 
         @Override
-        public boolean hasPerson(Developer developer) {
+        public boolean hasDeveloper(Developer developer) {
             requireNonNull(developer);
             return this.developer.isSamePerson(developer);
         }
@@ -181,19 +280,19 @@ public class AddDeveloperCommandTest {
     /**
      * A Model stub that always accept the developer being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Developer> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingDeveloperAdded extends ModelStub {
+        final ArrayList<Developer> developersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Developer developer) {
+        public boolean hasDeveloper(Developer developer) {
             requireNonNull(developer);
-            return personsAdded.stream().anyMatch(developer::isSamePerson);
+            return developersAdded.stream().anyMatch(developer::isSamePerson);
         }
 
         @Override
-        public void addPerson(Developer developer) {
+        public void addDeveloper(Developer developer) {
             requireNonNull(developer);
-            personsAdded.add(developer);
+            developersAdded.add(developer);
         }
 
         @Override
