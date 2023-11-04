@@ -1,5 +1,13 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Messages;
@@ -19,10 +27,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
-
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -160,7 +164,8 @@ public class ParserUtil {
         final List<Deadline> deadlineSet = new ArrayList<>();
         for (String str : deadlines) {
             if (!Deadline.isValidDeadline(str)) {
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        Deadline.MESSAGE_CONSTRAINTS));
             } else {
                 deadlineSet.add(new Deadline(str, deadlineSet.size() + 1));
             }
@@ -199,6 +204,13 @@ public class ParserUtil {
         return new DeveloperRoles(trimmedRole);
     }
 
+    /**
+     * Parses a client role string and returns a `ClientRoles` object.
+     *
+     * @param role The client role string to be parsed.
+     * @return A `ClientRoles` object representing the parsed client role.
+     * @throws ParseException If the input string is not a valid client role.
+     */
     public static ClientRoles parseClientRole(String role) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
@@ -223,6 +235,13 @@ public class ParserUtil {
         return new Salary(trimmedSalary);
     }
 
+    /**
+     * Parses a GitHub ID string and returns a `GithubId` object.
+     *
+     * @param githubid The GitHub ID string to be parsed.
+     * @return A `GithubId` object representing the parsed GitHub ID.
+     * @throws ParseException If the input string is not a valid GitHub ID.
+     */
     public static GithubId parseGithubId(String githubid) throws ParseException {
         requireNonNull(githubid);
         String trimmedGithubId = githubid.trim();
@@ -232,6 +251,13 @@ public class ParserUtil {
         return new GithubId(trimmedGithubId);
     }
 
+    /**
+     * Parses a rating string and returns a `Rating` object.
+     *
+     * @param rating The rating string to be parsed.
+     * @return A `Rating` object representing the parsed rating.
+     * @throws ParseException If the input string is not a valid rating.
+     */
     public static Rating parseRating(String rating) throws ParseException {
         requireNonNull(rating);
         String trimmedRating = rating.trim();
@@ -241,6 +267,13 @@ public class ParserUtil {
         return new Rating(trimmedRating);
     }
 
+    /**
+     * Parses a document URL string and returns a `Document` object.
+     *
+     * @param doc The document URL string to be parsed.
+     * @return A `Document` object representing the parsed document URL.
+     * @throws ParseException If the input string is not a valid document URL.
+     */
     public static Document parseDocument(String doc) throws ParseException {
         requireNonNull(doc);
         String trimmedDoc = doc.trim();
@@ -250,6 +283,13 @@ public class ParserUtil {
         return new Document(trimmedDoc);
     }
 
+    /**
+     * Parses a description string and returns a `Description` object.
+     *
+     * @param description The description string to be parsed.
+     * @return A `Description` object representing the parsed description.
+     * @throws ParseException If the input string is not a valid description.
+     */
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
@@ -259,6 +299,13 @@ public class ParserUtil {
         return new Description(trimmedDescription);
     }
 
+    /**
+     * Parses a password string and returns the trimmed password.
+     *
+     * @param pw The password string to be parsed.
+     * @return The trimmed password.
+     * @throws ParseException If the input string is not a valid password.
+     */
     public static String parsePassword(String pw) throws ParseException {
         requireNonNull(pw);
         String trimmedPw = pw.trim();

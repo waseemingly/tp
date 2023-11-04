@@ -1,4 +1,7 @@
-package seedu.address.logic.commands.deleteRoles;
+package seedu.address.logic.commands.deleteroles;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -10,9 +13,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.ClientRoles;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-
+/**
+ * Represents a command to delete a role for clients from the address book.
+ * This allows users to remove custom roles for clients.
+ */
 public class DeleteClientRoleCommand extends Command {
     public static final String COMMAND_WORD = "delete-client-role";
 
@@ -30,18 +34,27 @@ public class DeleteClientRoleCommand extends Command {
     private final String toAdd;
 
     /**
-     * Creates an AddDeveloperRoleCommand to add the specified {@code Developer}
+     * Creates a DeleteClientRoleCommand to delete a specific client role by its name.
+     *
+     * @param role The name of the client role to be deleted.
      */
     public DeleteClientRoleCommand(String role) {
         requireNonNull(role);
         toAdd = role;
     }
 
+    /**
+     * Executes the operation to delete a client role from the address book.
+     *
+     * @param model The model that contains the address book data.
+     * @return A CommandResult indicating the success or failure of the operation.
+     * @throws CommandException If an error occurs during the execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (ClientRoles.isRemovableRole(model, toAdd)) { //if when u search role result != 1
+        if (ClientRoles.isRemovableRole(model, toAdd)) { //if when you search for the role result != 1
             if (!ClientRoles.isNoRepeat()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_REPEAT);
             } else if (!ClientRoles.isNotDefault()) {
@@ -60,6 +73,12 @@ public class DeleteClientRoleCommand extends Command {
         return new CommandResult(successMessage, index);
     }
 
+    /**
+     * Checks if this DeleteClientRoleCommand is equal to another object.
+     *
+     * @param other The object to compare with this DeleteClientRoleCommand.
+     * @return True if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -75,6 +94,11 @@ public class DeleteClientRoleCommand extends Command {
         return toAdd.equals(otherDeleteClientRoleCommand.toAdd);
     }
 
+    /**
+     * Generates a string representation of this DeleteClientRoleCommand.
+     *
+     * @return A string representation of this object.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)

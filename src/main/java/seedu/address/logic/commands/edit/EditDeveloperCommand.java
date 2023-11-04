@@ -1,5 +1,24 @@
 package seedu.address.logic.commands.edit;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -11,15 +30,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
-import seedu.address.model.developer.*;
+import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.DeveloperRoles;
+import seedu.address.model.developer.GithubId;
+import seedu.address.model.developer.Rating;
+import seedu.address.model.developer.Salary;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
-
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Edits the details of an existing developer in the address book.
@@ -29,7 +47,8 @@ public class EditDeveloperCommand extends Command {
     public static final String COMMAND_WORD = "edit-developer";
     public static final String MESSAGE_EDIT_DEVELOPER_SUCCESS = "Edited Developer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_DEVELOPER = "The details of the developer in the address book are already as given.";
+    public static final String MESSAGE_DUPLICATE_DEVELOPER =
+            "The details of the developer in the address book are already as given.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the developer identified "
             + "by the index number used in the displayed developer list. "

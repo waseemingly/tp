@@ -1,6 +1,6 @@
 package seedu.address.model.developer;
 
-import seedu.address.model.Model;
+import static java.util.Objects.requireNonNull;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,10 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.Model;
 
 /**
- * Represents a Developer's role in the company.
+ * Represents the roles a Developer can have in the company.
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
 public class DeveloperRoles {
@@ -36,7 +36,7 @@ public class DeveloperRoles {
     public final String role;
 
     /**
-     * Constructs a {@code Role}.
+     * Constructs a {@code DeveloperRoles}.
      *
      * @param role A valid role.
      */
@@ -45,18 +45,54 @@ public class DeveloperRoles {
         this.role = role;
     }
 
+    /**
+     * Adds a developer role to the list of developer roles.
+     *
+     * @param role The developer role to be added.
+     */
     public static void addDeveloperRole(DeveloperRoles role) {
         roles.add(role);
         saveDeveloperRoles();
     }
 
+    /**
+     * Deletes a developer role from the list of developer roles.
+     *
+     * @param role The developer role to be deleted.
+     */
     public static void deleteDeveloperRole(DeveloperRoles role) {
         roles.remove(role);
         saveDeveloperRoles();
     }
 
-    public static boolean isRemovableRole(Model model, String role) {
+    /**
+     * Returns true if a given string is a valid role.
+     *
+     * @param role The role to be checked.
+     * @return True if the role is valid, false otherwise.
+     */
+    public static boolean isValidRole(String role) {
+        return roles.toString().contains(role);
+    }
 
+    /**
+     * Retrieves a string representation of all developer roles.
+     *
+     * @return A string representing all developer roles.
+     */
+    public static String printRoles() {
+        listOfRoles = roles.toString();
+        return listOfRoles;
+    }
+
+    /**
+     * Checks if a developer role can be removed.
+     *
+     * @param model The model to check against.
+     * @param role  The role to be checked.
+     * @return True if the role can be removed, false otherwise.
+     */
+    public static boolean isRemovableRole(Model model, String role) {
         // check if anyone is using this role
         Predicate<Developer> finalPredicate = developer -> true;
 
@@ -107,30 +143,9 @@ public class DeveloperRoles {
         }
     }
 
-    public static boolean isNotDefault() {
-        return notDefault;
-    }
-
-    public static boolean isNoRepeat() {
-        return noRepeat;
-    }
-
-    public static boolean isNotInList() {
-        return notInList;
-    }
-
     /**
-     * Returns true if a given string is a valid role.
+     * Saves developer roles to a text file.
      */
-    public static boolean isValidRole(String role) {
-        return roles.toString().contains(role);
-    }
-
-    public static String printRoles() {
-        listOfRoles = roles.toString();
-        return listOfRoles;
-    }
-
     public static void saveDeveloperRoles() {
         try {
             // Save roles to a text file
@@ -144,6 +159,9 @@ public class DeveloperRoles {
         }
     }
 
+    /**
+     * Loads developer roles from a file on initialization.
+     */
     public static void loadDeveloperRoles() {
         try (BufferedReader reader = new BufferedReader(new FileReader("DeveloperRoles.txt"))) {
             String line;
@@ -158,7 +176,18 @@ public class DeveloperRoles {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public static boolean isNotDefault() {
+        return notDefault;
+    }
+
+    public static boolean isNoRepeat() {
+        return noRepeat;
+    }
+
+    public static boolean isNotInList() {
+        return notInList;
     }
 
     @Override
@@ -185,5 +214,4 @@ public class DeveloperRoles {
     public int hashCode() {
         return role.hashCode();
     }
-
 }

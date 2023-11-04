@@ -1,12 +1,15 @@
 package seedu.address.model;
 
-import seedu.address.logic.commands.TabIndex;
-import seedu.address.logic.commands.exceptions.CommandException;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.logic.commands.TabIndex;
+import seedu.address.logic.commands.exceptions.CommandException;
 
+/**
+ * Represents a versioned history of the address book.
+ * Keeps track of the address book states and allows undoing and redoing changes.
+ */
 public class VersionedAddressBook extends AddressBook {
     public static final String INVALID_REDO_COMMAND = "You have reached the last step, unable to redo";
     public static final String INVALID_UNDO_COMMAND = "You have reached the first step, unable to undo";
@@ -15,6 +18,11 @@ public class VersionedAddressBook extends AddressBook {
     private List<TabIndex> tabIndex;
     private int currentStatePointer;
 
+    /**
+     * Constructs a `VersionedAddressBook` object with an initial address book state.
+     *
+     * @param initialAddressBook The initial state of the address book.
+     */
     public VersionedAddressBook(ReadOnlyAddressBook initialAddressBook) {
         addressBookStateList = new ArrayList<>();
         addressBookStateList.add(new AddressBook(initialAddressBook));
@@ -23,6 +31,13 @@ public class VersionedAddressBook extends AddressBook {
         currentStatePointer = 0;
     }
 
+    /**
+     * Commits the current model state along with a success message and the tab index.
+     *
+     * @param model The current model.
+     * @param successMessage The success message to be stored.
+     * @param index The tab index to be stored.
+     */
     public void commit(Model model, String successMessage, TabIndex index) {
         if (currentStatePointer < addressBookStateList.size() - 1) {
             // If we're not at the latest state, remove the states after the current one
@@ -39,6 +54,12 @@ public class VersionedAddressBook extends AddressBook {
         currentStatePointer++;
     }
 
+    /**
+     * Undoes the last change by restoring the previous state.
+     *
+     * @param model The current model.
+     * @throws CommandException If the undo operation is not valid (e.g., when there are no more states to undo).
+     */
     public void undo(Model model) throws CommandException {
         if (canUndo()) {
             currentStatePointer--;
@@ -48,6 +69,12 @@ public class VersionedAddressBook extends AddressBook {
         }
     }
 
+    /**
+     * Redoes the last undone change by restoring the next state.
+     *
+     * @param model The current model.
+     * @throws CommandException If the redo operation is not valid (e.g., when there are no more states to redo).
+     */
     public void redo(Model model) throws CommandException {
         if (canRedo()) {
             currentStatePointer++;
@@ -55,28 +82,51 @@ public class VersionedAddressBook extends AddressBook {
         } else {
             throw new CommandException(INVALID_REDO_COMMAND);
         }
-
     }
 
+    /**
+     * Checks if there are states that can be undone.
+     *
+     * @return `true` if there are states to undo, `false` otherwise.
+     */
     public boolean canUndo() {
         return currentStatePointer > 0;
     }
 
+    /**
+     * Checks if there are states that can be redone.
+     *
+     * @return `true` if there are states to redo, `false` otherwise.
+     */
     public boolean canRedo() {
         return currentStatePointer < addressBookStateList.size() - 1;
     }
 
+    /**
+     * Gets the success message associated with the previous command.
+     *
+     * @return The success message from the previous command.
+     */
     public String getPreviousMessage() {
         return successfulCommandMessages.get(currentStatePointer);
     }
 
+    /**
+     * Gets the tab index associated with the previous command.
+     *
+     * @return The tab index from the previous command.
+     */
     public TabIndex getPreviousTabIndex() {
         return tabIndex.get(currentStatePointer);
     }
 
+    /**
+     * Changes the current model's address book to match the current state.
+     *
+     * @param model The current model.
+     */
     public void changeAddressBook(Model model) {
         AddressBook newAddressBook = addressBookStateList.get(currentStatePointer);
         model.setAddressBook(newAddressBook);
     }
 }
-

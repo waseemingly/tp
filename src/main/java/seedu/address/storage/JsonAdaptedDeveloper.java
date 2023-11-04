@@ -1,14 +1,5 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.commons.Date;
-import seedu.address.model.commons.Name;
-import seedu.address.model.developer.*;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +7,19 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commons.Date;
+import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Developer;
+import seedu.address.model.developer.DeveloperRoles;
+import seedu.address.model.developer.GithubId;
+import seedu.address.model.developer.Rating;
+import seedu.address.model.developer.Salary;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -37,6 +41,20 @@ class JsonAdaptedDeveloper {
     private final String githubId;
     private final String rating;
 
+    /**
+     * Constructs a {@code JsonAdaptedDeveloper} with the given data.
+     *
+     * @param name       The name of the developer.
+     * @param phone      The phone number of the developer.
+     * @param email      The email address of the developer.
+     * @param address    The address of the developer.
+     * @param dateJoined The date when the developer joined the company.
+     * @param role       The role of the developer.
+     * @param salary     The salary of the developer.
+     * @param tags   The list of project names associated with the developer.
+     * @param githubId   The GitHub username of the developer.
+     * @param rating     The rating of the developer.
+     */
     @JsonCreator
     public JsonAdaptedDeveloper(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
@@ -58,6 +76,11 @@ class JsonAdaptedDeveloper {
         this.rating = rating;
     }
 
+    /**
+     * Constructs a {@code JsonAdaptedDeveloper} with data from the given {@code Developer}.
+     *
+     * @param source The developer object from which to extract data.
+     */
     public JsonAdaptedDeveloper(Developer source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -71,6 +94,12 @@ class JsonAdaptedDeveloper {
         githubId = source.getGithubId().username;
     }
 
+    /**
+     * Converts this Jackson-friendly adapted developer object into the model's {@code Developer} object.
+     *
+     * @return A {@code Developer} object with the data from this adapted developer.
+     * @throws IllegalValueException If there were any data constraints violated in the adapted developer.
+     */
     public Developer toModelType() throws IllegalValueException {
         final List<String> personProjects = new ArrayList<>();
         for (String tag : projects) {
@@ -119,7 +148,8 @@ class JsonAdaptedDeveloper {
 
 
         if (role == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DeveloperRoles.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DeveloperRoles.class.getSimpleName()));
         }
         if (!DeveloperRoles.isValidRole(role)) {
             throw new IllegalValueException(DeveloperRoles.NO_SUCH_DEVELOPER_ROLE);
@@ -134,7 +164,8 @@ class JsonAdaptedDeveloper {
         }
         final Salary modelSalary = new Salary(salary);
         if (githubId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, GithubId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GithubId.class.getSimpleName()));
         }
         if (!GithubId.isValidGithubId(githubId)) {
             throw new IllegalValueException(GithubId.MESSAGE_CONSTRAINTS);
@@ -148,7 +179,9 @@ class JsonAdaptedDeveloper {
         }
         final Rating modelRating = new Rating(rating);
         final Set<String> modelProjects = new HashSet<>(personProjects);
-        return new Developer(modelName, modelPhone, modelEmail, modelAddress, modelRole, modelProjects, modelSalary, modelDateJoined, modelGithubId, modelRating);
+        return new Developer(modelName, modelPhone, modelEmail,
+                modelAddress, modelRole, modelProjects, modelSalary, modelDateJoined,
+                modelGithubId, modelRating);
     }
 
 }

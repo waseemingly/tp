@@ -1,5 +1,16 @@
 package seedu.address.logic.parser.imports;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_FILE;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Set;
+
 import seedu.address.logic.commands.imports.ImportClientCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -12,15 +23,20 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Set;
-
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_FILE;
-
+/**
+ * Parses input arguments and creates a
+ * new {@link ImportClientCommand} object for importing client data from a CSV file.
+ * The CSV file should contain columns with specific column names and data in a certain format.
+ */
 public class ImportClientCommandParser implements Parser<ImportClientCommand> {
 
+    /**
+     * Parses the provided file name to import client data from a CSV file.
+     *
+     * @param fileName The name of the CSV file to import client data from.
+     * @return A {@link ImportClientCommand} for importing client data.
+     * @throws ParseException If there are issues with file handling or if the file format is invalid.
+     */
     @Override
     public ImportClientCommand parse(String fileName) throws ParseException {
         try {
@@ -35,7 +51,8 @@ public class ImportClientCommandParser implements Parser<ImportClientCommand> {
             // Check if the CSV file contains valid column names
             boolean isValid = checkColumnNames(br.readLine());
             if (!isValid) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportClientCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ImportClientCommand.MESSAGE_USAGE));
             }
 
             ArrayList<Client> toAddList = new ArrayList<>();
@@ -72,14 +89,12 @@ public class ImportClientCommandParser implements Parser<ImportClientCommand> {
     }
 
     // Define a method to check if the CSV file contains valid column names
-    //Name name, Phone phone, Email email, Address address, Role role, Set<String> projects,
-    //                  Name organisation, Document document
     private boolean checkColumnNames(String line) {
         String[] columnNames = line.split(",");
-        return columnNames.length == 8 && columnNames[0].contains("Name") &&
-                columnNames[1].contains("Contact Number") && columnNames[2].contains("Email") &&
-                columnNames[3].contains("Address") && columnNames[4].contains("Role") &&
-                columnNames[5].contains("Organisation") && columnNames[6].contains("Document") &&
-                columnNames[7].contains("Projects");
+        return columnNames.length == 8 && columnNames[0].contains("Name")
+                && columnNames[1].contains("Contact Number") && columnNames[2].contains("Email")
+                && columnNames[3].contains("Address") && columnNames[4].contains("Role")
+                && columnNames[5].contains("Organisation") && columnNames[6].contains("Document")
+                && columnNames[7].contains("Projects");
     }
 }

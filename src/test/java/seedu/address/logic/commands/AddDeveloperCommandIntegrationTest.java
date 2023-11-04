@@ -1,19 +1,20 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Developer;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.developer.Developer;
+import seedu.address.testutil.DeveloperBuilder;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddDeveloperCommand}.
@@ -29,10 +30,10 @@ public class AddDeveloperCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Developer validDeveloper = new PersonBuilder().build();
+        Developer validDeveloper = new DeveloperBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validDeveloper);
+        expectedModel.addDeveloper(validDeveloper);
 
         assertCommandSuccess(new AddDeveloperCommand(validDeveloper), model,
                 String.format(AddDeveloperCommand.MESSAGE_SUCCESS, Messages.format(validDeveloper)),
@@ -41,9 +42,9 @@ public class AddDeveloperCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Developer developerInList = model.getAddressBook().getPersonList().get(0);
+        Developer developerInList = model.getAddressBook().getDeveloperList().get(0);
         assertCommandFailure(new AddDeveloperCommand(developerInList), model,
-                AddDeveloperCommand.MESSAGE_DUPLICATE_PERSON);
+                AddDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER);
     }
 
 }

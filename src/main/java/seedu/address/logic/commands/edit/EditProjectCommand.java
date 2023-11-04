@@ -1,5 +1,15 @@
 package seedu.address.logic.commands.edit;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -14,12 +24,6 @@ import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
 
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-
 /**
  * Edits the details of an existing project in the address book.
  */
@@ -28,7 +32,8 @@ public class EditProjectCommand extends Command {
     public static final String COMMAND_WORD = "edit-project";
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "The details of the project in the address book are already as given.";
+    public static final String MESSAGE_DUPLICATE_PROJECT =
+            "The details of the project in the address book are already as given.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the project identified "
             + "by the index number used in the displayed project list. "
@@ -62,13 +67,15 @@ public class EditProjectCommand extends Command {
      * Creates and returns a {@code Project} with the details of {@code projectToEdit}
      * edited with {@code editProjectDescriptor}.
      */
-    static seedu.address.model.project.Project createEditedProject(seedu.address.model.project.Project projectToEdit, EditProjectDescriptor editProjectDescriptor) {
+    static seedu.address.model.project.Project createEditedProject(seedu.address.model.project.Project projectToEdit,
+                                                                   EditProjectDescriptor editProjectDescriptor) {
         assert projectToEdit != null;
 
         Name name = projectToEdit.getProjectName();
         Description updatedDescription = editProjectDescriptor.getDescription()
                 .orElse(projectToEdit.getProjectDescription());
-        List<Deadline> updatedDeadlines = editProjectDescriptor.getDeadlines().orElse(projectToEdit.getProjectDeadlines());
+        List<Deadline> updatedDeadlines = editProjectDescriptor.getDeadlines()
+                .orElse(projectToEdit.getProjectDeadlines());
 
         return new seedu.address.model.project.Project(name, updatedDescription, updatedDeadlines);
     }

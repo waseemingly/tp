@@ -1,34 +1,36 @@
 package seedu.address.logic.commands.imports;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.developer.Developer;
-
-import java.util.ArrayList;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Represents a command to import developers from a CSV file into the address book.
+ * This command allows users to add multiple developers from a CSV file with specific column titles.
+ */
 public class ImportDeveloperCommand extends Command {
     public static final String COMMAND_WORD = "import-developer";
-    //Name name, Phone phone, Email email, Address address, Role role, Set<String> projects,
-    //                     Salary salary, Date dateJoined, GithubId githubId, Rating rating
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports developers from csv file.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports developers from a CSV file.\n"
             + "Column titles should follow this format strictly:\n"
             + "Name, Contact Number, Email, Address, Date Joined, Role, Salary, GithubId, Rating, Projects";
     public static final String MESSAGE_SUCCESS = "New developer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DEVELOPER = " is a developer that already exists in the address book\n";
+    public static final String MESSAGE_DUPLICATE_DEVELOPER =
+            " is a developer that already exists in the address book\n";
 
     private final ArrayList<Developer> toAddList;
 
     /**
-     * Creates an AddDeveloperCommand to add the specified {@code Developer}
+     * Creates an ImportDeveloperCommand to import the specified list of developers.
+     *
+     * @param developerList The list of developers to be imported.
      */
     public ImportDeveloperCommand(ArrayList<Developer> developerList) {
         requireNonNull(developerList);
@@ -38,6 +40,13 @@ public class ImportDeveloperCommand extends Command {
         toAddList = developerList;
     }
 
+    /**
+     * Executes the import operation by adding developers from the CSV file to the address book.
+     *
+     * @param model The model in which to import the developers.
+     * @return A CommandResult indicating the success of the import operation.
+     * @throws CommandException If an error occurs during the import operation.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -54,14 +63,19 @@ public class ImportDeveloperCommand extends Command {
         return new CommandResult(output, TabIndex.Developer);
     }
 
+    /**
+     * Checks if this ImportDeveloperCommand is equal to another object.
+     *
+     * @param other The object to compare with this ImportDeveloperCommand.
+     * @return True if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof ImportCommand)) {
+        if (!(other instanceof ImportDeveloperCommand)) {
             return false;
         }
 
@@ -69,6 +83,11 @@ public class ImportDeveloperCommand extends Command {
         return toAddList.equals(otherImportCommand.toAddList);
     }
 
+    /**
+     * Generates a string representation of this ImportDeveloperCommand.
+     *
+     * @return A string representation of this object.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)

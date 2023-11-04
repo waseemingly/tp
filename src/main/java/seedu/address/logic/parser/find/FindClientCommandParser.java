@@ -1,17 +1,32 @@
 package seedu.address.logic.parser.find;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.find.FindClientCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.*;
-
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.model.client.AddressClientContainsKeywordsPredicate;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.DocumentContainsKeywordsPredicate;
+import seedu.address.model.client.EmailClientContainsKeywordsPredicate;
+import seedu.address.model.client.NameClientContainsKeywordsPredicate;
+import seedu.address.model.client.OrganisationContainsKeywordsPredicate;
+import seedu.address.model.client.PhoneClientContainsKeywordsPredicate;
+import seedu.address.model.client.ProjectClientContainsKeywordsPredicate;
+import seedu.address.model.client.RoleClientContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindClientCommand object
@@ -58,7 +73,8 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             String[] addressKeywords = argMultimap.getValue(PREFIX_ADDRESS).get().split("\\s+");
-            finalPredicate = finalPredicate.and(new AddressClientContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
+            finalPredicate =
+                    finalPredicate.and(new AddressClientContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
         }
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
@@ -73,17 +89,20 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
 
         if (argMultimap.getValue(PREFIX_PROJECT).isPresent()) {
             String[] projectKeywords = argMultimap.getValue(PREFIX_PROJECT).get().split("\\s+");
-            finalPredicate = finalPredicate.and(new ProjectClientContainsKeywordsPredicate(Arrays.asList(projectKeywords)));
+            finalPredicate =
+                    finalPredicate.and(new ProjectClientContainsKeywordsPredicate(Arrays.asList(projectKeywords)));
         }
 
         if (argMultimap.getValue(PREFIX_DOCUMENT).isPresent()) {
             String[] documentKeywords = argMultimap.getValue(PREFIX_DOCUMENT).get().split("\\s+");
-            finalPredicate = finalPredicate.and(new DocumentContainsKeywordsPredicate(Arrays.asList(documentKeywords)));
+            finalPredicate =
+                    finalPredicate.and(new DocumentContainsKeywordsPredicate(Arrays.asList(documentKeywords)));
         }
 
         if (argMultimap.getValue(PREFIX_ORGANISATION).isPresent()) {
             String[] organisationKeywords = argMultimap.getValue(PREFIX_ORGANISATION).get().split("\\s+");
-            finalPredicate = finalPredicate.and(new OrganisationContainsKeywordsPredicate(Arrays.asList(organisationKeywords)));
+            finalPredicate =
+                    finalPredicate.and(new OrganisationContainsKeywordsPredicate(Arrays.asList(organisationKeywords)));
         }
         return finalPredicate;
     }
