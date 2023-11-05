@@ -5,10 +5,10 @@ import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.parser.add.AddDeveloperCommandParser;
 import seedu.address.model.commons.Name;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Developer;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.DeveloperBuilder;
 
 import org.junit.jupiter.api.Test;
 
