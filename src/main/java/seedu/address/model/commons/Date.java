@@ -1,10 +1,10 @@
 package seedu.address.model.commons;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Represents the date a developer Joined. In the format: dd-MM-YYYY
@@ -35,8 +35,9 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String text) {
-        if (text == null || !text.matches(VALIDATION_REGEX))
+        if (text == null || !text.matches(VALIDATION_REGEX)) {
             return false;
+        }
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         df.setLenient(false);
         try {

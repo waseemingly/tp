@@ -1,5 +1,11 @@
 package seedu.address.logic.parser.find;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.find.FindDeadlineCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -9,14 +15,19 @@ import seedu.address.model.commons.Date;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Priority;
 
-import java.util.function.Predicate;
-
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-
+/**
+ * Parser to handle user input and create a {@link FindDeadlineCommand}.
+ * This command is used to search and filter deadlines within projects based on specific criteria.
+ * The supported criteria include filtering by date joined and priority level.
+ */
 public class FindDeadlineCommandParser implements Parser<FindDeadlineCommand> {
-
+    /**
+     * Parses user input and creates a {@link FindDeadlineCommand} based on the provided criteria.
+     *
+     * @param args User input arguments, which may include criteria for filtering deadlines.
+     * @return A {@link FindDeadlineCommand} for searching and filtering deadlines.
+     * @throws ParseException If the user input does not conform to the expected format.
+     */
     public FindDeadlineCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
@@ -36,19 +47,28 @@ public class FindDeadlineCommandParser implements Parser<FindDeadlineCommand> {
         return new FindDeadlineCommand(finalPredicate);
     }
 
+    /**
+     * Builds a predicate for filtering deadlines based on the criteria provided in the user input.
+     *
+     * @param argMultimap Argument multimap containing user input arguments.
+     * @return A predicate for filtering deadlines.
+     */
     private Predicate<Deadline> buildPredicate(ArgumentMultimap argMultimap) {
         Predicate<Deadline> finalPredicate = deadline -> true;
 
         if (argMultimap.getValue(PREFIX_DATEJOINED).isPresent()) {
             String dateKeywords = argMultimap.getValue(PREFIX_DATEJOINED).get();
             Date input = new Date(dateKeywords);
-            finalPredicate = finalPredicate.and(d -> !d.getDate().value.after(input.value)); // Replace with your DateJoinedPredicate
+            finalPredicate =
+                    finalPredicate.and(d -> !d.getDate().value.after(input.value));
+            // Replace with your DateJoinedPredicate
         }
 
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             String priorityKeywords = argMultimap.getValue(PREFIX_PRIORITY).get();
             Priority input = Priority.valueOf(priorityKeywords);
-            finalPredicate = finalPredicate.and(d -> d.getPriority().equals(input)); // Replace with your PriorityPredicate
+            finalPredicate = finalPredicate.and(d -> d.getPriority().equals(input));
+            // Replace with your PriorityPredicate
         }
 
         return finalPredicate;

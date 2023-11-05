@@ -1,12 +1,12 @@
 package seedu.address.logic.parser.mark;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.mark.UnmarkDeadlineCommand;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Parses input arguments and creates a new UnmarkDeadlineCommand object.

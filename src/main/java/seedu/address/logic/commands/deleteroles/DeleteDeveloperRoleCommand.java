@@ -1,4 +1,7 @@
-package seedu.address.logic.commands.deleteRoles;
+package seedu.address.logic.commands.deleteroles;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -10,9 +13,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.developer.DeveloperRoles;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-
+/**
+ * Represents a command to delete a role for developers from the address book.
+ * This allows users to remove custom roles for developers.
+ */
 public class DeleteDeveloperRoleCommand extends Command {
     public static final String COMMAND_WORD = "delete-developer-role";
 
@@ -30,13 +34,22 @@ public class DeleteDeveloperRoleCommand extends Command {
     private final String toAdd;
 
     /**
-     * Creates an AddDeveloperRoleCommand to add the specified {@code Developer}
+     * Creates a DeleteDeveloperRoleCommand to delete a specific developer role by its name.
+     *
+     * @param role The name of the developer role to be deleted.
      */
     public DeleteDeveloperRoleCommand(String role) {
         requireNonNull(role);
         toAdd = role;
     }
 
+    /**
+     * Executes the operation to delete a developer role from the address book.
+     *
+     * @param model The model that contains the address book data.
+     * @return A CommandResult indicating the success or failure of the operation.
+     * @throws CommandException If an error occurs during the execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -60,6 +73,12 @@ public class DeleteDeveloperRoleCommand extends Command {
         return new CommandResult(successMessage, index);
     }
 
+    /**
+     * Checks if this DeleteDeveloperRoleCommand is equal to another object.
+     *
+     * @param other The object to compare with this DeleteDeveloperRoleCommand.
+     * @return True if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -75,6 +94,11 @@ public class DeleteDeveloperRoleCommand extends Command {
         return toAdd.equals(otherDeleteDeveloperRoleCommand.toAdd);
     }
 
+    /**
+     * Generates a string representation of this DeleteDeveloperRoleCommand.
+     *
+     * @return A string representation of this object.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)

@@ -1,23 +1,26 @@
 package seedu.address.model.developer;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DeveloperNotFoundException;
-import seedu.address.model.person.exceptions.DuplicateDeveloperException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.DeveloperNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateDeveloperException;
 
 /**
  * A list of developers that enforces uniqueness between its elements and does not allow nulls.
  * A developer is considered unique by comparing using {@code Developer#isSameDeveloper(Developer)}.
- * As such, adding and updating of developers use Developer#isSameDeveloper(Developer) for equality to ensure that the developer being added or updated is unique in terms of identity in the UniqueDeveloperList.
- * However, the removal of a developer uses Developer#equals(Object) to ensure that the developer with exactly the same fields will be removed.
+ * As such, adding and updating of developers use Developer#isSameDeveloper(Developer)
+ * for equality to ensure that the developer being added or updated is
+ * unique in terms of identity in the UniqueDeveloperList.
+ * However, the removal of a developer uses Developer#equals(Object)
+ * to ensure that the developer with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
@@ -26,7 +29,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class UniqueDeveloperList implements Iterable<Developer> {
 
     private final ObservableList<Developer> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Developer> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Developer> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent developer as the given argument.
@@ -51,7 +55,8 @@ public class UniqueDeveloperList implements Iterable<Developer> {
     /**
      * Replaces the developer {@code target} in the list with {@code editedDeveloper}.
      * {@code target} must exist in the list.
-     * The developer identity of {@code editedDeveloper} must not be the same as another existing developer in the list.
+     * The developer identity of {@code editedDeveloper} must
+     * not be the same as another existing developer in the list.
      */
     public void setDeveloper(Developer target, Developer editedDeveloper) {
         requireAllNonNull(target, editedDeveloper);
@@ -97,14 +102,21 @@ public class UniqueDeveloperList implements Iterable<Developer> {
         internalList.setAll(developers);
     }
 
+    /**
+     * Updates the projects of all developers by removing a specified project.
+     *
+     * @param project The project to be removed from all developers.
+     */
     public void updateDeveloperProjects(String project) {
         iterator().forEachRemaining(
                 developer -> {
                     Set<String> newprojectset = new HashSet<>(developer.getProjects());
                     newprojectset.remove(project);
-                    setDeveloper(developer, new Developer(developer.getName(), developer.getPhone(), developer.getEmail(),
+                    setDeveloper(developer, new Developer(developer.getName(),
+                            developer.getPhone(), developer.getEmail(),
                             developer.getAddress(), developer.getRole(), newprojectset,
-                            developer.getSalary(), developer.getDateJoined(), developer.getGithubId(), developer.getRating()));
+                            developer.getSalary(), developer.getDateJoined(),
+                            developer.getGithubId(), developer.getRating()));
                 });
     }
 

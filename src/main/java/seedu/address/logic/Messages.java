@@ -1,12 +1,12 @@
 package seedu.address.logic;
 
-import seedu.address.logic.parser.Prefix;
-import seedu.address.model.client.Client;
-import seedu.address.model.developer.Developer;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import seedu.address.logic.parser.Prefix;
+import seedu.address.model.client.Client;
+import seedu.address.model.developer.Developer;
 
 /**
  * Container for user visible messages.
@@ -20,8 +20,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX = "The client index provided is invalid!";
     public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is invalid!";
     public static final String MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX = "The deadline index provided is invalid!";
-    public static final String MESSAGE_INAPPLICABLE_PREFIX_USED = "You tried to edit an inapplicable field! Please check " +
-            "the prefixes used and try again. \n%1$s";
+    public static final String MESSAGE_INAPPLICABLE_PREFIX_USED =
+            "You tried to edit an inapplicable field! Please check "
+            + "the prefixes used and try again. \n%1$s";
     public static final String MESSAGE_NONEXISTENT_PROJECT = "There is no existing Project with the name: %1$s!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
@@ -79,6 +80,12 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats a client's information into a string.
+     *
+     * @param client The client to format.
+     * @return A string representing the formatted client information.
+     */
     public static String format(Client client) {
         final StringBuilder builder = new StringBuilder();
         builder.append(client.getName())
@@ -99,6 +106,12 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats a project's information into a string.
+     *
+     * @param project The project to format.
+     * @return A string representing the formatted project information.
+     */
     public static Object format(seedu.address.model.project.Project project) {
         final StringBuilder builder = new StringBuilder();
         builder.append(project.getName())
@@ -109,6 +122,12 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats a role into a string.
+     *
+     * @param role The role to format.
+     * @return A string representing the formatted role.
+     */
     public static String format(String role) {
         final StringBuilder builder = new StringBuilder();
         builder.append(role);

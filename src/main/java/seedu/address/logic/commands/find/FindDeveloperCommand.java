@@ -1,5 +1,20 @@
 package seedu.address.logic.commands.find;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.getMessageDevelopersListedOverview;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -7,12 +22,11 @@ import seedu.address.logic.commands.TabIndex;
 import seedu.address.model.Model;
 import seedu.address.model.developer.Developer;
 
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.getMessageDevelopersListedOverview;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Represents a command to find developers in the address book based on various attributes.
+ * This command allows users to search for developers using their names, roles, addresses, dates joined, emails,
+ * phone numbers, associated projects, salaries, ratings, or GitHub IDs.
+ */
 public class FindDeveloperCommand extends Command {
 
     public static final String COMMAND_WORD = "find-developer";
@@ -32,10 +46,21 @@ public class FindDeveloperCommand extends Command {
 
     private Predicate<Developer> predicate;
 
+    /**
+     * Creates a FindDeveloperCommand with the specified predicate for filtering developers.
+     *
+     * @param predicate The predicate used to filter developers based on attributes.
+     */
     public FindDeveloperCommand(Predicate<Developer> predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * Executes the find operation by updating the filtered developer list based on the given predicate.
+     *
+     * @param model The model to execute the command on.
+     * @return A CommandResult indicating the results of the find operation.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -47,6 +72,12 @@ public class FindDeveloperCommand extends Command {
         return new CommandResult(message, TabIndex.Developer);
     }
 
+    /**
+     * Checks if this FindDeveloperCommand is equal to another object.
+     *
+     * @param other The object to compare with this FindDeveloperCommand.
+     * @return True if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -61,6 +92,11 @@ public class FindDeveloperCommand extends Command {
         return predicate.equals(otherFindDeveloperCommand.predicate);
     }
 
+    /**
+     * Generates a string representation of this FindDeveloperCommand.
+     *
+     * @return A string representation of this object.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -68,4 +104,3 @@ public class FindDeveloperCommand extends Command {
                 .toString();
     }
 }
-

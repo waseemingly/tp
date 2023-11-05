@@ -1,19 +1,36 @@
 package seedu.address.logic.parser.edit;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.edit.EditClientCommand;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.Client;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.edit.EditClientCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.Client;
 
 /**
  * Parses input arguments and creates a new EditClientCommand object
@@ -46,7 +63,7 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
             throw new ParseException(EditClientCommand.MESSAGE_NOT_EDITED);
         }
 
-        for (Prefix p : Client.unusedPrefixes) {
+        for (Prefix p : Client.UNUSED_PREFIXES) {
             if (argMultimap.getValue(p).isPresent()) {
                 throw new ParseException(String.format(Messages.MESSAGE_INAPPLICABLE_PREFIX_USED,
                         EditClientCommand.MESSAGE_USAGE));
@@ -79,7 +96,7 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
         if (argMultimap.getValue(PREFIX_DOCUMENT).isPresent()) {
             editClientDescriptor.setDocument(ParserUtil.parseDocument(argMultimap.getValue(PREFIX_DOCUMENT).get()));
         }
-//        editClientDescriptor.setProjects(ParserUtil.parseProjectsWithCheck(argMultimap.getAllValues(PREFIX_PROJECT)));
+        //editClientDescriptor.setProjects(ParserUtil.parseProjectsWithCheck(argMultimap.getAllValues(PREFIX_PROJECT)));
         parseProjectsForEdit(argMultimap.getAllValues(PREFIX_PROJECT)).ifPresent(editClientDescriptor::setProjects);
 
         if (!editClientDescriptor.isAnyFieldEdited()) {
@@ -100,7 +117,8 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
         if (projects.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> projectSet = projects.size() == 1 && projects.contains("") ? Collections.emptySet() : projects;
+        Collection<String> projectSet =
+                projects.size() == 1 && projects.contains("") ? Collections.emptySet() : projects;
         return Optional.of(ParserUtil.parseProjectsToSet(projectSet));
     }
 }

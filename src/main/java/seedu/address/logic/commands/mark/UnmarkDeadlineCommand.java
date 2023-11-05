@@ -1,5 +1,10 @@
 package seedu.address.logic.commands.mark;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -13,11 +18,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-
+/**
+ * Marks the specified deadline of the specified project as undone.
+ */
 public class UnmarkDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "unmark-deadline";
     public static final String MESSAGE_SUCCESS = "The deadline has been marked as undone!";
@@ -34,11 +37,23 @@ public class UnmarkDeadlineCommand extends Command {
     private final Index deadlineIndex;
     private final Index projIndex;
 
+    /**
+     * Creates an UnmarkDeadlineCommand to unmark the specified deadline of the specified project.
+     *
+     * @param projIndex    The index of the project containing the deadline to be unmarked.
+     * @param deadlineIndex The index of the deadline to be unmarked within the project.
+     */
     public UnmarkDeadlineCommand(Index projIndex, Index deadlineIndex) {
         this.deadlineIndex = deadlineIndex;
         this.projIndex = projIndex;
     }
-
+    /**
+     * Executes the operation to unmark a project deadline as undone.
+     *
+     * @param model The model that contains the project data.
+     * @return A CommandResult indicating the success of the operation.
+     * @throws CommandException If an error occurs during the execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

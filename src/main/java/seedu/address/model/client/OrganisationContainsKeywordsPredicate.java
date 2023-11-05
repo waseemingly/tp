@@ -1,10 +1,10 @@
 package seedu.address.model.client;
 
+import java.util.List;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.KeywordPredicate;
-
-import java.util.List;
 
 /**
  * Tests that a {@code Developer}'s {@code Organisation} matches any of the keywords given.
@@ -33,7 +33,8 @@ public class OrganisationContainsKeywordsPredicate implements KeywordPredicate<C
             return false;
         }
 
-        OrganisationContainsKeywordsPredicate otherOrganisationContainsKeywordsPredicate = (OrganisationContainsKeywordsPredicate) other;
+        OrganisationContainsKeywordsPredicate otherOrganisationContainsKeywordsPredicate =
+                (OrganisationContainsKeywordsPredicate) other;
         return keywords.equals(otherOrganisationContainsKeywordsPredicate.keywords);
     }
 
