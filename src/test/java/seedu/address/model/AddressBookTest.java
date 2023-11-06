@@ -16,9 +16,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Developer;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.client.Client;
+import seedu.address.model.developer.Developer;
+import seedu.address.model.person.exceptions.DuplicateDeveloperException;
+import seedu.address.model.project.Project;
+import seedu.address.testutil.DeveloperBuilder;
 
 public class AddressBookTest {
 
@@ -26,7 +28,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getDeveloperList());
     }
 
     @Test
@@ -42,48 +44,48 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateDevelopers_throwsDuplicateDeveloperException() {
         // Two developers with the same identity fields
-        Developer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Developer editedAlice = new DeveloperBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withProjects(VALID_TAG_HUSBAND)
                 .build();
         List<Developer> newDevelopers = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newDevelopers);
+        AddressBookStub newData = new AddressBookStub(newDevelopers, Collections.emptyList(), Collections.emptyList());
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateDeveloperException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasDeveloper(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasDeveloper(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        addressBook.addDeveloper(ALICE);
+        assertTrue(addressBook.hasDeveloper(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Developer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        addressBook.addDeveloper(ALICE);
+        Developer editedAlice = new DeveloperBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withProjects(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasDeveloper(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getDeveloperList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{developers=" + addressBook.getPersonList() + "}";
+        String expected = AddressBook.class.getCanonicalName() + "{developers=" + addressBook.getDeveloperList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 
@@ -92,14 +94,28 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Developer> developers = FXCollections.observableArrayList();
+        private final ObservableList<Client> clients = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Developer> developers) {
+        AddressBookStub(Collection<Developer> developers, Collection<Client> clients, Collection<Project> projects) {
             this.developers.setAll(developers);
+            this.clients.setAll(clients);
+            this.projects.setAll(projects);
         }
 
         @Override
-        public ObservableList<Developer> getPersonList() {
+        public ObservableList<Developer> getDeveloperList() {
             return developers;
+        }
+
+        @Override
+        public ObservableList<Client> getClientList () {
+            return clients;
+        }
+
+        @Override
+        public ObservableList<Project> getProjectList () {
+            return projects;
         }
     }
 

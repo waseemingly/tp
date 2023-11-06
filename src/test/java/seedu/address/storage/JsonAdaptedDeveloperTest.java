@@ -27,14 +27,13 @@ public class JsonAdaptedDeveloperTest {
     private static final String INVALID_PROJECT = "#friend";
 
     private static final String INVALID_DATE_JOINED = "2019";
-    private static final String INVALID_USERNAME = "Rachel Ha";
-    private static final String INVALID_PASSWORD = "password";
     private static final String INVALID_ROLE = "hiring";
     private static final String INVALID_SALARY = "300";
+    private static final String INVALID_GITHUBID = "mahidharah";
+    private static final String INVALID_RATING = "5.0";
+
 
     private static final String VALID_DATE_JOINED = BENSON.getDateJoined().toString();
-    private static final String VALID_USERNAME = BENSON.getUsername().toString();
-    private static final String VALID_PASSWORD = BENSON.getPassword().toString();
     private static final String VALID_ROLE = BENSON.getRole().toString();
     private static final String VALID_SALARY = BENSON.getSalary().toString();
 
@@ -42,6 +41,9 @@ public class JsonAdaptedDeveloperTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_GITHUBID = BENSON.getGithubId().toString();
+    private static final String VALID_RATING = BENSON.getRating().toString();
+
     private static final List<JsonAdaptedProject> VALID_PROJECTS = BENSON.getProjects().stream()
             .map(JsonAdaptedProject::new)
             .collect(Collectors.toList());
