@@ -614,16 +614,8 @@ When command succeeds, CLI shows:
 
 ```
 This is the one developer with matching information
-Amy
-Contact: 98989898
-Email: amy@u.nus.edu
-Address: NUS UTOWN
-Date Joined: 06-09-2023
-Role: Senior Developer
-Salary: 6999
-Projects: CS2103T
-Rating: 5.0 Stars
 ```
+followed by the matching developer's details in the GUI.
 
 #### Find client details
 
@@ -646,22 +638,8 @@ When command succeeds, CLI shows:
 
 ```
 These are the 2 clients with matching information
-John Doe
-Contact: 98989898
-Email: john@gmail.com
-Address: Google HQ
-Organisation: Google
-Role: Developer
-Projects: AndroidApp
-
-Alice Tan
-Contact: 98977543
-Email: alice@gmail.com
-Address: Google HQ
-Organisation: Google
-Role: Senior Developer
-Projects: CustomWebsite
 ```
+followed by the matching clients' details in the GUI.
 
 #### Find project details
 
@@ -678,17 +656,14 @@ Format: `find-project [pr/PROJECT_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
 
 Example of usage: `find-project pr/JuiceApp`
 
-* Prints projects with the name 2103T project.
+* Print projects with the name 2103T project.
 
 When command succeeds, CLI shows:
 
 ```
 This is the one project with matching information
-Edited Project: JuiceApp;
-Description: Juice ordering app;
-Deadlines:
-1. Design backend by: 19-12-2023, priority: HIGH (undone)
 ```
+followed by the matching project's details in the GUI.
 
 ### Deleting a developer : `delete`
 
@@ -702,8 +677,8 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd developer in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st developer in the results of the `find` command.
+* `list-developer` followed by `delete 2` deletes the 2nd developer in the address book.
+* `find-developer n/Betsy` followed by `delete 1` deletes the 1st developer in the results of the `find` command.
 
 ### Listing information : `list`
 

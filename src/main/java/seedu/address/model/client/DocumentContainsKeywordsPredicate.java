@@ -19,7 +19,7 @@ public class DocumentContainsKeywordsPredicate implements KeywordPredicate<Clien
     @Override
     public boolean test(Client client) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getDocument().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(client.getDocument().toString(), keyword));
     }
 
     @Override

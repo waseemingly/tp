@@ -13,7 +13,11 @@ import seedu.address.model.developer.Developer;
  */
 public class Messages {
 
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNKNOWN_COMMAND =
+            "Unknown command!\n"
+            + "Please provide your command in the following format: <command>-<name of list>.\n"
+            + "Example: list-developer, find-client n/John, delete-project 1";
+
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_FILE = "File does not exist!\n";
     public static final String MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX = "The developer index provided is invalid!";
@@ -28,21 +32,33 @@ public class Messages {
             "Multiple values specified for the following single-valued field(s): ";
 
     public static String getMessageDevelopersListedOverview(int count) {
-        return count == 1
-                ? "This is the 1 developer with matching information."
-                : String.format("These are the %d developers with matching information.", count);
+        if (count == 0) {
+            return "There are no developers with matching information.";
+        } else if (count == 1) {
+            return "This is the 1 developer with matching information.";
+        } else {
+            return String.format("These are the %d developers with matching information.", count);
+        }
     }
 
     public static String getMessageClientsListedOverview(int count) {
-        return count == 1
-                ? "This is the 1 client with matching information."
-                : String.format("These are the %d clients with matching information.", count);
+        if (count == 0) {
+            return "There are no clients with matching information.";
+        } else if (count == 1) {
+            return "This is the 1 client with matching information.";
+        } else {
+            return String.format("These are the %d clients with matching information.", count);
+        }
     }
 
     public static String getMessageProjectsListedOverview(int count) {
-        return count == 1
-                ? "This is the 1 project with matching information."
-                : String.format("These are the %d projects with matching information.", count);
+        if (count == 0) {
+            return "There are no projects with matching information.";
+        } else if (count == 1) {
+            return "This is the 1 project with matching information.";
+        } else {
+            return String.format("These are the %d projects with matching information.", count);
+        }
     }
 
     /**
