@@ -15,7 +15,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
-import seedu.address.model.project.Project;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -94,8 +93,8 @@ public class EditDeveloperDescriptorBuilder {
     */
 
     public EditDeveloperDescriptorBuilder withProjects(String... projects) {
-        Set<String> projectSet = Stream.of(projects).collect(Collectors.toSet());
-        descriptor.setProjects(projectSet);
+        Set<String> projectNames = Stream.of(projects).collect(Collectors.toSet());
+        descriptor.setProjects(projectNames);
         return this;
     }
 
@@ -125,6 +124,11 @@ public class EditDeveloperDescriptorBuilder {
     }
 
     public EditDeveloperCommand.EditDeveloperDescriptor build() {
+    /* public EditDeveloperDescriptorBuilder withTags(String... tags) {
+        Set<String> projects = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setProjects(tagSet);
+        return this;
+    }*/
         return descriptor;
     }
 }

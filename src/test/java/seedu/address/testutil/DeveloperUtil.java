@@ -1,5 +1,13 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+
 import java.util.Set;
 
 import seedu.address.logic.commands.add.AddDeveloperCommand;
@@ -74,10 +82,6 @@ public class DeveloperUtil {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
         */
         return sb.toString();
     }
