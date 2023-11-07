@@ -24,29 +24,100 @@ import seedu.address.model.developer.Developer;
 public class TypicalPersons {
 
     public static final Developer ALICE = new DeveloperBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111")
+            .withEmail("alice@example.com")
             .withPhone("94351253")
-            .withProjects("AndroidApp").build();
+            .withProjects("AndroidApp")
+            .withDateJoined("01.01.2019") // Add Date Joined
+            .withRole("Developer")
+            .withSalary("4500") // Add Salary
+            .withGithubId("aliceGitHubID") // Add Github ID
+            .withRating("3") // Add Rating
+            .build();
+
     public static final Developer BENSON = new DeveloperBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withProjects("owesMoney", "friends").build();
-    public static final Developer CARL = new DeveloperBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Developer DANIEL = new DeveloperBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withProjects("friends").build();
-    public static final Developer ELLE = new DeveloperBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Developer FIONA = new DeveloperBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Developer GEORGE = new DeveloperBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
-
+            .withEmail("benson@example.com")
+            .withPhone("98765432")
+            .withProjects("AppleBEn", "BigBen")
+            .withDateJoined("03.02.2010")
+            .withRole("Developer")
+            .withSalary("4000")
+            .withGithubId("BeNM")
+            .withRating("2")
+            .build();
+    public static final Developer CARL = new DeveloperBuilder().withName("Carl Kurz")
+            .withPhone("95352563")
+            .withEmail("heinz@example.com")
+            .withAddress("WallStreet")
+            .withDateJoined("05.15.2015") // Add Date Joined
+            .withRole("Developer")
+            .withSalary("4800") // Add Salary
+            .withGithubId("CarlK")
+            .withRating("3") // Add Rating
+            .build();
+    public static final Developer DANIEL = new DeveloperBuilder().withName("Daniel Meier")
+            .withPhone("87652533")
+            .withEmail("cornelia@example.com")
+            .withAddress("10th street")
+            .withProjects("AppleDan")
+            .withDateJoined("11.20.2017") // Add Date Joined
+            .withRole("Developer")
+            .withSalary("4200") // Add Salary
+            .withGithubId("DanMeier")
+            .withRating("4") // Add Rating
+            .build();
+    public static final Developer ELLE = new DeveloperBuilder().withName("Elle Meyer")
+            .withPhone("94822244")
+            .withEmail("werner@example.com")
+            .withAddress("michegan ave")
+            .withDateJoined("09.08.2016") // Add Date Joined
+            .withRole("Developer")
+            .withSalary("4300") // Add Salary
+            .withGithubId("ElleM")
+            .withRating("5") // Add Rating
+            .build();
+    public static final Developer FIONA = new DeveloperBuilder().withName("Fiona Kunz")
+            .withPhone("94824271")
+            .withEmail("lydia@example.com")
+            .withAddress("little tokyo")
+            .withDateJoined("02.14.2018") // Add Date Joined
+            .withRole("Developer")
+            .withSalary("4400") // Add Salary
+            .withGithubId("FionaK")
+            .withRating("1") // Add Rating
+            .build();
+    public static final Developer GEORGE = new DeveloperBuilder().withName("George Best")
+            .withPhone("94824424")
+            .withEmail("anna@example.com")
+            .withAddress("4th street")
+            .withDateJoined("07.30.2019") // Add Date Joined
+            .withRole("Developer")
+            .withSalary("4600") // Add Salary
+            .withGithubId("GeorgeB")
+            .withRating("5") // Add Rating
+            .build();
     // Manually added
-    public static final Developer HOON = new DeveloperBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Developer IDA = new DeveloperBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+    public static final Developer HOON = new DeveloperBuilder().withName("Hoon Meier")
+            .withPhone("84824242")
+            .withEmail("stefan@example.com")
+            .withAddress("little india")
+            .withDateJoined("06.10.2016") // Add Date Joined
+            .withRole("Developer")
+            .withSalary("4600") // Add Salary
+            .withGithubId("HoonMeier") // Add Github ID
+            .withRating("2") // Add Rating
+            .build();
+    public static final Developer IDA = new DeveloperBuilder().withName("Ida Mueller")
+            .withPhone("8482131")
+            .withEmail("hans@example.com")
+            .withAddress("chicago ave")
+            .withDateJoined("12.05.2017") // Add Date Joined
+            .withRole("Developer")
+            .withSalary("4300") // Add Salary
+            .withGithubId("IdaMueller") // Add Github ID
+            .withRating("5") // Add Rating
+            .build();
 
     // Manually added - Developer's details found in {@code CommandTestUtil}
     public static final Developer AMY = new DeveloperBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
