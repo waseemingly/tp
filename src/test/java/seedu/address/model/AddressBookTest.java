@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Developer;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.DeveloperBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -44,7 +45,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two developers with the same identity fields
-        Developer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Developer editedAlice = new DeveloperBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Developer> newDevelopers = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newDevelopers);
