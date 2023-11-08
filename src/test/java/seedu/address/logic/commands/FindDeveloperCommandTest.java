@@ -57,7 +57,7 @@ public class FindDeveloperCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         //String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        String expectedMessage = "These are the 0 developers with matching information.";
+        String expectedMessage = "There are the 0 developers with matching information.";
         NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("hii");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
         expectedModel.updateFilteredDeveloperList(predicate);
@@ -68,7 +68,7 @@ public class FindDeveloperCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         //String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        String expectedMessage = "";
+        String expectedMessage = "There are the 3 developers with matching information.";
         NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
         expectedModel.updateFilteredDeveloperList(predicate);

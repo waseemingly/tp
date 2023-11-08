@@ -90,7 +90,10 @@ public class DeveloperTest {
     @Test
     public void toStringMethod() {
         String expected = Developer.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + "}";
+                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress()
+                + ", projects=" + ALICE.getProjects() + "} Salary: " + ALICE.getSalary()
+                + " Date Joined: " + ALICE.getDateJoined() + " Github ID: " + ALICE.getGithubId()
+                + " Rating: " + ALICE.getRating();
         assertEquals(expected, ALICE.toString());
     }
 }

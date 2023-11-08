@@ -30,7 +30,7 @@ public class Messages {
     public static String getMessageDevelopersListedOverview(int count) {
         return count == 1
                 ? "This is the 1 developer with matching information."
-                : String.format("These are the %d developers with matching information.", count);
+                : String.format("There are the %d developers with matching information.", count);
     }
 
     public static String getMessageClientsListedOverview(int count) {
