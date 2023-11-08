@@ -1,13 +1,23 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.developer.Developer;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_1_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_2_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_2_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.developer.Developer;
 
 /**
  * A utility class containing a list of {@code Developer} objects to be used in tests.
@@ -59,7 +69,7 @@ public class TypicalDevelopers {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalDevelopers () {
+    private TypicalDevelopers() {
     } // prevents instantiation
 
     /**
