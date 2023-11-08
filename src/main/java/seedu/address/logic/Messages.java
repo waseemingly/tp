@@ -14,6 +14,9 @@ import seedu.address.model.developer.Developer;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_VALID_LOCKED_COMMANDS = "Valid commands are: \n unlock, help, exit";
+    public static final String MESSAGE_VALID_UNLOCKED_COMMANDS = "Type \"help\" to see the list of valid commands in"
+            + " User Guide";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_FILE = "File does not exist!\n";
     public static final String MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX = "The developer index provided is invalid!";
@@ -43,6 +46,11 @@ public class Messages {
         return count == 1
                 ? "This is the 1 project with matching information."
                 : String.format("These are the %d projects with matching information.", count);
+    }
+    public static String getMessageDeadlinesListedOverview(int count) {
+        return count == 1
+                ? "This is the 1 deadline with matching information."
+                : String.format("These are the %d deadlines with matching information.", count);
     }
 
     /**

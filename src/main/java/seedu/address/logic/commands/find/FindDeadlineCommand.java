@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.find;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.getMessageProjectsListedOverview;
+import static seedu.address.logic.Messages.getMessageDeadlinesListedOverview;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
@@ -50,8 +50,11 @@ public class FindDeadlineCommand extends Command {
 
         model.updateFilteredProjectDeadlineList(predicate);
 
-        int resultCount = model.getFilteredProjectList().size();
-        String message = getMessageProjectsListedOverview(resultCount);
+        int resultCount =
+                model.getFilteredProjectList().stream()
+                        .mapToInt(project -> project.getProjectFilteredDeadlines().size()).filter(x -> x > 0).sum();
+
+        String message = getMessageDeadlinesListedOverview(resultCount);
 
         return new CommandResult(message, TabIndex.Project);
     }
