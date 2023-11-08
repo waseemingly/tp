@@ -16,7 +16,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -74,11 +73,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Description desc = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         List<String> deadlineList = argMultimap.getAllValues(PREFIX_DEADLINE);
-        List<Deadline> deadlines = new ArrayList<>();
-
-        for (String s : deadlineList) {
-            deadlines.add(new Deadline(s, deadlines.size() + 1));
-        }
+        List<Deadline> deadlines = ParserUtil.parseDeadlines(deadlineList);
 
         Project project = new Project(name, desc, deadlines);
 

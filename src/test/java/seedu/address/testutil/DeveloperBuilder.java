@@ -49,7 +49,7 @@ public class DeveloperBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         projects = new HashSet<>();
-        dateJoined = new Date(DEFAULT_DATE_JOINED);
+        dateJoined = new Date(DEFAULT_DATE_JOINED, false);
         role = new DeveloperRoles(DEFAULT_ROLE);
         salary = new Salary(DEFAULT_SALARY);
         githubId = new GithubId(DEFAULT_GITHUBID);
@@ -117,7 +117,7 @@ public class DeveloperBuilder {
 
     /** Sets the {@code Phone} of the {@code Developer} that we are building. */
     public DeveloperBuilder withDateJoined(String dateJoined) {
-        this.dateJoined = new Date(dateJoined);
+        this.dateJoined = new Date(dateJoined, false);
         return this;
     }
 

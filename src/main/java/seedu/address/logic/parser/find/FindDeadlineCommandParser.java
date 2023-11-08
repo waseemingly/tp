@@ -58,7 +58,7 @@ public class FindDeadlineCommandParser implements Parser<FindDeadlineCommand> {
 
         if (argMultimap.getValue(PREFIX_DATEJOINED).isPresent()) {
             String dateKeywords = argMultimap.getValue(PREFIX_DATEJOINED).get();
-            Date input = new Date(dateKeywords);
+            Date input = new Date(dateKeywords, true);
             finalPredicate =
                     finalPredicate.and(d -> !d.getDate().value.after(input.value));
             // Replace with your DateJoinedPredicate

@@ -195,7 +195,7 @@ public class ProjectCard extends UiPart<Region> {
         }
 
         public void setDate(String date) throws ParseException {
-            this.date.set(new seedu.address.model.commons.Date(date));
+            this.date.set(new seedu.address.model.commons.Date(date, true));
         }
 
         public Date getDateObject() {

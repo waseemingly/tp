@@ -119,7 +119,7 @@ public class EditDeveloperDescriptorBuilder {
      * @return
      */
     public EditDeveloperDescriptorBuilder withDateJoined(String dateJoined) {
-        descriptor.setDateJoined(new Date(dateJoined));
+        descriptor.setDateJoined(new Date(dateJoined, false));
         return this;
     }
 
