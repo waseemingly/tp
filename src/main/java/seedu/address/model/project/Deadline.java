@@ -29,7 +29,7 @@ public class Deadline {
      */
     public Deadline(String str, int num) {
         requireNonNull(str);
-        //checkArgument(isValidDeadline(str), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDeadline(str), MESSAGE_CONSTRAINTS);
         String[] output = str.split(",");
         this.date = new Date(output[0]);
         this.desc = new Description(output[1]);
