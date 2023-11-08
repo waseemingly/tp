@@ -76,6 +76,8 @@ public class TypicalDevelopers {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
+    private TypicalDevelopers() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
