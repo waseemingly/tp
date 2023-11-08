@@ -27,9 +27,9 @@ import seedu.address.testutil.DeveloperBuilder;
 import seedu.address.testutil.EditDeveloperDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditDeveloperCommand.
  */
-public class EditDeveloperCommandTest {
+public class EditClientCommandTest {
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -49,37 +49,35 @@ public class EditDeveloperCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    // need to build a project first
+    // Project needs to be created
     /*@Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        AddressBookParser.unlock();
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredDeveloperList().size());
-        Developer lastDeveloper = model.getFilteredDeveloperList().get(indexLastPerson.getZeroBased());
+        Index indexLastDeveloper = Index.fromOneBased(model.getFilteredDeveloperList().size());
+        Developer lastDeveloper = model.getFilteredDeveloperList().get(indexLastDeveloper.getZeroBased());
 
-        DeveloperBuilder personInList = new DeveloperBuilder(lastDeveloper);
-        Developer editedDeveloper = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        DeveloperBuilder developerInList = new DeveloperBuilder(lastDeveloper);
+        Developer editedDeveloper = developerInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withProjects(VALID_PROJECT_1_BOB).build();
 
         EditDeveloperCommand.EditDeveloperDescriptor descriptor = new EditDeveloperDescriptorBuilder()
-        .withName(VALID_NAME_BOB)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withProjects(VALID_PROJECT_1_BOB).build();
-        EditDeveloperCommand editCommand = new EditDeveloperCommand(indexLastPerson, descriptor);
+        EditDeveloperCommand editCommand = new EditDeveloperCommand(indexLastDeveloper, descriptor);
 
         String expectedMessage = String.format(EditDeveloperCommand.MESSAGE_EDIT_DEVELOPER_SUCCESS,
-         Messages.format(editedDeveloper));
+                Messages.format(editedDeveloper));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setDeveloper(lastDeveloper, editedDeveloper);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    } */
+    }*/
 
-    // need to build a prj first
+    // Project needs to be created
     /*
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        AddressBookParser.unlock();
-        EditDeveloperCommand editDeveloperCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON,
+        EditDeveloperCommand editCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON,
                 new EditDeveloperCommand.EditDeveloperDescriptor());
         Developer editedDeveloper = model.getFilteredDeveloperList().get(INDEX_FIRST_PERSON.getZeroBased());
 
@@ -88,18 +86,17 @@ public class EditDeveloperCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editDeveloperCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }*/
 
-    // need to build a project first
+    // Project needs to be created
     /* @Test
     public void execute_filteredList_success() {
-        AddressBookParser.unlock();
         showDeveloperAtIndex(model, INDEX_FIRST_PERSON);
 
         Developer developerInFilteredList = model.getFilteredDeveloperList().get(INDEX_FIRST_PERSON.getZeroBased());
         Developer editedDeveloper = new DeveloperBuilder(developerInFilteredList).withName(VALID_NAME_BOB).build();
-        EditDeveloperCommand editDeveloperCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON,
+        EditDeveloperCommand editCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON,
                 new EditDeveloperDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditDeveloperCommand.MESSAGE_EDIT_DEVELOPER_SUCCESS,
@@ -108,39 +105,39 @@ public class EditDeveloperCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setDeveloper(model.getFilteredDeveloperList().get(0), editedDeveloper);
 
-        assertCommandSuccess(editDeveloperCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }*/
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateDeveloperUnfilteredList_failure() {
         Developer firstDeveloper = model.getFilteredDeveloperList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditDeveloperCommand.EditDeveloperDescriptor descriptor = new EditDeveloperDescriptorBuilder(firstDeveloper)
                 .build();
-        EditDeveloperCommand editDeveloperCommand = new EditDeveloperCommand(INDEX_SECOND_PERSON, descriptor);
+        EditDeveloperCommand editCommand = new EditDeveloperCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editDeveloperCommand, model, EditDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER);
+        assertCommandFailure(editCommand, model, EditDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicateDeveloperFilteredList_failure() {
         showDeveloperAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit developer in filtered list into a duplicate in address book
         Developer developerInList = model.getAddressBook().getDeveloperList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditDeveloperCommand editDeveloperCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON,
+        EditDeveloperCommand editCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON,
                 new EditDeveloperDescriptorBuilder(developerInList).build());
 
-        assertCommandFailure(editDeveloperCommand, model, EditDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER);
+        assertCommandFailure(editCommand, model, EditDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidDeveloperIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredDeveloperList().size() + 1);
         EditDeveloperCommand.EditDeveloperDescriptor descriptor = new EditDeveloperDescriptorBuilder()
                 .withName(VALID_NAME_BOB).build();
-        EditDeveloperCommand editDeveloperCommand = new EditDeveloperCommand(outOfBoundIndex, descriptor);
+        EditDeveloperCommand editCommand = new EditDeveloperCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editDeveloperCommand, model, Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
     }
 
     /**
@@ -148,16 +145,16 @@ public class EditDeveloperCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidDeveloperIndexFilteredList_failure() {
         showDeveloperAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getDeveloperList().size());
 
-        EditDeveloperCommand editDeveloperCommand = new EditDeveloperCommand(outOfBoundIndex,
+        EditDeveloperCommand editCommand = new EditDeveloperCommand(outOfBoundIndex,
                 new EditDeveloperDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editDeveloperCommand, model, Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -165,8 +162,8 @@ public class EditDeveloperCommandTest {
         final EditDeveloperCommand standardCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
         // same values -> returns true
-        EditDeveloperCommand.EditDeveloperDescriptor copyDescriptor =
-                new EditDeveloperCommand.EditDeveloperDescriptor(DESC_AMY);
+        EditDeveloperCommand.EditDeveloperDescriptor copyDescriptor = new EditDeveloperCommand
+                .EditDeveloperDescriptor(DESC_AMY);
         EditDeveloperCommand commandWithSameValues = new EditDeveloperCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertEquals(standardCommand, commandWithSameValues);
 
@@ -191,11 +188,10 @@ public class EditDeveloperCommandTest {
         Index index = Index.fromOneBased(1);
         EditDeveloperCommand.EditDeveloperDescriptor editDeveloperDescriptor = new EditDeveloperCommand
                 .EditDeveloperDescriptor();
-        EditDeveloperCommand editDeveloperCommand = new EditDeveloperCommand(index, editDeveloperDescriptor);
+        EditDeveloperCommand editCommand = new EditDeveloperCommand(index, editDeveloperDescriptor);
         String expected = EditDeveloperCommand.class.getCanonicalName() + "{index=" + index
                 + ", editDeveloperDescriptor="
                 + editDeveloperDescriptor + "}";
-        assertEquals(expected, editDeveloperCommand.toString());
+        assertEquals(expected, editCommand.toString());
     }
-
 }

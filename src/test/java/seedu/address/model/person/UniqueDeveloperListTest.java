@@ -1,7 +1,11 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_1_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_2_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDevelopers.ALICE;
 import static seedu.address.testutil.TypicalDevelopers.BOB;
@@ -159,8 +163,8 @@ public class UniqueDeveloperListTest {
     @Test
     public void setDevelopers_listWithDuplicateDevelopers_throwsDuplicateDeveloperException() {
         List<Developer> listWithDuplicateDevelopers = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateDeveloperException.class,
-                () -> uniqueDeveloperList.setDevelopers(listWithDuplicateDevelopers));
+        assertThrows(DuplicateDeveloperException.class, ()
+                -> uniqueDeveloperList.setDevelopers(listWithDuplicateDevelopers));
     }
 
     @Test

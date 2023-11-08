@@ -1,14 +1,29 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
@@ -17,16 +32,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.logic.parser.edit.EditDeveloperCommandParser;
-import seedu.address.model.commons.Date;
-import seedu.address.model.commons.Name;
-import seedu.address.model.developer.GithubId;
-import seedu.address.model.developer.Rating;
-import seedu.address.model.developer.Salary;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Phone;
-import seedu.address.model.project.Project;
-import seedu.address.model.developer.DeveloperRoles;
 import seedu.address.testutil.EditDeveloperDescriptorBuilder;
 
 public class EditDeveloperCommandParserTest {
@@ -36,7 +41,7 @@ public class EditDeveloperCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditDeveloperCommand.MESSAGE_USAGE);
 
-    private EditDeveloperCommandParser parser = new EditDeveloperCommandParser();
+    private final EditDeveloperCommandParser parser = new EditDeveloperCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -70,20 +75,26 @@ public class EditDeveloperCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        //assertParseFailure(parser, "1" + INVALID_ROLE_DESC, DeveloperRoles.MESSAGE_CONSTRAINTS); // invalid role
+        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC,
+                Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_ROLE_DESC,
+                "DeveloperRoles.MESSAGE_CONSTRAINTS"); // invalid role
         assertParseFailure(parser, "1" + INVALID_SALARY_DESC, Salary.MESSAGE_CONSTRAINTS); // invalid salary
-        assertParseFailure(parser, "1" + INVALID_DATEJOINED_DESC, Date.MESSAGE_CONSTRAINTS); // invalid datejoined
-        assertParseFailure(parser, "1" + INVALID_GITHUBID_DESC, GithubId.MESSAGE_CONSTRAINTS); // invalid githubid
+        assertParseFailure(parser, "1" + INVALID_DATEJOINED_DESC,
+                Date.MESSAGE_CONSTRAINTS); // invalid datejoined
+        assertParseFailure(parser, "1" + INVALID_GITHUBID_DESC,
+                GithubId.MESSAGE_CONSTRAINTS); // invalid githubid
         assertParseFailure(parser, "1" + INVALID_RATING_DESC, Rating.MESSAGE_CONSTRAINTS); // invalid rating
-        assertParseFailure(parser, "1" + INVALID_PROJECT_DESC, "Project.MESSAGE_CONSTRAINTS"); // invalid project
+        assertParseFailure(parser, "1" + INVALID_PROJECT_DESC,
+                "Project.MESSAGE_CONSTRAINTS"); // invalid project
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
-                        + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
+                        + VALID_PHONE_AMY,
+                Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -117,7 +128,8 @@ public class EditDeveloperCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditDeveloperCommand.EditDeveloperDescriptor descriptor = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditDeveloperCommand.EditDeveloperDescriptor descriptor = new EditDeveloperDescriptorBuilder()
+                .withName(VALID_NAME_AMY).build();
         EditDeveloperCommand expectedCommand = new EditDeveloperCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

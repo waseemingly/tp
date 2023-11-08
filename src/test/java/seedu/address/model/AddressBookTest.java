@@ -1,6 +1,8 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_2_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -111,12 +113,12 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Client> getClientList () {
+        public ObservableList<Client> getClientList() {
             return clients;
         }
 
         @Override
-        public ObservableList<Project> getProjectList () {
+        public ObservableList<Project> getProjectList() {
             return projects;
         }
     }

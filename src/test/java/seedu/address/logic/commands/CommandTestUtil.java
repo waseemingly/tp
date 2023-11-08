@@ -3,19 +3,20 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -84,12 +85,11 @@ public class CommandTestUtil {
     public static final String RATING_DEC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
 
 
-
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE;  //
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE; //
     public static final String INVALID_SALARY_DESC = "abc" + PREFIX_SALARY; //
     public static final String INVALID_DATEJOINED_DESC = "2003-23" + PREFIX_DATEJOINED; //
     public static final String INVALID_GITHUBID_DESC = " " + PREFIX_GITHUBID; //
@@ -161,12 +161,13 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the developer at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showDeveloperAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredDeveloperList().size());
 
         Developer developer = model.getFilteredDeveloperList().get(targetIndex.getZeroBased());
         final String[] splitName = developer.getName().fullName.split("\\s+");
-        model.updateFilteredDeveloperList(new NameDeveloperContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredDeveloperList(new NameDeveloperContainsKeywordsPredicate(Collections
+                .singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredDeveloperList().size());
     }

@@ -66,7 +66,7 @@ public class Client extends Person {
         }
 
         return otherClient != null
-                && otherClient.getName().equals(getName());
+                && otherClient.getName().fullName.toLowerCase().equals(getName().fullName.toLowerCase());
     }
 
     @Override

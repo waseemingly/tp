@@ -66,7 +66,7 @@ public class Developer extends Person {
         }
 
         return otherDeveloper != null
-                && otherDeveloper.getName().equals(getName());
+                && otherDeveloper.getName().fullName.toLowerCase().equals(getName().fullName.toLowerCase());
     }
 
     public GithubId getGithubId() {

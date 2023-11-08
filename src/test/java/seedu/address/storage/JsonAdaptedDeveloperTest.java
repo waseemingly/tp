@@ -164,7 +164,7 @@ public class JsonAdaptedDeveloperTest {
     public void toModelType_nullRating_throwsIllegalValueException() {
         JsonAdaptedDeveloper person = new JsonAdaptedDeveloper(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_DATE_JOINED,
-               VALID_ROLE, VALID_SALARY, VALID_PROJECTS, VALID_GITHUBID, null);
+                VALID_ROLE, VALID_SALARY, VALID_PROJECTS, VALID_GITHUBID, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

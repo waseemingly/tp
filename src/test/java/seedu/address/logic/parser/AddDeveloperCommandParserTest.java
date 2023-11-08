@@ -18,11 +18,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.PROJECT1_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PROJECT2_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.RATING_DEC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.RATING_DEC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
@@ -40,7 +36,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalDevelopers.AMY;
-import static seedu.address.testutil.TypicalDevelopers.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,14 +43,14 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.parser.add.AddDeveloperCommandParser;
 import seedu.address.model.commons.Name;
-import seedu.address.model.person.Address;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 import seedu.address.testutil.DeveloperBuilder;
 
 public class AddDeveloperCommandParserTest {
-    private AddDeveloperCommandParser parser = new AddDeveloperCommandParser();
+    private final AddDeveloperCommandParser parser = new AddDeveloperCommandParser();
 
     /*@Test
     public void parse_allFieldsPresent_success() {
