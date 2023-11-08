@@ -19,19 +19,16 @@ public class CommandResultTest {
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
 
-        // different types -> returns false
         assertFalse(commandResult.equals(0.5f));
 
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different", TabIndex.Developer)));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true,
-                false, TabIndex.Developer)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, TabIndex.Developer)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false,
-                true, TabIndex.Developer)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, TabIndex.Developer)));
     }
 
     @Test
@@ -43,8 +40,9 @@ public class CommandResultTest {
                 .hashCode());
 
         // different feedbackToUser value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("different", TabIndex.Developer)
-                .hashCode());
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("different", TabIndex.Developer)
+                        .hashCode());
 
         // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false,
@@ -54,7 +52,6 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true,
                 TabIndex.Developer).hashCode());
     }
-
     @Test
     public void toStringMethod() {
         CommandResult commandResult = new CommandResult("feedback", TabIndex.Developer);
