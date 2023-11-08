@@ -6,6 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -34,8 +40,20 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ROLE_AMY = "Developer";
+    public static final String VALID_ROLE_BOB = "Tester";
+    public static final String VALID_SALARY_AMY = "5000";
+    public static final String VALID_SALARY_BOB = "4000";
+    public static final String VALID_DATEJOINED_AMY = "2020-01-01";
+    public static final String VALID_DATEJOINED_BOB = "2020-02-01";
+    public static final String VALID_GITHUBID_AMY = "amywalker";
+    public static final String VALID_GITHUBID_BOB = "bobwalker";
+    public static final String VALID_RATING_AMY = "5.0";
+    public static final String VALID_RATING_BOB = "4.0";
+    public static final String VALID_PROJECT_1_AMY = "ProjectA";
+    public static final String VALID_PROJECT_2_AMY = "ProjectB";
+    public static final String VALID_PROJECT_1_BOB = "ProjectC";
+    public static final String VALID_PROJECT_2_BOB = "ProjectD";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,11 +63,33 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String ROLE_DESC_AMY = " " + PREFIX_ROLE + VALID_ROLE_AMY;
+    public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + VALID_ROLE_BOB;
+    public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
+    public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
+    public static final String PROJECT_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_1_AMY + VALID_PROJECT_2_AMY;
+    public static final String PROJECT_DESC_BOB = " " + PREFIX_PROJECT + VALID_PROJECT_1_BOB + VALID_PROJECT_2_BOB;
+
+
+    public static final String DATEJOINED_DESC_AMY = " " + PREFIX_DATEJOINED + VALID_DATEJOINED_AMY;
+    public static final String DATEJOINED_DESC_BOB = " " + PREFIX_DATEJOINED + VALID_DATEJOINED_BOB;
+    public static final String GITHUBID_DEC_AMY = " " + PREFIX_GITHUBID + VALID_GITHUBID_AMY;
+    public static final String GITHUBID_DEC_BOB = " " + PREFIX_GITHUBID + VALID_GITHUBID_BOB;
+    public static final String RATING_DEC_AMY = " " + PREFIX_RATING + VALID_RATING_AMY;
+    public static final String RATING_DEC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
+
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE;  //
+    public static final String INVALID_SALARY_DESC = "abc" + PREFIX_SALARY; //
+    public static final String INVALID_DATEJOINED_DESC = "2003-23" + PREFIX_DATEJOINED; //
+    public static final String INVALID_GITHUBID_DESC = " " + PREFIX_GITHUBID; //
+    public static final String INVALID_RATING_DESC = "abc" + PREFIX_RATING; //
+    public static final String INVALID_PROJECT_DESC = " " + PREFIX_PROJECT; //
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -60,10 +100,14 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withProjects(VALID_TAG_FRIEND).build();
+                .withRole(VALID_ROLE_AMY).withSalary(VALID_SALARY_AMY).withDateJoined(VALID_DATEJOINED_AMY)
+                .withGithubId(VALID_GITHUBID_AMY).withRating(VALID_RATING_AMY)
+                .withProjects(VALID_PROJECT_1_AMY).build();
         DESC_BOB = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withProjects(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB).withDateJoined(VALID_DATEJOINED_BOB)
+                .withGithubId(VALID_GITHUBID_BOB).withRating(VALID_RATING_BOB)
+                .withProjects(VALID_PROJECT_1_BOB, VALID_PROJECT_2_BOB).build();
     }
 
     /**
@@ -88,7 +132,8 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
+                false, TabIndex.Developer);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

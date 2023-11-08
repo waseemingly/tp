@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalDevelopers.CARL;
+import static seedu.address.testutil.TypicalDevelopers.ELLE;
+import static seedu.address.testutil.TypicalDevelopers.FIONA;
+import static seedu.address.testutil.TypicalDevelopers.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;

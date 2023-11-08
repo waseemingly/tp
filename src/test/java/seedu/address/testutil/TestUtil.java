@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the developer in the {@code model}'s developer list at {@code index}.
      */
-    public static Developer getPerson(Model model, Index index) {
+    public static Developer getDeveloper(Model model, Index index) {
         return model.getFilteredDeveloperList().get(index.getZeroBased());
     }
 }

@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
 import seedu.address.testutil.DeveloperBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
 
