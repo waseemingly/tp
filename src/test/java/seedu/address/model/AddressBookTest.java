@@ -1,13 +1,11 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_2_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalDevelopers.ALICE;
+import static seedu.address.testutil.TypicalDevelopers.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -46,14 +44,12 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicateDevelopers_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateDevelopers_throwsDuplicateDeveloperException() {
         // Two developers with the same identity fields
-        Developer editedAlice = new DeveloperBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB)
-                .withProjects(VALID_TAG_HUSBAND)
-                .build();
+        Developer editedAlice = new DeveloperBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withProjects(VALID_PROJECT_2_AMY).build();
         List<Developer> newDevelopers = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newDevelopers);
+        AddressBookStub newData = new AddressBookStub(newDevelopers, Collections.emptyList(), Collections.emptyList());
 
         assertThrows(DuplicateDeveloperException.class, () -> addressBook.resetData(newData));
     }
@@ -77,10 +73,8 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addDeveloper(ALICE);
-        Developer editedAlice = new DeveloperBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB)
-                .withProjects(VALID_TAG_HUSBAND)
-                .build();
+        Developer editedAlice = new DeveloperBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withProjects(VALID_PROJECT_2_AMY).build();
         assertTrue(addressBook.hasDeveloper(editedAlice));
     }
 
@@ -100,9 +94,13 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Developer> developers = FXCollections.observableArrayList();
+        private final ObservableList<Client> clients = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Developer> developers) {
+        AddressBookStub(Collection<Developer> developers, Collection<Client> clients, Collection<Project> projects) {
             this.developers.setAll(developers);
+            this.clients.setAll(clients);
+            this.projects.setAll(projects);
         }
 
         @Override
@@ -111,14 +109,14 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Client> getClientList() {
-            return null;
+        public ObservableList<Client> getClientList () {
+            return clients;
         }
 
         @Override
-        public ObservableList<Project> getProjectList() {
-            return null;
+        public ObservableList<Project> getProjectList () {
+            return projects;
         }
-
     }
+
 }

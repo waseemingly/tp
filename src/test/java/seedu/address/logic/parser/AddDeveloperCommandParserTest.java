@@ -25,8 +25,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalDevelopers.AMY;
+import static seedu.address.testutil.TypicalDevelopers.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,8 +34,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.parser.add.AddDeveloperCommandParser;
 import seedu.address.model.commons.Name;
-import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Address;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 import seedu.address.testutil.DeveloperBuilder;

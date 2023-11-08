@@ -72,8 +72,8 @@ public class DeveloperBuilder {
         return this;
     }
 
-    public DeveloperBuilder withProjects(String... tags) {
-        this.projects = SampleDataUtil.getProjectSet(tags);
+    public DeveloperBuilder withProjects(String... projects) {
+        this.projects = SampleDataUtil.getProjectSet(projects);
         return this;
     }
 
