@@ -182,10 +182,10 @@ public class ParserUtil {
     public static Date parseDateJoined(String dateJoined) throws ParseException {
         requireNonNull(dateJoined);
         String trimmedDateJoined = dateJoined.trim();
-        if (!Date.isValidDate(trimmedDateJoined)) {
+        if (!Date.isValidDate(trimmedDateJoined, false)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Date(trimmedDateJoined);
+        return new Date(trimmedDateJoined, false);
     }
 
 

@@ -18,6 +18,9 @@ public class Messages {
             + "Please provide your command in the following format: <command>-<name of list>.\n"
             + "Example: list-developer, find-client n/John, delete-project 1";
 
+    public static final String MESSAGE_VALID_LOCKED_COMMANDS = "Valid commands are: \n unlock, help, exit";
+    public static final String MESSAGE_VALID_UNLOCKED_COMMANDS = "Type \"help\" to see the list of valid commands in"
+            + " User Guide";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_FILE = "File does not exist!\n";
     public static final String MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX = "The developer index provided is invalid!";
@@ -58,6 +61,15 @@ public class Messages {
             return "This is the 1 project with matching information.";
         } else {
             return String.format("These are the %d projects with matching information.", count);
+        }
+    }
+    public static String getMessageDeadlinesListedOverview(int count) {
+        if (count == 0) {
+            return "There are no deadlines with matching information.";
+        } else if (count == 1) {
+            return "This is the 1 deadline with matching information.";
+        } else {
+            return String.format("These are the %d deadlines with matching information.", count);
         }
     }
 

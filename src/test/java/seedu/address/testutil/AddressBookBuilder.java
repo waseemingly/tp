@@ -10,7 +10,7 @@ import seedu.address.model.developer.Developer;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private final AddressBook addressBook;
 
     public AddressBookBuilder() {
         addressBook = new AddressBook();
@@ -23,7 +23,7 @@ public class AddressBookBuilder {
     /**
      * Adds a new {@code Developer} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Developer developer) {
+    public AddressBookBuilder withDeveloper(Developer developer) {
         addressBook.addDeveloper(developer);
         return this;
     }
