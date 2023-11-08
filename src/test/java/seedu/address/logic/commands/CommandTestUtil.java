@@ -44,8 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_ROLE_BOB = "Tester";
     public static final String VALID_SALARY_AMY = "5000";
     public static final String VALID_SALARY_BOB = "4000";
-    public static final String VALID_DATEJOINED_AMY = "2020-01-01";
-    public static final String VALID_DATEJOINED_BOB = "2020-02-01";
+    public static final String VALID_DATEJOINED_AMY = "01-01-2020";
+    public static final String VALID_DATEJOINED_BOB = "01-02-2020";
     public static final String VALID_GITHUBID_AMY = "amywalker";
     public static final String VALID_GITHUBID_BOB = "bobwalker";
     public static final String VALID_RATING_AMY = "5.0";
@@ -101,13 +101,11 @@ public class CommandTestUtil {
         DESC_AMY = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withRole(VALID_ROLE_AMY).withSalary(VALID_SALARY_AMY).withDateJoined(VALID_DATEJOINED_AMY)
-                .withGithubId(VALID_GITHUBID_AMY).withRating(VALID_RATING_AMY)
-                .withProjects(VALID_PROJECT_1_AMY).build();
+                .withGithubId(VALID_GITHUBID_AMY).withRating(VALID_RATING_AMY).build();
         DESC_BOB = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB).withDateJoined(VALID_DATEJOINED_BOB)
-                .withGithubId(VALID_GITHUBID_BOB).withRating(VALID_RATING_BOB)
-                .withProjects(VALID_PROJECT_1_BOB, VALID_PROJECT_2_BOB).build();
+                .withGithubId(VALID_GITHUBID_BOB).withRating(VALID_RATING_BOB).build();
     }
 
     /**

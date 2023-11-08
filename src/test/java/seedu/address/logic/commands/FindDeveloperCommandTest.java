@@ -57,8 +57,8 @@ public class FindDeveloperCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         //String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        String expectedMessage = "";
-        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate(" ");
+        String expectedMessage = "These are the 0 developers with matching information.";
+        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("hii");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
         expectedModel.updateFilteredDeveloperList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
