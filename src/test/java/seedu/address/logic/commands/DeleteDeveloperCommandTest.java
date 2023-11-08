@@ -18,7 +18,7 @@ import seedu.address.logic.commands.delete.DeleteDeveloperCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Developer;
+import seedu.address.model.developer.Developer;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -30,38 +30,38 @@ public class DeleteDeveloperCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Developer developerToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Developer developerToDelete = model.getFilteredDeveloperList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteDeveloperCommand deleteDeveloperCommand = new DeleteDeveloperCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteDeveloperCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+        String expectedMessage = String.format(DeleteDeveloperCommand.MESSAGE_DELETE_DEVELOPER_SUCCESS,
                 Messages.format(developerToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(developerToDelete);
+        expectedModel.deleteDeveloper(developerToDelete);
 
         assertCommandSuccess(deleteDeveloperCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredDeveloperList().size() + 1);
         DeleteDeveloperCommand deleteDeveloperCommand = new DeleteDeveloperCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteDeveloperCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteDeveloperCommand, model, Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Developer developerToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Developer developerToDelete = model.getFilteredDeveloperList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteDeveloperCommand deleteDeveloperCommand = new DeleteDeveloperCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteDeveloperCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+        String expectedMessage = String.format(DeleteDeveloperCommand.MESSAGE_DELETE_DEVELOPER_SUCCESS,
                 Messages.format(developerToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(developerToDelete);
+        expectedModel.deleteDeveloper(developerToDelete);
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteDeveloperCommand, model, expectedMessage, expectedModel);
@@ -73,11 +73,11 @@ public class DeleteDeveloperCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getDeveloperList().size());
 
         DeleteDeveloperCommand deleteDeveloperCommand = new DeleteDeveloperCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteDeveloperCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteDeveloperCommand, model, Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -114,8 +114,8 @@ public class DeleteDeveloperCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+        model.updateFilteredDeveloperList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredDeveloperList().isEmpty());
     }
 }
