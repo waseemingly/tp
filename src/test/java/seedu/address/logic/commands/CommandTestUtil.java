@@ -3,13 +3,20 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -17,9 +24,11 @@ import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.NameClientContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditDeveloperDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -34,8 +43,20 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ROLE_AMY = "Developer";
+    public static final String VALID_ROLE_BOB = "Tester";
+    public static final String VALID_SALARY_AMY = "50000";
+    public static final String VALID_SALARY_BOB = "40000";
+    public static final String VALID_DATEJOINED_AMY = "01-01-2020";
+    public static final String VALID_DATEJOINED_BOB = "01-02-2020";
+    public static final String VALID_GITHUBID_AMY = "amywalker";
+    public static final String VALID_GITHUBID_BOB = "bobwalker";
+    public static final String VALID_RATING_AMY = "5";
+    public static final String VALID_RATING_BOB = "4";
+    public static final String VALID_PROJECT_1_AMY = "ProjectA";
+    public static final String VALID_PROJECT_2_AMY = "ProjectB";
+    public static final String VALID_PROJECT_1_BOB = "ProjectC";
+    public static final String VALID_PROJECT_2_BOB = "ProjectD";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,11 +66,35 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String ROLE_DESC_AMY = " " + PREFIX_ROLE + VALID_ROLE_AMY;
+    public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + VALID_ROLE_BOB;
+    public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
+    public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
+    public static final String PROJECT_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_2_AMY
+            + ", " + VALID_PROJECT_1_AMY;
+    public static final String PROJECT1_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_1_AMY;
+    public static final String PROJECT2_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_2_AMY;
+    public static final String PROJECT_DESC_BOB = " " + PREFIX_PROJECT + VALID_PROJECT_1_BOB + VALID_PROJECT_2_BOB;
+
+
+    public static final String DATEJOINED_DESC_AMY = " " + PREFIX_DATEJOINED + VALID_DATEJOINED_AMY;
+    public static final String DATEJOINED_DESC_BOB = " " + PREFIX_DATEJOINED + VALID_DATEJOINED_BOB;
+    public static final String GITHUBID_DEC_AMY = " " + PREFIX_GITHUBID + VALID_GITHUBID_AMY;
+    public static final String GITHUBID_DEC_BOB = " " + PREFIX_GITHUBID + VALID_GITHUBID_BOB;
+    public static final String RATING_DEC_AMY = " " + PREFIX_RATING + VALID_RATING_AMY;
+    public static final String RATING_DEC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE; //
+    public static final String INVALID_SALARY_DESC = "abc" + PREFIX_SALARY; //
+    public static final String INVALID_DATEJOINED_DESC = "2003-23" + PREFIX_DATEJOINED; //
+    public static final String INVALID_GITHUBID_DESC = " " + PREFIX_GITHUBID; //
+    public static final String INVALID_RATING_DESC = "abc" + PREFIX_RATING; //
+    public static final String INVALID_PROJECT_DESC = " " + PREFIX_PROJECT; //
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -58,12 +103,14 @@ public class CommandTestUtil {
     public static final EditDeveloperCommand.EditDeveloperDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withRole(VALID_ROLE_AMY).withSalary(VALID_SALARY_AMY).withDateJoined(VALID_DATEJOINED_AMY)
+                .withGithubId(VALID_GITHUBID_AMY).withRating(VALID_RATING_AMY).build();
+        DESC_BOB = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB).withDateJoined(VALID_DATEJOINED_BOB)
+                .withGithubId(VALID_GITHUBID_BOB).withRating(VALID_RATING_BOB).build();
     }
 
     /**
@@ -88,7 +135,8 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
+                false, TabIndex.Developer);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -113,14 +161,29 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the developer at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showDeveloperAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredDeveloperList().size());
 
         Developer developer = model.getFilteredDeveloperList().get(targetIndex.getZeroBased());
         final String[] splitName = developer.getName().fullName.split("\\s+");
-        model.updateFilteredDeveloperList(new NameDeveloperContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredDeveloperList(new NameDeveloperContainsKeywordsPredicate(Collections
+                .singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredDeveloperList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showClientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
+
+        Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());
+        final String[] splitName = client.getName().fullName.split("\\s+");
+        model.updateFilteredClientList(new NameClientContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredClientList().size());
     }
 
 }

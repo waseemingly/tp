@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.DeveloperBuilder;
 
 public class NameContainsKeywordsPredicateTest {
 
@@ -20,58 +21,65 @@ public class NameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameDeveloperContainsKeywordsPredicate firstPredicate = new NameDeveloperContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameDeveloperContainsKeywordsPredicate secondPredicate = new NameDeveloperContainsKeywordsPredicate(secondPredicateKeywordList);
+        NameDeveloperContainsKeywordsPredicate firstPredicate =
+                new NameDeveloperContainsKeywordsPredicate(firstPredicateKeywordList);
+        NameDeveloperContainsKeywordsPredicate secondPredicate =
+                new NameDeveloperContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
-        assertTrue(firstPredicate.equals(firstPredicate));
+        assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
-        NameDeveloperContainsKeywordsPredicate firstPredicateCopy = new NameDeveloperContainsKeywordsPredicate(firstPredicateKeywordList);
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
+        NameDeveloperContainsKeywordsPredicate firstPredicateCopy =
+                new NameDeveloperContainsKeywordsPredicate(firstPredicateKeywordList);
+        assertEquals(firstPredicate, firstPredicateCopy);
 
         // different types -> returns false
-        assertFalse(firstPredicate.equals(1));
+        assertNotEquals(1, firstPredicate);
 
         // null -> returns false
-        assertFalse(firstPredicate.equals(null));
+        assertNotEquals(null, firstPredicate);
 
         // different developer -> returns false
-        assertFalse(firstPredicate.equals(secondPredicate));
+        assertNotEquals(firstPredicate, secondPredicate);
     }
+
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameDeveloperContainsKeywordsPredicate predicate = new NameDeveloperContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        NameDeveloperContainsKeywordsPredicate predicate =
+                new NameDeveloperContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        assertTrue(predicate.test(new DeveloperBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new NameDeveloperContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new DeveloperBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new NameDeveloperContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+        assertTrue(predicate.test(new DeveloperBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new NameDeveloperContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new DeveloperBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameDeveloperContainsKeywordsPredicate predicate = new NameDeveloperContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+        NameDeveloperContainsKeywordsPredicate predicate =
+                new NameDeveloperContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new DeveloperBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new NameDeveloperContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new NameDeveloperContainsKeywordsPredicate(List.of("Carol"));
+        assertFalse(predicate.test(new DeveloperBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = new NameDeveloperContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+        predicate = new NameDeveloperContainsKeywordsPredicate(Arrays.asList("12345454", "alice@email.com",
+                "Main", "Street"));
+        assertFalse(predicate.test(new DeveloperBuilder().withName("Alice").withPhone("12345454")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 
@@ -80,7 +88,8 @@ public class NameContainsKeywordsPredicateTest {
         List<String> keywords = List.of("keyword1", "keyword2");
         NameDeveloperContainsKeywordsPredicate predicate = new NameDeveloperContainsKeywordsPredicate(keywords);
 
-        String expected = NameDeveloperContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = NameDeveloperContainsKeywordsPredicate.class.getCanonicalName() + "{keywords="
+                + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
 }

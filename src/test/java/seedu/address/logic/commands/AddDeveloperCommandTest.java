@@ -2,14 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalDevelopers.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -46,7 +45,7 @@ public class AddDeveloperCommandTest {
 
         assertEquals(String.format(AddDeveloperCommand.MESSAGE_SUCCESS, Messages.format(validDeveloper)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validDeveloper), modelStub.developersAdded);
+        assertEquals(List.of(validDeveloper), modelStub.developersAdded);
     }
 
     @Test
@@ -55,7 +54,8 @@ public class AddDeveloperCommandTest {
         AddDeveloperCommand addDeveloperCommand = new AddDeveloperCommand(validDeveloper);
         ModelStub modelStub = new ModelStubWithDeveloper(validDeveloper);
 
-        assertThrows(CommandException.class, AddDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER, () -> addDeveloperCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER, ()
+                -> addDeveloperCommand.execute(modelStub));
     }
 
     @Test
@@ -66,20 +66,20 @@ public class AddDeveloperCommandTest {
         AddDeveloperCommand addBobCommand = new AddDeveloperCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         AddDeveloperCommand addAliceCommandCopy = new AddDeveloperCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertNotEquals(1, addAliceCommand);
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertNotEquals(null, addAliceCommand);
 
         // different developer -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertNotEquals(addAliceCommand, addBobCommand);
     }
 
     @Test

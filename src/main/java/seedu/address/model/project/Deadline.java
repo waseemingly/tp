@@ -31,10 +31,10 @@ public class Deadline {
         requireNonNull(str);
         checkArgument(isValidDeadline(str), MESSAGE_CONSTRAINTS);
         String[] output = str.split(",");
-        this.date = new Date(output[0]);
-        this.desc = new Description(output[1]);
-        this.priority = Priority.valueOf(output[2]);
-        this.isDone = output[3].contains("1");
+        this.date = new Date(output[0].trim(), true);
+        this.desc = new Description(output[1].trim());
+        this.priority = Priority.valueOf(output[2].trim());
+        this.isDone = output[3].trim().contains("1");
         this.num = num;
     }
 
@@ -45,6 +45,11 @@ public class Deadline {
         if (text == null || !text.matches(VALIDATION_REGEX)) {
             return false;
         }
+        String[] output = text.split(",");
+        if (!Date.isValidDate(output[0].trim(), true)) {
+            return false;
+        }
+
         return true;
     }
 
