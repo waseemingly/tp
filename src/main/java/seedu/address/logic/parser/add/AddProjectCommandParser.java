@@ -57,7 +57,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
                 PREFIX_ADDRESS, PREFIX_PROJECT, PREFIX_DATEJOINED, PREFIX_ROLE, PREFIX_SALARY, PREFIX_GITHUBID,
                 PREFIX_RATING, PREFIX_ORGANISATION, PREFIX_DOCUMENT, PREFIX_DESCRIPTION, PREFIX_DEADLINE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_DEADLINE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
@@ -69,14 +69,13 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             }
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DESCRIPTION);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Description desc = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         List<String> deadlineList = argMultimap.getAllValues(PREFIX_DEADLINE);
         List<Deadline> deadlines = ParserUtil.parseDeadlines(deadlineList);
 
         Project project = new Project(name, desc, deadlines);
-
         return new AddProjectCommand(project);
     }
 }
