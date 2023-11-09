@@ -18,9 +18,8 @@ public class DescriptionContainsKeywordsPredicate implements KeywordPredicate<Pr
 
     @Override
     public boolean test(Project project) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(project.getProjectDescription().toString(),
-                        keyword));
+        return keywords.stream().anyMatch(keyword ->
+                        StringUtil.containsPartialWordIgnoreCase(project.getProjectDescription().toString(), keyword));
     }
 
     @Override

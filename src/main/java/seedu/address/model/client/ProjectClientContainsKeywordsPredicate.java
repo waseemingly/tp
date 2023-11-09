@@ -18,8 +18,8 @@ public class ProjectClientContainsKeywordsPredicate implements KeywordPredicate<
 
     @Override
     public boolean test(Client client) {
-        return keywords.stream()
-                .allMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(client.getProjects().toString(), keyword));
+        return keywords.stream().allMatch(keyword ->
+                StringUtil.containsPartialWordIgnoreCase(client.getProjects().toString(), keyword));
     }
 
     @Override
