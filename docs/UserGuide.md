@@ -1,6 +1,6 @@
 ---
-layout: page
-title: User Guide
+layout: default.md
+title: "User Guide"
 pageNav: 3
 ---
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
@@ -82,7 +82,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 | Term          | Definition                                                                                                                |
 |---------------|---------------------------------------------------------------------------------------------------------------------------|
-| Parameter     | Parameters are specific details you would include about the devloper/client/project.(eg. name, date joined, description)  |
+| Parameter     | Parameters are specific details you would include about the developer/client/project.(eg. name, date joined, description) |
 | Command       | An input from the user that tells CodeContact to perform an action (i.e. add a client)                                    |
 | GUI           | Graphical User Interface (GUI) represents the visual display of CodeContact that users can see.                           |
 | GUI Component | A subsection of the Graphical User Interface. For more information on specific GUI components, refer to [this section](). |
@@ -154,18 +154,18 @@ backend,HIGH,0 | |
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `codecontact.jar`.
+2. Download the latest `codecontact.jar`.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your CodeContact.
+3. Copy the file to the folder you want to use as the _home folder_ for your CodeContact.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codecontact.jar`
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codecontact.jar`
    command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
+5. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -249,7 +249,7 @@ To view all our features, you may visit our [Features](#features) section
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -362,7 +362,7 @@ Example:
 * And populate its details with prefixes and fields by typing in
     * `n/NAME` for the project's name
     * `dr/DESCRIPTION` for the project's description
-    * `dl/{DEADLINE1, DEADLINE2...}` for deadlines assocaterd with the project
+    * `dl/{DEADLINE1, DEADLINE2...}` for deadlines associated with the project
 * In the following overall format
     * `add-project n/NAME dr/DESCRIPTION dl/DEADLINE1 dl/DEADLINE2`
 
@@ -418,7 +418,7 @@ Format: `delete-project INDEX`
 
 Example of usage: `delete-project 2`
 
-* Deletes second project from the list and updates developers and client detials accordingly
+* Deletes second project from the list and updates developers and client details accordingly
 
 ### Edit
 
@@ -431,7 +431,7 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 * Edits the developer at the specified `INDEX` in the currently displayed developer list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing projects, the existing assigned projects of the developer will be removed ie. adding of projects is not
+* When editing projects, the existing assigned projects of the developer will be removed i.e. adding of projects is not
   cumulative.
 * You can remove all the developer's projects by typing `p/` without specifying any project name after it.
 * `NAME` cannot be the same as another existing developer's name in the address book.
@@ -463,7 +463,7 @@ Format: `edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/P
 * Edits the client at the specified `INDEX` in the currently displayed client list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing projects, the existing assigned projects of the client will be removed ie. adding of projects is not
+* When editing projects, the existing assigned projects of the client will be removed i.e. adding of projects is not
   cumulative.
 * You can remove all the client's projects by typing `p/` without specifying any project name after it.
 
@@ -492,7 +492,7 @@ Format: `edit-project INDEX [desc/DESCRIPTION] [d/DEADLINE]...`
 * Edits the project at the specified `INDEX` in the currently displayed project list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing deadlines, the existing deadlines will be removed ie. adding of projects is not cumulative.
+* When editing deadlines, the existing deadlines will be removed i.e. adding of projects is not cumulative.
 * You can remove all the current deadlines by typing `d/` without specifying any deadline.
 * The name of a project cannot be edited.
 
@@ -743,7 +743,7 @@ Unlocks the system by making all the information visible and allows all commands
 Format: `unlock pw/Password123!`
 
 * Default password is `Password123!`
-* You are highly recommended to change to a diffent password
+* You are highly recommended to change to a different password
 
 When command succeeds, CLI shows:
 
@@ -924,7 +924,7 @@ Format: `undo`
 
 Examples of usage: `undo`
 
-* You just deleted a new developer and you wish to `undo`.
+* You just deleted a new developer, and you wish to `undo`.
 
 When command succeeds, CLI shows:
 
@@ -951,7 +951,7 @@ Format: `redo`
 
 * Each time you type redo, you move forward one stage.
 * You can only `redo` if you have `undo` before.
-* If you undid 5 changes and you wish to redo, you can enter the command `redo` 5 times. The system will remind you when
+* If you undid 5 changes, and you wish to redo, you can enter the command `redo` 5 times. The system will remind you when
   you cannot redo anymore.
 * `redo` works for all `edit`, `add-TYPE` and `delete` commands.
 * **IMPORTANT**:exclamation `redo` does not work for all adding and deleting role functions. Redoing an
@@ -979,7 +979,7 @@ Relevant UI mock-ups: <br>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -1012,9 +1012,9 @@ the data of your previous AddressBook home folder.
 * Method 1: For users familiar with the command prompt
 
 1. Open the command prompt
-1. Navigate to the directory where the JAR file is located using cd [JAR file location]
-1. Type java -jar CodeContact.jar and press enter
-1. CodeContact should launch
+2. Navigate to the directory where the JAR file is located using cd [JAR file location]
+3. Type java -jar CodeContact.jar and press enter
+4. CodeContact should launch
    <br> <br>
 
 * Method 2: For users that wish to create a script to launch Docedex (Recommended)
@@ -1032,7 +1032,7 @@ the data of your previous AddressBook home folder.
 5. Double-click on the script to launch CodeContact
 6. CodeContact should launch
 
-**Q**: How can i check my java version?<br>
+**Q**: How can I check my java version?<br>
 **A**: Open a command prompt and type `java -version` . If you do not have Java installed, you
 can download it [here](https://www.oracle.com/java/technologies/downloads/#java11)
 
