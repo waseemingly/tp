@@ -1,7 +1,6 @@
 ---
 layout: page
 title: User Guide
-pageNav: 3
 ---
 
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
