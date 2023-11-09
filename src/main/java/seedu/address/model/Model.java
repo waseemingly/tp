@@ -145,8 +145,10 @@ public interface Model {
 
     void redoAddressBook(Model model) throws CommandException;
 
-    String getPreviousCommand();
+    String getPreviousCommandForRedo() throws CommandException;
+    String getPreviousCommandForUndo() throws CommandException;
 
     TabIndex getPreviousTabIndex();
 
+    TabIndex getPreviousTabIndexForRedo();
 }

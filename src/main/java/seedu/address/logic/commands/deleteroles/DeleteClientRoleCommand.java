@@ -24,7 +24,7 @@ public class DeleteClientRoleCommand extends Command {
             + "Parameters: " + PREFIX_ROLE + "ROLE "
             + "Example: " + PREFIX_ROLE + "Developer ";
 
-    public static final String MESSAGE_SUCCESS = "Role for client deleted: %1$s";
+    public static final String MESSAGE_SUCCESS = "Role for clients deleted: %1$s";
     public static final String MESSAGE_CANNOT_DELETE_REPEAT = "This client role cannot be deleted "
             + "as there are clients of this role";
     public static final String MESSAGE_CANNOT_DELETE_PREXISTS = "You are not allowed to delete this client role.";
@@ -70,6 +70,7 @@ public class DeleteClientRoleCommand extends Command {
 
         ClientRoles newRole = new ClientRoles(toAdd.toString());
         ClientRoles.deleteClientRole(newRole);
+        model.commitAddressBook(model, successMessage, index);
         return new CommandResult(successMessage, index);
     }
 

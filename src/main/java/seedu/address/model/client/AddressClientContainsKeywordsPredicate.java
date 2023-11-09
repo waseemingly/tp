@@ -19,7 +19,7 @@ public class AddressClientContainsKeywordsPredicate implements KeywordPredicate<
     @Override
     public boolean test(Client client) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getAddress().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(client.getAddress().value, keyword));
     }
 
     @Override
