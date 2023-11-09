@@ -13,12 +13,12 @@ Given below are my contributions to the project.
 * **New Feature**: Find
     * What it does: Project managers can find for developers, clients and projects based on the specified attributes.
     * Justification: This feature improves the product significantly as project managers might want to look out for
-        certain attributes in a developer before adding them to a new project, or sort clients based on their 
+        certain attributes in a developer before adding them to a new project, or sort clients based on their
         organisation or even group projects according to their deadline.
     * Highlights: This implementation was challenging as it required creating new predicates for each of the attributes
         of the developers, clients and projects. The feature also allows for multi-level searching as project managers
         can find based on multiple attributes at the same time. This allows for even more detailed searching. The find
-        feature then displayed the updated filtered list on the GUI. In addition, the find implementation was utilisede
+        feature then displayed the updated filtered list on the GUI. In addition, the find implementation was utilised
     in the implementation of the delete feature as well.
 
 * **Enhancements to existing features**:
@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 
 
 * **Project management(team-based tasks contributions)**:
-    * Set up Github team repository and organisation and added team members to the developers team.
+    * Set up GitHub team repository and organisation and added team members to the developers team.
     * Set up the project website
     * Set up CodeCov to generate code coverage data and provides more information about coverage of our tests.
     * Created and maintained issue tracker.
