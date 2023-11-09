@@ -70,6 +70,7 @@ public class DeleteDeveloperRoleCommand extends Command {
 
         DeveloperRoles newRole = new DeveloperRoles(toAdd.toString());
         DeveloperRoles.deleteDeveloperRole(newRole);
+        model.commitAddressBook(model, successMessage, index);
         return new CommandResult(successMessage, index);
     }
 

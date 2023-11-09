@@ -58,6 +58,7 @@ public class AddDeveloperRoleCommand extends Command {
 
         DeveloperRoles newRole = new DeveloperRoles(toAdd.toString());
         DeveloperRoles.addDeveloperRole(newRole);
+        model.commitAddressBook(model, successMessage, index);
         return new CommandResult(successMessage, index);
     }
 

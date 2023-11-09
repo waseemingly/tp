@@ -20,7 +20,8 @@ public class EditDeveloperDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditDeveloperDescriptorBuilder descriptorWithSameValues = new EditDeveloperDescriptorBuilder(DESC_AMY);
+        EditDeveloperCommand.EditDeveloperDescriptor descriptorWithSameValues =
+                new EditDeveloperCommand.EditDeveloperDescriptor(DESC_AMY);
         assertEquals(DESC_AMY, descriptorWithSameValues);
 
         // same object -> returns true
@@ -61,12 +62,18 @@ public class EditDeveloperDescriptorTest {
     public void toStringMethod() {
         EditDeveloperCommand.EditDeveloperDescriptor editDeveloperDescriptor =
                 new EditDeveloperDescriptorBuilder().build();
-        String expected = EditDeveloperDescriptorBuilder.class.getCanonicalName() + "{name="
+        String expected = EditDeveloperCommand.EditDeveloperDescriptor.class.getCanonicalName() + "{name="
                 + editDeveloperDescriptor.getName().orElse(null) + ", phone="
                 + editDeveloperDescriptor.getPhone().orElse(null) + ", email="
                 + editDeveloperDescriptor.getEmail().orElse(null) + ", address="
-                + editDeveloperDescriptor.getAddress().orElse(null) + ", tags="
-                + editDeveloperDescriptor.getProjects().orElse(null) + "}";
+                + editDeveloperDescriptor.getAddress().orElse(null) + ", projects="
+                + editDeveloperDescriptor.getProjects().orElse(null) + ", dateJoined="
+                + editDeveloperDescriptor.getDateJoined().orElse(null) + ", role="
+                + editDeveloperDescriptor.getRole().orElse(null) + ", salary="
+                + editDeveloperDescriptor.getSalary().orElse(null) + ", githubId="
+                + editDeveloperDescriptor.getSalary().orElse(null) + ", rating="
+                + editDeveloperDescriptor.getSalary().orElse(null) + "}";
+
         assertEquals(expected, editDeveloperDescriptor.toString());
     }
 }

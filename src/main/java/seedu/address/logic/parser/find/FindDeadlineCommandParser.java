@@ -4,12 +4,14 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.find.FindDeadlineCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
 import seedu.address.model.project.Deadline;
@@ -37,6 +39,12 @@ public class FindDeadlineCommandParser implements Parser<FindDeadlineCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATEJOINED, PREFIX_PRIORITY);
 
+        for (Prefix prefix : Arrays.asList(PREFIX_DATEJOINED, PREFIX_PRIORITY)) {
+            if (argMultimap.getValue(prefix).isPresent() && argMultimap.getValue(prefix).get().isEmpty()) {
+                throw new ParseException("Please input a value after the prefix.");
+            }
+        }
+
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDeadlineCommand.MESSAGE_USAGE));
@@ -58,7 +66,7 @@ public class FindDeadlineCommandParser implements Parser<FindDeadlineCommand> {
 
         if (argMultimap.getValue(PREFIX_DATEJOINED).isPresent()) {
             String dateKeywords = argMultimap.getValue(PREFIX_DATEJOINED).get();
-            Date input = new Date(dateKeywords);
+            Date input = new Date(dateKeywords, true);
             finalPredicate =
                     finalPredicate.and(d -> !d.getDate().value.after(input.value));
             // Replace with your DateJoinedPredicate

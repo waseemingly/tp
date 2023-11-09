@@ -19,6 +19,7 @@ import seedu.address.logic.commands.find.FindDeveloperCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.developer.AddressDeveloperContainsKeywordsPredicate;
 import seedu.address.model.developer.DateJoinedContainsKeywordsPredicate;
@@ -56,6 +57,14 @@ public class FindDeveloperCommandParser implements Parser<FindDeveloperCommand> 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ROLE, PREFIX_ADDRESS,
                 PREFIX_EMAIL, PREFIX_GITHUBID, PREFIX_DATEJOINED,
                 PREFIX_PROJECT, PREFIX_PHONE, PREFIX_SALARY, PREFIX_RATING);
+
+        for (Prefix prefix : Arrays.asList(PREFIX_NAME, PREFIX_ROLE, PREFIX_ADDRESS,
+                PREFIX_EMAIL, PREFIX_GITHUBID, PREFIX_DATEJOINED,
+                PREFIX_PROJECT, PREFIX_PHONE, PREFIX_SALARY, PREFIX_RATING)) {
+            if (argMultimap.getValue(prefix).isPresent() && argMultimap.getValue(prefix).get().isEmpty()) {
+                throw new ParseException("Please input a value after the prefix.");
+            }
+        }
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

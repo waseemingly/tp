@@ -15,6 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +24,8 @@ import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.NameClientContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
 import seedu.address.testutil.EditDeveloperDescriptorBuilder;
@@ -42,14 +45,14 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ROLE_AMY = "Developer";
     public static final String VALID_ROLE_BOB = "Tester";
-    public static final String VALID_SALARY_AMY = "5000";
-    public static final String VALID_SALARY_BOB = "4000";
-    public static final String VALID_DATEJOINED_AMY = "2020-01-01";
-    public static final String VALID_DATEJOINED_BOB = "2020-02-01";
+    public static final String VALID_SALARY_AMY = "50000";
+    public static final String VALID_SALARY_BOB = "40000";
+    public static final String VALID_DATEJOINED_AMY = "01-01-2020";
+    public static final String VALID_DATEJOINED_BOB = "01-02-2020";
     public static final String VALID_GITHUBID_AMY = "amywalker";
     public static final String VALID_GITHUBID_BOB = "bobwalker";
-    public static final String VALID_RATING_AMY = "5.0";
-    public static final String VALID_RATING_BOB = "4.0";
+    public static final String VALID_RATING_AMY = "5";
+    public static final String VALID_RATING_BOB = "4";
     public static final String VALID_PROJECT_1_AMY = "ProjectA";
     public static final String VALID_PROJECT_2_AMY = "ProjectB";
     public static final String VALID_PROJECT_1_BOB = "ProjectC";
@@ -67,7 +70,10 @@ public class CommandTestUtil {
     public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + VALID_ROLE_BOB;
     public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
     public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
-    public static final String PROJECT_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_1_AMY + VALID_PROJECT_2_AMY;
+    public static final String PROJECT_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_2_AMY
+            + ", " + VALID_PROJECT_1_AMY;
+    public static final String PROJECT1_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_1_AMY;
+    public static final String PROJECT2_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_2_AMY;
     public static final String PROJECT_DESC_BOB = " " + PREFIX_PROJECT + VALID_PROJECT_1_BOB + VALID_PROJECT_2_BOB;
 
 
@@ -100,13 +106,11 @@ public class CommandTestUtil {
         DESC_AMY = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withRole(VALID_ROLE_AMY).withSalary(VALID_SALARY_AMY).withDateJoined(VALID_DATEJOINED_AMY)
-                .withGithubId(VALID_GITHUBID_AMY).withRating(VALID_RATING_AMY)
-                .withProjects(VALID_PROJECT_1_AMY).build();
+                .withGithubId(VALID_GITHUBID_AMY).withRating(VALID_RATING_AMY).build();
         DESC_BOB = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB).withDateJoined(VALID_DATEJOINED_BOB)
-                .withGithubId(VALID_GITHUBID_BOB).withRating(VALID_RATING_BOB)
-                .withProjects(VALID_PROJECT_1_BOB, VALID_PROJECT_2_BOB).build();
+                .withGithubId(VALID_GITHUBID_BOB).withRating(VALID_RATING_BOB).build();
     }
 
     /**
@@ -166,6 +170,20 @@ public class CommandTestUtil {
                 .singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredDeveloperList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showClientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
+
+        Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());
+        final String[] splitName = client.getName().fullName.split("\\s+");
+        model.updateFilteredClientList(new NameClientContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredClientList().size());
     }
 
 }

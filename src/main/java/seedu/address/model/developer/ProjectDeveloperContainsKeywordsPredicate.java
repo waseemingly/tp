@@ -19,7 +19,8 @@ public class ProjectDeveloperContainsKeywordsPredicate implements KeywordPredica
     @Override
     public boolean test(Developer developer) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(developer.getProjects().toString(), keyword));
+                .allMatch(keyword ->
+                        StringUtil.containsPartialWordIgnoreCase(developer.getProjects().toString(), keyword));
     }
 
     @Override

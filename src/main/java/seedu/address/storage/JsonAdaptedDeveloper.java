@@ -141,10 +141,10 @@ class JsonAdaptedDeveloper {
         if (dateJoined == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Date.isValidDate(dateJoined)) {
+        if (!Date.isValidDate(dateJoined, false)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        final Date modelDateJoined = new Date(dateJoined);
+        final Date modelDateJoined = new Date(dateJoined, false);
 
 
         if (role == null) {

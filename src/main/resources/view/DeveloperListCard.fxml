@@ -27,23 +27,23 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
             </HBox>
             <FlowPane fx:id="tags" />
             <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="15.0" spacing="5">
                 <children>
                     <VBox prefWidth="350.0">
                         <children>
-                            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-                            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+                            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+                            <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
                             <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
-                            <Label fx:id="dateJoined" styleClass="cell_small_label" text="\$dateJoined" />
+                            <Label fx:id="dateJoined" styleClass="cell_small_label" text="\$dateJoined" wrapText="true" />
                         </children>
                     </VBox>
                     <VBox prefWidth="300.0">
                         <children>
-                            <Label fx:id="role" styleClass="cell_small_label" text="\$role" />
-                            <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
+                            <Label fx:id="role" styleClass="cell_small_label" text="\$role" wrapText="true" />
+                            <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" wrapText="true" />
                             <Label fx:id="githubId" styleClass="cell_small_label" text="\$githubId" wrapText="true" />
                             <Rating fx:id="rating" prefHeight="20.0" prefWidth="100.0" />
                         </children>

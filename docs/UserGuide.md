@@ -1,8 +1,8 @@
 ---
 layout: page
 title: User Guide
-pageNav: 3
 ---
+
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
 facilitating collaboration, and offering command-line efficiency for project managers
 
@@ -40,12 +40,12 @@ management tasks done faster than traditional GUI apps.
 | [Adding new role](#add-roles)  |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |        -         |
 | [Deleting role](#delete-roles) | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |        -         |
 
-* Mark deadline as done `mark-deadline`
-* Mark deadline as undone `unmark-deadline`
-* Find Deadline `find-deadline`
-* Lock `lock`
-* Unlock `unlock`
-* Change password `change-password`
+* [Lock `lock`](#lock-lock)
+* [Unlock `unlock`](#unlock-unlock)
+* [Change password `change-password`](#change-password-change-password)
+* [Mark deadline as done `mark-deadline`](#mark-deadline-as-done--mark-deadline)
+* [Mark deadline as undone `unmark-deadline`](#mark-deadline-as-undone--unmark-deadline)
+* [Find Deadline `find-deadline`](#find-deadlines-find-deadline)
 * [Undo `undo`](#undo--undo)
 * [Redo `redo`](#redo--redo)
 * [Help `help`](#viewing-help--help)
@@ -82,7 +82,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 | Term          | Definition                                                                                                                |
 |---------------|---------------------------------------------------------------------------------------------------------------------------|
-| Parameter     | Parameters are specific details you would include about the devloper/client/project.(eg. name, date joined, description)  |
+| Parameter     | Parameters are specific details you would include about the developer/client/project.(eg. name, date joined, description) |
 | Command       | An input from the user that tells CodeContact to perform an action (i.e. add a client)                                    |
 | GUI           | Graphical User Interface (GUI) represents the visual display of CodeContact that users can see.                           |
 | GUI Component | A subsection of the Graphical User Interface. For more information on specific GUI components, refer to [this section](). |
@@ -136,12 +136,10 @@ Here are some notes about these parameters.
 
 #### Project Parameters
 
-| Parameter | Description | Constraints | Valid Examples | Invalid Examples |
-|-----------|------------------------|---|---|--|
-| `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for
-different juices to be ordered | |
-| `dl/`      | deadline of project | alphanumeric characters and spaces, and it should not be blank| 19-12-2023,Design
-backend,HIGH,0 | |
+| Parameter | Description            | Constraints                                                    | Valid Examples                                  | Invalid Examples |
+|-----------|------------------------|----------------------------------------------------------------|-------------------------------------------------|------------------|
+| `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered |                  |
+| `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             |                  |
 
 
 -----------------------------------------------------------------------------------------------
@@ -154,18 +152,18 @@ backend,HIGH,0 | |
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `codecontact.jar`.
+2. Download the latest `codecontact.jar`.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your CodeContact.
+3. Copy the file to the folder you want to use as the _home folder_ for your CodeContact.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codecontact.jar`
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codecontact.jar`
    command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
+5. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -249,7 +247,7 @@ To view all our features, you may visit our [Features](#features) section
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -265,6 +263,51 @@ To view all our features, you may visit our [Features](#features) section
   as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </div>
+
+### Lock `lock`
+
+Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
+except `unlock`, `help`, and `delete`
+
+Format: `lock`
+
+When command succeeds, CLI shows:
+
+```
+Locked all data
+```
+
+### Unlock `unlock`
+
+Unlocks the system by making all the information visible and allows all commands to be parsed.
+
+Format: `unlock pw/Password123!`
+
+* Default password is `Password123!`
+* You are highly recommended to change to a different password
+
+When command succeeds, CLI shows:
+
+```
+Unlocked all data
+```
+
+### Change password `change-password`
+
+Allows for password to be changed, given the current password and new password matches criteria
+
+Format: `change-password pw/[CURRENT_PASSWORD] npw/[NEW_PASSWORD]`
+
+* Password must be at least 8 characters long and contain at least one digit, one lowercase letter,
+  one uppercase letter, and one special character.
+
+Example of usage: `change-password pw/Password123! npw/NewPass987!`
+
+When command succeeds, CLI shows:
+
+```
+Password changed successfully.
+```
 
 ### Add
 
@@ -362,7 +405,7 @@ Example:
 * And populate its details with prefixes and fields by typing in
     * `n/NAME` for the project's name
     * `dr/DESCRIPTION` for the project's description
-    * `dl/{DEADLINE1, DEADLINE2...}` for deadlines assocaterd with the project
+    * `dl/{DEADLINE1, DEADLINE2...}` for deadlines associated with the project
 * In the following overall format
     * `add-project n/NAME dr/DESCRIPTION dl/DEADLINE1 dl/DEADLINE2`
 
@@ -418,7 +461,7 @@ Format: `delete-project INDEX`
 
 Example of usage: `delete-project 2`
 
-* Deletes second project from the list and updates developers and client detials accordingly
+* Deletes second project from the list and updates developers and client details accordingly
 
 ### Edit
 
@@ -431,7 +474,7 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 * Edits the developer at the specified `INDEX` in the currently displayed developer list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing projects, the existing assigned projects of the developer will be removed ie. adding of projects is not
+* When editing projects, the existing assigned projects of the developer will be removed i/e. adding of projects is not
   cumulative.
 * You can remove all the developer's projects by typing `p/` without specifying any project name after it.
 * `NAME` cannot be the same as another existing developer's name in the address book.
@@ -463,7 +506,7 @@ Format: `edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/P
 * Edits the client at the specified `INDEX` in the currently displayed client list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing projects, the existing assigned projects of the client will be removed ie. adding of projects is not
+* When editing projects, the existing assigned projects of the client will be removed i/e. adding of projects is not
   cumulative.
 * You can remove all the client's projects by typing `p/` without specifying any project name after it.
 
@@ -492,7 +535,7 @@ Format: `edit-project INDEX [desc/DESCRIPTION] [d/DEADLINE]...`
 * Edits the project at the specified `INDEX` in the currently displayed project list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing deadlines, the existing deadlines will be removed ie. adding of projects is not cumulative.
+* When editing deadlines, the existing deadlines will be removed i.e. adding of projects is not cumulative.
 * You can remove all the current deadlines by typing `d/` without specifying any deadline.
 * The name of a project cannot be edited.
 
@@ -614,16 +657,8 @@ When command succeeds, CLI shows:
 
 ```
 This is the one developer with matching information
-Amy
-Contact: 98989898
-Email: amy@u.nus.edu
-Address: NUS UTOWN
-Date Joined: 06-09-2023
-Role: Senior Developer
-Salary: 6999
-Projects: CS2103T
-Rating: 5.0 Stars
 ```
+followed by the matching developer's details in the GUI.
 
 #### Find client details
 
@@ -646,22 +681,8 @@ When command succeeds, CLI shows:
 
 ```
 These are the 2 clients with matching information
-John Doe
-Contact: 98989898
-Email: john@gmail.com
-Address: Google HQ
-Organisation: Google
-Role: Developer
-Projects: AndroidApp
-
-Alice Tan
-Contact: 98977543
-Email: alice@gmail.com
-Address: Google HQ
-Organisation: Google
-Role: Senior Developer
-Projects: CustomWebsite
 ```
+followed by the matching clients' details in the GUI.
 
 #### Find project details
 
@@ -678,32 +699,33 @@ Format: `find-project [pr/PROJECT_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
 
 Example of usage: `find-project pr/JuiceApp`
 
-* Prints projects with the name 2103T project.
+* Print projects with the name 2103T project.
 
 When command succeeds, CLI shows:
 
 ```
 This is the one project with matching information
-Edited Project: JuiceApp;
-Description: Juice ordering app;
-Deadlines:
-1. Design backend by: 19-12-2023, priority: HIGH (undone)
 ```
+followed by the matching project's details in the GUI.
 
-### Deleting a developer : `delete`
+### Find deadlines `find-deadline`
 
-Deletes the specified developer from the address book.
+Finds deadlines in project tab based on date and/or priority
 
-Format: `delete INDEX`
+Format: `find-deadline [d/DATE] [pri/PRIORITY]`
 
-* Deletes the developer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed developer list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date
+* When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown
 
-Examples:
+Example of usage: `find-deadline d/20-11-2023 pri/MEDIUM`
 
-* `list` followed by `delete 2` deletes the 2nd developer in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st developer in the results of the `find` command.
+* Shows deadlines due before or on `20-11-2023` and with `MEDIUM` priority.
+
+When command succeeds, CLI shows:
+
+```
+These are the 3 projects with matching information.
+```
 
 ### Listing information : `list`
 
@@ -727,70 +749,6 @@ When command succeeds, CLI shows:
 
 ```
 Listed all developers
-```
-
-### Find deadlines `find-deadline`
-
-Finds deadlines in project tab based on date and/or priority
-
-Format: `find-deadline [d/DATE] [pri/PRIORITY]`
-
-* When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date
-* When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown
-
-Example of usage: `find-deadline d/20-11-2023 pri/MEDIUM`
-
-* Shows deadlines due before or on `20-11-2023` and with `MEDIUM` priority.
-
-When command succeeds, CLI shows:
-
-```
-These are the 3 projects with matching information.
-```
-
-### Lock `lock`
-
-Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
-except `unlock`, `help`, and `delete`
-
-Format: `lock`
-
-When command succeeds, CLI shows:
-
-```
-Locked all data
-```
-
-### Unlock `unlock`
-
-Unlocks the system by making all the information visible and allows all commands to be parsed.
-
-Format: `unlock pw/Password123!`
-
-* Default password is `Password123!`
-* You are highly recommended to change to a diffent password
-
-When command succeeds, CLI shows:
-
-```
-Unlocked all data
-```
-
-### Change password `change-password`
-
-Allows for password to be changed, given the current password and new password matches criteria
-
-Format: `change-password pw/[CURRENT_PASSWORD] npw/[NEW_PASSWORD]`
-
-* Password must be at least 8 characters long and contain at least one digit, one lowercase letter,
-  one uppercase letter, and one special character.
-
-Example of usage: `change-password pw/Password123! npw/NewPass987!`
-
-When command succeeds, CLI shows:
-
-```
-Password changed successfully.
 ```
 
 ### Add roles
@@ -866,6 +824,9 @@ When command succeeds, CLI shows:
 ```
 Role for developers deleted: UIDesigner
 ```
+❗Note: When this command is deleted, regardless if it was a successful delete,
+the developer tab will be cleared or only showing the developers with role you are deleting.
+Use `list-developer` to see all the data again
 
 Relevant UI mock-ups: <br>
 ![Ui](images/deleteDeveloperRole.png) <br>
@@ -892,6 +853,9 @@ When command succeeds, CLI shows:
 ```
 Role for clients deleted: Boss
 ```
+❗Note: When this command is deleted, regardless if it was a successful delete,
+the client tab will be cleared or only showing the clients with role you are deleting.
+Use `list-client` to see all the data again
 
 Relevant UI mock-ups: <br>
 ![Ui](images/deleteClientRole.png) <br>
@@ -949,7 +913,7 @@ Format: `undo`
 
 Examples of usage: `undo`
 
-* You just deleted a new developer and you wish to `undo`.
+* You just deleted a new developer, and you wish to `undo`.
 
 When command succeeds, CLI shows:
 
@@ -976,7 +940,7 @@ Format: `redo`
 
 * Each time you type redo, you move forward one stage.
 * You can only `redo` if you have `undo` before.
-* If you undid 5 changes and you wish to redo, you can enter the command `redo` 5 times. The system will remind you when
+* If you undid 5 changes, and you wish to redo, you can enter the command `redo` 5 times. The system will remind you when
   you cannot redo anymore.
 * `redo` works for all `edit`, `add-TYPE` and `delete` commands.
 * **IMPORTANT**:exclamation `redo` does not work for all adding and deleting role functions. Redoing an
@@ -1004,7 +968,7 @@ Relevant UI mock-ups: <br>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -1037,9 +1001,9 @@ the data of your previous AddressBook home folder.
 * Method 1: For users familiar with the command prompt
 
 1. Open the command prompt
-1. Navigate to the directory where the JAR file is located using cd [JAR file location]
-1. Type java -jar CodeContact.jar and press enter
-1. CodeContact should launch
+2. Navigate to the directory where the JAR file is located using cd [JAR file location]
+3. Type java -jar CodeContact.jar and press enter
+4. CodeContact should launch
    <br> <br>
 
 * Method 2: For users that wish to create a script to launch Docedex (Recommended)
@@ -1057,7 +1021,7 @@ the data of your previous AddressBook home folder.
 5. Double-click on the script to launch CodeContact
 6. CodeContact should launch
 
-**Q**: How can i check my java version?<br>
+**Q**: How can I check my java version?<br>
 **A**: Open a command prompt and type `java -version` . If you do not have Java installed, you
 can download it [here](https://www.oracle.com/java/technologies/downloads/#java11)
 
