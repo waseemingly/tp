@@ -260,13 +260,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getPreviousCommand() {
+    public String getPreviousCommandForUndo() {
         return versionedAddressBook.getPreviousMessage();
+    }
+
+    @Override
+    public String getPreviousCommandForRedo() {
+        return versionedAddressBook.getPreviousMessageForRedo();
     }
 
     @Override
     public TabIndex getPreviousTabIndex() {
         return versionedAddressBook.getPreviousTabIndex();
+    }
+
+    @Override
+    public TabIndex getPreviousTabIndexForRedo() {
+        return versionedAddressBook.getPreviousTabIndexForRedo();
     }
 
     @Override

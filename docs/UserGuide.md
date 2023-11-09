@@ -3,6 +3,7 @@ layout: default.md
 title: "User Guide"
 pageNav: 3
 ---
+
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
 facilitating collaboration, and offering command-line efficiency for project managers
 
@@ -40,12 +41,12 @@ management tasks done faster than traditional GUI apps.
 | [Adding new role](#add-roles)  |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |        -         |
 | [Deleting role](#delete-roles) | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |        -         |
 
-* Mark deadline as done `mark-deadline`
-* Mark deadline as undone `unmark-deadline`
-* Find Deadline `find-deadline`
-* Lock `lock`
-* Unlock `unlock`
-* Change password `change-password`
+* [Lock `lock`](#lock-lock)
+* [Unlock `unlock`](#unlock-unlock)
+* [Change password `change-password`](#change-password-change-password)
+* [Mark deadline as done `mark-deadline`](#mark-deadline-as-done--mark-deadline)
+* [Mark deadline as undone `unmark-deadline`](#mark-deadline-as-undone--unmark-deadline)
+* [Find Deadline `find-deadline`](#find-deadlines-find-deadline)
 * [Undo `undo`](#undo--undo)
 * [Redo `redo`](#redo--redo)
 * [Help `help`](#viewing-help--help)
@@ -136,12 +137,10 @@ Here are some notes about these parameters.
 
 #### Project Parameters
 
-| Parameter | Description | Constraints | Valid Examples | Invalid Examples |
-|-----------|------------------------|---|---|--|
-| `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for
-different juices to be ordered | |
-| `dl/`      | deadline of project | alphanumeric characters and spaces, and it should not be blank| 19-12-2023,Design
-backend,HIGH,0 | |
+| Parameter | Description            | Constraints                                                    | Valid Examples                                  | Invalid Examples |
+|-----------|------------------------|----------------------------------------------------------------|-------------------------------------------------|------------------|
+| `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered |                  |
+| `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             |                  |
 
 
 -----------------------------------------------------------------------------------------------
@@ -265,6 +264,51 @@ To view all our features, you may visit our [Features](#features) section
   as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </div>
+
+### Lock `lock`
+
+Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
+except `unlock`, `help`, and `delete`
+
+Format: `lock`
+
+When command succeeds, CLI shows:
+
+```
+Locked all data
+```
+
+### Unlock `unlock`
+
+Unlocks the system by making all the information visible and allows all commands to be parsed.
+
+Format: `unlock pw/Password123!`
+
+* Default password is `Password123!`
+* You are highly recommended to change to a different password
+
+When command succeeds, CLI shows:
+
+```
+Unlocked all data
+```
+
+### Change password `change-password`
+
+Allows for password to be changed, given the current password and new password matches criteria
+
+Format: `change-password pw/[CURRENT_PASSWORD] npw/[NEW_PASSWORD]`
+
+* Password must be at least 8 characters long and contain at least one digit, one lowercase letter,
+  one uppercase letter, and one special character.
+
+Example of usage: `change-password pw/Password123! npw/NewPass987!`
+
+When command succeeds, CLI shows:
+
+```
+Password changed successfully.
+```
 
 ### Add
 
@@ -431,7 +475,7 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 * Edits the developer at the specified `INDEX` in the currently displayed developer list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing projects, the existing assigned projects of the developer will be removed i.e. adding of projects is not
+* When editing projects, the existing assigned projects of the developer will be removed i/e. adding of projects is not
   cumulative.
 * You can remove all the developer's projects by typing `p/` without specifying any project name after it.
 * `NAME` cannot be the same as another existing developer's name in the address book.
@@ -463,7 +507,7 @@ Format: `edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/P
 * Edits the client at the specified `INDEX` in the currently displayed client list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing projects, the existing assigned projects of the client will be removed i.e. adding of projects is not
+* When editing projects, the existing assigned projects of the client will be removed i/e. adding of projects is not
   cumulative.
 * You can remove all the client's projects by typing `p/` without specifying any project name after it.
 
@@ -665,20 +709,24 @@ This is the one project with matching information
 ```
 followed by the matching project's details in the GUI.
 
-### Deleting a developer : `delete`
+### Find deadlines `find-deadline`
 
-Deletes the specified developer from the address book.
+Finds deadlines in project tab based on date and/or priority
 
-Format: `delete INDEX`
+Format: `find-deadline [d/DATE] [pri/PRIORITY]`
 
-* Deletes the developer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed developer list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date
+* When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown
 
-Examples:
+Example of usage: `find-deadline d/20-11-2023 pri/MEDIUM`
 
-* `list-developer` followed by `delete 2` deletes the 2nd developer in the address book.
-* `find-developer n/Betsy` followed by `delete 1` deletes the 1st developer in the results of the `find` command.
+* Shows deadlines due before or on `20-11-2023` and with `MEDIUM` priority.
+
+When command succeeds, CLI shows:
+
+```
+These are the 3 projects with matching information.
+```
 
 ### Listing information : `list`
 
@@ -702,70 +750,6 @@ When command succeeds, CLI shows:
 
 ```
 Listed all developers
-```
-
-### Find deadlines `find-deadline`
-
-Finds deadlines in project tab based on date and/or priority
-
-Format: `find-deadline [d/DATE] [pri/PRIORITY]`
-
-* When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date
-* When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown
-
-Example of usage: `find-deadline d/20-11-2023 pri/MEDIUM`
-
-* Shows deadlines due before or on `20-11-2023` and with `MEDIUM` priority.
-
-When command succeeds, CLI shows:
-
-```
-These are the 3 projects with matching information.
-```
-
-### Lock `lock`
-
-Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
-except `unlock`, `help`, and `delete`
-
-Format: `lock`
-
-When command succeeds, CLI shows:
-
-```
-Locked all data
-```
-
-### Unlock `unlock`
-
-Unlocks the system by making all the information visible and allows all commands to be parsed.
-
-Format: `unlock pw/Password123!`
-
-* Default password is `Password123!`
-* You are highly recommended to change to a different password
-
-When command succeeds, CLI shows:
-
-```
-Unlocked all data
-```
-
-### Change password `change-password`
-
-Allows for password to be changed, given the current password and new password matches criteria
-
-Format: `change-password pw/[CURRENT_PASSWORD] npw/[NEW_PASSWORD]`
-
-* Password must be at least 8 characters long and contain at least one digit, one lowercase letter,
-  one uppercase letter, and one special character.
-
-Example of usage: `change-password pw/Password123! npw/NewPass987!`
-
-When command succeeds, CLI shows:
-
-```
-Password changed successfully.
 ```
 
 ### Add roles
@@ -841,6 +825,9 @@ When command succeeds, CLI shows:
 ```
 Role for developers deleted: UIDesigner
 ```
+❗Note: When this command is deleted, regardless if it was a successful delete,
+the developer tab will be cleared or only showing the developers with role you are deleting.
+Use `list-developer` to see all the data again
 
 Relevant UI mock-ups: <br>
 ![Ui](images/deleteDeveloperRole.png) <br>
@@ -867,6 +854,9 @@ When command succeeds, CLI shows:
 ```
 Role for clients deleted: Boss
 ```
+❗Note: When this command is deleted, regardless if it was a successful delete,
+the client tab will be cleared or only showing the clients with role you are deleting.
+Use `list-client` to see all the data again
 
 Relevant UI mock-ups: <br>
 ![Ui](images/deleteClientRole.png) <br>
