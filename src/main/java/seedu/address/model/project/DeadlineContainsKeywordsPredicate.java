@@ -19,7 +19,7 @@ public class DeadlineContainsKeywordsPredicate implements KeywordPredicate<Proje
     @Override
     public boolean test(Project project) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getProjectDeadlines().toString(),
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(project.getProjectDeadlines().toString(),
                         keyword));
     }
 

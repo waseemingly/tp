@@ -19,7 +19,7 @@ public class EmailDeveloperContainsKeywordsPredicate implements KeywordPredicate
     @Override
     public boolean test(Developer developer) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(developer.getEmail().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(developer.getEmail().value, keyword));
     }
 
     @Override
