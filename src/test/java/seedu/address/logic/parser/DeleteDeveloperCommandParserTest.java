@@ -19,7 +19,7 @@ import seedu.address.logic.parser.delete.DeleteDeveloperCommandParser;
  */
 public class DeleteDeveloperCommandParserTest {
 
-    private DeleteDeveloperCommandParser parser = new DeleteDeveloperCommandParser();
+    private final DeleteDeveloperCommandParser parser = new DeleteDeveloperCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
@@ -28,6 +28,7 @@ public class DeleteDeveloperCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDeveloperCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteDeveloperCommand.MESSAGE_USAGE));
     }
 }

@@ -8,12 +8,12 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.model.commons.Date;
 import seedu.address.model.commons.Name;
+import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.DeveloperRoles;
 import seedu.address.model.developer.GithubId;
 import seedu.address.model.developer.Rating;
 import seedu.address.model.developer.Salary;
 import seedu.address.model.person.Address;
-import seedu.address.model.developer.Developer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 
@@ -22,7 +22,7 @@ import seedu.address.model.person.Phone;
  */
 public class EditDeveloperDescriptorBuilder {
 
-    private EditDeveloperCommand.EditDeveloperDescriptor descriptor;
+    private final EditDeveloperCommand.EditDeveloperDescriptor descriptor;
 
     public EditDeveloperDescriptorBuilder() {
         descriptor = new EditDeveloperCommand.EditDeveloperDescriptor();
@@ -81,10 +81,7 @@ public class EditDeveloperDescriptorBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
-     */
+
     /*
     public EditDeveloperDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
@@ -92,44 +89,70 @@ public class EditDeveloperDescriptorBuilder {
         return this;
     }
     */
-
+    /**
+     * Sets the {@code Projects} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditDeveloperDescriptorBuilder withProjects(String... projects) {
         Set<String> projectNames = Stream.of(projects).collect(Collectors.toSet());
         descriptor.setProjects(projectNames);
         return this;
     }
 
+    /**
+     * Sets the {@code GithubId} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditDeveloperDescriptorBuilder withGithubId(String githubId) {
         descriptor.setGithubId(new GithubId(githubId));
         return this;
     }
 
+    /**
+     * Sets the {@code Rating} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditDeveloperDescriptorBuilder withRating(String rating) {
         descriptor.setRating(new Rating(rating));
         return this;
     }
 
+    /**
+     * Sets the {@code Date} of the {@code EditPersonDescriptor} that we are building.
+     * @param dateJoined
+     * @return
+     */
     public EditDeveloperDescriptorBuilder withDateJoined(String dateJoined) {
         descriptor.setDateJoined(new Date(dateJoined));
         return this;
     }
 
+    /**
+     * Sets the {@code Role} of the {@code EditPersonDescriptor} that we are building.
+     * @param role
+     * @return
+     */
     public EditDeveloperDescriptorBuilder withRole(String role) {
         descriptor.setRole(new DeveloperRoles(role));
         return this;
     }
 
+    /**
+     * Sets the {@code Salary} of the {@code EditPersonDescriptor} that we are building.
+     * @param salary
+     * @return
+     */
     public EditDeveloperDescriptorBuilder withSalary(String salary) {
         descriptor.setSalary(new Salary(salary));
         return this;
     }
 
+    /**
+     * Sets the {@code Rating} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditDeveloperCommand.EditDeveloperDescriptor build() {
-    /* public EditDeveloperDescriptorBuilder withTags(String... tags) {
-        Set<String> projects = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setProjects(tagSet);
-        return this;
-    }*/
+        /* public EditDeveloperDescriptorBuilder withTags(String... tags) {
+            Set<String> projects = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+            descriptor.setProjects(tagSet);
+            return this;
+        }*/
         return descriptor;
     }
 }

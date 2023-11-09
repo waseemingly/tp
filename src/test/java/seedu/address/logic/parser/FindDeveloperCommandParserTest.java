@@ -14,11 +14,12 @@ import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
 
 public class FindDeveloperCommandParserTest {
 
-    private FindDeveloperCommandParser parser = new FindDeveloperCommandParser();
+    private final FindDeveloperCommandParser parser = new FindDeveloperCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDeveloperCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindDeveloperCommand.MESSAGE_USAGE));
     }
 
     @Test

@@ -55,9 +55,12 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Developer developer = new DeveloperBuilder().build();
-        EditDeveloperCommand.EditDeveloperDescriptor descriptor = new EditDeveloperDescriptorBuilder(developer).build();
-        EditDeveloperCommand command = (EditDeveloperCommand) parser.parseCommand(EditDeveloperCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + DeveloperUtil.getEditDeveloperDescriptorDetails(descriptor));
+        EditDeveloperCommand.EditDeveloperDescriptor descriptor =
+                new EditDeveloperDescriptorBuilder(developer).build();
+        EditDeveloperCommand command = (EditDeveloperCommand) parser
+                .parseCommand(EditDeveloperCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased()
+                + " " + DeveloperUtil.getEditDeveloperDescriptorDetails(descriptor));
         assertEquals(new EditDeveloperCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.testutil.TypicalDevelopers;
-import seedu.address.testutil.TypicalDevelopers;
 
 public class JsonSerializableAddressBookTest {
 
