@@ -24,6 +24,6 @@ public class ListProjectCommand extends Command {
         requireNonNull(model);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateFilteredProjectDeadlineList(unused -> true);
-        return new CommandResult(MESSAGE_SUCCESS, TabIndex.Project);
+        return new CommandResult(MESSAGE_SUCCESS, TabIndex.developers);
     }
 }
