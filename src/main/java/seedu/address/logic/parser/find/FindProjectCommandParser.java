@@ -12,6 +12,7 @@ import seedu.address.logic.commands.find.FindProjectCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.DeadlineContainsKeywordsPredicate;
 import seedu.address.model.project.DescriptionContainsKeywordsPredicate;
@@ -41,6 +42,12 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE, PREFIX_DESCRIPTION, PREFIX_PROJECT);
+
+        for (Prefix prefix : Arrays.asList(PREFIX_DEADLINE, PREFIX_DESCRIPTION, PREFIX_PROJECT)) {
+            if (argMultimap.getValue(prefix).isPresent() && argMultimap.getValue(prefix).get().isEmpty()) {
+                throw new ParseException("Please input a value after the prefix.");
+            }
+        }
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(

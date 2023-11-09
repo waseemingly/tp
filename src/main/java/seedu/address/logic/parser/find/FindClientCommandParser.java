@@ -17,6 +17,7 @@ import seedu.address.logic.commands.find.FindClientCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.AddressClientContainsKeywordsPredicate;
 import seedu.address.model.client.Client;
@@ -47,6 +48,13 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ROLE, PREFIX_ADDRESS,
                 PREFIX_EMAIL, PREFIX_PHONE, PREFIX_PROJECT, PREFIX_DOCUMENT, PREFIX_ORGANISATION);
+
+        for (Prefix prefix : Arrays.asList(PREFIX_NAME, PREFIX_ROLE, PREFIX_ADDRESS,
+                PREFIX_EMAIL, PREFIX_PHONE, PREFIX_PROJECT, PREFIX_DOCUMENT, PREFIX_ORGANISATION)) {
+            if (argMultimap.getValue(prefix).isPresent() && argMultimap.getValue(prefix).get().isEmpty()) {
+                throw new ParseException("Please input a value after the prefix.");
+            }
+        }
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(

@@ -19,7 +19,7 @@ public class NameDeveloperContainsKeywordsPredicate implements KeywordPredicate<
     @Override
     public boolean test(Developer developer) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(developer.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(developer.getName().fullName, keyword));
     }
 
     @Override
