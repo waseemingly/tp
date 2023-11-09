@@ -57,6 +57,7 @@ public class AddClientRoleCommand extends Command {
 
         ClientRoles newRole = new ClientRoles(toAdd.toString());
         ClientRoles.addClientRole(newRole);
+        model.commitAddressBook(model, successMessage, index);
         return new CommandResult(successMessage, index);
     }
 

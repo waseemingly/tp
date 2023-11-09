@@ -155,7 +155,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Add tabs to the TabPane
         tabPane.getTabs().addAll(developerTab, clientTab, projectTab);
-
         //tabPane.getSelectionModel().select(1);
 
         resultDisplay = new ResultDisplay();
@@ -232,7 +231,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             tabPane.getSelectionModel().select(commandResult.getIndex());
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
