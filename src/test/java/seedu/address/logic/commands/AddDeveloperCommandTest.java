@@ -249,12 +249,22 @@ public class AddDeveloperCommandTest {
         }
 
         @Override
-        public String getPreviousCommand() {
+        public String getPreviousCommandForRedo() throws CommandException {
+            return null;
+        }
+
+        @Override
+        public String getPreviousCommandForUndo() throws CommandException {
             return null;
         }
 
         @Override
         public TabIndex getPreviousTabIndex() {
+            return null;
+        }
+
+        @Override
+        public TabIndex getPreviousTabIndexForRedo() {
             return null;
         }
     }
