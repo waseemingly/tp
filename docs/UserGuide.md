@@ -1,6 +1,6 @@
 ---
-layout: default.md
-title: "User Guide"
+layout: page
+title: User Guide
 pageNav: 3
 ---
 
