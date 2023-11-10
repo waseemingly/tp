@@ -43,7 +43,9 @@ public class EditClientCommand extends Command {
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CLIENT =
-            "The details of the client in the address book are already as given.";
+            "There is already a client with that name!";
+    public static final String MESSAGE_UNEDITED_CLIENT =
+            "The details of the client to edit are already as such!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "
@@ -109,7 +111,10 @@ public class EditClientCommand extends Command {
         Client clientToEdit = lastShownList.get(index.getZeroBased());
         Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
 
-        if (!clientToEdit.isSamePerson(editedClient) && model.hasClient(editedClient)) {
+        if (clientToEdit.equals(editedClient)) {
+            throw new CommandException(MESSAGE_UNEDITED_CLIENT);
+        }
+        if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
         String res = model.areProjectsValid(editedClient);

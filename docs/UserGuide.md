@@ -476,9 +476,10 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 * Existing values will be updated to the input values.
 * When editing projects, the existing assigned projects of the developer will be removed i/e. adding of projects is not
   cumulative.
-* You can remove all the developer's projects by typing `p/` without specifying any project name after it.
-* `NAME` cannot be the same as another existing developer's name in the address book.
-* `PROJECT_NAME` should be the name of an existing project.
+* You can remove all the developer's projects by typing `pr/` without specifying any project name after it.
+* `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
+* You can, however, edit the casing of an existing developer's `NAME`.
+* `PROJECT_NAME` should be the exact name of an existing project.
 
 Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
 
@@ -508,7 +509,10 @@ Format: `edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/P
 * Existing values will be updated to the input values.
 * When editing projects, the existing assigned projects of the client will be removed i/e. adding of projects is not
   cumulative.
-* You can remove all the client's projects by typing `p/` without specifying any project name after it.
+* You can remove all the client's projects by typing `pr/` without specifying any project name after it.
+* `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
+* You can, however, edit the casing of an existing client's `NAME`.
+* `PROJECT_NAME` should be the exact name of an existing project.
 
 Example of usage: `edit-client 3 e/bob@gmail.com`
 
@@ -530,13 +534,13 @@ Projects: ProjectA
 
 Edits the details of an existing project in the address book.
 
-Format: `edit-project INDEX [desc/DESCRIPTION] [d/DEADLINE]...`
+Format: `edit-project INDEX [desc/DESCRIPTION] [dl/DEADLINE]...`
 
 * Edits the project at the specified `INDEX` in the currently displayed project list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing deadlines, the existing deadlines will be removed i.e. adding of projects is not cumulative.
-* You can remove all the current deadlines by typing `d/` without specifying any deadline.
+* When editing deadlines, the existing deadlines will be removed ie. adding of projects is not cumulative.
+* You can remove all the current deadlines by typing `dl/` without specifying any deadline.
 * The name of a project cannot be edited.
 
 Example of usage: `edit-project 1 dl/19-12-2023,Design backend,HIGH,0`

@@ -33,7 +33,9 @@ public class EditProjectCommand extends Command {
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PROJECT =
-            "The details of the project in the address book are already as given.";
+            "There is already a project with that name!";
+    public static final String MESSAGE_UNEDITED_PROJECT =
+            "The details of the project to edit are already as such!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the project identified "
             + "by the index number used in the displayed project list. "
@@ -91,6 +93,9 @@ public class EditProjectCommand extends Command {
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         Project editedProject = createEditedProject(projectToEdit, editProjectDescriptor);
 
+        if (projectToEdit.equals(editedProject)) {
+            throw new CommandException(MESSAGE_UNEDITED_PROJECT);
+        }
         if (!projectToEdit.isSameProject(editedProject) && model.hasProject(editedProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
