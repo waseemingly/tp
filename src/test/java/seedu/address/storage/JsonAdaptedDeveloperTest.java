@@ -166,7 +166,7 @@ public class JsonAdaptedDeveloperTest {
     }
 
     @Test
-    public void toModelType_nullPassword_throwsIllegalValueException() {
+    public void toModelType_nullGithubID_throwsIllegalValueException() {
         JsonAdaptedDeveloper person = new JsonAdaptedDeveloper(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_DATE_JOINED,
                 VALID_ROLE, VALID_SALARY, VALID_PROJECTS, null, VALID_RATING);
