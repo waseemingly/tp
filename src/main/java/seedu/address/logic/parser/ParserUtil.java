@@ -262,7 +262,7 @@ public class ParserUtil {
         requireNonNull(rating);
         String trimmedRating = rating.trim();
         if (!Rating.isValidRating(trimmedRating)) {
-            throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
         }
         return new Rating(trimmedRating);
     }

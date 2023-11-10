@@ -178,7 +178,7 @@ public class Project {
         }
 
         return otherProject != null
-                && otherProject.getName().equals(getName());
+                &&  otherProject.getName().toLowerCase().equals(getName().toLowerCase());
     }
 
     public boolean isSameProject(String projectName) {

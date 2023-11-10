@@ -48,7 +48,9 @@ public class EditDeveloperCommand extends Command {
     public static final String MESSAGE_EDIT_DEVELOPER_SUCCESS = "Edited Developer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_DEVELOPER =
-            "The details of the developer in the address book are already as given.";
+            "There is already a developer with that name!";
+    public static final String MESSAGE_UNEDITED_DEVELOPER =
+            "The details of the developer to edit are already as such!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the developer identified "
             + "by the index number used in the displayed developer list. "
@@ -118,6 +120,10 @@ public class EditDeveloperCommand extends Command {
         Developer developerToEdit = lastShownList.get(index.getZeroBased());
         Developer editedDeveloper = createEditedDeveloper(developerToEdit, editDeveloperDescriptor);
 
+
+        if (developerToEdit.equals(editedDeveloper)) {
+            throw new CommandException(MESSAGE_UNEDITED_DEVELOPER);
+        }
         if (!developerToEdit.isSameDeveloper(editedDeveloper) && model.hasDeveloper(editedDeveloper)) {
             throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
         }

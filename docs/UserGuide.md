@@ -434,8 +434,9 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 * When editing projects, the existing assigned projects of the developer will be removed ie. adding of projects is not
   cumulative.
 * You can remove all the developer's projects by typing `p/` without specifying any project name after it.
-* `NAME` cannot be the same as another existing developer's name in the address book.
-* `PROJECT_NAME` should be the name of an existing project.
+* `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
+* You can, however, edit the casing of an existing developer's `NAME`.
+* `PROJECT_NAME` should be the exact name of an existing project.
 
 Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
 
@@ -466,6 +467,9 @@ Format: `edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/P
 * When editing projects, the existing assigned projects of the client will be removed ie. adding of projects is not
   cumulative.
 * You can remove all the client's projects by typing `p/` without specifying any project name after it.
+* `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
+* You can, however, edit the casing of an existing client's `NAME`.
+* `PROJECT_NAME` should be the exact name of an existing project.
 
 Example of usage: `edit-client 3 e/bob@gmail.com`
 
