@@ -46,7 +46,7 @@ public class EditClientCommand extends Command {
             "There is already a client with that name!";
     public static final String MESSAGE_UNEDITED_CLIENT =
             "The details of the client to edit are already as such!";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -117,7 +117,6 @@ public class EditClientCommand extends Command {
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
-        
         String res = model.areProjectsValid(editedClient);
         if (res != null) {
             throw new CommandException(String.format(Messages.MESSAGE_NONEXISTENT_PROJECT, res));

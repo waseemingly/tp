@@ -36,7 +36,7 @@ public class EditProjectCommand extends Command {
             "There is already a project with that name!";
     public static final String MESSAGE_UNEDITED_PROJECT =
             "The details of the project to edit are already as such!";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the project identified "
             + "by the index number used in the displayed project list. "
             + "Existing values will be overwritten by the input values.\n"
