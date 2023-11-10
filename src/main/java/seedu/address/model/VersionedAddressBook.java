@@ -110,6 +110,14 @@ public class VersionedAddressBook extends AddressBook {
     public String getPreviousMessage() {
         return successfulCommandMessages.get(currentStatePointer);
     }
+    /**
+     * Gets the success message associated with the redone command.
+     *
+     * @return The success message from the previous command.
+     */
+    public String getPreviousMessageForRedo() {
+        return successfulCommandMessages.get(currentStatePointer - 1);
+    }
 
     /**
      * Gets the tab index associated with the previous command.
@@ -118,6 +126,15 @@ public class VersionedAddressBook extends AddressBook {
      */
     public TabIndex getPreviousTabIndex() {
         return tabIndex.get(currentStatePointer);
+    }
+
+    /**
+     * Gets the tab index associated with the redone command.
+     *
+     * @return The tab index from the previous command.
+     */
+    public TabIndex getPreviousTabIndexForRedo() {
+        return tabIndex.get(currentStatePointer - 1);
     }
 
     /**

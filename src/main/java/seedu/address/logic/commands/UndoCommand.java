@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.ClientRoles;
+import seedu.address.model.developer.DeveloperRoles;
 
 /**
  * Represents a command to undo the most recent change in the application.
@@ -26,8 +28,18 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.undoAddressBook(model);
-        String previousCommand = model.getPreviousCommand();
+        String previousCommand = model.getPreviousCommandForUndo();
         TabIndex index = model.getPreviousTabIndex();
+        // check if it is any of the role commands
+        if (previousCommand.contains("New role for client added: ")) {
+            ClientRoles.deleteClientRole(new ClientRoles(previousCommand.substring(27)));
+        } else if (previousCommand.contains("New role for developer added: ")) {
+            DeveloperRoles.deleteDeveloperRole(new DeveloperRoles(previousCommand.substring(30)));
+        } else if (previousCommand.contains("Role for clients deleted: ")) {
+            ClientRoles.addClientRole(new ClientRoles(previousCommand.substring(26)));
+        } else if (previousCommand.contains("Role for developers deleted: ")) {
+            DeveloperRoles.addDeveloperRole(new DeveloperRoles(previousCommand.substring(29)));
+        }
         return new CommandResult(MESSAGE_SUCCESS + "\n" + previousCommand, index);
     }
 }
