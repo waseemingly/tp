@@ -22,8 +22,8 @@ public class DeleteClientRoleCommandParser implements Parser<DeleteClientRoleCom
     @Override
     public DeleteClientRoleCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        if (!args.isEmpty()) {
-            String role = args.substring(1);
+        if (!args.isBlank()) {
+            String role = args.substring(1).trim();
             return new DeleteClientRoleCommand(role);
         } else {
             throw new ParseException("Role cannot be empty!");

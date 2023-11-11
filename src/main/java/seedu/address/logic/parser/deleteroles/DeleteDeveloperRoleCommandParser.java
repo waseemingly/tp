@@ -22,8 +22,8 @@ public class DeleteDeveloperRoleCommandParser implements Parser<DeleteDeveloperR
     @Override
     public DeleteDeveloperRoleCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        if (!args.isEmpty()) {
-            String role = args.substring(1);
+        if (!args.isBlank()) {
+            String role = args.substring(1).trim();
             return new DeleteDeveloperRoleCommand(role);
         } else {
             throw new ParseException("Role cannot be empty!");

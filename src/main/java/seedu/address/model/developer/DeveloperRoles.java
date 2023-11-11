@@ -7,10 +7,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 
 /**
@@ -19,7 +20,7 @@ import seedu.address.model.Model;
  */
 public class DeveloperRoles {
     public static final String NO_SUCH_DEVELOPER_ROLE = "There is no such developer role, "
-            + "please create role before proceeding";
+            + "please create role before proceeding!";
     private static List<DeveloperRoles> roles = new ArrayList<>();
     private static boolean noRepeat;
     private static boolean notDefault;
@@ -72,7 +73,14 @@ public class DeveloperRoles {
      * @return True if the role is valid, false otherwise.
      */
     public static boolean isValidRole(String role) {
-        return roles.toString().contains(role);
+        boolean roleExists = false;
+        for (DeveloperRoles devRoles : roles) {
+            if (devRoles.toString().equals(role)) {
+                roleExists = true;
+                break; // You can break early once a match is found
+            }
+        }
+        return roleExists;
     }
 
     /**
@@ -93,19 +101,16 @@ public class DeveloperRoles {
      * @return True if the role can be removed, false otherwise.
      */
     public static boolean isRemovableRole(Model model, String role) {
-        // check if anyone is using this role
-        Predicate<Developer> finalPredicate = developer -> true;
 
-        if (role.matches(".*\\s+.*")) {
-            List<String> keywords = List.of(role.split("\\s+"));
-            finalPredicate = finalPredicate.and(developer -> keywords.contains(developer.getRole()));
-        } else {
-            finalPredicate = finalPredicate.and(new RoleDeveloperContainsKeywordsPredicate(Arrays.asList(role)));
-        }
-        model.updateFilteredDeveloperList(finalPredicate);
-        int size = model.getFilteredDeveloperList().size();
+        ObservableList<Developer> developerList = model.getAddressBook().getDeveloperList();
 
-        if (size == 0) {
+        Predicate<Developer> rolePredicate = developer -> developer.getRole().toString().equals(role);
+
+        List<Developer> developersWithRole = developerList.stream()
+                .filter(rolePredicate)
+                .collect(Collectors.toList());
+
+        if (developersWithRole.isEmpty()) {
             noRepeat = true;
         } else {
             noRepeat = false;
@@ -122,13 +127,7 @@ public class DeveloperRoles {
 
         // check if role is in the list
 
-        boolean roleExists = false;
-        for (DeveloperRoles devRoles : roles) {
-            if (devRoles.toString().equalsIgnoreCase(role)) {
-                roleExists = true;
-                break; // You can break early once a match is found
-            }
-        }
+        boolean roleExists = isValidRole(role);
 
         if (roleExists) {
             notInList = false;

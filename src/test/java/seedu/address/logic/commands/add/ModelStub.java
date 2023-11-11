@@ -19,7 +19,7 @@ import seedu.address.model.project.Project;
 /**
  * A default model stub that have all of its methods failing.
  */
-class ModelStub implements Model {
+public class ModelStub implements Model {
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         throw new AssertionError("This method should not be called.");

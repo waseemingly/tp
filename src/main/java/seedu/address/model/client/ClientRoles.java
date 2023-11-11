@@ -7,10 +7,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 
 /**
@@ -19,7 +20,7 @@ import seedu.address.model.Model;
  */
 public class ClientRoles {
     public static final String NO_SUCH_CLIENT_ROLE = "There is no such client role, "
-            + "please create role before proceeding";
+            + "please create role before proceeding!";
     private static List<ClientRoles> roles = new ArrayList<>();
     private static boolean noRepeat;
     private static boolean notDefault;
@@ -73,7 +74,14 @@ public class ClientRoles {
      * @return {@code true} if the role is valid, {@code false} otherwise.
      */
     public static boolean isValidRole(String role) {
-        return roles.toString().contains(role);
+        boolean roleExists = false;
+        for (ClientRoles cliRoles : roles) {
+            if (cliRoles.toString().equals(role)) {
+                roleExists = true;
+                break; // You can break early once a match is found
+            }
+        }
+        return roleExists;
     }
 
     /**
@@ -95,18 +103,15 @@ public class ClientRoles {
      */
     public static boolean isRemovableRole(Model model, String role) {
         // check if anyone is using this role
-        Predicate<Client> finalPredicate = client -> true;
+        ObservableList<Client> clientsList = model.getAddressBook().getClientList();
 
-        if (role.matches(".*\\s+.*")) {
-            List<String> keywords = List.of(role.split("\\s+"));
-            finalPredicate = finalPredicate.and(client -> keywords.contains(client.getRole()));
-        } else {
-            finalPredicate = finalPredicate.and(new RoleClientContainsKeywordsPredicate(Arrays.asList(role)));
-        }
-        model.updateFilteredClientList(finalPredicate);
-        int size = model.getFilteredClientList().size();
+        Predicate<Client> rolePredicate = client -> client.getRole().toString().equals(role);
 
-        if (size == 0) {
+        List<Client> clientsWithRole = clientsList.stream()
+                .filter(rolePredicate)
+                .collect(Collectors.toList());
+
+        if (clientsWithRole.isEmpty()) {
             noRepeat = true;
         } else {
             noRepeat = false;
@@ -123,14 +128,7 @@ public class ClientRoles {
         }
 
         // check if role is in the list
-
-        boolean roleExists = false;
-        for (ClientRoles cliRoles : roles) {
-            if (cliRoles.toString().equalsIgnoreCase(role)) {
-                roleExists = true;
-                break; // You can break early once a match is found
-            }
-        }
+        boolean roleExists = isValidRole(role);
 
         if (roleExists) {
             notInList = false;
