@@ -119,7 +119,7 @@ public class EditDeveloperCommand extends Command {
 
         Developer developerToEdit = lastShownList.get(index.getZeroBased());
         Developer editedDeveloper = createEditedDeveloper(developerToEdit, editDeveloperDescriptor);
-        
+
         if (!developerToEdit.isSameDeveloper(editedDeveloper) && model.hasDeveloper(editedDeveloper)) {
             throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
         }

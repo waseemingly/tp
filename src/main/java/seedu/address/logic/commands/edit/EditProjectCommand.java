@@ -92,7 +92,7 @@ public class EditProjectCommand extends Command {
 
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         Project editedProject = createEditedProject(projectToEdit, editProjectDescriptor);
-        
+
         if (!projectToEdit.isSameProject(editedProject) && model.hasProject(editedProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
