@@ -125,6 +125,24 @@ public class CommandTestUtil {
     public static final String DOCUMENT_DESC_CALEB = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_CALEB;
     public static final String DOCUMENT_DESC_DAN = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_DAN;
 
+    public static final String VALID_PROJECT_DESCRIPTION_APPLEAPP = "Developing the AppleApp";
+    public static final String VALID_PROJECT_DESCRIPTION_GOOGLEAPP = "Working on the GoogleApp";
+    public static final String VALID_PROJECT_DESCRIPTION_ANDROIDAPP = "AndroidApp development";
+
+    public static final String VALID_PROJECT_DEADLINE_APPLEAPP = "2023-12-31";
+    public static final String VALID_PROJECT_DEADLINE_GOOGLEAPP = "2023-11-30";
+    public static final String VALID_PROJECT_DEADLINE_ANDROIDAPP = "2023-10-31";
+
+    public static final String VALID_PROJECT_PRIORITY_APPLEAPP = "High";
+    public static final String VALID_PROJECT_PRIORITY_GOOGLEAPP = "Medium";
+    public static final String VALID_PROJECT_PRIORITY_ANDROIDAPP = "Low";
+
+    public static final String VALID_PROJECT_NAME_APPLEAPP = "AppleApp";
+    public static final String VALID_PROJECT_NAME_GOOGLEAPP = "GoogleApp";
+    public static final String VALID_PROJECT_NAME_ANDROIDAPP = "AndroidApp";
+
+    public static final String VALID_PROJECT_TAG_UI = "UI";
+    public static final String VALID_PROJECT_TAG_BACKEND = "Backend";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -136,6 +154,8 @@ public class CommandTestUtil {
     public static final String INVALID_GITHUBID_DESC = " " + PREFIX_GITHUBID; //
     public static final String INVALID_RATING_DESC = "abc" + PREFIX_RATING; //
     public static final String INVALID_PROJECT_DESC = " " + PREFIX_PROJECT; //
+
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -60,7 +60,7 @@ public class DeleteClientRoleCommand extends Command {
                         + ClientRoles.printRoles());
             } else if (!ClientRoles.isNotDefault()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_PREXISTS);
-            } else if (!ClientRoles.isNoRepeat() ) {
+            } else if (!ClientRoles.isNoRepeat()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_REPEAT);
             }
         }
