@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEJOINED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCUMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORGANISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
@@ -57,6 +59,10 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_2_AMY = "ProjectB";
     public static final String VALID_PROJECT_1_BOB = "ProjectC";
     public static final String VALID_PROJECT_2_BOB = "ProjectD";
+    public static final String VALID_ORGANISATION_AMY = "Google";
+    public static final String VALID_ORGANISATION_BOB = "Facebook";
+    public static final String VALID_DOCUMENT_AMY = "https://www.google.com";
+    public static final String VALID_DOCUMENT_BOB = "https://www.facebook.com";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -75,14 +81,16 @@ public class CommandTestUtil {
     public static final String PROJECT1_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_1_AMY;
     public static final String PROJECT2_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_2_AMY;
     public static final String PROJECT_DESC_BOB = " " + PREFIX_PROJECT + VALID_PROJECT_1_BOB + VALID_PROJECT_2_BOB;
-
-
     public static final String DATEJOINED_DESC_AMY = " " + PREFIX_DATEJOINED + VALID_DATEJOINED_AMY;
     public static final String DATEJOINED_DESC_BOB = " " + PREFIX_DATEJOINED + VALID_DATEJOINED_BOB;
     public static final String GITHUBID_DEC_AMY = " " + PREFIX_GITHUBID + VALID_GITHUBID_AMY;
     public static final String GITHUBID_DEC_BOB = " " + PREFIX_GITHUBID + VALID_GITHUBID_BOB;
     public static final String RATING_DEC_AMY = " " + PREFIX_RATING + VALID_RATING_AMY;
     public static final String RATING_DEC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
+    public static final String ORGANISATION_DESC_AMY = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_AMY;
+    public static final String ORGANISATION_DESC_BOB = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_BOB;
+    public static final String DOCUMENT_DESC_AMY = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_AMY;
+    public static final String DOCUMENT_DESC_BOB = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_BOB;
 
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names

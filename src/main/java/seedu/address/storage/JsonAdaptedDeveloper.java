@@ -51,7 +51,7 @@ class JsonAdaptedDeveloper {
      * @param dateJoined The date when the developer joined the company.
      * @param role       The role of the developer.
      * @param salary     The salary of the developer.
-     * @param tags   The list of project names associated with the developer.
+     * @param projects   The list of project names associated with the developer.
      * @param githubId   The GitHub username of the developer.
      * @param rating     The rating of the developer.
      */
@@ -60,7 +60,8 @@ class JsonAdaptedDeveloper {
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("dateJoined") String dateJoined, @JsonProperty("role") String role,
                                 @JsonProperty("salary") String salary,
-                                @JsonProperty("projects") List<String> tags, @JsonProperty("githubId") String githubId,
+                                @JsonProperty("projects") List<String> projects,
+                                @JsonProperty("githubId") String githubId,
                                 @JsonProperty("rating") String rating) {
         this.name = name;
         this.phone = phone;
@@ -69,8 +70,8 @@ class JsonAdaptedDeveloper {
         this.dateJoined = dateJoined;
         this.role = role;
         this.salary = salary;
-        if (tags != null) {
-            this.projects.addAll(tags);
+        if (projects != null) {
+            this.projects.addAll(projects);
         }
         this.githubId = githubId;
         this.rating = rating;
@@ -102,8 +103,8 @@ class JsonAdaptedDeveloper {
      */
     public Developer toModelType() throws IllegalValueException {
         final List<String> personProjects = new ArrayList<>();
-        for (String tag : projects) {
-            personProjects.add(tag);
+        for (String projects : projects) {
+            personProjects.add(projects);
         }
 
         if (name == null) {
@@ -178,6 +179,7 @@ class JsonAdaptedDeveloper {
             throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
         }
         final Rating modelRating = new Rating(rating);
+
         final Set<String> modelProjects = new HashSet<>(personProjects);
         return new Developer(modelName, modelPhone, modelEmail,
                 modelAddress, modelRole, modelProjects, modelSalary, modelDateJoined,
