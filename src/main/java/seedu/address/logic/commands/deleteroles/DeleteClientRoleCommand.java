@@ -55,13 +55,13 @@ public class DeleteClientRoleCommand extends Command {
         requireNonNull(model);
 
         if (ClientRoles.isRemovableRole(model, toAdd)) { //if when you search for the role result != 1
-            if (!ClientRoles.isNoRepeat()) {
-                throw new CommandException(MESSAGE_CANNOT_DELETE_REPEAT);
-            } else if (!ClientRoles.isNotDefault()) {
-                throw new CommandException(MESSAGE_CANNOT_DELETE_PREXISTS);
-            } else if (ClientRoles.isNotInList()) {
+            if (ClientRoles.isNotInList()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_NONEXISTING + MESSAGE_EXISTING_CLIENT_ROLES
                         + ClientRoles.printRoles());
+            } else if (!ClientRoles.isNotDefault()) {
+                throw new CommandException(MESSAGE_CANNOT_DELETE_PREXISTS);
+            } else if (!ClientRoles.isNoRepeat() ) {
+                throw new CommandException(MESSAGE_CANNOT_DELETE_REPEAT);
             }
         }
 

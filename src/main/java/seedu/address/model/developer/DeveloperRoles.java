@@ -7,10 +7,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 
 /**
@@ -93,19 +94,16 @@ public class DeveloperRoles {
      * @return True if the role can be removed, false otherwise.
      */
     public static boolean isRemovableRole(Model model, String role) {
-        // check if anyone is using this role
-        Predicate<Developer> finalPredicate = developer -> true;
 
-        if (role.matches(".*\\s+.*")) {
-            List<String> keywords = List.of(role.split("\\s+"));
-            finalPredicate = finalPredicate.and(developer -> keywords.contains(developer.getRole()));
-        } else {
-            finalPredicate = finalPredicate.and(new RoleDeveloperContainsKeywordsPredicate(Arrays.asList(role)));
-        }
-        model.updateFilteredDeveloperList(finalPredicate);
-        int size = model.getFilteredDeveloperList().size();
+        ObservableList<Developer> developerList = model.getAddressBook().getDeveloperList();
 
-        if (size == 0) {
+        Predicate<Developer> rolePredicate = developer -> developer.getRole().toString().equals(role);
+
+        List<Developer> developersWithRole = developerList.stream()
+                .filter(rolePredicate)
+                .collect(Collectors.toList());
+
+        if (developersWithRole.isEmpty()) {
             noRepeat = true;
         } else {
             noRepeat = false;

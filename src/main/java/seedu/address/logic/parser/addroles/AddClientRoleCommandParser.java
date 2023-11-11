@@ -21,7 +21,7 @@ public class AddClientRoleCommandParser implements Parser<AddClientRoleCommand> 
     public AddClientRoleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         if (!args.isEmpty()) {
-            String role = args.substring(1);
+            String role = args.substring(1).trim();
             return new AddClientRoleCommand(role);
         } else {
             throw new ParseException("Role cannot be empty!");

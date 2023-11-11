@@ -912,8 +912,6 @@ Format: `undo`
 * If you made 5 changes, and you wish to undo, you can enter the command `undo` 5 times. The system will remind you when
   you cannot undo anymore.
 * `undo` works for all `edit`, `add-TYPE` and `delete` commands.
-* ❗**IMPORTANT**❗ `undo` does not work for all adding and deleting role functions. Undoing an
-  `add-developer-role` will not delete that role.
 
 Examples of usage: `undo`
 
@@ -947,8 +945,6 @@ Format: `redo`
 * If you undid 5 changes, and you wish to redo, you can enter the command `redo` 5 times. The system will remind you when
   you cannot redo anymore.
 * `redo` works for all `edit`, `add-TYPE` and `delete` commands.
-* **IMPORTANT**:exclamation `redo` does not work for all adding and deleting role functions. Redoing an
-  `delete-developer-role` will not delete that role.
 
 Examples of usage:
 

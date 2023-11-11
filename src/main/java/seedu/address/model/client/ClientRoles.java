@@ -7,10 +7,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 
 /**
@@ -95,18 +96,15 @@ public class ClientRoles {
      */
     public static boolean isRemovableRole(Model model, String role) {
         // check if anyone is using this role
-        Predicate<Client> finalPredicate = client -> true;
+        ObservableList<Client> clientsList = model.getAddressBook().getClientList();
 
-        if (role.matches(".*\\s+.*")) {
-            List<String> keywords = List.of(role.split("\\s+"));
-            finalPredicate = finalPredicate.and(client -> keywords.contains(client.getRole()));
-        } else {
-            finalPredicate = finalPredicate.and(new RoleClientContainsKeywordsPredicate(Arrays.asList(role)));
-        }
-        model.updateFilteredClientList(finalPredicate);
-        int size = model.getFilteredClientList().size();
+        Predicate<Client> rolePredicate = client -> client.getRole().toString().equals(role);
 
-        if (size == 0) {
+        List<Client> clientsWithRole = clientsList.stream()
+                .filter(rolePredicate)
+                .collect(Collectors.toList());
+
+        if (clientsWithRole.isEmpty()) {
             noRepeat = true;
         } else {
             noRepeat = false;
