@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.find;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BENSON;
 import static seedu.address.testutil.TypicalClients.CARL;
+import static seedu.address.testutil.TypicalClients.DANIEL;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -14,11 +15,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.find.FindClientCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.NameClientContainsKeywordsPredicate;
+import seedu.address.model.client.OrganisationContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindClientCommand}.
@@ -57,7 +58,7 @@ public class FindClientCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = "There are no clients with matching information.";
-        NameClientContainsKeywordsPredicate predicate = preparePredicate("hii");
+        NameClientContainsKeywordsPredicate predicate = prepareNamePredicate("hii");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,7 +68,7 @@ public class FindClientCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = "These are the 3 clients with matching information.";
-        NameClientContainsKeywordsPredicate predicate = preparePredicate("Alice Benson Carl");
+        NameClientContainsKeywordsPredicate predicate = prepareNamePredicate("Alice Benson Carl");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -83,10 +84,48 @@ public class FindClientCommandTest {
         assertEquals(expected, findClientCommand.toString());
     }
 
+    @Test
+    public void execute_caseInsensitiveSearch_clientFound() {
+        String expectedMessage = "This is the 1 client with matching information.";
+        OrganisationContainsKeywordsPredicate predicate = prepareOrganisationPredicate("Microsoft"); // using mixed case
+        FindClientCommand command = new FindClientCommand(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(DANIEL), model.getFilteredClientList());
+    }
+
+    @Test
+    public void execute_partialName_clientFound() {
+        String expectedMessage = "This is the 1 client with matching information.";
+        NameClientContainsKeywordsPredicate predicate = prepareNamePredicate("rl");
+        FindClientCommand command = new FindClientCommand(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL), model.getFilteredClientList());
+    }
+
+    @Test
+    public void execute_noMatchingClients_noClientFound() {
+        String expectedMessage = "There are no clients with matching information.";
+        NameClientContainsKeywordsPredicate predicate = prepareNamePredicate("NonExistentClient");
+        FindClientCommand command = new FindClientCommand(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredClientList());
+    }
+
+
     /**
      * Parses {@code userInput} into a {@code NameClientContainsKeywordsPredicate}.
      */
-    private NameClientContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameClientContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameClientContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code OrganisationClientContainsKeywordsPredicate}.
+     */
+    private OrganisationContainsKeywordsPredicate prepareOrganisationPredicate(String userInput) {
+        return new OrganisationContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

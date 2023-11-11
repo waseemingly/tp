@@ -1,19 +1,19 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_APPLEAPP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_GOOGLEAPP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_ANDROIDAPP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DEADLINE_ANDROIDAPP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DEADLINE_APPLEAPP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DEADLINE_GOOGLEAPP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DEADLINE_ANDROIDAPP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_PRIORITY_APPLEAPP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_PRIORITY_GOOGLEAPP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_PRIORITY_ANDROIDAPP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_ANDROIDAPP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_APPLEAPP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_GOOGLEAPP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ANDROIDAPP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_APPLEAPP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_GOOGLEAPP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ANDROIDAPP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_UI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_PRIORITY_ANDROIDAPP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_PRIORITY_APPLEAPP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_PRIORITY_GOOGLEAPP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_BACKEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_UI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +34,9 @@ public class TypicalProjects {
     public static final Project PROJECT_C = new ProjectBuilder().withName("Project C")
             .withDescription("This is Project C").withDeadline("25-12-2023,Testing,LOW,1").build();
 
+    public static final Project PROJECT_A_NO_SPACING = new ProjectBuilder().withName("ProjectA")
+            .withDescription("This is Project A").withDeadline("20-12-2023,Design frontend,MEDIUM,0").build();
+
     private TypicalProjects() {} // prevents instantiation
 
     /**
@@ -48,7 +51,7 @@ public class TypicalProjects {
     }
 
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_C));
+        return new ArrayList<>(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_C, PROJECT_A_NO_SPACING));
     }
 
     /**

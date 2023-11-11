@@ -84,6 +84,39 @@ public class FindDeveloperCommandTest {
         assertEquals(expected, findDeveloperCommand.toString());
     }
 
+    @Test
+    public void execute_caseInsensitiveSearch_personFound() {
+        String expectedMessage = "This is the 1 developer with matching information.";
+        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("ElLe"); // using mixed case
+        FindDeveloperCommand command = new FindDeveloperCommand(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ELLE), model.getFilteredDeveloperList());
+    }
+
+    @Test
+    public void execute_partialName_personFound() {
+        String expectedMessage = "This is the 1 developer with matching information.";
+        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("Ell");
+        FindDeveloperCommand command = new FindDeveloperCommand(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ELLE), model.getFilteredDeveloperList());
+    }
+
+    @Test
+    public void execute_noMatchingPersons_noPersonFound() {
+        String expectedMessage = "There are no developers with matching information.";
+        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("NonExistentDeveloper");
+        FindDeveloperCommand command = new FindDeveloperCommand(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredDeveloperList());
+    }
+
+
+
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */

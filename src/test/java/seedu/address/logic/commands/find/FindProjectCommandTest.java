@@ -1,9 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.find;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalProjects.PROJECT_A;
+import static seedu.address.testutil.TypicalProjects.PROJECT_A_NO_SPACING;
 import static seedu.address.testutil.TypicalProjects.PROJECT_B;
 import static seedu.address.testutil.TypicalProjects.PROJECT_C;
 import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
@@ -14,7 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.find.FindProjectCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -81,6 +81,37 @@ public class FindProjectCommandTest {
         FindProjectCommand findProjectCommand = new FindProjectCommand(predicate);
         String expected = FindProjectCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findProjectCommand.toString());
+    }
+
+    @Test
+    public void execute_caseInsensitiveSearch_projectFound() {
+        String expectedMessage = "This is the 1 project with matching information.";
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("a"); // using mixed case
+        FindProjectCommand command = new FindProjectCommand(predicate);
+        expectedModel.updateFilteredProjectList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(PROJECT_A), model.getFilteredProjectList());
+    }
+
+
+    @Test
+    public void execute_partialName_projectFound() {
+        String expectedMessage = "This is the 1 project with matching information.";
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("jecta");
+        FindProjectCommand command = new FindProjectCommand(predicate);
+        expectedModel.updateFilteredProjectList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(PROJECT_A_NO_SPACING), model.getFilteredProjectList());
+    }
+
+    @Test
+    public void execute_noMatchingProjects_noProjectFound() {
+        String expectedMessage = "There are no projects with matching information.";
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("NonExistentProject");
+        FindProjectCommand command = new FindProjectCommand(predicate);
+        expectedModel.updateFilteredProjectList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredProjectList());
     }
 
     /**
