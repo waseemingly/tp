@@ -15,9 +15,9 @@ Given below are my contributions to the project.
   * Justification: <br> Users can now effortlessly revert their previous actions, providing a more forgiving and
   user-friendly experience. This feature adds a layer of convenience, especially in scenarios where users might
   make unintended changes.
-  * Highlights: <br> The undo feature has no limits to how many times you can undo, and you can undo all the way to 
+  * Highlights: <br> The undo feature has no limits to how many times you can undo, and you can undo all the way to
   your first command.The command is as easy as `undo`, making this feature really easy to use.
-  * Credits: <br> The general structure of how `undo` works is inspired from the AB-3 developer guide, which is 
+  * Credits: <br> The general structure of how `undo` works is inspired from the AB-3 developer guide, which is
   using a pointer that changes which addressbook to point to at each `undo` command. However, due to the nature and
   large number of fields CodeContact have, alot more validation checks were added in.
 
@@ -77,7 +77,7 @@ Given below are my contributions to the project.
   to view all existing projects, developers, or clients within the application. It plays an important part in
   helping users identify the index of each contact so that they can easily execute other commands like `edit`
   or `delete`.
-    * Credits: <br> The general `list` implementation follows how it was implemented for AB3 but some modification have 
+    * Credits: <br> The general `list` implementation follows how it was implemented for AB3 but some modification have
   been made such that it is customised to CodeContact.
 
 
