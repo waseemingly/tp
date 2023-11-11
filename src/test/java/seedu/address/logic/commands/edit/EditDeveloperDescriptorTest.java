@@ -12,7 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_1_BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.testutil.EditDeveloperDescriptorBuilder;
 
 public class EditDeveloperDescriptorTest {

@@ -8,7 +8,6 @@ import seedu.address.logic.commands.edit.EditClientCommand;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
-import seedu.address.model.client.OrganisationContainsKeywordsPredicate;
 import seedu.address.model.commons.Name;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
