@@ -20,7 +20,7 @@ public class AddClientRoleCommandParser implements Parser<AddClientRoleCommand> 
     @Override
     public AddClientRoleCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        if (!args.isEmpty()) {
+        if (!args.isBlank()) {
             String role = args.substring(1).trim();
             return new AddClientRoleCommand(role);
         } else {
