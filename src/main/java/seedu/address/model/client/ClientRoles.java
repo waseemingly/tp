@@ -74,7 +74,14 @@ public class ClientRoles {
      * @return {@code true} if the role is valid, {@code false} otherwise.
      */
     public static boolean isValidRole(String role) {
-        return roles.toString().contains(role);
+        boolean roleExists = false;
+        for (ClientRoles cliRoles : roles) {
+            if (cliRoles.toString().equals(role)) {
+                roleExists = true;
+                break; // You can break early once a match is found
+            }
+        }
+        return roleExists;
     }
 
     /**
@@ -121,13 +128,7 @@ public class ClientRoles {
         }
 
         // check if role is in the list
-        boolean roleExists = false;
-        for (ClientRoles cliRoles : roles) {
-            if (cliRoles.toString().equals(role)) {
-                roleExists = true;
-                break; // You can break early once a match is found
-            }
-        }
+        boolean roleExists = isValidRole(role);
 
         if (roleExists) {
             notInList = false;
