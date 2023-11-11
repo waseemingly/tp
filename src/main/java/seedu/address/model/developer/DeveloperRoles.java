@@ -73,7 +73,14 @@ public class DeveloperRoles {
      * @return True if the role is valid, false otherwise.
      */
     public static boolean isValidRole(String role) {
-        return roles.toString().contains(role);
+        boolean roleExists = false;
+        for (DeveloperRoles devRoles : roles) {
+            if (devRoles.toString().equals(role)) {
+                roleExists = true;
+                break; // You can break early once a match is found
+            }
+        }
+        return roleExists;
     }
 
     /**
@@ -120,13 +127,7 @@ public class DeveloperRoles {
 
         // check if role is in the list
 
-        boolean roleExists = false;
-        for (DeveloperRoles devRoles : roles) {
-            if (devRoles.toString().equals(role)) {
-                roleExists = true;
-                break; // You can break early once a match is found
-            }
-        }
+        boolean roleExists = isValidRole(role);
 
         if (roleExists) {
             notInList = false;
