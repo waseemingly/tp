@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.edit.EditClientCommand;
 import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -30,6 +31,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.NameClientContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
+import seedu.address.testutil.EditClientDescriptorBuilder;
 import seedu.address.testutil.EditDeveloperDescriptorBuilder;
 
 /**
@@ -39,14 +41,24 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_CALEB = "Caleb Kee";
+    public static final String VALID_NAME_DAN = "Dan yo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_CALEB = "33333333";
+    public static final String VALID_PHONE_DAN = "44444444";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMAIL_CALEB = "caleb@example.com";
+    public static final String VALID_EMAIL_DAN = "dan@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_ADDRESS_CALEB = "Block 312, Caleb Street 4";
+    public static final String VALID_ADDRESS_DAN = "Block 132, Dan Street 6";
     public static final String VALID_ROLE_AMY = "Developer";
     public static final String VALID_ROLE_BOB = "Tester";
+    public static final String VALID_ROLE_CALEB = "HR";
+    public static final String VALID_ROLE_DAN = "Developer";
     public static final String VALID_SALARY_AMY = "50000";
     public static final String VALID_SALARY_BOB = "40000";
     public static final String VALID_DATEJOINED_AMY = "01-01-2020";
@@ -59,21 +71,39 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_2_AMY = "ProjectB";
     public static final String VALID_PROJECT_1_BOB = "ProjectC";
     public static final String VALID_PROJECT_2_BOB = "ProjectD";
+    public static final String VALID_PROJECT_1_CALEB = "ProjectC";
+    public static final String VALID_PROJECT_2_CALEB = "ProjectD";
+    public static final String VALID_PROJECT_1_DAN = "ProjectA";
+    public static final String VALID_PROJECT_2_DAN = "ProjectB";
+
     public static final String VALID_ORGANISATION_AMY = "Google";
     public static final String VALID_ORGANISATION_BOB = "Facebook";
+    public static final String VALID_ORGANISATION_CALEB = "Github";
+    public static final String VALID_ORGANISATION_DAN = "Apple";
     public static final String VALID_DOCUMENT_AMY = "https://www.google.com";
     public static final String VALID_DOCUMENT_BOB = "https://www.facebook.com";
-
+    public static final String VALID_DOCUMENT_CALEB = "https://www.github.com";
+    public static final String VALID_DOCUMENT_DAN = "https://www.apple.com";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_CALEB = " " + PREFIX_NAME + VALID_NAME_CALEB;
+    public static final String NAME_DESC_DAN = " " + PREFIX_NAME + VALID_NAME_DAN;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String PHONE_DESC_CALEB = " " + PREFIX_PHONE + VALID_PHONE_CALEB;
+    public static final String PHONE_DESC_DAN = " " + PREFIX_PHONE + VALID_PHONE_DAN;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String EMAIL_DESC_CALEB = " " + PREFIX_EMAIL + VALID_EMAIL_CALEB;
+    public static final String EMAIL_DESC_DAN = " " + PREFIX_EMAIL + VALID_EMAIL_DAN;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String ADDRESS_DESC_CALEB = " " + PREFIX_ADDRESS + VALID_ADDRESS_CALEB;
+    public static final String ADDRESS_DESC_DAN = " " + PREFIX_ADDRESS + VALID_ADDRESS_DAN;
     public static final String ROLE_DESC_AMY = " " + PREFIX_ROLE + VALID_ROLE_AMY;
     public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + VALID_ROLE_BOB;
+    public static final String ROLE_DESC_CALEB = " " + PREFIX_ROLE + VALID_ROLE_CALEB;
+    public static final String ROLE_DESC_DAN = " " + PREFIX_ROLE + VALID_ROLE_DAN;
     public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
     public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
     public static final String PROJECT_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_2_AMY
@@ -81,16 +111,19 @@ public class CommandTestUtil {
     public static final String PROJECT1_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_1_AMY;
     public static final String PROJECT2_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_2_AMY;
     public static final String PROJECT_DESC_BOB = " " + PREFIX_PROJECT + VALID_PROJECT_1_BOB + VALID_PROJECT_2_BOB;
+    public static final String PROJECT_DESC_CALEB = " " + PREFIX_PROJECT + VALID_PROJECT_1_CALEB
+            + VALID_PROJECT_2_CALEB;
+    public static final String PROJECT_DESC_DAN = " " + PREFIX_PROJECT + VALID_PROJECT_1_DAN + VALID_PROJECT_2_DAN;
     public static final String DATEJOINED_DESC_AMY = " " + PREFIX_DATEJOINED + VALID_DATEJOINED_AMY;
     public static final String DATEJOINED_DESC_BOB = " " + PREFIX_DATEJOINED + VALID_DATEJOINED_BOB;
     public static final String GITHUBID_DEC_AMY = " " + PREFIX_GITHUBID + VALID_GITHUBID_AMY;
     public static final String GITHUBID_DEC_BOB = " " + PREFIX_GITHUBID + VALID_GITHUBID_BOB;
     public static final String RATING_DEC_AMY = " " + PREFIX_RATING + VALID_RATING_AMY;
     public static final String RATING_DEC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
-    public static final String ORGANISATION_DESC_AMY = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_AMY;
-    public static final String ORGANISATION_DESC_BOB = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_BOB;
-    public static final String DOCUMENT_DESC_AMY = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_AMY;
-    public static final String DOCUMENT_DESC_BOB = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_BOB;
+    public static final String ORGANISATION_DESC_CALEB = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_CALEB;
+    public static final String ORGANISATION_DESC_DAN = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_DAN;
+    public static final String DOCUMENT_DESC_CALEB = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_CALEB;
+    public static final String DOCUMENT_DESC_DAN = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_DAN;
 
     public static final String VALID_PROJECT_DESCRIPTION_APPLEAPP = "Developing the AppleApp";
     public static final String VALID_PROJECT_DESCRIPTION_GOOGLEAPP = "Working on the GoogleApp";
@@ -129,6 +162,9 @@ public class CommandTestUtil {
 
     public static final EditDeveloperCommand.EditDeveloperDescriptor DESC_AMY;
     public static final EditDeveloperCommand.EditDeveloperDescriptor DESC_BOB;
+    public static final EditClientCommand.EditClientDescriptor DESC_CALEB;
+    public static final EditClientCommand.EditClientDescriptor DESC_DAN;
+
 
     static {
         DESC_AMY = new EditDeveloperDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -139,6 +175,14 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withRole(VALID_ROLE_BOB).withSalary(VALID_SALARY_BOB).withDateJoined(VALID_DATEJOINED_BOB)
                 .withGithubId(VALID_GITHUBID_BOB).withRating(VALID_RATING_BOB).build();
+
+        DESC_CALEB = new EditClientDescriptorBuilder().withName(VALID_NAME_CALEB)
+                .withPhone(VALID_PHONE_CALEB).withAddress(VALID_ADDRESS_CALEB).withEmail(VALID_EMAIL_CALEB)
+                .withProjects(VALID_PROJECT_1_CALEB).withDocument(VALID_DOCUMENT_CALEB).build();
+        DESC_DAN = new EditClientDescriptorBuilder().withName(VALID_NAME_DAN).withPhone(VALID_PHONE_DAN)
+                .withAddress(VALID_ADDRESS_DAN).withEmail(VALID_EMAIL_DAN).withProjects(VALID_PROJECT_1_DAN)
+                .withDocument(VALID_DOCUMENT_DAN).build();
+
     }
 
     /**

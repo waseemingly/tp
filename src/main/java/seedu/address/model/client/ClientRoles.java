@@ -20,7 +20,7 @@ import seedu.address.model.Model;
  */
 public class ClientRoles {
     public static final String NO_SUCH_CLIENT_ROLE = "There is no such client role, "
-            + "please create role before proceeding";
+            + "please create role before proceeding!";
     private static List<ClientRoles> roles = new ArrayList<>();
     private static boolean noRepeat;
     private static boolean notDefault;

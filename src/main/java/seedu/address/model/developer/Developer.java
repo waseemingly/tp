@@ -95,7 +95,8 @@ public class Developer extends Person {
         return super.equals(otherDeveloper) && salary.equals(otherDeveloper.salary)
                 && dateJoined.equals(otherDeveloper.dateJoined)
                 && githubId.equals(otherDeveloper.githubId)
-                && rating.equals(otherDeveloper.rating);
+                && rating.equals(otherDeveloper.rating)
+                && role.equals(otherDeveloper.role);
     }
 
     @Override
