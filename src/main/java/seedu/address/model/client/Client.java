@@ -81,7 +81,7 @@ public class Client extends Person {
 
         Client otherClient = (Client) other;
         return super.equals(otherClient) && organisation.equals(otherClient.organisation)
-                && document.equals(otherClient.document);
+                && document.equals(otherClient.document) && role.equals(otherClient.role);
     }
 
     @Override

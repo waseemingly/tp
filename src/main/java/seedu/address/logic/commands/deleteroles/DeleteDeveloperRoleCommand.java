@@ -55,13 +55,13 @@ public class DeleteDeveloperRoleCommand extends Command {
         requireNonNull(model);
 
         if (DeveloperRoles.isRemovableRole(model, toAdd)) {
-            if (!DeveloperRoles.isNoRepeat()) {
-                throw new CommandException(MESSAGE_CANNOT_DELETE_REPEAT);
-            } else if (!DeveloperRoles.isNotDefault()) {
-                throw new CommandException(MESSAGE_CANNOT_DELETE_PREXISTS);
-            } else if (DeveloperRoles.isNotInList()) {
+            if (DeveloperRoles.isNotInList()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_NONEXISTING + MESSAGE_EXISTING_DEVELOPERS_ROLES
                         + DeveloperRoles.printRoles());
+            } else if (!DeveloperRoles.isNotDefault()) {
+                throw new CommandException(MESSAGE_CANNOT_DELETE_PREXISTS);
+            } else if (!DeveloperRoles.isNoRepeat() ) {
+                throw new CommandException(MESSAGE_CANNOT_DELETE_REPEAT);
             }
         }
 

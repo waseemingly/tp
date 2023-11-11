@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.edit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -12,7 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_1_BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.testutil.EditDeveloperDescriptorBuilder;
 
 public class EditDeveloperDescriptorTest {

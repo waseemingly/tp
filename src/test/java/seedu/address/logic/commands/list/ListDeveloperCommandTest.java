@@ -1,12 +1,13 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.list;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showDeveloperAtIndex;
 import static seedu.address.testutil.TypicalDevelopers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.list.ListClientCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -14,7 +15,7 @@ import seedu.address.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
-public class ListClientCommandTest {
+public class ListDeveloperCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -27,12 +28,12 @@ public class ListClientCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListClientCommand(), model, ListClientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListDeveloperCommand(), model, ListDeveloperCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    /*@Test
+    @Test
     public void execute_listIsFiltered_showsEverything() {
-        showClientAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListClientCommand(), model, ListClientCommand.MESSAGE_SUCCESS, expectedModel);
-    }*/
+        showDeveloperAtIndex(model, INDEX_FIRST_PERSON);
+        assertCommandSuccess(new ListDeveloperCommand(), model, ListDeveloperCommand.MESSAGE_SUCCESS, expectedModel);
+    }
 }
