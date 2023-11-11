@@ -16,11 +16,6 @@ public enum TabIndex {
     Client,
 
     /**
-     * Represents the "developers" tab, which may have a different purpose or behavior.
-     */
-    developers,
-
-    /**
      * Represents the "Project" tab, which is used to display and manage projects.
      */
     Project

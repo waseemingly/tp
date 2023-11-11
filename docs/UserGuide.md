@@ -14,43 +14,43 @@ management tasks done faster than traditional GUI apps.
 
 * How can this guide help me?
 * Navigating this guide
-    * Glossary
-        * Definitions
-        * Parameter Information
-            * Common parameters
-            * Developer parameters
-            * Client parameters
-            * Project parameters
-    * Format
-        * General Formatting
-        * Command Format
-* Navigating the Graphical User Interface (GUI)
+    * [Glossary](#glossary)
+        * [Definitions](#definitions)
+        * [Parameter Information](#parameter-information)
+            * [Common parameters](#common-parameters)
+            * [Developer parameters](#developer-parameters)
+            * [Client parameters](#client-parameters)
+            * [Project parameters](#project-parameters)
+    * [Format](#format)
+        * [General Formatting](#general-formatting)
+        * [Command Format](#command-format)
+* [Navigating the Graphical User Interface (GUI)](#navigating-the-graphical-user-interface--gui-)
 * [Quick Start](#quick-start)
 * [CodeContact Tutorial](#codecontact-tutorial--for-new-users-)
 * [Features](#features)
+    * [Lock `lock`](#lock-lock)
+    * [Unlock `unlock`](#unlock-unlock)
+    * [Change password `change-password`](#change-password-change-password)
 
-| Description                    |                                 Developer                                 |                              Client                              |     Project      |
-|:-------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:----------------:|
-| Adding new information         |                              `add-developer`                              |                           `add-client`                           |  `add-project`   |
-| Editing information            |                             `edit-developer`                              |                          `edit-client`                           |  `edit-project`  |
-| Importing information          |                            `import-developer`                             |                         `import-client`                          |        -         |
-| Deleting information           |                            `delete-developer`                             |                         `delete-client`                          | `delete-project` |
-| Finding information            |                             `find-developer`                              |                          `find-client`                           |  `find-project`  |
-| Listing information            |                             `list-developer`                              |                          `list-client`                           |  `list-project`  |
-| [Adding new role](#add-roles)  |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |        -         |
-| [Deleting role](#delete-roles) | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |        -         |
+| Description                                       |                                 Developer                                 |                              Client                              |                                                Project                                                |
+|:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
+| [Adding new information](#add)                    |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                              [`add-project`](#add-project--add-project)                               |
+| [Deleting information](#delete)                   |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                          [`delete-project`](#delete-project--delete-project)                          |
+| [Editing information](#edit)                      |        [`edit-developer`](#edit-developer-details--edit-developer)        |        [`edit-client`](#edit-client-details--edit-client)        |                         [`edit-project`](#edit-project-details--edit-project)                         |
+| [Importing information](#import-information)      |        [`import-developer` ](#import-developers-import-developer)         |         [`import-client`](#import-clients-import-client)         |                                                   -                                                   |
+| [Finding information](#find)                      |                [`find-developer`](#find-developer-details)                |              [`find-client`](#find-client-details)               |       [`find-project`](#find-project-details), [`find-deadline`](#find-deadlines-find-deadline)       |
+| [Listing information](#listing-information--list) |                             `list-developer`                              |                          `list-client`                           |                                            `list-project`                                             |
+| [Adding new role](#add-roles)                     |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |                                                   -                                                   |
+| [Deleting role](#delete-roles)                    | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                   -                                                   |
 
-* [Lock `lock`](#lock-lock)
-* [Unlock `unlock`](#unlock-unlock)
-* [Change password `change-password`](#change-password-change-password)
-* [Mark deadline as done `mark-deadline`](#mark-deadline-as-done--mark-deadline)
-* [Mark deadline as undone `unmark-deadline`](#mark-deadline-as-undone--unmark-deadline)
-* [Find Deadline `find-deadline`](#find-deadlines-find-deadline)
-* [Undo `undo`](#undo--undo)
-* [Redo `redo`](#redo--redo)
-* [Help `help`](#viewing-help--help)
-* [Clear entries `clear`](#clearing-all-entries--clear)
-* [Exit program `exit`](#exiting-the-program--exit)
+*
+    * [Mark deadline as done `mark-deadline`](#mark-deadline-as-done--mark-deadline)
+    * [Mark deadline as undone `unmark-deadline`](#mark-deadline-as-undone--unmark-deadline)
+    * [Undo `undo`](#undo--undo)
+    * [Redo `redo`](#redo--redo)
+    * [Help `help`](#viewing-help--help)
+    * [Clear entries `clear`](#clearing-all-entries--clear)
+    * [Exit program `exit`](#exiting-the-program--exit)
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
@@ -72,6 +72,7 @@ Confused about the terms or formatting used in this guide? Learn how to **naviga
 
 Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
 [here](#navigating-the-graphical-user-interface--gui-).
+
 ------------------------------------------------------------------------------------------
 
 ## Navigating this guide
@@ -141,6 +142,7 @@ Here are some notes about these parameters.
 | `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered |                  |
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             |                  |
 
+[Scroll back to Table of Contents](#table-of-contents)
 
 -----------------------------------------------------------------------------------------------
 
@@ -164,6 +166,8 @@ Here are some notes about these parameters.
 5. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
 
 6. Refer to the [Features](#features) below for details of each command.
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -235,6 +239,7 @@ Congratulations! You are now ready to use CodeContact!
 
 To view all our features, you may visit our [Features](#features) section
 
+[Scroll back to Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -277,6 +282,8 @@ When command succeeds, CLI shows:
 Locked all data
 ```
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Unlock `unlock`
 
 Unlocks the system by making all the information visible and allows all commands to be parsed.
@@ -291,6 +298,8 @@ When command succeeds, CLI shows:
 ```
 Unlocked all data
 ```
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Change password `change-password`
 
@@ -308,6 +317,8 @@ When command succeeds, CLI shows:
 ```
 Password changed successfully.
 ```
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Add
 
@@ -357,6 +368,8 @@ Example:
     * Missing particular's error (when prefixes are missing)
         * `Invalid command format!`
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 #### Add Client: `add-client`
 
 * Type in:
@@ -398,6 +411,8 @@ Example:
     * Missing particular's error (when prefixes are missing)
         * `Invalid command format!`
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 #### Add Project: `add-project`
 
 * Type in:
@@ -431,9 +446,11 @@ Example:
     * Missing particular's error (when prefixes are missing)
         * `Invalid command format!`
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Delete
 
-#### Delete developer details : `delete-developer`
+#### Delete developer : `delete-developer`
 
 Deletes developer in the address book.
 
@@ -453,7 +470,7 @@ Example of usage: `delete-client 3`
 
 * Deletes third client in list.
 
-#### Delete project details : `delete-project`
+#### Delete project : `delete-project`
 
 Deletes the details of an existing project in the address book.
 
@@ -462,6 +479,9 @@ Format: `delete-project INDEX`
 Example of usage: `delete-project 2`
 
 * Deletes second project from the list and updates developers and client details accordingly
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 
 ### Edit
 
@@ -498,6 +518,8 @@ Salary: 6999
 Projects: Project1, Project2
 ```
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 #### Edit client details : `edit-client`
 
 Edits the details of an existing client in the address book.
@@ -530,6 +552,8 @@ Document: google.com
 Projects: ProjectA
 ```
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 #### Edit project details : `edit-project`
 
 Edits the details of an existing project in the address book.
@@ -555,6 +579,8 @@ Description: Juice ordering app;
 Deadlines:
 1. Design backend by: 19-12-2023, priority: HIGH (undone)
 ```
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Import information
 
@@ -598,6 +624,8 @@ Projects: ProjectBAndroidApp
 
 for each developer successfully added
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 #### Import clients `import-client`
 
 Takes in a CSV file and populates the internal list of clients if the file is formatted correctly
@@ -638,6 +666,8 @@ Projects: ProjectBAndroidApp
 
 for each client successfully added
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Find
 
 #### Find developer details
@@ -664,6 +694,8 @@ This is the one developer with matching information
 ```
 followed by the matching developer's details in the GUI.
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 #### Find client details
 
 Finds the details of an existing client in the address book.
@@ -687,6 +719,8 @@ When command succeeds, CLI shows:
 These are the 2 clients with matching information
 ```
 followed by the matching clients' details in the GUI.
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 #### Find project details
 
@@ -712,6 +746,8 @@ This is the one project with matching information
 ```
 followed by the matching project's details in the GUI.
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Find deadlines `find-deadline`
 
 Finds deadlines in project tab based on date and/or priority
@@ -730,6 +766,8 @@ When command succeeds, CLI shows:
 ```
 These are the 3 projects with matching information.
 ```
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Listing information : `list`
 
@@ -754,6 +792,8 @@ When command succeeds, CLI shows:
 ```
 Listed all developers
 ```
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Add roles
 
@@ -781,6 +821,8 @@ When command succeeds, CLI shows:
 New role for developer added: UIDesigner
 ```
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 #### Add client roles : `add-client-role`
 
 Adds new client roles into the system.
@@ -804,6 +846,8 @@ When command succeeds, CLI shows:
 ```
 New role for client added: Boss
 ```
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Delete roles
 
@@ -829,6 +873,7 @@ When command succeeds, CLI shows:
 Role for developers deleted: UIDesigner
 ```
 
+[Scroll back to Table of Contents](#table-of-contents)
 
 #### Delete client roles : `delete-client-role`
 
@@ -854,6 +899,7 @@ Role for clients deleted: Boss
 the client tab will be cleared or only showing the clients with role you are deleting.
 Use `list-client` to see all the data again
 
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Mark deadline as done : `mark-deadline`
 
@@ -873,6 +919,8 @@ When command succeeds, CLI shows:
 The deadline has been marked as completed!
 ```
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Mark deadline as undone : `unmark-deadline`
 
 Marks the indicated deadline for the project as undone.
@@ -890,6 +938,8 @@ When command succeeds, CLI shows:
 ```
 The deadline has been marked as undone!
 ```
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Undo : `undo`
 
@@ -920,6 +970,8 @@ Salary: 5000;
 Projects: CustomWebsiteAndroidApp
 ```
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Redo : `redo`
 
 Redo the previous command you undid.
@@ -949,6 +1001,7 @@ Salary: 5000;
 Projects: CustomWebsiteAndroidApp
 ```
 
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Viewing help : `help`
 
@@ -956,17 +1009,23 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Feedback System `[coming in v2.0]`
 
@@ -1009,6 +1068,8 @@ the data of your previous AddressBook home folder.
 **A**: Open a command prompt and type `java -version` . If you do not have Java installed, you
 can download it [here](https://www.oracle.com/java/technologies/downloads/#java11)
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
@@ -1016,6 +1077,8 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
    application before running the application again.
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1035,3 +1098,5 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 | **delete**          | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
 | **list**            | Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`                                                                                                                                                                                     |
 | **help**            | `help`                                                                                                                                                                                                                                                       |
+
+[Scroll back to Table of Contents](#table-of-contents)

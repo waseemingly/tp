@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private int resultTabIndex;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -132,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tabPane = new TabPane();
+        //tabPane = new TabPane();
         // Create tabs
         /*developerTab = new Tab("Developer");
         clientTab = new Tab("Client");
@@ -155,7 +156,21 @@ public class MainWindow extends UiPart<Stage> {
 
         // Add tabs to the TabPane
         tabPane.getTabs().addAll(developerTab, clientTab, projectTab);
-        //tabPane.getSelectionModel().select(1);
+        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() != resultTabIndex) {
+                try {
+                    if (newValue.intValue() == 0) {
+                        executeCommand("list-developer");
+                    } else if (newValue.intValue() == 1) {
+                        executeCommand("list-client");
+                    } else if (newValue.intValue() == 2) {
+                        executeCommand("list-project");
+                    }
+                } catch (CommandException | ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         resultDisplay = new ResultDisplay();
         resultDisplay.setFeedbackToUser("Welcome to CodeContact!\nUnlock to continue.");
@@ -230,7 +245,9 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            tabPane.getSelectionModel().select(commandResult.getIndex());
+            resultTabIndex = commandResult.getIndex();
+            System.out.println("resultTabIndex: " + resultTabIndex);
+            tabPane.getSelectionModel().select(resultTabIndex);
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

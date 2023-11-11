@@ -11,6 +11,7 @@ import seedu.address.logic.commands.find.FindDeadlineCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Date;
@@ -61,12 +62,12 @@ public class FindDeadlineCommandParser implements Parser<FindDeadlineCommand> {
      * @param argMultimap Argument multimap containing user input arguments.
      * @return A predicate for filtering deadlines.
      */
-    private Predicate<Deadline> buildPredicate(ArgumentMultimap argMultimap) {
+    private Predicate<Deadline> buildPredicate(ArgumentMultimap argMultimap) throws ParseException {
         Predicate<Deadline> finalPredicate = deadline -> true;
 
         if (argMultimap.getValue(PREFIX_DATEJOINED).isPresent()) {
             String dateKeywords = argMultimap.getValue(PREFIX_DATEJOINED).get();
-            Date input = new Date(dateKeywords, true);
+            Date input = ParserUtil.parseDateDeadline(dateKeywords);
             finalPredicate =
                     finalPredicate.and(d -> !d.getDate().value.after(input.value));
             // Replace with your DateJoinedPredicate
@@ -74,7 +75,7 @@ public class FindDeadlineCommandParser implements Parser<FindDeadlineCommand> {
 
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             String priorityKeywords = argMultimap.getValue(PREFIX_PRIORITY).get();
-            Priority input = Priority.valueOf(priorityKeywords);
+            Priority input = ParserUtil.parsePriority(priorityKeywords);
             finalPredicate = finalPredicate.and(d -> d.getPriority().equals(input));
             // Replace with your PriorityPredicate
         }
