@@ -120,8 +120,12 @@ public class CommandTestUtil {
     public static final String GITHUBID_DEC_BOB = " " + PREFIX_GITHUBID + VALID_GITHUBID_BOB;
     public static final String RATING_DEC_AMY = " " + PREFIX_RATING + VALID_RATING_AMY;
     public static final String RATING_DEC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
+    public static final String ORGANISATION_DESC_AMY = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_AMY;
+    public static final String ORGANISATION_DESC_BOB = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_BOB;
     public static final String ORGANISATION_DESC_CALEB = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_CALEB;
     public static final String ORGANISATION_DESC_DAN = " " + PREFIX_ORGANISATION + VALID_ORGANISATION_DAN;
+    public static final String DOCUMENT_DESC_AMY = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_AMY;
+    public static final String DOCUMENT_DESC_BOB = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_BOB;
     public static final String DOCUMENT_DESC_CALEB = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_CALEB;
     public static final String DOCUMENT_DESC_DAN = " " + PREFIX_DOCUMENT + VALID_DOCUMENT_DAN;
 
