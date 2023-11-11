@@ -25,7 +25,7 @@ public class AddDeveloperRoleCommand extends Command {
             + "Example: " + PREFIX_ROLE + "Developer ";
 
     public static final String MESSAGE_SUCCESS = "New role for developer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DEVELOPER = "This developer role already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_DEVELOPER = "This developer role already exists in the address book!";
     private final String toAdd;
 
     /**
