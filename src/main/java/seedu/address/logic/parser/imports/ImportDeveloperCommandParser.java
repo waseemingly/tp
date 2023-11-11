@@ -43,9 +43,6 @@ public class ImportDeveloperCommandParser implements Parser<ImportDeveloperComma
     @Override
     public ImportDeveloperCommand parse(String fileName) throws ParseException {
         try {
-            FileWriter myWriter = new FileWriter("filename.txt");
-            myWriter.write("Files in Java might be tricky, but it is fun enough!");
-            myWriter.close();
             fileName = fileName.trim();
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String line = "";

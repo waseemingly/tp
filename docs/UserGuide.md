@@ -14,43 +14,43 @@ management tasks done faster than traditional GUI apps.
 
 * How can this guide help me?
 * Navigating this guide
-    * Glossary
-        * Definitions
-        * Parameter Information
-            * Common parameters
-            * Developer parameters
-            * Client parameters
-            * Project parameters
-    * Format
-        * General Formatting
-        * Command Format
-* Navigating the Graphical User Interface (GUI)
+    * [Glossary](#glossary)
+        * [Definitions](#definitions)
+        * [Parameter Information](#parameter-information)
+            * [Common parameters](#common-parameters)
+            * [Developer parameters](#developer-parameters)
+            * [Client parameters](#client-parameters)
+            * [Project parameters](#project-parameters)
+    * [Format](#format)
+        * [General Formatting](#general-formatting)
+        * [Command Format](#command-format)
+* [Navigating the Graphical User Interface (GUI)](#navigating-the-graphical-user-interface--gui-)
 * [Quick Start](#quick-start)
 * [CodeContact Tutorial](#codecontact-tutorial--for-new-users-)
 * [Features](#features)
+    * [Lock `lock`](#lock-lock)
+    * [Unlock `unlock`](#unlock-unlock)
+    * [Change password `change-password`](#change-password-change-password)
 
-| Description                    |                                 Developer                                 |                              Client                              |     Project      |
-|:-------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:----------------:|
-| Adding new information         |                              `add-developer`                              |                           `add-client`                           |  `add-project`   |
-| Editing information            |                             `edit-developer`                              |                          `edit-client`                           |  `edit-project`  |
-| Importing information          |                            `import-developer`                             |                         `import-client`                          |        -         |
-| Deleting information           |                            `delete-developer`                             |                         `delete-client`                          | `delete-project` |
-| Finding information            |                             `find-developer`                              |                          `find-client`                           |  `find-project`  |
-| Listing information            |                             `list-developer`                              |                          `list-client`                           |  `list-project`  |
-| [Adding new role](#add-roles)  |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |        -         |
-| [Deleting role](#delete-roles) | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |        -         |
+| Description                                       |                                 Developer                                 |                              Client                              |                                                Project                                                |
+|:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
+| [Adding new information](#add)                    |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                              [`add-project`](#add-project--add-project)                               |
+| [Deleting information](#delete)                   |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                          [`delete-project`](#delete-project--delete-project)                          |
+| [Editing information](#edit)                      |        [`edit-developer`](#edit-developer-details--edit-developer)        |        [`edit-client`](#edit-client-details--edit-client)        |                         [`edit-project`](#edit-project-details--edit-project)                         |
+| [Importing information](#import-information)      |        [`import-developer` ](#import-developers-import-developer)         |         [`import-client`](#import-clients-import-client)         |                                                   -                                                   |
+| [Finding information](#find)                      |                [`find-developer`](#find-developer-details)                |              [`find-client`](#find-client-details)               |       [`find-project`](#find-project-details), [`find-deadline`](#find-deadlines-find-deadline)       |
+| [Listing information](#listing-information--list) |                             `list-developer`                              |                          `list-client`                           |                                            `list-project`                                             |
+| [Adding new role](#add-roles)                     |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |                                                   -                                                   |
+| [Deleting role](#delete-roles)                    | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                   -                                                   |
 
-* [Lock `lock`](#lock-lock)
-* [Unlock `unlock`](#unlock-unlock)
-* [Change password `change-password`](#change-password-change-password)
-* [Mark deadline as done `mark-deadline`](#mark-deadline-as-done--mark-deadline)
-* [Mark deadline as undone `unmark-deadline`](#mark-deadline-as-undone--unmark-deadline)
-* [Find Deadline `find-deadline`](#find-deadlines-find-deadline)
-* [Undo `undo`](#undo--undo)
-* [Redo `redo`](#redo--redo)
-* [Help `help`](#viewing-help--help)
-* [Clear entries `clear`](#clearing-all-entries--clear)
-* [Exit program `exit`](#exiting-the-program--exit)
+*
+    * [Mark deadline as done `mark-deadline`](#mark-deadline-as-done--mark-deadline)
+    * [Mark deadline as undone `unmark-deadline`](#mark-deadline-as-undone--unmark-deadline)
+    * [Undo `undo`](#undo--undo)
+    * [Redo `redo`](#redo--redo)
+    * [Help `help`](#viewing-help--help)
+    * [Clear entries `clear`](#clearing-all-entries--clear)
+    * [Exit program `exit`](#exiting-the-program--exit)
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
@@ -433,7 +433,7 @@ Example:
 
 ### Delete
 
-#### Delete developer details : `delete-developer`
+#### Delete developer : `delete-developer`
 
 Deletes developer in the address book.
 
@@ -453,7 +453,7 @@ Example of usage: `delete-client 3`
 
 * Deletes third client in list.
 
-#### Delete project details : `delete-project`
+#### Delete project : `delete-project`
 
 Deletes the details of an existing project in the address book.
 

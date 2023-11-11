@@ -9,6 +9,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TabIndex;
+import seedu.address.logic.commands.add.AddClientCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
@@ -23,7 +24,6 @@ public class ImportClientCommand extends Command {
             + "Column titles should follow this format strictly:\n"
             + "Name, Contact Number, Email, Address, Role, Organisation, Document, Projects";
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = " is a client that already exists in the address book\n";
 
     private final ArrayList<Client> toAddList;
 
@@ -52,13 +52,8 @@ public class ImportClientCommand extends Command {
         requireNonNull(model);
         String output = "";
         for (Client toAdd : toAddList) {
-            if (model.hasClient(toAdd)) {
-                output += toAdd.getName().fullName + MESSAGE_DUPLICATE_CLIENT;
-            } else {
-                model.addClient(toAdd);
-                output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
-            }
-            output += "\n";
+            CommandResult result = new AddClientCommand(toAdd).execute(model);
+            output += result.getFeedbackToUser()+"\n";
         }
         return new CommandResult(output, TabIndex.Client);
     }

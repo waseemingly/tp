@@ -26,6 +26,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
 
 /**
@@ -187,6 +188,14 @@ public class ParserUtil {
         }
         return new Date(trimmedDateJoined, false);
     }
+    public static Date parseDateDeadline(String dateJoined) throws ParseException {
+        requireNonNull(dateJoined);
+        String trimmedDateJoined = dateJoined.trim();
+        if (!Date.isValidDate(trimmedDateJoined, true)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDateJoined, true);
+    }
 
 
     /**
@@ -313,5 +322,12 @@ public class ParserUtil {
             throw new ParseException(Password.MESSAGE_CONSTRAINTS);
         }
         return trimmedPw;
+    }
+
+    public static Priority parsePriority(String priorityKeywords) throws ParseException{
+        if(!(priorityKeywords.equals("HIGH")||priorityKeywords.equals("MEDIUM")||priorityKeywords.equals("LOW"))) {
+            throw new ParseException("Priority has to be HIGH, MEDIUM or LOW");
+        }
+        return Priority.valueOf(priorityKeywords);
     }
 }
