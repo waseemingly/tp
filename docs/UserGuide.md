@@ -766,6 +766,9 @@ Format: `add-developer-role ROLE_NAME`
 * Adds the ROLE_NAME to list of developer roles.
 * There are 3 preset roles in the list of roles: `Frontend Developer`,`Backend Developer`,`Developer`.
 * You will not be able to add a developer to a role that does not exist in this list of developer roles.
+* ❗Note: This command is **not** case-sensitive, even if `Developer` is a role, `developer` can still be added.
+* If you wish to check what roles are there, you can key in `delete-developer-role <anything random>`, `<anything
+  random>` should not be an existing role.
 
 Examples of usage:`add-developer-role UIDesigner`
 
@@ -778,9 +781,6 @@ When command succeeds, CLI shows:
 New role for developer added: UIDesigner
 ```
 
-Relevant UI mock-ups: <br>
-![Ui](images/addDeveloperRole.png)
-
 #### Add client roles : `add-client-role`
 
 Adds new client roles into the system.
@@ -790,6 +790,9 @@ Format: `add-client-role ROLE_NAME`
 * Adds the ROLE_NAME to list of client roles.
 * There are 4 preset roles in the list of roles: `HR`,`Manager`,`Developer`,`Client`.
 * You will not be able to add a client to a role that does not exist in this list of client roles.
+* * ❗Note: This command is **not** case-sensitive, even if `HR` is a role, `hr` can still be added.
+* If you wish to check what roles are there, you can key in `delete-client-role <anything random>`, `<anything
+  random>` should not be an existing role.
 
 Examples of usage:`add-client-role Boss`
 
@@ -801,9 +804,6 @@ When command succeeds, CLI shows:
 ```
 New role for client added: Boss
 ```
-
-Relevant UI mock-ups: <br>
-![Ui](images/addClientRole.png)
 
 ### Delete roles
 
@@ -820,7 +820,7 @@ Format: `delete-developer-role ROLE_NAME`
 
 Examples of usage:`delete-developer-role UI Manager`
 
-* Deletes the UIDesigner from the list of developer roles.
+* Deletes the UI Manager from the list of developer roles.
 * You can no longer add developers with UIDesigner as their roles.
 
 When command succeeds, CLI shows:
@@ -828,14 +828,7 @@ When command succeeds, CLI shows:
 ```
 Role for developers deleted: UIDesigner
 ```
-❗Note: When this command is deleted, regardless if it was a successful delete,
-the developer tab will be cleared or only showing the developers with role you are deleting.
-Use `list-developer` to see all the data again
 
-Relevant UI mock-ups: <br>
-![Ui](images/deleteDeveloperRole.png) <br>
-If there are still developers with this Role:
-![Ui](images/deleteDeveloperRoleErr.png)
 
 #### Delete client roles : `delete-client-role`
 
@@ -861,10 +854,6 @@ Role for clients deleted: Boss
 the client tab will be cleared or only showing the clients with role you are deleting.
 Use `list-client` to see all the data again
 
-Relevant UI mock-ups: <br>
-![Ui](images/deleteClientRole.png) <br>
-If there are still clients with this Role:
-![Ui](images/deleteClientRoleErr.png)
 
 ### Mark deadline as done : `mark-deadline`
 
@@ -931,9 +920,6 @@ Salary: 5000;
 Projects: CustomWebsiteAndroidApp
 ```
 
-Relevant UI mock-ups: <br>
-![Ui](images/undo.png)
-
 ### Redo : `redo`
 
 Redo the previous command you undid.
@@ -963,8 +949,6 @@ Salary: 5000;
 Projects: CustomWebsiteAndroidApp
 ```
 
-Relevant UI mock-ups: <br>
-![Ui](images/redo.png)
 
 ### Viewing help : `help`
 

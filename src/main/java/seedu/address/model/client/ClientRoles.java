@@ -121,10 +121,9 @@ public class ClientRoles {
         }
 
         // check if role is in the list
-
         boolean roleExists = false;
         for (ClientRoles cliRoles : roles) {
-            if (cliRoles.toString().equalsIgnoreCase(role)) {
+            if (cliRoles.toString().equals(role)) {
                 roleExists = true;
                 break; // You can break early once a match is found
             }

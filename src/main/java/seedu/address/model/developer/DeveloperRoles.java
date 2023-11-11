@@ -122,7 +122,7 @@ public class DeveloperRoles {
 
         boolean roleExists = false;
         for (DeveloperRoles devRoles : roles) {
-            if (devRoles.toString().equalsIgnoreCase(role)) {
+            if (devRoles.toString().equals(role)) {
                 roleExists = true;
                 break; // You can break early once a match is found
             }
