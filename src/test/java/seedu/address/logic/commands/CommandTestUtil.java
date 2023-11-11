@@ -191,6 +191,16 @@ public class CommandTestUtil {
                 false, TabIndex.Developer);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertProjectCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
+                false, TabIndex.Project);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>

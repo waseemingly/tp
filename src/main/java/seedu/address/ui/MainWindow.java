@@ -16,7 +16,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.TabIndex;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -158,8 +157,8 @@ public class MainWindow extends UiPart<Stage> {
         // Add tabs to the TabPane
         tabPane.getTabs().addAll(developerTab, clientTab, projectTab);
         tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue.intValue() != resultTabIndex) {
-                try{
+            if (newValue.intValue() != resultTabIndex) {
+                try {
                     if (newValue.intValue() == 0) {
                         executeCommand("list-developer");
                     } else if (newValue.intValue() == 1) {
@@ -246,7 +245,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            resultTabIndex =commandResult.getIndex();
+            resultTabIndex = commandResult.getIndex();
             System.out.println("resultTabIndex: " + resultTabIndex);
             tabPane.getSelectionModel().select(resultTabIndex);
             if (commandResult.isShowHelp()) {

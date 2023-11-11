@@ -188,6 +188,13 @@ public class ParserUtil {
         }
         return new Date(trimmedDateJoined, false);
     }
+
+    /**
+     * Parses a {@code String dateDeadline} into a {@code DateDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code DateDeadline} is invalid.
+     */
     public static Date parseDateDeadline(String dateJoined) throws ParseException {
         requireNonNull(dateJoined);
         String trimmedDateJoined = dateJoined.trim();
@@ -324,8 +331,15 @@ public class ParserUtil {
         return trimmedPw;
     }
 
-    public static Priority parsePriority(String priorityKeywords) throws ParseException{
-        if(!(priorityKeywords.equals("HIGH")||priorityKeywords.equals("MEDIUM")||priorityKeywords.equals("LOW"))) {
+    /**
+     * Parses a priority string and returns the corresponding Priority enum.
+     *
+     * @param priorityKeywords The priority string to be parsed.
+     * @return The corresponding Priority enum.
+     * @throws ParseException If the input string is not a valid priority.
+     */
+    public static Priority parsePriority(String priorityKeywords) throws ParseException {
+        if (!(priorityKeywords.equals("HIGH") || priorityKeywords.equals("MEDIUM") || priorityKeywords.equals("LOW"))) {
             throw new ParseException("Priority has to be HIGH, MEDIUM or LOW");
         }
         return Priority.valueOf(priorityKeywords);

@@ -60,7 +60,7 @@ public class DeleteDeveloperRoleCommand extends Command {
                         + DeveloperRoles.printRoles());
             } else if (!DeveloperRoles.isNotDefault()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_PREXISTS);
-            } else if (!DeveloperRoles.isNoRepeat() ) {
+            } else if (!DeveloperRoles.isNoRepeat()) {
                 throw new CommandException(MESSAGE_CANNOT_DELETE_REPEAT);
             }
         }

@@ -6,7 +6,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_FILE;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
