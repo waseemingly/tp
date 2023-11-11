@@ -1,33 +1,35 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.edit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CALEB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_DAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CALEB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showDeveloperAtIndex;
-import static seedu.address.testutil.TypicalDevelopers.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
+import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.edit.EditDeveloperCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.developer.Developer;
-import seedu.address.testutil.DeveloperBuilder;
-import seedu.address.testutil.EditDeveloperDescriptorBuilder;
+import seedu.address.model.client.Client;
+import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.EditClientDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditDeveloperCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditClientCommand.
  */
 public class EditClientCommandTest {
 
@@ -35,16 +37,16 @@ public class EditClientCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Developer editedDeveloper = new DeveloperBuilder().build();
-        EditDeveloperCommand.EditDeveloperDescriptor descriptor = new EditDeveloperDescriptorBuilder(editedDeveloper)
+        Client editedClient = new ClientBuilder().build();
+        EditClientCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder(editedClient)
                 .build();
-        EditDeveloperCommand editCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON, descriptor);
+        EditClientCommand editCommand = new EditClientCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditDeveloperCommand.MESSAGE_EDIT_DEVELOPER_SUCCESS,
-                Messages.format(editedDeveloper));
+        String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS,
+                Messages.format(editedClient));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setDeveloper(model.getFilteredDeveloperList().get(0), editedDeveloper);
+        expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -109,35 +111,35 @@ public class EditClientCommandTest {
     }*/
 
     @Test
-    public void execute_duplicateDeveloperUnfilteredList_failure() {
-        Developer firstDeveloper = model.getFilteredDeveloperList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditDeveloperCommand.EditDeveloperDescriptor descriptor = new EditDeveloperDescriptorBuilder(firstDeveloper)
+    public void execute_duplicateClientUnfilteredList_failure() {
+        Client firstClient = model.getFilteredClientList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditClientCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder(firstClient)
                 .build();
-        EditDeveloperCommand editCommand = new EditDeveloperCommand(INDEX_SECOND_PERSON, descriptor);
+        EditClientCommand editCommand = new EditClientCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER);
+        assertCommandFailure(editCommand, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
-    public void execute_duplicateDeveloperFilteredList_failure() {
-        showDeveloperAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_duplicateClientFilteredList_failure() {
+        showClientAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit developer in filtered list into a duplicate in address book
-        Developer developerInList = model.getAddressBook().getDeveloperList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditDeveloperCommand editCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON,
-                new EditDeveloperDescriptorBuilder(developerInList).build());
+        // edit client in filtered list into a duplicate in address book
+        Client clientInList = model.getAddressBook().getClientList().get(INDEX_SECOND_PERSON.getZeroBased());
+        EditClientCommand editCommand = new EditClientCommand(INDEX_FIRST_PERSON,
+                new EditClientDescriptorBuilder(clientInList).build());
 
-        assertCommandFailure(editCommand, model, EditDeveloperCommand.MESSAGE_DUPLICATE_DEVELOPER);
+        assertCommandFailure(editCommand, model, EditClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
-    public void execute_invalidDeveloperIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredDeveloperList().size() + 1);
-        EditDeveloperCommand.EditDeveloperDescriptor descriptor = new EditDeveloperDescriptorBuilder()
-                .withName(VALID_NAME_BOB).build();
-        EditDeveloperCommand editCommand = new EditDeveloperCommand(outOfBoundIndex, descriptor);
+    public void execute_invalidClientIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
+        EditClientCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
+                .withName(VALID_NAME_CALEB).build();
+        EditClientCommand editCommand = new EditClientCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -145,26 +147,25 @@ public class EditClientCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidDeveloperIndexFilteredList_failure() {
-        showDeveloperAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_invalidClientIndexFilteredList_failure() {
+        showClientAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getDeveloperList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getClientList().size());
 
-        EditDeveloperCommand editCommand = new EditDeveloperCommand(outOfBoundIndex,
-                new EditDeveloperDescriptorBuilder().withName(VALID_NAME_BOB).build());
+        EditClientCommand editCommand = new EditClientCommand(outOfBoundIndex,
+                new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditDeveloperCommand standardCommand = new EditDeveloperCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditClientCommand standardCommand = new EditClientCommand(INDEX_FIRST_PERSON, DESC_CALEB);
 
         // same values -> returns true
-        EditDeveloperCommand.EditDeveloperDescriptor copyDescriptor = new EditDeveloperCommand
-                .EditDeveloperDescriptor(DESC_AMY);
-        EditDeveloperCommand commandWithSameValues = new EditDeveloperCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditClientCommand.EditClientDescriptor copyDescriptor = new EditClientCommand.EditClientDescriptor(DESC_CALEB);
+        EditClientCommand commandWithSameValues = new EditClientCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
@@ -174,24 +175,24 @@ public class EditClientCommandTest {
         assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertNotEquals(standardCommand, new ClearCommand());
+        Assertions.assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertNotEquals(standardCommand, new EditDeveloperCommand(INDEX_SECOND_PERSON, DESC_AMY));
+        assertNotEquals(standardCommand, new EditClientCommand(INDEX_SECOND_PERSON, DESC_CALEB));
 
         // different descriptor -> returns false
-        assertNotEquals(standardCommand, new EditDeveloperCommand(INDEX_FIRST_PERSON, DESC_BOB));
+        assertNotEquals(standardCommand, new EditClientCommand(INDEX_FIRST_PERSON, DESC_DAN));
     }
 
     @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
-        EditDeveloperCommand.EditDeveloperDescriptor editDeveloperDescriptor = new EditDeveloperCommand
-                .EditDeveloperDescriptor();
-        EditDeveloperCommand editCommand = new EditDeveloperCommand(index, editDeveloperDescriptor);
-        String expected = EditDeveloperCommand.class.getCanonicalName() + "{index=" + index
-                + ", editDeveloperDescriptor="
-                + editDeveloperDescriptor + "}";
+        EditClientCommand.EditClientDescriptor editClientDescriptor = new EditClientCommand
+                .EditClientDescriptor();
+        EditClientCommand editCommand = new EditClientCommand(index, editClientDescriptor);
+        String expected = EditClientCommand.class.getCanonicalName() + "{index=" + index
+                + ", editClientDescriptor="
+                + editClientDescriptor + "}";
         assertEquals(expected, editCommand.toString());
     }
 }

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.edit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -13,10 +13,12 @@ import static seedu.address.testutil.TypicalDevelopers.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.edit.EditDeveloperCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -177,7 +179,7 @@ public class EditDeveloperCommandTest {
         assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertNotEquals(standardCommand, new ClearCommand());
+        Assertions.assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
         assertNotEquals(standardCommand, new EditDeveloperCommand(INDEX_SECOND_PERSON, DESC_AMY));
