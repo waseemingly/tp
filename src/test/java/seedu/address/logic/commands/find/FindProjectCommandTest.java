@@ -66,12 +66,12 @@ public class FindProjectCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleProjectsFound() {
-        String expectedMessage = "These are the 3 projects with matching information.";
+        String expectedMessage = "These are the 4 projects with matching information.";
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("Project A B C");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_C), model.getFilteredProjectList());
+        assertEquals(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_C, PROJECT_A_NO_SPACING), model.getFilteredProjectList());
     }
 
     @Test
@@ -85,12 +85,12 @@ public class FindProjectCommandTest {
 
     @Test
     public void execute_caseInsensitiveSearch_projectFound() {
-        String expectedMessage = "This is the 1 project with matching information.";
+        String expectedMessage = "These are the 2 projects with matching information.";
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("a"); // using mixed case
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROJECT_A), model.getFilteredProjectList());
+        assertEquals(Arrays.asList(PROJECT_A, PROJECT_A_NO_SPACING), model.getFilteredProjectList());
     }
 
 
