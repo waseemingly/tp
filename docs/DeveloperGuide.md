@@ -33,7 +33,7 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up and getting started**
-    
+
 * Refer to the guide [Setting up and getting started](https://ay2324s1-cs2103t-t09-2.github.io/tp/SettingUp.html).
 --------------------------------------------------------------------------------------------------------------------
 ## **Design**
@@ -60,7 +60,7 @@ Given below is a quick overview of main components and how they interact with ea
     * [**`Logic`**](#logic-component): The command executor.
     * [**`Model`**](#model-component): Holds the data of the App in memory.
     * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-      
+
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 **How the architecture components interact with each other**
@@ -287,8 +287,8 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 > :information_source: **Note:** The following sequence diagram provides an overview of how the find operation is executed:
 
 	@@ -295,48 +383,64 @@ The following sequence diagram provides an overview of how the find operation is
-    
-    
+
+
 ![Interactions Inside the Logic Component for the `find-developer n/alice` Command](images/FindDeveloperSequenceDiagram.png)
 **Aspect:** Implementation of the predicate map:
 
