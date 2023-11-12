@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_CALEB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CALEB;
+import static seedu.address.logic.commands.CommandTestUtil.assertClientCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
@@ -48,7 +49,7 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertClientCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     // Project needs to be created

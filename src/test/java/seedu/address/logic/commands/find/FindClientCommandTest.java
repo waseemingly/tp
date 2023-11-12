@@ -2,6 +2,7 @@ package seedu.address.logic.commands.find;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertClientCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BENSON;
@@ -61,7 +62,7 @@ public class FindClientCommandTest {
         NameClientContainsKeywordsPredicate predicate = prepareNamePredicate("hii");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertClientCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
 
@@ -71,7 +72,7 @@ public class FindClientCommandTest {
         NameClientContainsKeywordsPredicate predicate = prepareNamePredicate("Alice Benson Carl");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertClientCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, CARL), model.getFilteredClientList());
     }
 
@@ -90,7 +91,7 @@ public class FindClientCommandTest {
         OrganisationContainsKeywordsPredicate predicate = prepareOrganisationPredicate("Microsoft"); // using mixed case
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertClientCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL), model.getFilteredClientList());
     }
 
@@ -100,7 +101,7 @@ public class FindClientCommandTest {
         NameClientContainsKeywordsPredicate predicate = prepareNamePredicate("rl");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertClientCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL), model.getFilteredClientList());
     }
 
@@ -110,7 +111,7 @@ public class FindClientCommandTest {
         NameClientContainsKeywordsPredicate predicate = prepareNamePredicate("NonExistentClient");
         FindClientCommand command = new FindClientCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertClientCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
 
