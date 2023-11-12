@@ -2,18 +2,41 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+## Table of Contents
+* [Acknowledgements](#acknowledgements)
+* [Setting up and getting started](#setting-up-and-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI Component](#ui-component)
+  * [Logic Component](#logic-component)
+  * [Model Component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common Classes](#common-classes)
+* [Implementation](#implementation)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+  * [Product Scope](#project-scope)
+  * [User Stories](#user-stories)
+  * [Use Cases](#use-cases)
+  * [Non Functional Requirements](#non-functional-requirements)
+  * [Glossary]
+* [Appendix: Manual Testing](#appendix-manual-testing)
+* [Appendix: Planned Enhancements](#appendix-planned-enhancement)
+* [Appendix: Effort](#appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
-
+* Adapted from [AB3](https://se-education.org/addressbook-level3/)
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
-	@@ -23,7 +25,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
+## **Setting up and getting started**
+
+* Refer to the guide [Setting up and getting started](https://ay2324s1-cs2103t-t09-2.github.io/tp/SettingUp.html).
+--------------------------------------------------------------------------------------------------------------------
+## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -21,15 +44,24 @@ title: Developer Guide
 </div>
 
 ### Architecture
-	@@ -36,7 +40,11 @@ Given below is a quick overview of main components and how they interact with ea
+<img src="images/ArchitectureDiagram.png" width="280" />
+
+The **Architecture Diagram** given above explains the high-level design of the App.
+
+Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
 **`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
+* The bulk of the app's work is done by the following four components:
+    * [**`UI`**](#ui-component): The UI of the App.
+    * [**`Logic`**](#logic-component): The command executor.
+    * [**`Model`**](#model-component): Holds the data of the App in memory.
+    * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-	@@ -51,30 +59,43 @@ The bulk of the app's work is done by the following four components:
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 **How the architecture components interact with each other**
 
@@ -48,6 +80,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -59,8 +92,11 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
-	@@ -85,13 +106,15 @@ The `UI` component,
+The UI component,
+* executes user commands using the Logic component.
+* listens for changes to Model data so that the UI can be updated with the modified data.
+* keeps a reference to the Logic component, because the UI relies on the Logic to execute commands.
+* depends on some classes in the Model component, as it displays Person object residing in the Model.
 
 ### Logic component
 
@@ -74,7 +110,8 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-	@@ -100,8 +123,10 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 How the `Logic` component works:
 
@@ -83,7 +120,7 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to delete a developer).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-    @@ -110,39 +135,56 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
@@ -123,8 +160,65 @@ The `Storage` component,
 
 ### Common classes
 
-	@@ -155,57 +197,78 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
+Classes used by multiple components are in the `seedu.address.commons` package.
+
 This section describes some noteworthy details on how certain features are implemented.
+
+--------------------------------------------------------------------------------------------------------------------
+## Implementation
+### Add features
+Upon entry of the add developer command, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+
+Given below is an example usage scenario of how the add developer is executed step by step.
+
+The following sequence diagram illustrates how the add developer operation works
+#### Implementation
+#### Design considerations
+
+
+### Delete features
+Deletes a developer at the specified **one-based index** of list of currently existing/found developers. Users are able to delete any developer in the list. If an index larger than or equal to the size of the developer’s list is provided, the command will not be allowed and an error will be thrown to alert user.
+
+Example Use: `del-d 1`
+#### Implementation
+Upon entry of the delete developer command, a `DeleteDeveloperCommand` class is created. The `DeleteDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the doctor at specified **one-based index** is removed if the index provided is valid.
+
+Given below is an example usage scenario of how the delete developer command behaves at each step.
+Step 2. User executes `del-d 1` to delete the developer at index 1 (one-based in
+Step 3. The developer at this index is removed if the index provided is valid.
+
+The following sequence diagram illustrates how the delete developer operation works:
+#### Design considerations
+
+
+### Import feature
+This feature will allow project managers to import existing spreadsheets of developer and client data in the specified format in CSV
+#### Implementation
+
+There are 2 implementations: CLI and GUI
+
+##### CLI Implementation
+Upon entry of the import developer command, an `ImportDeveloperCommand` class is created. The `ImportDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a list of `Developer` objects are added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+
+Given below is an example usage scenario of how the import developer is executed step by step.
+
+Step 1. User launches the application
+
+Step 2. User inputs `import-developer developers.csv` to indicate path and filename of where the spreadsheet of developers is located.
+
+Step 3. The developers are added to the model’s list of developers if valid the column names are valid and each row of input is valid.
+
+The implementation follows likewise for clients.
+
+The following sequence diagram illustrates how the add developer operation works:
+
+##### GUI Implementation
+A new menu item will be added under File called `Import developers` and `Import clients`
+
+Clicking it will lead to a window to select the location of the respective file in csv format.
+
+The backend implementation of logic follows the CLI implementation by creating a `ImportDeveloperCommand` or `ImportClientCommand`
+
 
 ### Edit features
 #### Implementation
@@ -169,63 +263,6 @@ automatically switches user to the respective tab.
   * Cons: User needs to ensure that intended tab is open. Allowed parameters are less clearly defined, can lead to
   confusion and mistakes.
 
-### Add Developer Feature
-
-This feature allows users to add a developer to the bottom of the list of currently existing developers. Users are able to add any valid developer to the list. If a record of the same developer already exists in the list, the command will not be allowed and an error will be thrown to alert user.
-
-Example Use: `add-d n/John Doe p/98765432 e/johnd@example.com`
-
-#### Implementation
-
-Upon entry of the add developer command, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
-
-Given below is an example usage scenario of how the add developer is executed step by step.
-
-	@@ -219,13 +282,17 @@ The following sequence diagram illustrates how the add developer operation works
-
-### Delete Developer Feature
-
-Deletes a developer at the specified **one-based index** of list of currently existing/found developers. Users are able to delete any developer in the list. If an index larger than or equal to the size of the developer’s list is provided, the command will not be allowed and an error will be thrown to alert user.
-
-Example Use: `del-d 1`
-
-#### Implementation
-
-Upon entry of the delete developer command, a `DeleteDeveloperCommand` class is created. The `DeleteDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the doctor at specified **one-based index** is removed if the index provided is valid.
-
-Given below is an example usage scenario of how the delete developer command behaves at each step.
-
-	@@ -236,55 +303,76 @@ Step 2. User executes `del-d 1` to delete the developer at index 1 (one-based in
-Step 3. The developer at this index is removed if the index provided is valid.
-
-The following sequence diagram illustrates how the delete developer operation works:
-### \[Proposed\] Import feature
-This feature will allow project managers to import existing spreadsheets of developer and client data in the specified format in CSV
-#### Proposed Implementation
-
-There are 2 implementations: CLI and GUI
-
-##### CLI Implementation
-Upon entry of the import developer command, an `ImportDeveloperCommand` class is created. The `ImportDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a list of `Developer` objects are added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
-
-Given below is an example usage scenario of how the import developer is executed step by step.
-
-Step 1. User launches the application
-
-Step 2. User inputs `import-developer developers.csv` to indicate path and filename of where the spreadsheet of developers is located.
-
-Step 3. The developers are added to the model’s list of developers if valid the column names are valid and each row of input is valid.
-
-The implementation follows likewise for clients.
-
-The following sequence diagram illustrates how the add developer operation works:
-
-##### GUI Implementation
-A new menu item will be added under File called `Import developers` and `Import clients`
-
-Clicking it will lead to a window to select the location of the respective file in csv format.
-
-The backend implementation of logic follows the CLI implementation by creating a `ImportDeveloperCommand` or `ImportClientCommand`
 
 ### Find Feature
 
@@ -250,8 +287,8 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 > :information_source: **Note:** The following sequence diagram provides an overview of how the find operation is executed:
 
 	@@ -295,48 +383,64 @@ The following sequence diagram provides an overview of how the find operation is
-    
-    
+
+
 ![Interactions Inside the Logic Component for the `find-developer n/alice` Command](images/FindDeveloperSequenceDiagram.png)
 **Aspect:** Implementation of the predicate map:
 
@@ -267,9 +304,9 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 Given the benefits of a more maintainable and scalable codebase, we've decided to go with the first alternative. Future enhancements might include fuzzy search.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -300,9 +337,7 @@ Step 4. The user now decides that adding the developer was a mistake, and decide
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-	@@ -353,17 +457,23 @@ The following sequence diagram shows how the undo operation works:
-
-</div>
+The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
@@ -318,7 +353,7 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
-	@@ -376,13 +486,13 @@ The following activity diagram summarizes what happens when a user executes a ne
+The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
@@ -332,16 +367,53 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 
 _{more aspects and alternatives to be added}_
 
-	@@ -416,8 +526,9 @@ _{Explain here how the data archiving feature will be implemented}_
+Explain here how the data archiving feature will be implemented
 * is reasonably comfortable using CLI apps
 * a project manager or someone with similar needs working within a software company
 
 **Value proposition**: CodeContact aims to seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers.
 
+--------------------------------------------------------------------------------------------------------------------
+## **Documentation, logging, testing, configuration, dev-ops**
+* [Documentation guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Documentation.html)
+* [Testing guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Testing.html)
+* [Logging guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Logging.html)
+* [Configuration guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Configuration.html)
+* [DevOps guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/DevOps.html)
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Requirements**
+
+### Project Scope
+**Target user profile**:
+
+* has a need to manage a significant number of colleague contacts internally
+* prefer desktop apps over other types
+* can type fast
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps
+* a project manager or someone with similar needs working within a software company
+
+**Value proposition**: CodeContact aims to seamlessly integrate contact, client, and project management, simplifying
+access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project
+managers.
 
 ### User stories
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely) - `*`
 
-	@@ -440,12 +551,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
+| Priority | As a …​      | I want to …​                                                                                | So that I can…​                                                        |
+|----------|-----------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | project manager | add a list of Developers and their contact information                                         | access contact details easily and quickly assemble teams for new projects |
+| `* * *`  | project manager | add a list of Clients and their contact information                                            | access client details easily and know who is related to what project.     |
+| `* * *`  | project manager | add a list of Projects and their details                                                       | access project details easily and see who is related to the project       |
+| `* * *`  | project manager | delete information about a Client or Developer and the project details will update accordingly | don't repeat deleting several time                                        |
+| `* * *`  | project manager | edit the the details of the Developers added in                                                | constantly update the contact book                                        |
+| `* * *`  | project manager | edit the the details of the Clients added in                                                   | constantly update the contact book                                        |
+| `* * *`  | project manager | edit the the details of the Projects added in                                                  | constantly update any changes to the project                              |
+| `* * *`  | project manager | find the the Developers according to any details they have                                     | source for information related to developers easily                       |
+| `* * *`  | project manager | find the the Clients according to any details they have                                        | source for information related to clients easily                          |
+| `* * *`  | project manager | find the the Projects according to any details they have                                       | source for information related to projects easily                         |
+| `* * *`  | project manager | list different groups of people according to the different commands                            | view projects, clients and developers can be as different lists           |
+| `* * *`  | project manager | switch between tabs for Developers, Clients and Projects                                       | intuitively view the different data lists                                 |
 | `* *`    | project manager |                                                                                                |                                                                           |
 | `* *`    | project manager |                                                                                                |                                                                           |
 
@@ -354,7 +426,6 @@ _{more aspects and alternatives to be added}_
 
 #### **Use case:** UC1 - Add a single employee
 
-	@@ -454,27 +565,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Preconditions:** User is logged in as an HR staff
 
 **Guarantees:**
@@ -381,85 +452,12 @@ _{more aspects and alternatives to be added}_
     Use case ends.
 
 * 3a. The given details are invalid or in an invalid format.
-
-	@@ -486,24 +598,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (not important)
-      Use case resumes at step 4.
-
 * *a. At any time, User chooses to cancel the action.
   * *a1. System requests to confirm the cancellation.
   * *a2. User confirms the cancellation.
 
     Use case ends.
 
-#### **Use case:** UC2 - Logging in as a specific user
-
-**Actor:** Any Employee
-
-**Preconditions:**
-1. The employee has valid login credentials provided by the HR.
-
-**Guarantees:**
-1. User is logged into their account system.
-2. They only have the access rights to the user-specific features (e.g. developers can only modify their personal
-particulars and no other information).
-
-**MSS**
-1. User accesses the login page of the system.
-2. System presents the login page to the user.
-3. User enters their own login credentials and submits to the system.
-   (@@ -513,80 +628,92 @@ particulars and no other information).
-   Use case ends.
-
-**Extensions**
-* 4a. The login credentials are invalid (no record it is created).
-  * 4a1. System informs user there is an error and directs user to seek HR for help.
-
-    Use case ends.
-
-* 4b. The login credentials has an invalid format.
-  * 4b1. System informs user there is an error and requests for correct input.
-  * 4b2. User enters requested details again.
-
-    Step 4b1-4b2 are repeated until details entered are valid.
-
-    Use case resumed at step 5.
-
-#### **Use case:** UC3 - Search for other employee's contacts
-
-**Actor:** Any Employee
-
-**Precondition:**
-1. User is logged in.
-2. System identifies what role the user is (so that no irrelevant information is shown).
-
-**Guarantees:**
-1. User can view the contact information and details of other users based on the
-search keyword.
-2. User can only view relevant information their roles have access rights to.
-
-**MSS**
-1. User requests to search an employee
-2. System requests the keywords for the search.
-3. User enters the requested details in the required format.
-4. System processes the search request and retrieves a list of employees matching the provided criteria.
-5. System displays search results, which include the names of employees who match the search criteria along
-with information that user's role has access rights to.
-
-    Use case ends.
-
-**Extensions**
-* 3a. The search has an invalid type or format.
-  * 3a1. System informs user there is an error and requests for correct input.
-  * 3a2. User enters requested details again.
-
-    Steps 3a1-3a2 are repeated until details entered are valid.
-
-    Use case resumes at step 4.
-
-* 4a. There is no matching list of employees.
-  * 4a1. System informs user that no relevant information is found
-
-    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -487,8 +485,11 @@ reviewing each piece of code before it is merged
 and commits should follow a consistent naming convention.
 * Coding standards and style guidelines shall be defined and followed consistently by all development team members.
 
-*{More to be added}*
-	@@ -611,15 +738,16 @@ testers are expected to do more *exploratory* testing.
+### Glossary
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Manual Testing**
+testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
@@ -528,3 +529,9 @@ and commits should follow a consistent naming convention.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancement**
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**

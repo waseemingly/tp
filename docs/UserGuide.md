@@ -3,15 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
-facilitating collaboration, and offering command-line efficiency for project managers
-
-CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
-having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
-management tasks done faster than traditional GUI apps.
-
 ## Table of Contents
 
+* [Introduction](#introduction)
 * How can this guide help me?
 * Navigating this guide
     * [Glossary](#glossary)
@@ -55,6 +49,15 @@ management tasks done faster than traditional GUI apps.
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
 
+-------------------------------------------------------------------------------------
+## Introduction
+
+Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
+facilitating collaboration, and offering command-line efficiency for project managers
+
+CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
+having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
+management tasks done faster than traditional GUI apps.
 -------------------------------------------------------------------------------------
 
 ## How can this guide help me?
@@ -185,7 +188,9 @@ This is a tutorial for **first-time** CodeContact users.
 
 1. You can **change the password** to unlock CodeContact.
     * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box
-    * ❗Note: You can always lock and unlock CodeContact using the `lock` and `unlock` commands
+   <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+You can always lock and unlock CodeContact using the `lock` and `unlock` commands
+</div>
 
 
 1. Let us try **adding a project** to our CodeContact.
