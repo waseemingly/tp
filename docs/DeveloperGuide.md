@@ -562,40 +562,175 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook`, and the **Actor** is the `user`, unless specified otherwise)unless specified otherwise)
 
-#### **Use case:** UC1 - Add a single employee
 
-**Preconditions:** User is logged in as an HR staff
+#### **Use case:** UC1 - Add a developer
+
+ <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Adding developers and clients works the same way, but with different parameters, hence it will not be repeated </div>
+
+**Preconditions:** User is logged in
 
 **Guarantees:**
-1. A new profile will be added to the company's system after every successful addition
-2. A login credential for the added user will be created
+1. A new developer will be added to the system after every successful addition
 
 **MSS**
 
-1.  User requests to add an employee.
-2.  System requests the details of the employee.
+1.  User requests to add a developer.
+2.  System requests the details of the developer.
 3.  User enters the requested details in the required format.
-4.  System requests for confirmation.
-5.  User confirms.
-6.  System adds the new employee to the company database.
+4.  System validates if user's inputs are valid.
+6.  System adds the developer to the data.
 
        Use case ends.
 
 **Extensions**
 
-* 1a. The request is done by a non-HR staff.
-
-  * 1a1. System informs user that user does not have the access rights to add a new employee.
-
-    Use case ends.
-
 * 3a. The given details are invalid or in an invalid format.
-* *a. At any time, User chooses to cancel the action.
-  * *a1. System requests to confirm the cancellation.
-  * *a2. User confirms the cancellation.
+    * 3a1. System requests for the correct data
+    * 3a2. User enters new data
+<br> Steps 3a1-3a2 are repeated until the data entered are correct.
+<br> Use case resumes from step 4.
+
+#### **Use case:** UC2 - Delete a developer
+ <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Deleting developers and clients works the same way, but with different parameters, hence it will not be repeated </div>
+
+**Preconditions:** User is logged in
+
+**Guarantees:**
+1. A developer deleted from the system after every successful delete
+
+**MSS**
+
+1.  User requests to delete a developer.
+2.  System requests the index of the developer.
+3.  User enters the index of the developer.
+4.  System validates index is valid.
+5.  System deletes the developer to the data.
 
     Use case ends.
 
+**Extensions**
+
+* 3a. The index entered is an invalid number or is not a number.
+    * 3a1. System requests for the correct index
+    * 3a2. User enters new index
+      <br> Steps 3a1-3a2 are repeated until the data entered are correct.
+      <br> Use case resumes from step 4.
+
+#### **Use case:** UCX - Undo
+
+**Preconditions:** User is logged in
+
+**Guarantees:**
+1. The previous command will be undone.
+
+**MSS**
+
+1.  User requests undo.
+2.  System checks if there were any changes before.
+3.  System reverts the change.
+<br> Use case ends.
+
+**Extensions**
+
+* 3a. There are no changes before
+    * 3a1. System informs users they have reached the first step
+    <br> Use case ends
+
+#### **Use case:** UCX - Redo
+
+**Preconditions:** User is logged in
+
+**Guarantees:**
+1. The previous command undone will be redone.
+
+**MSS**
+
+1.  User requests redo.
+2.  System checks if there were anything undone changes before.
+3.  System redoes the change.
+    <br> Use case ends.
+
+**Extensions**
+
+* 3a. There are no undone changes before
+    * 3a1. System inform users they have reached the last step
+      <br> Use case ends
+
+#### **Use case:** UCX - Add developer role
+ <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Adding developer roles and client roles works the same way, hence add client role use case will not be repeated </div>
+
+**Preconditions:** User is logged in
+
+**Guarantees:**
+1. A new developer role will be added.
+
+**MSS**
+
+1. User requests to add a developer role.
+2. User enters the role they want to add.
+3. System validates if user's inputs are valid.
+4. System validates if user's inputs can be added.
+5. System adds the developer to the data.
+
+**Extensions**
+
+* 3a. User enters an empty role
+    * 3a1. System requests for the correct role
+    * 3a2. User enters new role
+      <br> Steps 3a1-3a2 are repeated until the data entered is not empty
+      <br> Use case resumes from step 4.
+
+* 4a. User enters an existing role
+  * 4a1. System informs users this role exists
+  * 4a2. User enters new role
+    <br> Steps 4a1-4a2 are repeated until the data entered is not empty
+    <br> Use case resumes from step 5.
+
+#### **Use case:** UCX - Delete developer role
+ <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Deleting developer roles and client roles works the same way, hence deleting client role use case will not be repeated </div>
+
+**Preconditions:** User is logged in
+
+**Guarantees:**
+1. A developer role will be deleted.
+
+**MSS**
+
+1. User requests to delete a developer role.
+2. User enters the role they want to delete.
+3. System validates if user's inputs are valid.
+4. System validates if user's input can be deleted.
+5. System adds the developer to the data.
+
+**Extensions**
+
+* 3a. User enters an empty role
+    * 3a1. System requests for the correct role
+    * 3a2. User enters correct role
+      <br> Steps 3a1-3a2 are repeated until the data entered is not empty
+      <br> Use case resumes from step 4.
+
+* 4a. User enters a role that some developer is still using
+    * 4a1. System informs users this role cannot be deleted as there are developers using
+    * 4a2. User enters correct role
+      <br> Steps 4a1-4a2 are repeated until the data entered is can be deleted
+      <br> Use case resumes from step 5.
+
+* 4b. User enters a role that doesn't exist
+    * 4b1. System informs users this role don't exist
+    * 4b2. User enters correct role
+      <br> Steps 4a1-4a2 are repeated until the data entered is can be deleted
+      <br> Use case resumes from step 5.
+
+* 4b. User enters a role that cannot be deleted
+    * 4b1. System informs users this role cannot be deleted as it is a pre-defined role
+    * 4b2. User enters correct role
+      <br> Steps 4a1-4a2 are repeated until the data entered can be deleted
+      <br> Use case resumes from step 5.
 
 ### Non-Functional Requirements
 
@@ -667,9 +802,29 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancement**
+
+### Validation checks for edit
+**Current Behavior:** Two developers can have the same address, contact number etc. As long as they don't have the same name
+they can both be added.<br>
+**Enhanced Behavior:** Validation checks should be added for email, contact number and address to make sure there are no 2
+people with repeated the details.
+
+### Case-sensitive validation checks for adding roles
+**Current Behavior:** Two similar roles with different cases can both be added. `Developer` and `developer` can exist at the
+same time.<br>
+**Enhanced Behavior:** Two same words that are only differentiated by case should not be able to be added in as a role.
+
+### Deadlines cannot be any date
+**Current Behavior:** Deadlines for projects can be any date such at year 0001.<br>
+**Enhanced Behavior:** There should be a limit to the deadline line dates like 10-20 years before and after the current date.
+
+### Password Recovery
+**Current Behavior:** If you forgot your password, there is no way to retrieve it
+**Enhanced Behavior:** Links the system to email or have verifications that allows users to reset their password.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**
