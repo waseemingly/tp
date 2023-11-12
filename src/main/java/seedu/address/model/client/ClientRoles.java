@@ -174,7 +174,7 @@ public class ClientRoles {
                 lineCount++;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            saveClientRoles();
         }
 
     }

@@ -26,6 +26,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
 
 /**
@@ -188,6 +189,21 @@ public class ParserUtil {
         return new Date(trimmedDateJoined, false);
     }
 
+    /**
+     * Parses a {@code String dateDeadline} into a {@code DateDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code DateDeadline} is invalid.
+     */
+    public static Date parseDateDeadline(String dateJoined) throws ParseException {
+        requireNonNull(dateJoined);
+        String trimmedDateJoined = dateJoined.trim();
+        if (!Date.isValidDate(trimmedDateJoined, true)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDateJoined, true);
+    }
+
 
     /**
      * Parses a {@code String role} into a {@code Role}.
@@ -313,5 +329,19 @@ public class ParserUtil {
             throw new ParseException(Password.MESSAGE_CONSTRAINTS);
         }
         return trimmedPw;
+    }
+
+    /**
+     * Parses a priority string and returns the corresponding Priority enum.
+     *
+     * @param priorityKeywords The priority string to be parsed.
+     * @return The corresponding Priority enum.
+     * @throws ParseException If the input string is not a valid priority.
+     */
+    public static Priority parsePriority(String priorityKeywords) throws ParseException {
+        if (!(priorityKeywords.equals("HIGH") || priorityKeywords.equals("MEDIUM") || priorityKeywords.equals("LOW"))) {
+            throw new ParseException("Priority has to be HIGH, MEDIUM or LOW");
+        }
+        return Priority.valueOf(priorityKeywords);
     }
 }

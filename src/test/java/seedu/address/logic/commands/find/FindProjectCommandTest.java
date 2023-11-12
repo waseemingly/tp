@@ -2,7 +2,7 @@ package seedu.address.logic.commands.find;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertProjectCommandSuccess;
 import static seedu.address.testutil.TypicalProjects.PROJECT_A;
 import static seedu.address.testutil.TypicalProjects.PROJECT_A_NO_SPACING;
 import static seedu.address.testutil.TypicalProjects.PROJECT_B;
@@ -60,7 +60,7 @@ public class FindProjectCommandTest {
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("hii");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredProjectList());
     }
 
@@ -70,7 +70,7 @@ public class FindProjectCommandTest {
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("Project A B C");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_C, PROJECT_A_NO_SPACING),
                 model.getFilteredProjectList());
     }
@@ -90,7 +90,7 @@ public class FindProjectCommandTest {
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("a"); // using mixed case
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(PROJECT_A, PROJECT_A_NO_SPACING), model.getFilteredProjectList());
     }
 
@@ -101,7 +101,7 @@ public class FindProjectCommandTest {
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("jecta");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(PROJECT_A_NO_SPACING), model.getFilteredProjectList());
     }
 
@@ -111,7 +111,7 @@ public class FindProjectCommandTest {
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("NonExistentProject");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredProjectList());
     }
 
