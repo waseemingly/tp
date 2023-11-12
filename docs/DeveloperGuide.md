@@ -35,6 +35,7 @@ title: Developer Guide
 ## **Setting up and getting started**
 
 * Refer to the guide [Setting up and getting started](https://ay2324s1-cs2103t-t09-2.github.io/tp/SettingUp.html).
+
 --------------------------------------------------------------------------------------------------------------------
 ## **Design**
 
@@ -286,7 +287,7 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 > :information_source: **Note:** The following sequence diagram provides an overview of how the find operation is executed:
 
-	@@ -295,48 +383,64 @@ The following sequence diagram provides an overview of how the find operation is
+The following sequence diagram provides an overview of how the find operation is
 
 
 ![Interactions Inside the Logic Component for the `find-developer n/alice` Command](images/FindDeveloperSequenceDiagram.png)
@@ -374,12 +375,14 @@ Explain here how the data archiving feature will be implemented
 **Value proposition**: CodeContact aims to seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 * [Documentation guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Documentation.html)
 * [Testing guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Testing.html)
 * [Logging guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Logging.html)
 * [Configuration guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Configuration.html)
 * [DevOps guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/DevOps.html)
+
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
 
