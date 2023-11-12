@@ -118,10 +118,10 @@ public class ClientRoles {
         }
 
         // check if this role is one of the defaults
-        if (role.equalsIgnoreCase("Manager")
-                || role.equalsIgnoreCase("Developer")
-                || role.equalsIgnoreCase("HR")
-                || role.equalsIgnoreCase("Client")) {
+        if (role.equals("Manager")
+                || role.equals("Developer")
+                || role.equals("HR")
+                || role.equals("Client")) {
             notDefault = false;
         } else {
             notDefault = true;
