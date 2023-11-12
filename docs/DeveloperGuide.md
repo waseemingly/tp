@@ -291,8 +291,8 @@ The following sequence diagram provides an overview of how the find operation is
 
 
 ![Interactions Inside the Logic Component for the `find-developer n/alice` Command](images/FindDeveloperSequenceDiagram.png)
-**Aspect:** Implementation of the predicate map:
 
+**Aspect:** Implementation of the predicate map:<br>
 **Alternative 1:**
 - Use a long chain of `if-else` conditions for each attribute.
     - **Pros:** Explicit parsing logic for each attribute.
@@ -310,7 +310,8 @@ Given the benefits of a more maintainable and scalable codebase, we've decided t
 #### Implementation
 The list command employs a structured approach where specific commands, such as `list-developer` or `list-client`
 are associated with corresponding functionalities. This allows users to efficiently retrieve
-information about developers, clients or proejects by specifying the relevant prefix, streamlining the process of generating targeted lists based on user input.
+information about developers, clients or projects by specifying the relevant prefix, streamlining the process of
+generating targeted lists based on user input.
 
 Implemented operations include: 
 * `<TYPE>` here refers to developer, client or project
@@ -319,8 +320,9 @@ relevant lists of data
 * `Model#updateFiltered<TYPE>List`: Update the list displayed in the UI to print all the existing developers
 ,clients or projects.
 
-Given below is an example usage scenario and how the find mechanism behaves at each step:
-**Step 1** The user used the `find` feature to search for something and the UI is only displaying some of the 
+Given below is an example usage scenario and how the `list` mechanism behaves at each step:
+
+**Step 1** The user used the `find` feature to search for something and the UI is only displaying some
 developers
 
 **Step 2** To list all the developers, the user executes the command `list-developer`. `AddressBookParser`
@@ -352,7 +354,7 @@ Additionally, it implements the following operations:
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the `undo`/`redo` mechanism behaves at each step.
 
 **Step 1** The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
@@ -394,7 +396,6 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 
-
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
@@ -409,7 +410,94 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
     execute the `delete-developer-role function`. The process of this implementation had to be very careful just like
     what the cons mentioned, a slight validation error can change the whole `undo` and `redo` feature.
 
-  * _{more aspects and alternatives to be added}_
+### Add-role feature
+#### Implementation
+The add role command employs a structured approach where specific commands, such as `add-developer-role` or
+`add-client-role`are associated with corresponding functionalities. This allows users to efficiently add
+information about developers and clients. One of the validation checks when adding a developer or client is that this role
+added must exist. This is where users will need this command to add in the respective roles. This feature is facilitated
+with the `DeveloperRoles` and `ClientRoles` class which implements the following operations:
+
+* `DeveloperRoles#addDeveloperRole()`  —  Adds a developer role into the list of roles stored
+* `DeveloperRoles#saveDeveloperRoles()`  —  Saves the updated list of developer roles
+* `DeveloperRoles#loadDeveloperRoles()`  —  Loads the existing list of developer roles from file
+* `DeveloperRoles#isValidRole()`  —  Checks if this role being added exists already
+
+The classes are similar for `ClientRoles` but just that they are associated with the clients.
+
+Given below is an example usage scenario and how the `add-developer-role` mechanism behaves at each step:
+
+**Step 1**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
+
+**Step 2**  The user executes the command `add-developer-role Tester`. The application recognizes the `add-developer-role`
+and calls `AddDeveloperRoleCommandParser#parse()`.
+
+**Step 3** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
+trimmed to `Tester` and calls `AddDeveloperRoleCommand`.
+
+**Step 4** `AddDeveloperRoleCommand#execute()` checks if there is an existing role with the same name and creates
+a new developer role if there is no such role.
+
+ <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Although no changes is made to the address book, but this stage is still committed so that the success command
+message and tab index switched to can be changed, the currentPointer can also note that there is an action done here.</div>
+
+ <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+This is not a case-sensitive feature. The command allows users to add `developer` even if `Developer` exists. </div>
+
+The following sequence diagram shows how the Add-role operation works:
+![SequenceDiagram](images/AddDeveloperRoleSequenceDiagram.png)
+
+**Aspect: How add-role executes:**
+* **Alternative 1 (current choice):** Treat role as a variable, has a separate load and unload list
+    * Pros: Role can just be treated as an attributed that needs more validation checks
+    * Cons: Have to load and unload each time system relaunches, quite time and memory consuming
+
+* **Alternative 2:** Treating role like another person or project, adding roles are like adding projects
+    * Pros: Easy to implement.
+    * Cons: Roles would have to be implemented on the same level as developers, clients and projects which should not be case.
+
+
+### Delete-role feature
+#### Implementation
+The add role command employs a structured approach where specific commands, such as `delete-developer-role` or
+`delete-client-role`are associated with corresponding functionalities. This allows users to efficiently delete
+information about developers and clients that they no longer need.The system helps you to check if there are any
+developers or clients in the list using this feature. If there is, the command will not be successfully executed.
+This feature is facilitated with the `DeveloperRoles` and `ClientRoles` class which implements the following operations:
+
+* `DeveloperRoles#deleteDeveloperRole()`  —  Deletes a developer role into the list of roles stored
+* `DeveloperRoles#saveDeveloperRoles()`  —  Saves the updated list of developer roles
+* `DeveloperRoles#loadDeveloperRoles()`  —  Loads the existing list of developer roles from file
+* `DeveloperRoles#isRemovableRole()`  —  Checks if this role can be deleted; It should not be a pre-determined role,
+it should not be a non-existing role, it should not be a role that is in use.
+
+The classes are similar for `ClientRoles` but just that they are associated with the clients.
+
+Given below is an example usage scenario and how the `delete-developer-role` mechanism behaves at each step:
+
+**Step 1**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
+
+**Step 2**  The user executes the command `delete-developer-role Tester`. The application recognizes the `delete-developer-role`
+and calls `DeleteDeveloperRoleCommandParser#parse()`.
+
+**Step 3** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
+trimmed to `Tester` and calls `DeleteDeveloperRoleCommand`.
+
+**Step 4** `DeleteDeveloperRoleCommand#execute()` checks if this is a removable role and removes it from the list of roles 
+if `DeveloperRoles#isRemovableRole()` returns true.
+
+ <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Although no changes is made to the address book, but this stage is still committed so that the success command
+message and tab index switched to can be changed, the currentPointer can also note that there is an action done here.</div>
+
+The following sequence diagram shows how the Delete-role operation works:
+![SequenceDiagram](images/DeleteDeveloperRoleSequenceDiagram.png)
+
+The following activity diagram shows how the validation check in `DeveloperRoles#isRemovableRole()` works:<br>
+![ActivityDiagram](images/isRemovableRole.png)
+
+* _{more aspects and alternatives to be added}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -441,22 +529,31 @@ managers.
 ### User stories
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely) - `*`
 
-| Priority | As a …​      | I want to …​                                                                                | So that I can…​                                                        |
-|----------|-----------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| `* * *`  | project manager | add a list of Developers and their contact information                                         | access contact details easily and quickly assemble teams for new projects |
-| `* * *`  | project manager | add a list of Clients and their contact information                                            | access client details easily and know who is related to what project.     |
-| `* * *`  | project manager | add a list of Projects and their details                                                       | access project details easily and see who is related to the project       |
-| `* * *`  | project manager | delete information about a Client or Developer and the project details will update accordingly | don't repeat deleting several time                                        |
-| `* * *`  | project manager | edit the the details of the Developers added in                                                | constantly update the contact book                                        |
-| `* * *`  | project manager | edit the the details of the Clients added in                                                   | constantly update the contact book                                        |
-| `* * *`  | project manager | edit the the details of the Projects added in                                                  | constantly update any changes to the project                              |
-| `* * *`  | project manager | find the the Developers according to any details they have                                     | source for information related to developers easily                       |
-| `* * *`  | project manager | find the the Clients according to any details they have                                        | source for information related to clients easily                          |
-| `* * *`  | project manager | find the the Projects according to any details they have                                       | source for information related to projects easily                         |
-| `* * *`  | project manager | list different groups of people according to the different commands                            | view projects, clients and developers can be as different lists           |
-| `* * *`  | project manager | switch between tabs for Developers, Clients and Projects                                       | intuitively view the different data lists                                 |
-| `* *`    | project manager |                                                                                                |                                                                           |
-| `* *`    | project manager |                                                                                                |                                                                           |
+| Priority | As a …​         | I want to …​                                                                                   | So that I can…​                                                                                |
+|----------|-----------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| `* * *`  | project manager | add a list of Developers and their contact information                                         | access contact details easily and quickly assemble teams for new projects                      |
+| `* * *`  | project manager | add a list of Clients and their contact information                                            | access client details easily and know who is related to what project.                          |
+| `* * *`  | project manager | add a list of Projects and their details                                                       | access project details easily and see who is related to the project                            |
+| `* * *`  | project manager | delete information about a Client or Developer and the project details will update accordingly | don't repeat deleting several time                                                             |
+| `* * *`  | project manager | edit the the details of the Developers added in                                                | constantly update the contact book                                                             |
+| `* * *`  | project manager | edit the the details of the Clients added in                                                   | constantly update the contact book                                                             |
+| `* * *`  | project manager | edit the the details of the Projects added in                                                  | constantly update any changes to the project                                                   |
+| `* * *`  | project manager | find the the Developers according to any details they have                                     | source for information related to developers easily                                            |
+| `* * *`  | project manager | find the the Clients according to any details they have                                        | source for information related to clients easily                                               |
+| `* * *`  | project manager | find the the Projects according to any details they have                                       | source for information related to projects easily                                              |
+| `* * *`  | project manager | list different groups of people according to the different commands                            | view projects, clients and developers can be as different lists                                |
+| `* * *`  | project manager | switch between tabs for Developers, Clients and Projects                                       | intuitively view the different data lists                                                      |
+| `* * *`  | project manager | import data from a csv                                                                         | transfer data from what i am using right now                                                   |
+| `* *`    | project manager | add roles                                                                                      | only add people to existing roles in the system so that i do not assign people to random roles |
+| `* *`    | project manager | delete roles                                                                                   | remove roles that i think are not useful anymore                                               |
+| `* *`    | project manager | undo actions                                                                                   | undo any mistakes i made                                                                       |
+| `* *`    | project manager | redo actions                                                                                   | redo anything i accidentally undid                                                             |
+| `* *`    | project manager | lock all the data                                                                              | keep all these data safe                                                                       |
+| `* *`    | project manager | unlock all the data                                                                            | see all these data after locking it                                                            |
+| `* *`    | project manager | change password                                                                                | access these data without worrying data might be stolen                                        |
+| `* *`    | project manager | find by deadline                                                                               | sort out information by deadline due                                                           |
+| `*  `    | project manager | send reminder emails to the developers when deadlines are nearing                              | it can remind them that work is due soon                                                       |
+| `* `     | project manager | give developers feedback directly from CodeContact                                             | reviews can be autogenerated trough my ratings and i need to write a new review each time      |
 
 
 *{More to be added}*
