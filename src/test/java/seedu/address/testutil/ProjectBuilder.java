@@ -54,6 +54,7 @@ public class ProjectBuilder {
 
     /** Sets the {@code Deadline} of the {@code Project} that we are building. */
     public ProjectBuilder withDeadline(String deadline) {
+        this.deadlineList = new ArrayList<>();
         this.deadlineList.add(new Deadline(deadline, 1));
         return this;
     }

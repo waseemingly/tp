@@ -71,6 +71,7 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_2_AMY = "ProjectB";
     public static final String VALID_PROJECT_1_BOB = "ProjectC";
     public static final String VALID_PROJECT_2_BOB = "ProjectD";
+    public static final String VALID_PROJECT_3_BOB = "Project C";
     public static final String VALID_PROJECT_1_CALEB = "ProjectC";
     public static final String VALID_PROJECT_2_CALEB = "ProjectD";
     public static final String VALID_PROJECT_1_DAN = "ProjectA";
@@ -128,7 +129,9 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_DESCRIPTION_APPLEAPP = "Developing the AppleApp";
     public static final String VALID_PROJECT_DESCRIPTION_GOOGLEAPP = "Working on the GoogleApp";
     public static final String VALID_PROJECT_DESCRIPTION_ANDROIDAPP = "AndroidApp development";
-
+    public static final String VALID_FULL_PROJECT_DEADLINE_1 = "31-12-2019,Develop front end interface,HIGH,0";
+    public static final String VALID_FULL_PROJECT_DEADLINE_2 = "01-02-2020,Develop back end,HIGH,0";
+    public static final String INVALID_FULL_PROJECT_DEADLINE_1 = "30-02-2020,Develop back end,HIGH,0";
     public static final String VALID_PROJECT_DEADLINE_APPLEAPP = "2023-12-31";
     public static final String VALID_PROJECT_DEADLINE_GOOGLEAPP = "2023-11-30";
     public static final String VALID_PROJECT_DEADLINE_ANDROIDAPP = "2023-10-31";
@@ -182,7 +185,6 @@ public class CommandTestUtil {
         DESC_DAN = new EditClientDescriptorBuilder().withName(VALID_NAME_DAN).withPhone(VALID_PHONE_DAN)
                 .withAddress(VALID_ADDRESS_DAN).withEmail(VALID_EMAIL_DAN).withProjects(VALID_PROJECT_1_DAN)
                 .withDocument(VALID_DOCUMENT_DAN).build();
-
     }
 
     /**
@@ -232,8 +234,17 @@ public class CommandTestUtil {
                 false, TabIndex.Client);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
-
-
+    
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertDeveloperCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                  Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
+                false, TabIndex.Developer);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
 
 
     /**

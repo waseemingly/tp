@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.edit.EditClientCommand;
+import seedu.address.logic.commands.edit.EditClientCommandTest;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
@@ -29,7 +30,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code developer}'s details
+     * Returns an {@code EditClientDescriptor} with fields containing {@code client}'s details.
      */
     public EditClientDescriptorBuilder(Client client) {
         descriptor = new EditClientCommand.EditClientDescriptor();
