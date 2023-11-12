@@ -287,7 +287,7 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 > :information_source: **Note:** The following sequence diagram provides an overview of how the find operation is executed:
 
-The following sequence diagram provides an overview of how the find operation is
+The following sequence diagram provides an overview of how the find operation is executed
 
 
 ![Interactions Inside the Logic Component for the `find-developer n/alice` Command](images/FindDeveloperSequenceDiagram.png)
@@ -304,6 +304,37 @@ The following sequence diagram provides an overview of how the find operation is
     - **Cons:** A potential mismatch between the prefix and its predicate can lead to wrong results.
 
 Given the benefits of a more maintainable and scalable codebase, we've decided to go with the first alternative. Future enhancements might include fuzzy search.
+
+### List feature
+
+#### Implementation
+The list command employs a structured approach where specific commands, such as `list-developer` or `list-client`
+are associated with corresponding functionalities. This allows users to efficiently retrieve
+information about developers, clients or proejects by specifying the relevant prefix, streamlining the process of generating targeted lists based on user input.
+
+Implemented operations include: 
+* `<TYPE>` here refers to developer, client or project
+* `AddressBookParser`: Interprets the user's input and calls the appropriate `List<TYPE>Command#execute()` to print the 
+relevant lists of data
+* `Model#updateFiltered<TYPE>List`: Update the list displayed in the UI to print all the existing developers
+,clients or projects.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step:
+**Step 1** The user used the `find` feature to search for something and the UI is only displaying some of the 
+developers
+
+**Step 2** To list all the developers, the user executes the command `list-developer`. `AddressBookParser`
+recognizes the `list-developer` command and calls the `ListDeveloperCommand`.
+
+**Step 3** Next, the `ListDeveloperCommand#execute()` method that overides the abstract method `Command#execute()` gets
+activated.This `execute()` method calls the `Model#updateFilteredDeveloperList`, passing in the `Predicate<Developer>`
+that has been set to true.
+
+**Step 4** `Model#updateFilteredDeveloperList` then updates the list in the UI to print all the existing developers.
+
+The following sequence diagram provides an overview of how the find operation is executed
+ 
+![sequence diagram](images/ListDeveloperSequenceDiagram.png)
 
 ### Undo/redo feature
 

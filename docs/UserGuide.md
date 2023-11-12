@@ -58,6 +58,7 @@ facilitating collaboration, and offering command-line efficiency for project man
 CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
 management tasks done faster than traditional GUI apps.
+
 -------------------------------------------------------------------------------------
 
 ## How can this guide help me?
@@ -190,8 +191,6 @@ This is a tutorial for **first-time** CodeContact users.
     * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box
    <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
 You can always lock and unlock CodeContact using the `lock` and `unlock` commands
-</div>
-
 
 1. Let us try **adding a project** to our CodeContact.
     * Enter the
