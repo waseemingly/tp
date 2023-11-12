@@ -313,9 +313,9 @@ are associated with corresponding functionalities. This allows users to efficien
 information about developers, clients or projects by specifying the relevant prefix, streamlining the process of
 generating targeted lists based on user input.
 
-Implemented operations include: 
+Implemented operations include:
 * `<TYPE>` here refers to developer, client or project
-* `AddressBookParser`: Interprets the user's input and calls the appropriate `List<TYPE>Command#execute()` to print the 
+* `AddressBookParser`: Interprets the user's input and calls the appropriate `List<TYPE>Command#execute()` to print the
 relevant lists of data
 * `Model#updateFiltered<TYPE>List`: Update the list displayed in the UI to print all the existing developers
 ,clients or projects.
@@ -335,7 +335,7 @@ that has been set to true.
 **Step 4** `Model#updateFilteredDeveloperList` then updates the list in the UI to print all the existing developers.
 
 The following sequence diagram provides an overview of how the find operation is executed
- 
+
 ![sequence diagram](images/ListDeveloperSequenceDiagram.png)
 
 ### Undo/redo feature
@@ -484,7 +484,7 @@ and calls `DeleteDeveloperRoleCommandParser#parse()`.
 **Step 3** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
 trimmed to `Tester` and calls `DeleteDeveloperRoleCommand`.
 
-**Step 4** `DeleteDeveloperRoleCommand#execute()` checks if this is a removable role and removes it from the list of roles 
+**Step 4** `DeleteDeveloperRoleCommand#execute()` checks if this is a removable role and removes it from the list of roles
 if `DeveloperRoles#isRemovableRole()` returns true.
 
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
