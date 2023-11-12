@@ -586,7 +586,7 @@ Adding developers and clients works the same way, but with different parameters,
 **Extensions**
 
 * 3a. The given details are invalid or in an invalid format.
-    * 3a1. System requests for the correct data 
+    * 3a1. System requests for the correct data
     * 3a2. User enters new data
 <br> Steps 3a1-3a2 are repeated until the data entered are correct.
 <br> Use case resumes from step 4.
@@ -671,7 +671,7 @@ Adding developer roles and client roles works the same way, hence add client rol
 
 1. User requests to add a developer role.
 2. User enters the role they want to add.
-3. System validates if user's inputs are valid. 
+3. System validates if user's inputs are valid.
 4. System validates if user's inputs can be added.
 5. System adds the developer to the data.
 
@@ -684,7 +684,7 @@ Adding developer roles and client roles works the same way, hence add client rol
       <br> Use case resumes from step 4.
 
 * 4a. User enters an existing role
-  * 4a1. System informs users this role exists 
+  * 4a1. System informs users this role exists
   * 4a2. User enters new role
     <br> Steps 4a1-4a2 are repeated until the data entered is not empty
     <br> Use case resumes from step 5.
@@ -816,7 +816,7 @@ people with repeated the details.
 ### Case-sensitive validation checks for adding roles
 **Current Behavior:** Two similar roles with different cases can both be added. `Developer` and `developer` can exist at the
 same time.<br>
-**Enhanced Behavior:** Two same words that are only differentiated by case should not be able to be added in as a role. 
+**Enhanced Behavior:** Two same words that are only differentiated by case should not be able to be added in as a role.
 
 ### Deadlines cannot be any date
 **Current Behavior:** Deadlines for projects can be any date such at year 0001.<br>
