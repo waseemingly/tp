@@ -2,7 +2,6 @@ package seedu.address.logic.commands.find;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertProjectCommandSuccess;
 import static seedu.address.testutil.TypicalProjects.PROJECT_A;
 import static seedu.address.testutil.TypicalProjects.PROJECT_A_NO_SPACING;
