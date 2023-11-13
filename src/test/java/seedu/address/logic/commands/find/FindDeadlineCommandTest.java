@@ -46,9 +46,9 @@ public class FindDeadlineCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_onePersonsFound() {
         //String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        String expectedMessage = "These are the 5 deadlines with matching information.";
+        String expectedMessage = "This is the 1 deadline with matching information.";
         Predicate<Deadline> finalPredicate = deadline -> true;
         finalPredicate = finalPredicate.and(d -> d.getPriority().equals(Priority.HIGH));
         FindDeadlineCommand command = new FindDeadlineCommand(finalPredicate);

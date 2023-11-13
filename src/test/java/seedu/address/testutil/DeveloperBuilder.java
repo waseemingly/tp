@@ -79,25 +79,25 @@ public class DeveloperBuilder {
         return this;
     }
 
-    /** Sets the {@code Phone} of the {@code Developer} that we are building. */
+    /** Sets the {@code Projects} of the {@code Developer} that we are building. */
     public DeveloperBuilder withProjects(String... projects) {
         this.projects = SampleDataUtil.getProjectSet(projects);
         return this;
     }
 
-    /** Sets the {@code Phone} of the {@code Developer} that we are building. */
+    /** Sets the {@code GithubId} of the {@code Developer} that we are building. */
     public DeveloperBuilder withGithubId(String githubId) {
         this.githubId = new GithubId(githubId);
         return this;
     }
 
-    /** Sets the {@code Phone} of the {@code Developer} that we are building. */
+    /** Sets the {@code Rating} of the {@code Developer} that we are building. */
     public DeveloperBuilder withRating(String rating) {
         this.rating = new Rating(rating);
         return this;
     }
 
-    /** Sets the {@code Phone} of the {@code Developer} that we are building. */
+    /** Sets the {@code Address} of the {@code Developer} that we are building. */
     public DeveloperBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
@@ -109,31 +109,31 @@ public class DeveloperBuilder {
         return this;
     }
 
-    /** Sets the {@code Phone} of the {@code Developer} that we are building. */
+    /** Sets the {@code Email} of the {@code Developer} that we are building. */
     public DeveloperBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
-    /** Sets the {@code Phone} of the {@code Developer} that we are building. */
+    /** Sets the {@code DateJoined} of the {@code Developer} that we are building. */
     public DeveloperBuilder withDateJoined(String dateJoined) {
         this.dateJoined = new Date(dateJoined, false);
         return this;
     }
 
-    /** Sets the {@code Phone} of the {@code Developer} that we are building. */
+    /** Sets the {@code Role} of the {@code Developer} that we are building. */
     public DeveloperBuilder withRole(String role) {
         this.role = new DeveloperRoles(role);
         return this;
     }
 
-    /** Sets the {@code Phone} of the {@code Developer} that we are building. */
+    /** Sets the {@code Salary} of the {@code Developer} that we are building. */
     public DeveloperBuilder withSalary(String salary) {
         this.salary = new Salary(salary);
         return this;
     }
 
-    /** Sets the {@code Phone} of the {@code Developer} that we are building. */
+    /** Builds the developer. */
     public Developer build() {
         return new Developer(name, phone, email, address, role, projects, salary, dateJoined, githubId, rating);
     }
