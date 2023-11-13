@@ -47,13 +47,13 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=Mahidharah&tabRepo=AY2324S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-<div style="page-break-after: always;"></div>
 
 * **Project management(team-based tasks contributions)**:
     * Responsible for the timely pivot of our team project in v1.2 after checking in with tutors and professors
     * Spearheaded the pivot by suggesting a new idea and directing the team to a new project which effectively carried over previous functional contributions
     * Actively contributed during team meetings and reminded team members of upcoming deadlines
 
+<div style="page-break-after: always;"></div>
 
 * **Documentation Contributions**:
     * User Guide Contributions:
