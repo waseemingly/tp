@@ -48,14 +48,6 @@ public class EditProjectDescriptorBuilder {
     /**
      * Sets the {@code Deadlines} of the {@code EditProjectDescriptor} that we are building.
      */
-    public EditProjectDescriptorBuilder withDeadlines(List<Deadline> deadlines) {
-        descriptor.setDeadlines(deadlines);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Deadlines} of the {@code EditProjectDescriptor} that we are building.
-     */
     public EditProjectDescriptorBuilder withDeadlines(String... deadlines) {
         List<Deadline> deadlineList = new ArrayList<>();
         int index = 1;

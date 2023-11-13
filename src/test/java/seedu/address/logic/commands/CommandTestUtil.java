@@ -24,6 +24,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.edit.EditClientCommand;
 import seedu.address.logic.commands.edit.EditDeveloperCommand;
+import seedu.address.logic.commands.edit.EditProjectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -31,8 +32,11 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.NameClientContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 import seedu.address.testutil.EditDeveloperDescriptorBuilder;
+import seedu.address.testutil.EditProjectDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -167,6 +171,8 @@ public class CommandTestUtil {
     public static final EditDeveloperCommand.EditDeveloperDescriptor DESC_BOB;
     public static final EditClientCommand.EditClientDescriptor DESC_CALEB;
     public static final EditClientCommand.EditClientDescriptor DESC_DAN;
+    public static final EditProjectCommand.EditProjectDescriptor DESC_PROJECT1;
+    public static final EditProjectCommand.EditProjectDescriptor DESC_PROJECT2;
 
 
     static {
@@ -185,6 +191,11 @@ public class CommandTestUtil {
         DESC_DAN = new EditClientDescriptorBuilder().withName(VALID_NAME_DAN).withPhone(VALID_PHONE_DAN)
                 .withAddress(VALID_ADDRESS_DAN).withEmail(VALID_EMAIL_DAN).withProjects(VALID_PROJECT_1_DAN)
                 .withDocument(VALID_DOCUMENT_DAN).build();
+        
+        DESC_PROJECT1 = new EditProjectDescriptorBuilder().withDescription(VALID_PROJECT_DESCRIPTION_ANDROIDAPP)
+                .withDeadlines(VALID_FULL_PROJECT_DEADLINE_1).build();
+        DESC_PROJECT2 = new EditProjectDescriptorBuilder().withDescription(VALID_PROJECT_DESCRIPTION_APPLEAPP)
+                .withDeadlines(VALID_FULL_PROJECT_DEADLINE_2).build();
     }
 
     /**
@@ -291,6 +302,19 @@ public class CommandTestUtil {
         model.updateFilteredClientList(new NameClientContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the project at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showProjectAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
+
+        Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
+        final String[] splitName = project.getName().split("\\s+");
+        model.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+//        assertEquals(1, model.getFilteredProjectList().size());
     }
 
 }

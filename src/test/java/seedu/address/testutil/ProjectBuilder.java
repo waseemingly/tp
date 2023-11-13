@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.commons.Name;
 import seedu.address.model.project.Deadline;
@@ -59,6 +60,28 @@ public class ProjectBuilder {
         return this;
     }
 
+    /** Sets the {@code Deadline} of the {@code Project} that we are building. */
+    public ProjectBuilder withDeadlines(List<Deadline> deadlines) {
+        this.deadlineList = new ArrayList<>();
+        int index = 1;
+        for (Deadline d : deadlines) {
+            this.deadlineList.add(new Deadline(d.getStringRepresentation(), index));
+            index += 1;
+        }
+        return this;
+    }
+
+    /** Sets the {@code Deadline} of the {@code Project} that we are building. */
+    public ProjectBuilder withDeadlinesString(List<String> deadlines) {
+        this.deadlineList = new ArrayList<>();
+        int index = 1;
+        for (String d : deadlines) {
+            this.deadlineList.add(new Deadline(d, index));
+            index += 1;
+        }
+        return this;
+    }
+    
     /** Builds a Project object. */
     public Project build() {
         return new Project(name, description, deadlineList);
