@@ -179,7 +179,7 @@ Here are some notes about these parameters.
 
 This is a tutorial for **first-time** CodeContact users.
 
-1. Launch CodeContact.You may refer to the instructions [here](#quick-start)
+1. Launch CodeContact. You may refer to the instructions [here](#quick-start).
     * On launch, CodeContact will not contain any doctor or patient records.
 
 
