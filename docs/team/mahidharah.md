@@ -1,6 +1,3 @@
-
-<div style="page-break-after: always;"></div>
-
 ---
 layout: page
 title: Mahidharah's Project Portfolio Page
@@ -20,25 +17,19 @@ Given below are my contributions to the project.
 * **New Feature 1**: `add-developer`, `add-client` & `add-project`
     * What it does: Adds a developer/client/project to the address book, making sure input parameters are valid and potential duplicates are found, highlighted to the user and rejected.
     * Justification: Decided to separate these as different commands instead of having a single `add` command to allow for more flexibility with parameters changes to these features in the future (from basic OOP principles). This also allows for more specific error messages to be displayed to users when they input invalid parameters, utilising polymorphism.
-    * Highlights:
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in
-      the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+    * Highlights: Allows specific optional fields (i.e Project deadline). Automatically switches tabs according to command.
 
 
 * **New Feature 2**: `delete-developer` & `delete-client`
     * What it does: Deletes a developer/client from the address book.
     * Justification: Decided to separate these as different commands instead of having a single `delete` command to allow for more flexibility with parameters changes to these features in the future (from basic OOP principles). This also allows for more specific error messages to be displayed to users when they input invalid parameters, utilising polymorphism.
-    * Highlights:
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in
-      the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+    * Highlights: Automatically switches tabs according to command.
 
       
 * **New Feature 3**: `delete-project`
     * What it does: Deletes a project from the address book and accordingly removes it from the set of projects for all developers and clients.
     * Justification: I decided to implement the feature such that it triggers updates on developers and clients with hopes that this feature will be a major quality of life improvement for project managers, enabling them to remove projects easily without having to edit the information for relevant clients and developers to maintain integrity of the data.
-    * Highlights: The feature uses the iterator java class and its for each remaining method effectively to simplify code and ensure efficiency. I also implemented such that the deadline field to be optional, and implemented the relevant logic.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in
-      the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+    * Highlights: Automatically switches tabs according to command. This feature uses the iterator java class and its for each remaining method effectively to simplify code and ensure efficiency.
 
 
 
