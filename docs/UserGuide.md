@@ -4,7 +4,9 @@ title: User Guide
 ---
 
 ## Welcome to CodeContact
-**Taking charge of your PROject Management!**
+{: .no_toc}
+
+***Taking charge of your PROject Management!***
 
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
 facilitating collaboration, and offering command-line efficiency for project managers
@@ -31,6 +33,10 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 -------------------------------------------------------------------------------------
 
 ## Table of Contents
+{: .no_toc}
+
+* Table of Contents
+{:toc}
 
 * [How can this guide help me?](#how-can-this-guide-help-me)
 * [Navigating this guide](#navigating-this-guide)
