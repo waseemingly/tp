@@ -3,8 +3,8 @@ package seedu.address.logic.commands.delete;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertClientCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -38,7 +38,7 @@ public class DeleteClientCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteClient(clientToDelete);
 
-        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
+        assertClientCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class DeleteClientCommandTest {
         expectedModel.deleteClient(clientToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
+        assertClientCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
