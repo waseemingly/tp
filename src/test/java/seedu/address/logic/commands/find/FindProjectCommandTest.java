@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.project.DeadlineContainsKeywordsPredicate;
+import seedu.address.model.project.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 
 /**
@@ -57,7 +59,7 @@ public class FindProjectCommandTest {
     @Test
     public void execute_zeroKeywords_noProjectFound() {
         String expectedMessage = "There are no projects with matching information.";
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("hii");
+        ProjectNameContainsKeywordsPredicate predicate = prepareNamePredicate("hii");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,7 +69,7 @@ public class FindProjectCommandTest {
     @Test
     public void execute_multipleKeywords_multipleProjectsFound() {
         String expectedMessage = "These are the 4 projects with matching information.";
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("Project A B C");
+        ProjectNameContainsKeywordsPredicate predicate = prepareNamePredicate("Project A B C");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -87,18 +89,38 @@ public class FindProjectCommandTest {
     @Test
     public void execute_caseInsensitiveSearch_projectFound() {
         String expectedMessage = "These are the 2 projects with matching information.";
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("a"); // using mixed case
+        ProjectNameContainsKeywordsPredicate predicate = prepareNamePredicate("a"); // using mixed case
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(PROJECT_A, PROJECT_A_NO_SPACING), model.getFilteredProjectList());
     }
 
+    @Test
+    public void execute_caseInsensitiveDeadlineSearch_projectFound() {
+        String expectedMessage = "These are the 3 projects with matching information.";
+        DeadlineContainsKeywordsPredicate predicate = prepareDeadlinePredicate("design");
+        FindProjectCommand command = new FindProjectCommand(predicate);
+        expectedModel.updateFilteredProjectList(predicate);
+        assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_A_NO_SPACING), model.getFilteredProjectList());
+    }
+
+    @Test
+    public void execute_caseInsensitiveDescriptionSearch_projectFound() {
+        String expectedMessage = "These are the 4 projects with matching information.";
+        DescriptionContainsKeywordsPredicate predicate = prepareDescriptionPredicate("this is project");
+        FindProjectCommand command = new FindProjectCommand(predicate);
+        expectedModel.updateFilteredProjectList(predicate);
+        assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_C, PROJECT_A_NO_SPACING), model.getFilteredProjectList());
+    }
+
 
     @Test
     public void execute_partialName_projectFound() {
         String expectedMessage = "This is the 1 project with matching information.";
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("jecta");
+        ProjectNameContainsKeywordsPredicate predicate = prepareNamePredicate("jecta");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -106,9 +128,30 @@ public class FindProjectCommandTest {
     }
 
     @Test
+    public void execute_partialDeadline_projectFound() {
+        String expectedMessage = "These are the 4 projects with matching information.";
+        DeadlineContainsKeywordsPredicate predicate = prepareDeadlinePredicate("12-2023");
+        FindProjectCommand command = new FindProjectCommand(predicate);
+        expectedModel.updateFilteredProjectList(predicate);
+        assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_C, PROJECT_A_NO_SPACING),
+                model.getFilteredProjectList());
+    }
+
+    @Test
+    public void execute_partialDescription_projectFound() {
+        String expectedMessage = "This is the 1 project with matching information.";
+        DescriptionContainsKeywordsPredicate predicate = prepareDescriptionPredicate("b");
+        FindProjectCommand command = new FindProjectCommand(predicate);
+        expectedModel.updateFilteredProjectList(predicate);
+        assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(PROJECT_B), model.getFilteredProjectList());
+    }
+
+    @Test
     public void execute_noMatchingProjects_noProjectFound() {
         String expectedMessage = "There are no projects with matching information.";
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("NonExistentProject");
+        ProjectNameContainsKeywordsPredicate predicate = prepareNamePredicate("NonExistentProject");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -118,7 +161,15 @@ public class FindProjectCommandTest {
     /**
      * Parses {@code userInput} into a {@code ProjectNameContainsKeywordsPredicate}.
      */
-    private ProjectNameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private ProjectNameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new ProjectNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    private DeadlineContainsKeywordsPredicate prepareDeadlinePredicate(String userInput) {
+        return new DeadlineContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    private DescriptionContainsKeywordsPredicate prepareDescriptionPredicate(String userInput) {
+        return new DescriptionContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

@@ -307,7 +307,7 @@ Project Managers have the ability to grant themselves exclusive access by denyin
 #### Lock `lock`
 
 Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
-except `unlock`, `help`, and `delete`
+except `unlock`, `help`, and `delete`.
 
 Format: `lock`
 
@@ -338,7 +338,7 @@ Unlocked all data
 
 #### Change password `change-password`
 
-Allows for password to be changed, given the current password and new password matches criteria
+Allows for password to be changed, given the current password and new password matches criteria.
 
 Format: `change-password pw/CURRENT_PASSWORD npw/NEW_PASSWORD`
 
@@ -666,7 +666,7 @@ Format: `import-developer [FILENAME]`
 
 * Note that the CSV file has to be in the same folder as the JAR file for the command to function correctly.
 * The CSV file has to strictly follow the column header names and order for the import to function appropriately.
-* The command will abort if any of the rows have invalid data format
+* The command will abort if any of the rows have invalid data format.
 * Example of valid CSV:
 
 ```
