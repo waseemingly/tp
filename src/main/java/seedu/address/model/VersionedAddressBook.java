@@ -138,6 +138,24 @@ public class VersionedAddressBook extends AddressBook {
     }
 
     /**
+     * Gets the current addressbook.
+     *
+     * @return The tab index from the previous command.
+     */
+    public ReadOnlyAddressBook getCurrentState(int currentStatePointer) {
+        return addressBookStateList.get(currentStatePointer);
+    }
+
+    /**
+     * Gets the current current state pointer.
+     *
+     * @return The tab index from the previous command.
+     */
+    public int getCurrentStatePointer() {
+        return currentStatePointer;
+    }
+
+    /**
      * Changes the current model's address book to match the current state.
      *
      * @param model The current model.

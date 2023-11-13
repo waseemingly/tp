@@ -98,7 +98,7 @@ public class EditProjectCommand extends Command {
         }
 
         String successMessage = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, Messages.format(editedProject));
-        TabIndex index = TabIndex.developers;
+        TabIndex index = TabIndex.Project;
 
         model.setProject(projectToEdit, editedProject);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);

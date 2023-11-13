@@ -6,7 +6,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_FILE;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
@@ -43,9 +42,6 @@ public class ImportDeveloperCommandParser implements Parser<ImportDeveloperComma
     @Override
     public ImportDeveloperCommand parse(String fileName) throws ParseException {
         try {
-            FileWriter myWriter = new FileWriter("filename.txt");
-            myWriter.write("Files in Java might be tricky, but it is fun enough!");
-            myWriter.close();
             fileName = fileName.trim();
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String line = "";

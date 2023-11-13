@@ -24,7 +24,7 @@ public class AddClientRoleCommand extends Command {
             + "Example: " + PREFIX_ROLE + "Developer ";
 
     public static final String MESSAGE_SUCCESS = "New role for client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DEVELOPER = "This client role already exists in the address book!";
+    public static final String MESSAGE_DUPLICATE_ROLE = "This client role already exists in the address book!";
     private final String toAdd;
 
     /**
@@ -49,7 +49,7 @@ public class AddClientRoleCommand extends Command {
         requireNonNull(model);
 
         if (ClientRoles.isValidRole(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
+            throw new CommandException(MESSAGE_DUPLICATE_ROLE);
         }
 
         String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
