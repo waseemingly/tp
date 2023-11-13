@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
  */
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be of the format dd-MM-yyyy. Eg: 31-12-2019\n"
+            "Date should be of the format dd-MM-yyyy! Eg: 31-12-2019\n"
                     + "For Developers: Date joined should not be in the future.";
     public static final String VALIDATION_REGEX = "[0-3]\\d-[01]\\d-\\d{4}";
     public final java.util.Date value;
