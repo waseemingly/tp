@@ -670,10 +670,10 @@ the displayed project list has a project with the index `2` with at least `1` de
 **Aspect: Execution of command**
 * Alternative 1: Implement methods in `ModelManager` class that can directly change the `isDone` status of the deadlines
 of a project based on the given project index and deadline index.
-  * Pros: 
+  * Pros:
     * More aligned with OOP principles.
     * Mirrors sequence flow of other commands and can be implemented using current code architecture.
-  * Cons: 
+  * Cons:
     * Due to container structure of `Project` and `Deadline`, changing the status of deadlines needs to be done
     through projects, so more methods need to be added to achieve this.
     * Given the GUI display of project deadlines in a Javafx TableView, makes it more complicated for changes in
@@ -800,7 +800,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 #### **Use case:** UC1 - Unlock System
 
-**Preconditions:** 
+**Preconditions:**
 1. User is not logged in
 
 **Guarantees:**
@@ -1241,7 +1241,7 @@ starting point for testers to work with, testers should do more *exploratory* te
 ### Launching the app
 #### Initial launch
 1. Download the jar file and copy into an empty folder.
-2. Double-click the jar file.<br> 
+2. Double-click the jar file.<br>
 Expected: Shows the GUI with a message prompting user to unlock to continue.
 3. Enter the command `unlock pw/Password123!` in the command box.<br>
 Expected: Shows the unlocked GUI.
@@ -1274,7 +1274,7 @@ dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`<br>
   Expected: No project is added. Error details shown in the status message.
 
 #### Adding developers
-1. Test case: `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer 
+1. Test case: `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer
 s/4500 d/11-11-2023 g/johng rt/3` <br>
   Expected: New developer with the name John Doe is created, provided there is no existing developer with that name.
    Command success status message shown.
@@ -1466,7 +1466,7 @@ Expected results:  No role deleted. Error details shows role cannot be deleted a
    Expected: The second deadline of the first project in the currently displayed project list is marked as undone. Command success status message shown.
 3. Test case: 'unmark-deadline 1 x' where 'x' is an integer larger than the number of deadlines for the project specified.
    Expected: No change. Error details shown in the status message.
-   
+
 ### Exiting the app
 1. After executing some commands, use the `exit` command to exit the app.
 2. You can re-launch the app by double-clicking the jar file.<br>

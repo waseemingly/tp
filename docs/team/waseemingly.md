@@ -46,7 +46,7 @@ Given below are my contributions to the project.
         * Added implementation details of the `find` feature.
         * Added planned enhancements for filter results and autocorrect search.
         * Added manual testing cases for `find` and `mark project deadlines` features.
-    * README Contributions: 
+    * README Contributions:
         * Maintained README page of repository
 
 

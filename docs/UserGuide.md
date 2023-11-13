@@ -427,7 +427,7 @@ Projects: CustomWebsite AndroidApp
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-Entered details of a client incorrectly? You can always undo the action with the [`undo`](#undo) command! 
+Entered details of a client incorrectly? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -457,7 +457,7 @@ Deadlines:
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-Entered details of a project incorrectly? You can always undo the action with the [`undo`](#undo) command! 
+Entered details of a project incorrectly? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -477,19 +477,19 @@ Example of usage: `delete-developer 2`
 When command succeeds, CLI shows:
 
 ```
-Deleted Developer: Bernice Yu; 
-Phone: 99272758; 
-Email: berniceyu@example.com; 
-Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; 
-Date Joined: 16-11-2020; 
-Role: Developer; 
-Salary: 6000; 
-Projects: Appollo Orbital 
+Deleted Developer: Bernice Yu;
+Phone: 99272758;
+Email: berniceyu@example.com;
+Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18;
+Date Joined: 16-11-2020;
+Role: Developer;
+Salary: 6000;
+Projects: Appollo Orbital
 ```
 if second developer in the list was Bernice Yu
 
 <div markdown="block" class="alert alert-info">:bulb:
-Deleted a wrong developer? You can always undo the action with the [`undo`](#undo) command! 
+Deleted a wrong developer? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 #### Delete client : `delete-client`
@@ -504,19 +504,19 @@ Example of usage: `delete-client 3`
 
 When command succeeds, CLI shows:
 ```
-Deleted Client: George Lim; 
-Phone: 76543210; 
-Email: george@example.com; 
-Address: Blk 789 Woodlands Ave 6, #03-03; 
-Organisation: MNO Company; 
-Role: Developer; 
-Document: https://www.mno.com/; 
-Projects: CodeContact 
+Deleted Client: George Lim;
+Phone: 76543210;
+Email: george@example.com;
+Address: Blk 789 Woodlands Ave 6, #03-03;
+Organisation: MNO Company;
+Role: Developer;
+Document: https://www.mno.com/;
+Projects: CodeContact
 ```
 if second client in the list was George Lim
 
 <div markdown="block" class="alert alert-info">:bulb:
-Deleted a wrong client? You can always undo the action with the [`undo`](#undo) command! 
+Deleted a wrong client? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 #### Delete project : `delete-project`
@@ -540,7 +540,7 @@ Deadlines:
 if second project in the list was TeamTrekker
 
 <div markdown="block" class="alert alert-info">:bulb:
-Deleted a wrong project? You can always undo the action with the [`undo`](#undo) command! 
+Deleted a wrong project? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -583,7 +583,7 @@ Projects: Project1, Project2
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-You can always undo the action with the [`undo`](#undo) command! 
+You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -620,7 +620,7 @@ Document: google.com
 Projects: ProjectA
 ```
 <div markdown="block" class="alert alert-info">:bulb:
-You can always undo the action with the [`undo`](#undo) command! 
+You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -651,7 +651,7 @@ Deadlines:
 1. Design backend by: 19-12-2023, priority: HIGH (undone)
 ```
 <div markdown="block" class="alert alert-info">:bulb:
-You can always undo the action with the [`undo`](#undo) command! 
+You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -1106,10 +1106,6 @@ Format: `help`
 Clears all entries from the address book.
 
 Format: `clear`
-
-<div markdown="block" class="alert alert-info">:bulb:
-You can always undo the action with the [`undo`](#undo) command! 
-</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
