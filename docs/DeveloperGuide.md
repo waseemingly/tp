@@ -1109,7 +1109,7 @@ same time.<br>
 **Enhanced Behavior:** There should be a limit to the deadline line dates like 10-20 years before and after the current date.
 
 ### Password Recovery
-**Current Behavior:** If you forgot your password, there is no way to retrieve it
+**Current Behavior:** If you forgot your password, there is no way to retrieve it.
 **Enhanced Behavior:** Links the system to email or have verifications that allows users to reset their password.
 
 ### Additional menu item for `import-developer` and `import-client`
@@ -1122,6 +1122,16 @@ The backend implementation of logic follows the CLI implementation by creating a
 **Current Behavior:** There is only import csv function and no options for export<br>
 **Enhanced Behavior:** A new menu item will be added under File called `Export data` and clicking it will lead to a window
 where users can select the location to save the files for Developers, Clients and Projects. The file will be saved in csv format.
+
+### Find Autocomplete
+**Current Behavior:** While searching, users are not prompted for autocomplete suggestions. 
+**Enhanced Behavior:** Implement autocomplete suggestions as users type their search queries. This can help users avoid 
+typos and provide quick access to commonly used search terms.
+
+### Sort Results
+**Current Behavior:** After each command, the list of contacts shown are based on the order the contact was added.
+**Enhanced Behavior:** Allow users to sort the search results based on different criteria such as name, date, or 
+priority. This provides users with more flexibility in organizing and viewing the search results.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**
