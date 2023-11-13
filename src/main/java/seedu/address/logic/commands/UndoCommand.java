@@ -31,6 +31,11 @@ public class UndoCommand extends Command {
         String previousCommand = model.getPreviousCommandForUndo();
         TabIndex index = model.getPreviousTabIndex();
         // check if it is any of the role commands
+        handleRoleUndo(previousCommand);
+        return new CommandResult(MESSAGE_SUCCESS + "\n" + previousCommand, index);
+    }
+
+    private void handleRoleUndo(String previousCommand) {
         if (previousCommand.contains("New role for client added: ")) {
             ClientRoles.deleteClientRole(new ClientRoles(previousCommand.substring(27)));
         } else if (previousCommand.contains("New role for developer added: ")) {
@@ -40,6 +45,5 @@ public class UndoCommand extends Command {
         } else if (previousCommand.contains("Role for developers deleted: ")) {
             DeveloperRoles.addDeveloperRole(new DeveloperRoles(previousCommand.substring(29)));
         }
-        return new CommandResult(MESSAGE_SUCCESS + "\n" + previousCommand, index);
     }
 }

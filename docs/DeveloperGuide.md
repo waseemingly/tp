@@ -439,7 +439,7 @@ trimmed to `Tester` and calls `AddDeveloperRoleCommand`.
 a new developer role if there is no such role.
 
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-Although no changes is made to the address book, but this stage is still committed so that the success command
+Although no changes is made to the address book, this stage is still committed so that the success command
 message and tab index switched to can be changed, the currentPointer can also note that there is an action done here.</div>
 
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
@@ -488,7 +488,7 @@ trimmed to `Tester` and calls `DeleteDeveloperRoleCommand`.
 if `DeveloperRoles#isRemovableRole()` returns true.
 
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-Although no changes is made to the address book, but this stage is still committed so that the success command
+Although no changes is made to the address book, this stage is still committed so that the success command
 message and tab index switched to can be changed, the currentPointer can also note that there is an action done here.</div>
 
 The following sequence diagram shows how the Delete-role operation works:
