@@ -2,4 +2,3 @@ Manager
 Developer
 HR
 Client
-Tester
