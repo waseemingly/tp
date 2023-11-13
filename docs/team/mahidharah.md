@@ -36,39 +36,39 @@ Given below are my contributions to the project.
       the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **Enhancements to existing features**:
-    * Contributed to the GUI component of CodeContact by creating relevant classes and FXML files for developer and client cards (Pull request [\#79]())
+    * Contributed to the GUI component of CodeContact by creating relevant classes and FXML files for developer and client cards (Pull request [\#79](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/79))
     * Ensured functional improvements use developer and client classes instead of person class (Pull request [\#79](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/79))
     * Edited SampleData to include sample developers, clients and projects for easy testing for teammates (Pull request [\#79](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/79))
-    * Wrote testcases for model, logic and storage, and edited necessary test utility files to account for functional developments of CodeContact, speciafically developer and client features (Pull request [\#216](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/216), [\#222](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/222), [\#236](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/236))
-    * Wrote testcases for my functional contributions to codecontact. (Pull request [\#216](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/216), [\#236](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/222), [\#236](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/236))
+
+* **Testing**:
+  * Enabled test files to work for other team members and contributed greatly to testcode
+  * Wrote testcases for model, logic and storage, and edited necessary test utility files to account for functional developments of CodeContact, speciafically developer and client features (Pull request [\#216](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/216), [\#222](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/222), [\#236](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/236))
+  * Wrote testcases for my functional contributions to Codecontact. (Pull request [\#216](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/216), [\#236](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/222), [\#236](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/236))
+
 
 * **Code contributed**: [RepoSense link]()
 
 
 * **Project management(team-based tasks contributions)**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Responsible for the timely pivot of our team project in v1.2 after checking in with tutors and professors
+    * Spearheaded the pivot by suggesting a new idea and directing the team to a new project which effectively carried over previous functional contributions
+    * Actively contributed during team meetings and reminded team members of upcoming deadlines
 
 
 * **Documentation Contributions**:
     * User Guide Contributions:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `delete-developer`, `delete-client`, `delete-project`, `add-developer`, `add-client`, `add-project`
+        * Did cosmetic tweaks to existing documentation of feature list table
     * Developer Guide Contributions:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `delete` and `add` features
+        * Added PUML sequence diagrams for these implementations
 
 
 * **Community (Review/mentoring contributions)**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the delete feature I added was adopted by team members and class mates
-
-
-* **Contributions beyond the project team:**:
-    * NOTHING
+    * PRs reviewed (with non-trivial review comments): [\#155](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/155), [\##219](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/219)
+    * Reported bugs and suggested ideal implementations for features for teammates
+    * Some parts of the delete-project feature I added was adopted by team members and classmates, for instance the following implementation of validation checks for projects
 
 
 * **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * Capitalised on GitHub copilot autocomplete features in creating testcases, enabling me to cover the most amount of functional code in testcases
