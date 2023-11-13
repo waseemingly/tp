@@ -121,7 +121,7 @@ Here are some notes about these parameters.
 | `e/`      | email of developer/client/project        | alphanumeric characters, and it should not be blank            | amy@gmail.com               |                                             |
 | `a/`      | address of developer/client/project      | alphanumeric characters and spaces, and it should not be blank | 311, Clementi Ave 2, #02-25 |                                             |
 | `r/`      | role of developer/client/project         | alphabetical characters and spaces, and it should not be blank | Developer                   |                                             |
-| `pr/`     | project name of developer/client/project | alphanumeric characters and spaces, and it should not be blank | CS2103T                     |                                             |
+| `pr/`     | project name                             | alphanumeric characters and spaces, and it should not be blank | CS2103T                     |                                             |
 
 #### Developer Parameters
 
@@ -129,7 +129,7 @@ Here are some notes about these parameters.
 |-----------|------------------------------|--------------------------------------------------------------------------------------------------|----------------|----------------------|
 | `g/`      | github username of developer | alphanumeric characters, and it should not be blank                                              | johng, amy123  |                      |
 | `d/`      | date joined of developer     | numeric characters in dd-MM-yyyy format, should not be a future date, and it should not be blank | 11-11-2023     | 19-11-2024, 1/1/2023 |
-| `s/`      | salary of developer          | numeric characters, and it should not be blank                                                   | 5000           |                      |
+| `s/`      | salary of developer          | positive integers of at least 4 digits, should not be blank                                      | 5000           |                      |
 | `rt/`     | rating of developer          | numeric characters between 0 to 5                                                                | 5, 3.5         | -0, -1, 6            |
 
 #### Client Parameters
