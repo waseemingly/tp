@@ -95,7 +95,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 <!-- -->
 
-### Glossary
+## Glossary
 
 <!-- -->
 
