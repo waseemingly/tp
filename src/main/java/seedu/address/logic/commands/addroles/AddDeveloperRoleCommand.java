@@ -25,7 +25,7 @@ public class AddDeveloperRoleCommand extends Command {
             + "Example: " + PREFIX_ROLE + "Developer ";
 
     public static final String MESSAGE_SUCCESS = "New role for developer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DEVELOPER = "This developer role already exists in the address book!";
+    public static final String MESSAGE_DUPLICATE_ROLE = "This developer role already exists in the address book!";
     private final String toAdd;
 
     /**
@@ -50,7 +50,7 @@ public class AddDeveloperRoleCommand extends Command {
         requireNonNull(model);
 
         if (DeveloperRoles.isValidRole(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DEVELOPER);
+            throw new CommandException(MESSAGE_DUPLICATE_ROLE);
         }
 
         String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));

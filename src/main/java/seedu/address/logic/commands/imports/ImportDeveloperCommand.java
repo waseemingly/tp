@@ -5,10 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TabIndex;
+import seedu.address.logic.commands.add.AddDeveloperCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.developer.Developer;
@@ -22,8 +22,6 @@ public class ImportDeveloperCommand extends Command {
             + "Column titles should follow this format strictly:\n"
             + "Name, Contact Number, Email, Address, Date Joined, Role, Salary, GithubId, Rating, Projects";
     public static final String MESSAGE_SUCCESS = "New developer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DEVELOPER =
-            " is a developer that already exists in the address book\n";
 
     private final ArrayList<Developer> toAddList;
 
@@ -52,13 +50,8 @@ public class ImportDeveloperCommand extends Command {
         requireNonNull(model);
         String output = "";
         for (Developer toAdd : toAddList) {
-            if (model.hasDeveloper(toAdd)) {
-                output += toAdd.getName().fullName + MESSAGE_DUPLICATE_DEVELOPER;
-            } else {
-                model.addDeveloper(toAdd);
-                output += String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
-            }
-            output += "\n";
+            CommandResult result = new AddDeveloperCommand(toAdd).execute(model);
+            output += result.getFeedbackToUser() + "\n";
         }
         return new CommandResult(output, TabIndex.Developer);
     }

@@ -24,5 +24,4 @@ public class ProjectTest {
         assertThrows(NullPointerException.class, () -> Project.isValidProjectName(null));
     }
     */
-
 }

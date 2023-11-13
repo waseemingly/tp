@@ -116,6 +116,9 @@ public class Password {
         if (verifyPassword(currentPassword)) {
             // Verify that the new password meets the constraints
             if (isValidPassword(newPassword)) {
+                if (currentPassword.equals(newPassword)) {
+                    return "New password cannot be the same as the current password.";
+                }
                 // Hash the new password
                 String newHashedPassword = hashPassword(newPassword);
                 // Save the new hashed password to the file

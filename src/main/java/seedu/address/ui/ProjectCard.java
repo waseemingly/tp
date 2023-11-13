@@ -76,7 +76,7 @@ public class ProjectCard extends UiPart<Region> {
                 new PropertyValueFactory<>("date"));
 
         TableColumn descriptionCol = new TableColumn("Description");
-        descriptionCol.setMinWidth(260);
+        descriptionCol.setMinWidth(100);
         descriptionCol.setCellValueFactory(
                 new PropertyValueFactory<>("description"));
 

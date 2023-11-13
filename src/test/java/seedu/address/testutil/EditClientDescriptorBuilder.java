@@ -29,7 +29,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code developer}'s details
+     * Returns an {@code EditClientDescriptor} with fields containing {@code client}'s details.
      */
     public EditClientDescriptorBuilder(Client client) {
         descriptor = new EditClientCommand.EditClientDescriptor();

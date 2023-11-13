@@ -117,9 +117,9 @@ public class DeveloperRoles {
         }
 
         // check if this role is one of the defaults
-        if (role.equalsIgnoreCase("Frontend Developer")
-                || role.equalsIgnoreCase("Backend Developer")
-                || role.equalsIgnoreCase("Developer")) {
+        if (role.equals("Frontend Developer")
+                || role.equals("Backend Developer")
+                || role.equals("Developer")) {
             notDefault = false;
         } else {
             notDefault = true;

@@ -16,6 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_2_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_AMY;
+import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.developer.Developer;
+import seedu.address.model.project.Project;
 
 /**
  * A utility class containing a list of {@code Developer} objects to be used in tests.
@@ -84,13 +86,27 @@ public class TypicalDevelopers {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Developer developer : getTypicalPersons()) {
+        for (Developer developer : getTypicalDevelopers()) {
             ab.addDeveloper(developer);
         }
         return ab;
     }
 
-    public static List<Developer> getTypicalPersons() {
+    /**
+     * Returns an {@code AddressBook} with all the typical developers integrated with projects.
+     */
+    public static AddressBook getTypicalAddressBookWithProjects() {
+        AddressBook ab = new AddressBook();
+        for (Developer developer: getTypicalDevelopers()) {
+            ab.addDeveloper(developer);
+        }
+        for (Project project : getTypicalProjects()) {
+            ab.addProject(project);
+        }
+        return ab;
+    }
+
+    public static List<Developer> getTypicalDevelopers() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

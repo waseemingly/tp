@@ -70,8 +70,8 @@ public class EditDeveloperDescriptorTest {
                 + editDeveloperDescriptor.getDateJoined().orElse(null) + ", role="
                 + editDeveloperDescriptor.getRole().orElse(null) + ", salary="
                 + editDeveloperDescriptor.getSalary().orElse(null) + ", githubId="
-                + editDeveloperDescriptor.getSalary().orElse(null) + ", rating="
-                + editDeveloperDescriptor.getSalary().orElse(null) + "}";
+                + editDeveloperDescriptor.getGithubId().orElse(null) + ", rating="
+                + editDeveloperDescriptor.getRating().orElse(null) + "}";
 
         assertEquals(expected, editDeveloperDescriptor.toString());
     }
