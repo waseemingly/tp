@@ -618,7 +618,8 @@ selected tab changes, the `list` command will be executed.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
 When the user clicks away from the tab showing the command result and then switches back to the tab, the tab will
-be updated to show the full list of information for that tab again.</div>
+be updated to show the full list of information for that tab again.
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1142,46 +1143,46 @@ and commits should follow a consistent naming convention.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Manual Testing**
-testers are expected to do more *exploratory* testing.
 
-1. Initial launch
+### Adding roles
+#### Adding Developer Roles
+1. Test case: `add-developer-role UIDesigner`<br>
+Expected results: UIDesigner added as a role. Command status success message shown.
+2. Test case: `add-developer-role Developer`<br>
+Expected results: No role added. Error details shows role cannot be added as it exists.
+3. **Test Case 1 must be completed** `add-developer-role UIDesigner`<br>
+Expected results: No role added. Error details shows role cannot be added as it exists.
 
-   1. Download the jar file and copy into an empty folder
+#### Adding Client Roles
+1. Test case: `add-client-role Tester`<br>
+   Expected results: Tester added as a role. Command status success message shown.
+2. Test case: `add-client-role HR`<br>
+   Expected results: No role added. Error details shows role cannot be added as it exists.
+3. **Test Case 1 must be completed** `add-developer-role Tester`<br>
+   Expected results: No role added. Error details shows role cannot be added as it exists.
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+### Delete roles
+#### Deleting Developer Roles
+1. Prerequisite: role `UIDesigner` has been added in already (i.e. add in this role if it is after any of the test case)
+2. Test case: `delete-developer-role UIDesigner`
+Expected results: UIDesigner deleted as a role. Command status success message shown.
+3. Test case: assign the `UIDesigner` role to any developer, then execute `delete-developer-role UIDesigner`
+Expected results:  No role deleted. Error details shows role cannot be deleted as there are developers using it.
+4. Test case: `delete-developer-role Developer`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as this is a pre-declared role.
+5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role UIDesigner`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
 
-2. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
-    @@ -628,23 +756,24 @@ testers are expected to do more *exploratory* testing.
-
-4. Deleting a developer while all developers are being shown
-
-   1. Prerequisites: List all developers using the `list` command. Multiple developers in the list.
-
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0`<br>
-      Expected: No developer is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-5. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
+#### Deleting Client Roles
+1. Prerequisite: role `Tester` has been added in already (i.e. add in this role if it is after any of the test case)
+2. Test case: `delete-client-role Tester`
+   Expected results: Tester deleted as a role. Command status success message shown.
+3. Test case: assign the `Tester` role to any client, then execute `delete-client-role Tester`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as there are clients using it.
+4. Test case: `delete-client-role HR`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as this is a pre-declared role.
+5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role Tester`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
 
 [Scroll back to Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
