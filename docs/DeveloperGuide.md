@@ -339,10 +339,29 @@ contains the edited fields to update the target object with.
 Executing the command will replace the existing object in the current `model` with the new object with the edited fields.
 
 Other than extending the commands, parsers, and descriptors to account for `Developer`, `Client`, and `Project` separately,
-some changes to the sequence of interactions between the `Logic` and `Model` components were also made. When the
-`EditDeveloperCommandParser` and `EditClientCommandParser` parses edits to a `Project` assigned to a `Developer` or `Client`,
-it calls `Model##----` to check whether there is an existing `Project` with that name.
+some changes to the sequence of interactions between the `Logic` and `Model` components were also made. When
+`EditDeveloperCommand` and `EditClientCommand` is executed with edits made to a `Project` assigned to a `Developer` or
+`Client`, it calls `Model#areProjectsValid()` to check whether there is an existing `Project` with that name.
 
+Given below is an example usage scenario where the user edits the projects assigned to a `Developer` using the `edit-developer`
+command.
+
+**Step 1.** User launches the application and unlocks the application with the correct password.
+
+**Step 2.** User executes an edit developer command by entering `edit-developer 1 pr/AppleApp` to edit the projects assigned
+to the developer at index 1 (one-based indexing) in the currently displayed developer list.
+
+**Step 3.** The developer at index 1 is edited to be assigned to the project `AppleApp` given that there is an existing
+project with the name `AppleApp` in the address book.
+
+The sequence diagram below illustrates key interactions taking place in the `Logic` component when the command
+`edit-developer 1 pr/AppleApp` is called. A significant modification to take note off is the call to the
+`Model#areProjectsValid()` method. This sequence reflects a successful command execution.
+
+![Interactions inside the Logic component for the `edit-developer 1 pr/AppleApp` Command](images/EditDeveloperSequenceDiagram.png)
+
+The `edit-client` and `edit-project` commands are executed similarly, except project validation checks using the
+`Model#areProjectsValid()` method are not conducted for the latter.
 
 #### Design considerations
 **Aspect: Command syntax**
@@ -399,6 +418,7 @@ The following sequence diagram provides an overview of how the find operation is
 
 Given the benefits of a more maintainable and scalable codebase, we've decided to go with the first alternative. Future enhancements might include fuzzy search.
 
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### List Feature (`list-developer`, `list-client`, `list-project`)
@@ -418,21 +438,22 @@ relevant lists of data
 
 Given below is an example usage scenario and how the `list` mechanism behaves at each step:
 
-**Step 1** The user used the `find` feature to search for something and the UI is only displaying some
+**Step 1.** The user used the `find` feature to search for something and the UI is only displaying some
 developers
 
-**Step 2** To list all the developers, the user executes the command `list-developer`. `AddressBookParser`
+**Step 2.** To list all the developers, the user executes the command `list-developer`. `AddressBookParser`
 recognizes the `list-developer` command and calls the `ListDeveloperCommand`.
 
-**Step 3** Next, the `ListDeveloperCommand#execute()` method that overides the abstract method `Command#execute()` gets
+**Step 3.** Next, the `ListDeveloperCommand#execute()` method that overides the abstract method `Command#execute()` gets
 activated.This `execute()` method calls the `Model#updateFilteredDeveloperList`, passing in the `Predicate<Developer>`
 that has been set to true.
 
-**Step 4** `Model#updateFilteredDeveloperList` then updates the list in the UI to print all the existing developers.
+**Step 4.** `Model#updateFilteredDeveloperList` then updates the list in the UI to print all the existing developers.
 
 The following sequence diagram provides an overview of how the find operation is executed
 
 ![sequence diagram](images/ListDeveloperSequenceDiagram.png)
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -454,11 +475,11 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the `undo`/`redo` mechanism behaves at each step.
 
-**Step 1** The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+**Step 1.** The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-**Step 2** The user executes `delete-developer 5` command to delete the 5th developer in the address book. The `delete`
+**Step 2.** The user executes `delete-developer 5` command to delete the 5th developer in the address book. The `delete`
 command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete-developer 5`
 command executes to be saved in the `addressBookStateList`. The successful command message and tab it switched to
 also saved into `successfulCommandMessages` and `tabIndex` respectively. The `currentStatePointer` is then shifted to the newly
@@ -466,7 +487,7 @@ inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-**Step 3** The user executes `add-developer n/David …​` to add a new developer. The `add` command also calls
+**Step 3.** The user executes `add-developer n/David …​` to add a new developer. The `add` command also calls
 `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`,
 and another successful command message and tab switched saved into `successfulCommandMessages` and `tabIndex`.
 
@@ -475,7 +496,7 @@ and another successful command message and tab switched saved into `successfulCo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 </div>
 
-**Step 4** The user now decides that adding the developer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+**Step 4.** The user now decides that adding the developer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -491,7 +512,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-**Step 5** The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+**Step 5.** The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -510,9 +531,11 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
     execute the `delete-developer-role function`. The process of this implementation had to be very careful just like
     what the cons mentioned, a slight validation error can change the whole `undo` and `redo` feature.
 
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Add-role Feature (`add-developer-role`, `add-client-role`)
+
 #### Implementation
 The add role command employs a structured approach where specific commands, such as `add-developer-role` or
 `add-client-role`are associated with corresponding functionalities. This allows users to efficiently add
@@ -529,15 +552,15 @@ The classes are similar for `ClientRoles` but just that they are associated with
 
 Given below is an example usage scenario and how the `add-developer-role` mechanism behaves at each step:
 
-**Step 1**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
+**Step 1.**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
 
-**Step 2**  The user executes the command `add-developer-role Tester`. The application recognizes the `add-developer-role`
+**Step 2.**  The user executes the command `add-developer-role Tester`. The application recognizes the `add-developer-role`
 and calls `AddDeveloperRoleCommandParser#parse()`.
 
-**Step 3** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
+**Step 3.** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
 trimmed to `Tester` and calls `AddDeveloperRoleCommand`.
 
-**Step 4** `AddDeveloperRoleCommand#execute()` checks if there is an existing role with the same name and creates
+**Step 4.** `AddDeveloperRoleCommand#execute()` checks if there is an existing role with the same name and creates
 a new developer role if there is no such role.
 
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
@@ -561,11 +584,13 @@ The following sequence diagram shows how the Add-role operation works:
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+
 ### Delete-role Feature (`delete-developer-role`, `delete-client-role`)
+
 #### Implementation
 The add role command employs a structured approach where specific commands, such as `delete-developer-role` or
 `delete-client-role`are associated with corresponding functionalities. This allows users to efficiently delete
-information about developers and clients that they no longer need.The system helps you to check if there are any
+information about developers and clients that they no longer need. The system helps you to check if there are any
 developers or clients in the list using this feature. If there is, the command will not be successfully executed.
 This feature is facilitated with the `DeveloperRoles` and `ClientRoles` class which implements the following operations:
 
@@ -579,15 +604,15 @@ The classes are similar for `ClientRoles` but just that they are associated with
 
 Given below is an example usage scenario and how the `delete-developer-role` mechanism behaves at each step:
 
-**Step 1**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
+**Step 1.**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
 
-**Step 2**  The user executes the command `delete-developer-role Tester`. The application recognizes the `delete-developer-role`
+**Step 2.**  The user executes the command `delete-developer-role Tester`. The application recognizes the `delete-developer-role`
 and calls `DeleteDeveloperRoleCommandParser#parse()`.
 
-**Step 3** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
+**Step 3.** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
 trimmed to `Tester` and calls `DeleteDeveloperRoleCommand`.
 
-**Step 4** `DeleteDeveloperRoleCommand#execute()` checks if this is a removable role and removes it from the list of roles
+**Step 4.** `DeleteDeveloperRoleCommand#execute()` checks if this is a removable role and removes it from the list of roles
 if `DeveloperRoles#isRemovableRole()` returns true.
 
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
@@ -599,6 +624,60 @@ The following sequence diagram shows how the Delete-role operation works:
 
 The following activity diagram shows how the validation check in `DeveloperRoles#isRemovableRole()` works:<br>
 ![ActivityDiagram](images/isRemovableRole.png)
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Mark/unmark deadline Feature (`mark-deadline`, `unmark-deadline`)
+#### Implementation
+The mark and unmark deadline features are implemented using a secondary call to the `edit-project` command. As with
+the other commands, `mark-deadline` and `unmark-deadline` commands are first parsed to return `MarkDeadlineCommandParser`
+and `UnmarkDeadlineCommandParser` respectively. The parses similarly implement the `MarkDeadlineCommandParser#parse()`
+and `UnmarkDeadlineCommandParser#parse()` methods which return `MarkDeadlineCommand` and `UnmarkDeadlineCommand` objects
+respectively. However, in the execution of `MarkDeadlineCommand` and `UnmarkDeadlineCommand`, a new
+`EditProjectCommand` is created and subsequently executed, to get the `CommandResult`.
+
+Consequently, calling `mark-deadline` and `unmark-deadline` on a deadline of project is synonymous to editing the
+project to update the `isDone` status of the deadline.
+
+This is facilitated by the following methods:
+* `MarkDeadlineCommand#editProjectArgs()`  —  Formats each deadline in a list of String representations into a
+String that will be used as the arguments parsed by an EditProjectCommandParser.
+* `Project#markDeadlineStringRep()`  —  Returns a list with each element being the String representation of the
+respective deadline, with the deadline at the given index marked as done.
+* `Project#unmarkDeadlineStringRep()`  —  Returns a list with each element being the String representation of the
+respective deadline, with the deadline at the given index marked as undone.
+
+Relevant checks are conducted at the `MarkDeadlineCommand#execute()` and `UnmarkDeadlineCommand#execute()` stages to
+ensure the index of the project and the edited deadline passed to the `EditProjectCommandParser` as arguments for the
+`EditProjectCommandParser#parse()` as arguments are valid.
+
+The following sequence diagram illustrates the interactions taking place in the `Logic` component when the command
+`mark-deadline 2 1` is called. The sequence reflects a successful command execution, assuming that the current state of
+the displayed project list has a project with the index `2` with at least `1` deadline.
+
+![SequenceDiagram](images/MarkDeadlineSequenceDiagram.png)
+
+#### Design considerations
+**Aspect: Execution of command**
+* Alternative 1: Implement methods in `ModelManager` class that can directly change the `isDone` status of the deadlines
+of a project based on the given project index and deadline index.
+  * Pros: 
+    * More aligned with OOP principles.
+    * Mirrors sequence flow of other commands and can be implemented using current code architecture.
+  * Cons: 
+    * Due to container structure of `Project` and `Deadline`, changing the status of deadlines needs to be done
+    through projects, so more methods need to be added to achieve this.
+    * Given the GUI display of project deadlines in a Javafx TableView, makes it more complicated for changes in
+    deadline status to be automatically reflected in the list of projects and deadlines displayed to the user.
+* Alternative 2 (current choice): Implement execution by creating an `EditProjectCommandParser` and `EditProjectCommand`
+that will replace the existing project entirely with a new one with the updated deadline being marked/unmarked.
+  * Pros:
+    * Fewer methods to implement, allows for more reuse.
+    * Editing the project with new deadlines will ensure that upon execution of the command, the updated project with
+    marked/unmarked deadline is displayed to the user on the app.
+  * Cons:
+    * Slightly more disorganised interactions within `Logic` component since have to go from parsing a command to
+    executing it, then parsing another command again and executing that command.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -622,6 +701,7 @@ be updated to show the full list of information for that tab again.
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1143,6 +1223,163 @@ and commits should follow a consistent naming convention.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Manual Testing**
+Given below are some instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions are meant to provide a
+starting point for testers to work with, testers should do more *exploratory* testing.
+</div>
+
+### Launching the app
+#### Initial launch
+1. Download the jar file and copy into an empty folder.
+2. Double-click the jar file.<br> 
+Expected: Shows the GUI with a message prompting user to unlock to continue.
+3. Enter the command `unlock pw/Password123!` in the command box.<br>
+Expected: Shows the unlocked GUI.
+
+### Lock
+1. Test case: `lock`<br>
+  Expected: All the information in the GUI has been hidden. The execution of all commands except `unlock`, `help`, and
+  `delete` have also been disabled.
+
+### Unlock
+1. Test case: `unlock pw/Password123!`<br>
+   Expected: Shows the unlocked GUI.
+2. Test case: `unlock pw/abc`<br>
+  Expected: GUI remains locked. Error details shown in the status message.
+
+### Change password
+1. Test case: `change-password pw/Password123! npw/Password321!`<br>
+  Expected: Password is changed successfully. Command success status message shown.
+2. Test case: `change-password pw/Password123! npw/abc`<br>
+  Expected: Password is not changed. Error details shown in the status message.
+
+### Adding
+#### Adding projects
+1. Test case: `add-project n/JuiceApp dr/App to allow for different juices to be ordered
+dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`<br>
+  Expected: New project with the name JuiceApp is created, provided there is no existing project with that name.
+   Command success status message shown.
+2. Test case: `add-project n/JuiceApp dr/App to allow for different juices to be ordered
+   dl/invaliddeadline`<br>
+  Expected: No project is added. Error details shown in the status message.
+
+#### Adding developers
+1. Test case: `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer 
+s/4500 d/11-11-2023 g/johng rt/3` <br>
+  Expected: New developer with the name John Doe is created, provided there is no existing developer with that name.
+   Command success status message shown.
+2. Test case: `add-developer n/John Does p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer
+s/4500 d/11-11-2023 g/johng rt/6` <br>
+  Expected: No developer is added. Error details shown in the status message.
+
+#### Adding clients
+1. Prerequisites: Add a project with the name `AndroidApp` and another project with the name `CustomWebsite` before
+  testing.
+2. Test case: `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer
+   pr/AndroidApp pr/CustomWebsite o/Google do/google.com`<br>
+   Expected: New client with the name Jack Doe is created, provided there is no existing client with that name.
+   Command success status message shown.
+3. Test case: `add-developer n/John Does p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer
+   pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/6` <br>
+   Expected: No developer is added. Error details shown in the status message.
+
+### Listing
+1. Test case: `list-developer`<br>
+  Expected: Lists all the developers.
+2. Test case: `list-client`<br>
+   Expected: Lists all the clients.
+3. Test case: `list-project`<br>
+   Expected: Lists all the projects.
+4. Test case: `lists-project`<br>
+   Expected: No change in GUI. Error details shown in the status message.
+
+### Deleting
+#### Deleting projects
+1. Prerequisites: List all projects using the `list-project` command. Ensure there is at least 1 project in the list.
+2. Test case: `delete-project 1`<br>
+  Expected: First project is deleted from the list. Command success status message shown.
+3. Test case: `delete-project x` where `x` is an integer larger than the number of projects listed.
+  Expected: No change. Error details shown in the status message.
+
+#### Deleting developers
+1. Prerequisites: List all developers using the `list-developer` command. Ensure there is at least 1 developer in the
+list.
+2. Test case: `delete-developer 1`<br>
+  Expected: First developer is deleted from the list. Command success status message shown.
+3. Test case: `delete-developer x` where `x` is an integer larger than the number of developers listed.
+  Expected: No change. Error details shown in the status message.
+
+#### Deleting clients
+1. Prerequisites: List all clients using the `list-client` command. Ensure there is at least 1 client in the list.
+2. Test case: `delete-client 1`<br>
+   Expected: First client is deleted from the list. Command success status message shown.
+3. Test case: `delete-client x` where `x` is an integer larger than the number of client listed.
+   Expected: No change. Error details shown in the status message.
+
+### Editing
+#### Editing projects
+1. Prerequisites: List all projects using the `list-project` command. Ensure there are at least 2 projects in the list.
+2. Test case: `edit-project 1 dl/01-12-2023,Design backend,HIGH,0 dl/19-12-2023,Design frontend,HIGH,0`<br>
+  Expected: First project in the list is successfully updated. Command success status message shown.
+3. Test case: `edit-project 1 dr/update desc`
+   Expected: First project in the list is successfully updated. Command success status message shown.
+4. Test case: `edit-project 2 dl/invaliddeadline`
+  Expected: Edit to the second project in the list is unsuccessful. Error details shown in the status message.
+
+#### Editing developers
+1. Prerequisites: List all developers using the `list-developer` command. Ensure there are at least 2 clients in the
+list.
+2. Test case: `edit-developer 2 p/98989898`<br>
+   Expected: Second developer in the list is successfully updated. Command success status message shown.
+3. Test case: `edit-developer 1 s/-200`<br>
+   Expected: Edit to the first developer in the list is unsuccessful. Error details shown in the status message.
+
+#### Editing clients
+1. Prerequisites: List all clients using the `list-client` command. Ensure there is at least 1 client in the list.
+2. Test case: `edit-client 1 p/98989898`<br>
+   Expected: First client in the list is successfully updated. Command success status message shown.
+3. Test case: `edit-developer 1 p/10`<br>
+   Expected: No edit is made. Error details shown in the status message.
+
+### Importing information
+#### Importing developers
+1. Prerequisites: Create a CSV file populated with developer details in the correct format. Add the CSV file to the same
+folder as JAR file of this app.
+2. Test case: `import-developer developers.csv`<br>
+  Expected: All developers with their details specified in the CSV are added, assuming the data in the file is in the
+  correct format. Command success status message shown.
+3. Test case: `import-developer`<br>
+  Expected: No developer is added. Error details shown in the status message.
+
+#### Importing clients
+1. Prerequisites: Create a CSV file populated with client details in the correct format. Add the CSV file to the same
+   folder as JAR file of this app.
+2. Test case: `import-client clients.csv`<br>
+   Expected: All clients with their details specified in the CSV are added, assuming the data in the file is in the
+   correct format. Command success status message shown.
+3. Test case: `import-client`<br>
+   Expected: No client is added. Error details shown in the status message.
+
+### Undoing commands
+For these tests, each test case has respective prerequisites that must be met before executing the test.
+1. Prerequisites: Relaunch the app and unlock it with your password. Do NOT execute any other command after `unlock`.
+   2. Test case: `undo`<br>
+   Expected: Nothing is undone since no command has been executed yet. Error details shown in the status message.
+
+1. Prerequisites: Execute either an edit or delete command after unlocking the app.
+   2. Test case: `undo` <br>
+   Expected: The most recent command executed is undone. Command success status message shown.
+
+### Redoing commands
+For these tests, each test case has respective prerequisites that must be met before executing the test.
+1. Prerequisites: Relaunch the app and unlock it with your password. Do NOT execute any other command after `unlock`.
+  2. Test case: `redo`<br>
+     Expected: Nothing is redone since no command has been executed yet. Error details shown in the status message.
+
+1. Prerequisites: Execute either an edit or delete command after unlocking the app, then execute the `undo` command.
+  2. Test case: `redo` <br>
+     Expected: The changes from the recent `undo` command executed are reverted. Command success status message shown.
 
 ### Adding roles
 #### Adding Developer Roles
@@ -1184,16 +1421,67 @@ Expected results:  No role deleted. Error details shows role cannot be deleted a
 5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role Tester`
    Expected results:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
 
+### Finding
+#### Finding projects
+1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
+2. Test case: 'find-project pr/Laundry App'<br>
+  Expected: Projects with the name, Laundry App, are shown on the list. Command success status message shown.
+3. Test case: 'find-developer Laundry App'
+  Expected: No search result due to error in format. No prefix provided before project name. Error details shown in the status message.
+
+#### Finding developers
+1. Prerequisites: List all developers using the 'list-developer' command. Multiple developers in the list.
+2. Test case: 'find-developer n/Alice'<br>
+   Expected: Developers with the name, Alice, are shown on the list. Command success status message shown.
+3. Test case: 'find-developer Alice'
+   Expected: No search result due to error in format. No prefix provided before name. Error details shown in the status message.
+
+#### Finding clients
+1. Prerequisites: List all clients using the 'list-client' command. Multiple clients in the list.
+2. Test case: 'find-client o/Google'<br>
+   Expected: Clients from the organisation, Google, are shown on the list. Command success status message shown.
+3. Test case: 'find-client Google'
+   Expected: No search result due to error in format. No prefix provided before organisation. Error details shown in the status message.
+
+### Marking project deadlines
+#### Mark deadline as done
+1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
+2. Test case: 'mark-deadline 1 2'<br>
+   Expected: The second deadline of the first project in the currently displayed project list is marked as done. Command success status message shown.
+3. Test case: 'mark-deadline 1 x' where 'x' is an integer larger than the number of deadlines for the project specified.
+   Expected: No change. Error details shown in the status message.
+
+#### Mark deadline as undone
+1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
+2. Test case: 'unmark-deadline 1 2'<br>
+   Expected: The second deadline of the first project in the currently displayed project list is marked as undone. Command success status message shown.
+3. Test case: 'unmark-deadline 1 x' where 'x' is an integer larger than the number of deadlines for the project specified.
+   Expected: No change. Error details shown in the status message.
+   
+### Exiting the app
+1. After executing some commands, use the `exit` command to exit the app.
+2. You can re-launch the app by double-clicking the jar file.<br>
+   Expected: The application should load with any previous changes made during the previous running of the app.
+
 [Scroll back to Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancement**
 
-### Validation checks for edit
-**Current Behavior:** Two developers can have the same address, contact number etc. As long as they don't have the same name
-they can both be added.<br>
-**Enhanced Behavior:** Validation checks should be added for email, contact number and address to make sure there are no 2
-people with repeated the details.
+### Validation checks for duplicate fields in edit commands
+**Current Behavior:** Two developers can have the same details (eg. address, phone number, email) as long as their name
+is not the same. This program behaviour also exists for clients.
+<br>
+**Enhanced Behavior:** Validation checks should be conducted for email, contact number and address when adding or
+editing developers or clients to make sure that no two developers or clients have repeated details since this is
+unrealistic.
+
+### Validation checks for unedited fields in edit commands
+**Current Behavior:** A developer, client, or project can be edited to have the exact same details as it currently has.
+<br>
+**Enhanced Behavior:** Validation checks should be conducted which notifies the user when they try to edit an existing
+developer, client, or project, to have the exact same details as it currently has. This makes it more user-friendly as
+if such an occurrence happens, it is likely that it was a mistake or typo in the command.
 
 ### Case-sensitive validation checks for adding roles
 **Current Behavior:** Two similar roles with different cases can both be added. `Developer` and `developer` can exist at the
@@ -1218,6 +1506,16 @@ The backend implementation of logic follows the CLI implementation by creating a
 **Current Behavior:** There is only import csv function and no options for export<br>
 **Enhanced Behavior:** A new menu item will be added under File called `Export data` and clicking it will lead to a window
 where users can select the location to save the files for Developers, Clients and Projects. The file will be saved in csv format.
+
+### Find Autocomplete
+**Current Behavior:** While searching, users are not prompted for autocomplete suggestions.
+**Enhanced Behavior:** Implement autocomplete suggestions as users type their search queries. This can help users avoid
+typos and provide quick access to commonly used search terms.
+
+### Sort Results
+**Current Behavior:** After each command, the list of contacts shown are based on the order the contact was added.
+**Enhanced Behavior:** Allow users to sort the search results based on different criteria such as name, date, or
+priority. This provides users with more flexibility in organizing and viewing the search results.
 
 [Scroll back to Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
