@@ -15,8 +15,8 @@ Given below are my contributions to the project.
 
 * **New Features**: `add-developer`, `add-client` & `add-project`
     * What it does: Adds a developer/client/project to the address book, making sure input parameters are valid and potential duplicates are found, highlighted to the user and rejected.
-    * Justification: Decided to separate these as different commands instead of having a single `add` command to allow for more flexibility with parameters changes to these features in the future (from basic OOP principles). This also allows for more specific error messages to be displayed to users when they input invalid parameters, utilising polymorphism. 
-    * Highlights: 
+    * Justification: Decided to separate these as different commands instead of having a single `add` command to allow for more flexibility with parameters changes to these features in the future (from basic OOP principles). This also allows for more specific error messages to be displayed to users when they input invalid parameters, utilising polymorphism.
+    * Highlights:
     * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in
       the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
@@ -46,7 +46,7 @@ Given below are my contributions to the project.
   * Wrote testcases for my functional contributions to Codecontact. (Pull request [\#216](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/216), [\#236](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/222), [\#236](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/236))
 
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=Mahidharah&tabRepo=AY2324S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 
 * **Project management(team-based tasks contributions)**:

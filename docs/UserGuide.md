@@ -3,16 +3,18 @@ layout: page
 title: User Guide
 ---
 
-# Welcome to CodeContact
-**Taking charge of your PROject Management!**
+## Welcome to CodeContact
+{: .no_toc}
+
+***Taking charge of your PROject Management!***
 
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
-facilitating collaboration, and offering command-line efficiency for project managers
+facilitating collaboration, and offering command-line efficiency for project managers.
 
 CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
 management tasks done faster than traditional GUI apps. **CodeContact** aims to put the **P.R.O** in project management  by enabling project managers to be
-1. **Productive** 
+1. **Productive**
 2. **Reliable**
 3. **Organised**
 
@@ -31,52 +33,15 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 -------------------------------------------------------------------------------------
 
 ## Table of Contents
+{: .no_toc}
 
-* [How can this guide help me?](#how-can-this-guide-help-me)
-* [Navigating this guide](#navigating-this-guide)
-    * [Glossary](#glossary)
-        * [Definitions](#definitions)
-        * [Parameter Information](#parameter-information)
-            * [Common parameters](#common-parameters)
-            * [Developer parameters](#developer-parameters)
-            * [Client parameters](#client-parameters)
-            * [Project parameters](#project-parameters)
-    * [Format](#format)
-        * [General Formatting](#general-formatting)
-        * [Command Format](#command-format)
-* [Navigating the Graphical User Interface (GUI)](#navigating-the-graphical-user-interface--gui-)
-* [Quick Start](#quick-start)
-* [CodeContact Tutorial](#codecontact-tutorial--for-new-users-)
-* [Features](#features)
-
-| [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
-|:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
-| [Password Protection](#password-protection) |    [`lock`](#lock-lock)    |  [`unlock`](#unlock-unlock)  | [`change-password`](#change-password-change-password) |
-
-| [Management Features](#management-features)         |                                 Developer                                 |                              Client                              |                                                         Project                                                          |
-|:----------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
-| [Adding new information](#add)                      |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                                        [`add-project`](#add-project--add-project)                                        |
-| [Deleting information](#delete)                     |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                                   [`delete-project`](#delete-project--delete-project)                                    |
-| [Editing information](#edit)                        |        [`edit-developer`](#edit-developer-details--edit-developer)        |        [`edit-client`](#edit-client-details--edit-client)        |                                  [`edit-project`](#edit-project-details--edit-project)                                   |
-| [Importing information](#import-information)        |        [`import-developer` ](#import-developers-import-developer)         |         [`import-client`](#import-clients-import-client)         |                                                            -                                                             |
-| [Finding information](#find)                        |                [`find-developer`](#find-developer-details)                |              [`find-client`](#find-client-details)               |                [`find-project`](#find-project-details), [`find-deadline`](#find-deadlines-find-deadline)                 |
-| [Listing information](#listing-information--list)   |                             `list-developer`                              |                          `list-client`                           |                                                      `list-project`                                                      |
-| [Adding new role](#add-roles)                       |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |                                                            -                                                             |
-| [Deleting role](#delete-roles)                      | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                            -                                                             |
-| [Marking Project Deadlies](#mark-project-deadlines) |                                     -                                     |                                -                                 | [`mark-deadline`](#mark-deadline-as-done--mark-deadline), [`unmark-deadline`](#mark-deadline-as-undone--unmark-deadline) |
-
-| [Additional Features](#additional-features)       |              Finding Help               |                     Clearing data                     |                  Exiting program                  |
-|:--------------------------------------------------|:---------------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
-| [Miscellaneous Features](#miscellaneous-features) | [View Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
-
-* [FAQ](#faq)
-* [Known Issues](#known-issues)
-* [Command Summary](#command-summary)
-
+* Table of Contents
+{:toc}
 -------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## How can this guide help me?
+### How can this guide help me?
+{: .no_toc}
 
 If you are a new user, we hope to first inform you on how you can [get started](#quick-start) using CodeContact.
 
@@ -89,15 +54,15 @@ Further questions are also answered within a [FAQ](#faq) section below.
 Confused about the terms or formatting used in this guide? Learn how to **navigate this guide** [here](#navigating-this-guide).
 
 Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
-[here](#navigating-the-graphical-user-interface--gui-).
+[here](#navigating-the-graphical-user-interface-gui).
 
 ------------------------------------------------------------------------------------------
 
-# Navigating this guide
+# **Navigating this guide**
 
 <!-- -->
 
-## Glossary
+## **Glossary**
 
 <!-- -->
 
@@ -194,7 +159,7 @@ Here are the explanations behind the formatting we use through this guide.<br>
 -----------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Navigating the Graphical User Interface (GUI)
+## **Navigating the Graphical User Interface (GUI)**
 CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
 of the different sections of our GUI, as well as some notes regarding the use of the GUI.
 ### Quick Orientation
@@ -219,13 +184,13 @@ Here is a quick summary of each GUI component within CodeContact:
 <div markdown="block" class="alert alert-warning">
 If you executed a `find` command in developer tab and switched to the client tab, when you return to the developer tab the find results will be cleared and
 the whole list of developers will be shown again. This is the intended behavior of CodeContact as we hope that this can save you the time
-from always needing to call the list command. 
+from always needing to call the list command.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -248,70 +213,60 @@ from always needing to call the list command.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## CodeContact Tutorial (for new users)
+## **CodeContact Tutorial (for new users)**
 
 This is a tutorial for **first-time** CodeContact users.
 
 1. Launch CodeContact. You may refer to the instructions [here](#quick-start).
     * On launch, CodeContact will not contain any developer or client records.
-
-
-1. You will be asked to **enter a password** to unlock CodeContact.
+2. You will be asked to **enter a password** to unlock CodeContact.
     * Enter the command `unlock pw/Password123!` in the command box.
 
-
-1. You can **change the password** to unlock CodeContact.
+3. You can **change the password** to unlock CodeContact.
     * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box
-   <div markdown="block" class="alert alert-info">:bulb:
-You can always lock and unlock CodeContact using the `lock` and `unlock` commands 
+
+<div markdown="block" class="alert alert-info">:bulb:
+You can always lock and unlock CodeContact using the `lock` and `unlock` commands
 </div>
 
 1. Let us try **adding a project** to our CodeContact.
     * Enter the
       command `add-project n/AndroidApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0 `
 
-
-1. We can then **add a developer** to our CodeContact.
+2. We can then **add a developer** to our CodeContact.
     * Enter the
       command `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp s/4500 d/01-11-2023 g/johng rt/3`
     * Try adding more developers with different details for each parameter!
     * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you wish to add new developers with other roles and
       project.
 
-
-1. We can also **add a client** to our CodeContact.
+3. We can also **add a client** to our CodeContact.
     * Enter the
       command `add-client n/Amy p/88765423 e/amy@example.com a/31, Clementi Ave 6, #03-12 r/Client pr/AndroidApp o/Google do/google.com`
     * Try adding more clients with different details for each parameter!
     * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you which to add new client with other roles and project.
 
-
-1. Let us try **editing the name** of a developer stored in CodeContact.
+4. Let us try **editing the name** of a developer stored in CodeContact.
     * Enter the command `edit-developer 1 n/Jhonny`
     * Try editing other parameters or developers and projects too!
     * More details of what you can edit can be found [here](#edit)
 
-
-1. We can also easily **find** for information in CodeContact.
+5. We can also easily **find** for information in CodeContact.
     * Enter the command `find-developer n/John s/4500`
     * Try looking for other information and search with multiple parameters!
     * More details of what you can find can be found [here](#find)
 
-
-1. You can always **show the full list** after finding in CodeContact.
+6. You can always **show the full list** after finding in CodeContact.
     * Enter the command `list-developer`, `list-client` or `list-project`.
 
-
-1. You can **delete developers, clients or projects** in CodeContact.
+7. You can **delete developers, clients or projects** in CodeContact.
     * Enter the command `delete-developer 3` to delete the 3rd developer in CodeContact
     * More details on how delete works can be found [here](#delete-developer--delete-developer)
 
-
-1. If you realise that you did not delete this developer, you can **undo** this action in CodeContact.
+8. If you realise that you did not delete this developer, you can **undo** this action in CodeContact.
     * Enter the command `undo` and it will revert your previous actions.
 
-
-1. If you realise you actually want it deleted, you can **redo** this action in CodeContact.
+9. If you realise you actually want it deleted, you can **redo** this action in CodeContact.
     * Enter the command `redo` and it will redo your previous actions.
 
 Congratulations! You are now ready to use CodeContact!
@@ -323,12 +278,33 @@ To view all our features, you may visit our [Features](#features) section
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-# Features
-## Security Features
+# **Features**
+
+| [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
+|:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
+| [Password Protection](#password-protection) |    [`lock`](#lock-lock)    |  [`unlock`](#unlock-unlock)  | [`change-password`](#change-password-change-password) |
+
+| [Management Features](#management-features)         |                                 Developer                                 |                              Client                              |                                                         Project                                                          |
+|:----------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
+| [Adding new information](#add)                      |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                                        [`add-project`](#add-project--add-project)                                        |
+| [Deleting information](#delete)                     |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                                   [`delete-project`](#delete-project--delete-project)                                    |
+| [Editing information](#edit)                        |        [`edit-developer`](#edit-developer-details--edit-developer)        |        [`edit-client`](#edit-client-details--edit-client)        |                                  [`edit-project`](#edit-project-details--edit-project)                                   |
+| [Importing information](#import-information)        |        [`import-developer` ](#import-developers-import-developer)         |         [`import-client`](#import-clients-import-client)         |                                                            -                                                             |
+| [Finding information](#find)                        |                [`find-developer`](#find-developer-details)                |              [`find-client`](#find-client-details)               |                [`find-project`](#find-project-details), [`find-deadline`](#find-deadlines-find-deadline)                 |
+| [Listing information](#listing-information--list)   |                             `list-developer`                              |                          `list-client`                           |                                                      `list-project`                                                      |
+| [Adding new role](#add-roles)                       |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |                                                            -                                                             |
+| [Deleting role](#delete-roles)                      | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                            -                                                             |
+| [Marking Project Deadlies](#mark-project-deadlines) |                                     -                                     |                                -                                 | [`mark-deadline`](#mark-deadline-as-done--mark-deadline), [`unmark-deadline`](#mark-deadline-as-undone--unmark-deadline) |
+
+| [Additional Features](#additional-features)       |              Finding Help               |                     Clearing data                     |                  Exiting program                  |
+|:--------------------------------------------------|:---------------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
+| [Miscellaneous Features](#miscellaneous-features) | [View Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
+
+## **Security Features**
 
 ### Password Protection
 Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and customizable password.
-### Lock `lock`
+#### Lock `lock`
 
 Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
 except `unlock`, `help`, and `delete`.
@@ -343,7 +319,7 @@ Locked all data
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Unlock `unlock`
+#### Unlock `unlock`
 
 Unlocks the system by making all the information visible and allows all commands to be parsed.
 
@@ -360,7 +336,7 @@ Unlocked all data
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Change password `change-password`
+#### Change password `change-password`
 
 Allows for password to be changed, given the current password and new password matches criteria.
 
@@ -380,8 +356,8 @@ Password changed successfully.
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-## Management Features
-### Add
+## **Management Features**
+### **Add**
 
 #### Add developer : `add-developer`
 
@@ -451,7 +427,7 @@ Projects: CustomWebsite AndroidApp
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-Entered details of a client incorrectly? You can always undo the action with the [`undo`](#undo) command! 
+Entered details of a client incorrectly? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -481,12 +457,12 @@ Deadlines:
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-Entered details of a project incorrectly? You can always undo the action with the [`undo`](#undo) command! 
+Entered details of a project incorrectly? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Delete
+### **Delete**
 
 #### Delete developer : `delete-developer`
 
@@ -501,19 +477,19 @@ Example of usage: `delete-developer 2`
 When command succeeds, CLI shows:
 
 ```
-Deleted Developer: Bernice Yu; 
-Phone: 99272758; 
-Email: berniceyu@example.com; 
-Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; 
-Date Joined: 16-11-2020; 
-Role: Developer; 
-Salary: 6000; 
-Projects: Appollo Orbital 
+Deleted Developer: Bernice Yu;
+Phone: 99272758;
+Email: berniceyu@example.com;
+Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18;
+Date Joined: 16-11-2020;
+Role: Developer;
+Salary: 6000;
+Projects: Appollo Orbital
 ```
 if second developer in the list was Bernice Yu
 
 <div markdown="block" class="alert alert-info">:bulb:
-Deleted a wrong developer? You can always undo the action with the [`undo`](#undo) command! 
+Deleted a wrong developer? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 #### Delete client : `delete-client`
@@ -528,19 +504,19 @@ Example of usage: `delete-client 3`
 
 When command succeeds, CLI shows:
 ```
-Deleted Client: George Lim; 
-Phone: 76543210; 
-Email: george@example.com; 
-Address: Blk 789 Woodlands Ave 6, #03-03; 
-Organisation: MNO Company; 
-Role: Developer; 
-Document: https://www.mno.com/; 
-Projects: CodeContact 
+Deleted Client: George Lim;
+Phone: 76543210;
+Email: george@example.com;
+Address: Blk 789 Woodlands Ave 6, #03-03;
+Organisation: MNO Company;
+Role: Developer;
+Document: https://www.mno.com/;
+Projects: CodeContact
 ```
 if second client in the list was George Lim
 
 <div markdown="block" class="alert alert-info">:bulb:
-Deleted a wrong client? You can always undo the action with the [`undo`](#undo) command! 
+Deleted a wrong client? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 #### Delete project : `delete-project`
@@ -564,12 +540,12 @@ Deadlines:
 if second project in the list was TeamTrekker
 
 <div markdown="block" class="alert alert-info">:bulb:
-Deleted a wrong project? You can always undo the action with the [`undo`](#undo) command! 
+Deleted a wrong project? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Edit
+### **Edit**
 
 #### Edit developer details : `edit-developer`
 
@@ -607,7 +583,7 @@ Projects: Project1, Project2
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-You can always undo the action with the [`undo`](#undo) command! 
+You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -644,7 +620,7 @@ Document: google.com
 Projects: ProjectA
 ```
 <div markdown="block" class="alert alert-info">:bulb:
-You can always undo the action with the [`undo`](#undo) command! 
+You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -675,14 +651,14 @@ Deadlines:
 1. Design backend by: 19-12-2023, priority: HIGH (undone)
 ```
 <div markdown="block" class="alert alert-info">:bulb:
-You can always undo the action with the [`undo`](#undo) command! 
+You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Import information
+### **Import**
 
-#### Import developers : `import-developer`
+#### Import developers' deatils: `import-developer`
 
 Takes in a CSV file and populates the internal list of developers if the file is formatted correctly
 
@@ -724,7 +700,7 @@ for each developer successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Import clients : `import-client`
+#### Import clients' details: `import-client`
 
 Takes in a CSV file and populates the internal list of clients if the file is formatted correctly
 
@@ -766,7 +742,7 @@ for each client successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Find
+### **Find**
 
 #### Find developer details : `find-developer`
 
@@ -848,7 +824,7 @@ followed by the matching project's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Find deadlines : `find-deadline`
+#### Find deadlines : `find-deadline`
 
 Finds deadlines in project tab based on date and/or priority.
 
@@ -869,7 +845,8 @@ These are the 3 projects with matching information.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Listing information : `list`
+### **List**
+#### List information : `list`
 
 Shows a list of all developers in the address book.
 
@@ -895,7 +872,7 @@ Listed all developers
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Add roles
+### **Add roles**
 
 #### Add developer roles : `add-developer-role`
 
@@ -959,7 +936,7 @@ New role for client added: Boss
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Delete roles
+### **Delete roles**
 
 #### Delete developer roles : `delete-developer-role`
 
@@ -1008,7 +985,8 @@ Role for clients deleted: Boss
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Mark deadline as done : `mark-deadline`
+### **Mark**
+#### Mark project deadline as done : `mark-deadline`
 
 Marks the indicated deadline for the project as done.
 
@@ -1028,11 +1006,7 @@ The deadline has been marked as completed!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-## Mark Project Deadlines
-Allows managers to mark project specific deadlines as done, or revert this change by unmarking them as undone
-
-
-### Mark deadline as undone : `unmark-deadline`
+#### Mark deadline as undone : `unmark-deadline`
 
 Marks the indicated deadline for the project as undone.
 
@@ -1052,7 +1026,8 @@ The deadline has been marked as undone!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Undo : `undo`
+### **Undo**
+#### Undo : `undo`
 
 Undo the previous command you entered.
 
@@ -1083,7 +1058,7 @@ Projects: CustomWebsite AndroidApp
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Redo : `redo`
+#### Redo : `redo`
 
 Redo the previous command you undid.
 
@@ -1115,8 +1090,8 @@ Projects: CustomWebsite AndroidApp
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-## Additional Features
-### Miscellaneous Features
+## **Additional Features**
+### **Miscellaneous Features**
 Listed below are some miscellaneous features that are available in CodeContact to improve your user experience.
 #### Viewing help : `help`
 
@@ -1131,10 +1106,6 @@ Format: `help`
 Clears all entries from the address book.
 
 Format: `clear`
-
-<div markdown="block" class="alert alert-info">:bulb:
-You can always undo the action with the [`undo`](#undo) command! 
-</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1151,7 +1122,7 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## FAQ
+# **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -1192,7 +1163,7 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+# **Known issues**
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
@@ -1203,7 +1174,7 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Command summary
+# **Command summary**
 
 | Action               | Format, Examples                                                                                                                                                                                                                                                                                                                 |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
