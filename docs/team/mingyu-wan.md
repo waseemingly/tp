@@ -20,6 +20,7 @@ Given below are my contributions to the project.
   * Credits: <br> The general structure of how `undo` works is inspired from the AB-3 developer guide, which is
   using a pointer that changes which addressbook to point to at each `undo` command. However, due to the nature and
   large number of fields CodeContact have, alot more validation checks were added in.
+<br>
 
 
 * **New Feature 2**: `Redo`
@@ -35,7 +36,7 @@ Given below are my contributions to the project.
     * Credits: <br> The general structure of how `redo` works is inspired from the AB-3 developer guide, which is
   using a pointer that changes which addressbook to point to at each `redo` command. However, due to the nature and
   large number of fields CodeContact have, alot more validation checks were added in.
-
+<br>
 
 * **New Feature 3**: `Adding roles `
     * What it does: <br> Allows users to add different roles.
@@ -50,7 +51,7 @@ Given below are my contributions to the project.
   other roles they wish to add thereafter. There are also validation checks done when adding roles to prevent you
   from adding repeated roles.
     * Credits: N.A.
-
+<br>
 
 * **New Feature 4**: `Deleting roles `
     * What it does: <br> Allows users to delete different roles.
@@ -65,7 +66,7 @@ Given below are my contributions to the project.
   contacts assigned to these roles, deleting these roles will not be allowed. As CodeContact provides a
   pre-added list of roles, users are also not allowed to delete these roles.
     * Credits: N.A.
-
+<br>
 
 * **New Feature 5**: `list `
     * What it does: <br> Allows users to list project, developers or clients.
@@ -79,32 +80,40 @@ Given below are my contributions to the project.
   or `delete`.
     * Credits: <br> The general `list` implementation follows how it was implemented for AB3 but some modification have
   been made such that it is customised to CodeContact.
-
+<br>
 
 * **Enhancements to existing features**:
-    * Fixed the test cases to pass again (Pull requests [\#225](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/225))
-
+    * Fixed parts of the test cases to pass again (Pull requests [\#225](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/225))
+    * Increased code coverage from `32.28%` to `38%` and from `48.9%` to `54.39%`.(Pull requests [\#250](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/250)
+      [\#241](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/241))
+<br>
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=mingyu&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=zoom&zA=mingyu-wan&zR=AY2324S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&zACS=241.3&zS=2023-09-22&zFS=mingyu&zU=2023-11-10&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
-
+<br>
 
 * **Project management(team-based tasks contributions)**:
     * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
     * Managed issues creating and some assigning throughout the milestones
     * Managed the collaboration document and product demo submissions for tutorial
-
+<br>
 
 * **Documentation Contributions**:
     * User Guide Contributions:
-        * Added documentation for the features `undo`,`redo`,`add-role` and `delete-role` [\#160](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/160)
+        * Removed traces of AB-3: [\#50](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/50)
+        * Added documentation for the features `undo`,`redo`,`add-role` and `delete-role`: [\#160](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/160)
         * Did cosmetic tweaks to existing documentation of features `list`: [\#160](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/160)
         * Wrote the content for `tutorial`: [\#162](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/162)
         * Modified and content and UI pictures for `Quick Start`: [\#162](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/162)
+        * Wrote the content for `Navigating the GUI` and `Format`: [\#242](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/242)
     * Developer Guide Contributions:
-        * Added use case (abandoned due to a shift in project)
-        * Added user stories
-
+        * Added use case (abandoned due to a shift in project): [\#43](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/43)
+        * Reformatted entire DG format: [\#244](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/244)
+        * Wrote user stories: [\#246](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/246)
+        * Wrote new use case: [\#247](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/247)
+        * Wrote implementations, sequence and activity diagrams for features i implemented: [\#246](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/246)
+        * Wrote in appendix: planned enhancements: [\#247](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/246)
+<br>
 
 * **Community (Review/mentoring contributions)**:
     * Reported bugs and suggestions for other teams in the cohort
-
+<br>
