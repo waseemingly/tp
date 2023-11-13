@@ -18,7 +18,6 @@ import seedu.address.testutil.Assert;
 public class AddClientRoleCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullRole_throwsNullPointerException() {
