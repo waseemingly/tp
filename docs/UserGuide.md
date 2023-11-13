@@ -329,117 +329,90 @@ Password changed successfully.
 
 Adds a new developer to the address book.
 
-Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... gh/GITHUB_ID ra/RATING`
+Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... gh/GITHUB_ID rt/RATING`
 
 * Adds the developer with the given details to the address book.
 * Not specifying any `PROJECT_NAME` will add the developer without assigning them to any projects.
 * Not specifying the `DATE_JOINED` will automatically use today's date as the date joined.
 * `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
 * If specified, `PROJECT_NAME` should be the exact name of an existing project.
+* Note that for `RATING` values that not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
+may not be reflected as clearly in the coloured stars.
 
-Example:
+Example of usage: `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
 
-`add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
+* Adds a new developer `John Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
+given that they already exist in the address book.
 
-* When command succeeds
-    * Continuing from the above example, CLI shows:
-    ```
-  The following user has been added:
-    New developer added: Mahidharah;
-    Phone: 81256788;
-    Email: aunus@nus.com;
-    Address: Blk 88 Lorong 8 Serangoon Gardens, #08-88;
-    Date Joined: 20-10-2020;
-    Role: Developer;
-    Salary: 8880;
-   Projects: AppolloOrbital
-  ```
-* When command fails
-    * User particular's error
-        * `This developer already exists in the address book`
-    * Format error
-        * `<PARTICULAR> should ...`
-        * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
-    * Missing particular's error (when prefixes are missing)
-        * `Invalid command format!`
+When command succeeds, CLI shows:
+
+```
+New developer added: John Doe; 
+Phone: 98765432; 
+Email: johnd@example.com; 
+Address: 311, Clementi Ave 2, #02-25; 
+Date Joined: 11-11-2023; 
+Role: Developer; 
+Salary: 4500; 
+Projects: CustomWebsite AndroidApp 
+```
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Add Client: `add-client`
+#### Add client : `add-client`
 
-* Type in:
-    * `add-client`
-* And populate his/her details with prefixes and fields by typing in
-    * `n/NAME` for the client's name
-    * `p/PHONE_NUMBER` for the client's phone number
-    * `e/EMAIL` for the client's email
-    * `a/ADDRESS` for the client's address
-    * `r/ROLE` for the client's role in their organisation
-    * `pr/{PROJECT1, PROJECT2…}` for client's assigned projects
-    * `o/ORGANISATION` for the organisation the client is representing
-    * `do/DOCUMENT` for the document associated with the client
-* In the following overall format
-    * `add-client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE pr/PROJECT1 pr/PROJECT2 o/ORGANISATION do/document`
+Adds a new client to the address book.
 
-Example:
+Format: `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`
 
-`add-client n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/HR pr/Appollo pr/Orbital o/Google do/google.com`
+* Adds the client with the given details to the address book.
+* Not specifying any `PROJECT_NAME` will add the client without assigning them to any projects.
+* `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
+* If specified, `PROJECT_NAME` should be the exact name of an existing project.
 
-* When command succeeds
-    * Continuing from the above example, CLI shows:
-    ```
-  New client added: Mahidharah;
-  Phone: 81256788;
-  Email: aunus@nus.com;
-  Address: Blk 88 Lorong 8 Serangoon Gardens, #08-88;
-  Organisation: Google;
-  Role: HR;
-  Document: google.com;
-  Projects: AppolloOrbital
-  ```
-* When command fails
-    * User particular's error
-        * `This client already exists in the address book`
-    * Format error
-        * `<PARTICULAR> should ...`
-        * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
-    * Missing particular's error (when prefixes are missing)
-        * `Invalid command format!`
+Example of usage: `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
+
+* Adds a new client `Jack Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
+  given that they already exist in the address book.
+
+When command succeeds, CLI shows:
+
+```
+New client added: Jack Doe; 
+Phone: 98765432; 
+Email: jackd@example.com; 
+Address: 311, Clementi Ave 2, #02-25; 
+Organisation: Google; 
+Role: Developer; 
+Document: google.com; 
+Projects: CustomWebsite AndroidApp 
+```
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Add Project: `add-project`
+#### Add project : `add-project`
 
-* Type in:
-    * `add-project`
-* And populate its details with prefixes and fields by typing in
-    * `n/NAME` for the project's name
-    * `dr/DESCRIPTION` for the project's description
-    * `dl/{DEADLINE1, DEADLINE2...}` for deadlines associated with the project
-* In the following overall format
-    * `add-project n/NAME dr/DESCRIPTION dl/DEADLINE1 dl/DEADLINE2`
+Adds a new project to the address book.
 
-Example:
+Format: `add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`
 
-`add-project n/Tp dr/Team Project dl/19-12-2023,Design backend,HIGH,0 dl/21-12-2023,Design frontend,LOW,1`
+* Adds the project with the given details to the address book.
+* Not specifying any deadline will add the project without assigning deadlines to it.
+* `NAME` cannot be the same as another existing project's name in the address book. Checks are case-insensitive.
 
-* When command succeeds
-    * Continuing from the above example, CLI shows:
-    ```
-  New project added: Tp;
-  Description: Team Project;
-  Deadlines:
-  1. Design backend by: 19-12-2023, priority: HIGH (undone)
-  2. Design frontend by: 21-12-2023, priority: LOW (done)
-  ```
-* When command fails
-    * User particular's error
-        * `This project already exists in the address book`
-    * Format error
-        * `<PARTICULAR> should ...`
-        * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
-    * Missing particular's error (when prefixes are missing)
-        * `Invalid command format!`
+Example of usage: `add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`
+
+* Adds a new project `JuiceApp` with the respective details.
+
+When command succeeds, CLI shows:
+
+```
+New project added: JuiceApp;
+Description: App to allow for different juices to be ordered;
+Deadlines:
+1. Design backend by: 19-12-2023, priority: HIGH (undone)
+2. Design frontend by: 25-12-2023, priority: MEDIUM (undone)
+```
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -477,14 +450,13 @@ Example of usage: `delete-project 2`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-
 ### Edit
 
 #### Edit developer details : `edit-developer`
 
 Edits the details of an existing developer in the address book.
 
-Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
+Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [rt/RATING]`
 
 * Edits the developer at the specified `INDEX` in the currently displayed developer list.
 * At least one of the optional fields must be provided.
@@ -495,6 +467,8 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 * `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
 * You can, however, edit the casing of an existing developer's `NAME`.
 * `PROJECT_NAME` should be the exact name of an existing project.
+* Note that for `RATING` values that not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
+ may not be reflected as clearly in the coloured stars.
 
 Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
 
@@ -553,7 +527,7 @@ Projects: ProjectA
 
 Edits the details of an existing project in the address book.
 
-Format: `edit-project INDEX [desc/DESCRIPTION] [dl/DEADLINE]...`
+Format: `edit-project INDEX [dr/DESCRIPTION] [dl/DEADLINE]...`
 
 * Edits the project at the specified `INDEX` in the currently displayed project list.
 * At least one of the optional fields must be provided.
@@ -579,7 +553,7 @@ Deadlines:
 
 ### Import information
 
-#### Import developers `import-developer`
+#### Import developers : `import-developer`
 
 Takes in a CSV file and populates the internal list of developers if the file is formatted correctly
 
@@ -602,7 +576,7 @@ Michael,999999999,michael@email.com,567 Birch St,06-03-2020,Developer,7000,Micha
 
 Example of usage: `import-developer developers.csv`
 
-* imports `developers.csv` and adds a new developer for each row of data.
+* Imports `developers.csv` and adds a new developer for each row of data.
 
 When command succeeds, CLI shows:
 
@@ -617,11 +591,11 @@ Salary: 3333;
 Projects: ProjectBAndroidApp
 ```
 
-for each developer successfully added
+for each developer successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Import clients `import-client`
+#### Import clients : `import-client`
 
 Takes in a CSV file and populates the internal list of clients if the file is formatted correctly
 
@@ -644,7 +618,7 @@ Laura,888555555,laura@email.com,101 Birch St,HR,Software Systems,software.com/do
 
 Example of usage: `import-client clients.csv`
 
-* imports `clients.csv` and adds a new client for each row of data.
+* Imports `clients.csv` and adds a new client for each row of data.
 
 When command succeeds, CLI shows:
 
@@ -659,17 +633,17 @@ Document: docs.google.com/abd;
 Projects: ProjectBAndroidApp
 ```
 
-for each client successfully added
+for each client successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Find
 
-#### Find developer details
+#### Find developer details : `find-developer`
 
 Finds the details of an existing developer in the address book.
 
-Format: `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [gh/GITHUB_ID] [ra/RATING]`
+Format: `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [gh/GITHUB_ID] [rt/RATING]`
 
 * Finds for developers based on the attributes provided.
 * At least one of the optional fields must be provided.
@@ -685,13 +659,14 @@ Example of usage: `find-developer pr/2103T rt/5.0`
 When command succeeds, CLI shows:
 
 ```
-This is the one developer with matching information
+This is the one developer with matching information.
 ```
+
 followed by the matching developer's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Find client details
+#### Find client details : `find-client`
 
 Finds the details of an existing client in the address book.
 
@@ -706,22 +681,23 @@ Format: `find-client [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [o/ORGANISATION] [
 
 Example of usage: `find-client o/Google r/Senior developer`
 
-* Prints clients from Google of the senior developer role
+* Prints clients from Google of the senior developer role.
 
 When command succeeds, CLI shows:
 
 ```
-These are the 2 clients with matching information
+These are the 2 clients with matching information.
 ```
+
 followed by the matching clients' details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Find project details
+#### Find project details : `find-project`
 
 Finds the details of an existing project in the address book.
 
-Format: `find-project [pr/PROJECT_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
+Format: `find-project [pr/PROJECT_NAME] [dr/DESCRIPTION] [dl/DEADLINE]`
 
 * Finds for projects based on the attributes provided.
 * At least one of the optional fields must be provided.
@@ -737,20 +713,20 @@ Example of usage: `find-project pr/JuiceApp`
 When command succeeds, CLI shows:
 
 ```
-This is the one project with matching information
+This is the one project with matching information.
 ```
 followed by the matching project's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Find deadlines `find-deadline`
+### Find deadlines : `find-deadline`
 
-Finds deadlines in project tab based on date and/or priority
+Finds deadlines in project tab based on date and/or priority.
 
 Format: `find-deadline [d/DATE] [pri/PRIORITY]`
 
-* When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date
-* When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown
+* When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date.
+* When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown.
 
 Example of usage: `find-deadline d/20-11-2023 pri/MEDIUM`
 
@@ -772,7 +748,7 @@ Format: `list-TYPE`
 
 * Lists the specific type of thing you are asking.
 
-Examples of usage:`list-developer`
+Example of usage:`list-developer`
 
 * Lists all the developers.
 
@@ -805,7 +781,7 @@ Format: `add-developer-role ROLE_NAME`
 * If you wish to check what roles are there, you can key in `delete-developer-role <anything random>`, `<anything
   random>` should not be an existing role.
 
-Examples of usage:`add-developer-role UIDesigner`
+Example of usage:`add-developer-role UIDesigner`
 
 * Adds the UIDesigner role to list of developer roles.
 * You can now add developers with UIDesigner as their roles.
@@ -831,7 +807,7 @@ Format: `add-client-role ROLE_NAME`
 * If you wish to check what roles are there, you can key in `delete-client-role <anything random>`, `<anything
   random>` should not be an existing role.
 
-Examples of usage:`add-client-role Boss`
+Example of usage:`add-client-role Boss`
 
 * Adds the Boss role to list of developer roles.
 * You can now add clients with Boss as their roles.
@@ -857,7 +833,7 @@ Format: `delete-developer-role ROLE_NAME`
   cannot be deleted.
 * You will not be able to delete a developer role if there are developers in the list with that role.
 
-Examples of usage:`delete-developer-role UI Manager`
+Example of usage:`delete-developer-role UI Manager`
 
 * Deletes the UI Manager from the list of developer roles.
 * You can no longer add developers with UIDesigner as their roles.
@@ -947,7 +923,7 @@ Format: `undo`
   you cannot undo anymore.
 * `undo` works for all `edit`, `add-TYPE` and `delete` commands.
 
-Examples of usage: `undo`
+Example of usage: `undo`
 
 * You just deleted a new developer, and you wish to `undo`.
 
@@ -962,7 +938,7 @@ Address: 42, Clementi Ave 7, #02-2;
 Date Joined: 23-11-2023;
 Role: Frontend Developer;
 Salary: 5000;
-Projects: CustomWebsiteAndroidApp
+Projects: CustomWebsite AndroidApp
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -979,7 +955,7 @@ Format: `redo`
   you cannot redo anymore.
 * `redo` works for all `edit`, `add-TYPE` and `delete` commands.
 
-Examples of usage:
+Example of usage:
 
 * You just `undo` delete developer, and you wish to `redo` to add it back.
   When command succeeds, CLI shows:
@@ -993,7 +969,7 @@ Address: 42, Clementi Ave 7, #02-2;
 Date Joined: 23-11-2023;
 Role: Frontend Developer;
 Salary: 5000;
-Projects: CustomWebsiteAndroidApp
+Projects: CustomWebsite AndroidApp
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -1079,19 +1055,19 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 
 ## Command summary
 
-| Action              | Format, Examples                                                                                                                                                                                                                                             |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add developers**  | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
-| **add clients**     | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
-| **add projects**    | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
-| **edit developers** | Format: <br>`edit-developer INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-developers 2 p/98989898 pr/Project2 pr/Project3` <br> |
-| **edit clients**    | Format: <br>`edit-client INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-clients 3 p/bob@gmail.com` <br>                          |
-| **edit projects**   | Format: <br>`edit-project INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`  <br> Example: <br> `edit-projects 1 d/Finish Feature-A by: 09-09-2023` <br>                                                                                   |
-| **find developers** | Format: <br>`find-developer p/<Project Name>` <br> Example: <br>`find-developer p/2103/T` <br>                                                                                                                                                               |
-| **find clients**    | Format: <br>`find-client n/<Name>` <br> Example: <br>`find-client n/Amy` <br>                                                                                                                                                                                |
-| **find projects**   | Format: <br>`find-project dr/description` <br> Example: <br>`find-project dr/school semester project` <br>                                                                                                                                                   |
-| **delete**          | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
-| **list**            | Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`                                                                                                                                                                                     |
-| **help**            | `help`                                                                                                                                                                                                                                                       |
+| Action              | Format, Examples                                                                                                                                                                                                                                         |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add developers**  | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                      |
+| **add clients**     | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                      |
+| **add projects**    | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                      |
+| **edit developers** | Format: <br>`edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [rt/RATING]`  <br> Example: <br> `edit-developer 2 p/98989898 pr/Project2 pr/Project3` <br> |
+| **edit clients**    | Format: <br>`edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-client 3 p/bob@gmail.com` <br>                         |
+| **edit projects**   | Format: <br>`edit-project INDEX [n/NAME] [dr/DESCRIPTION] [dl/DEADLINE]...`  <br> Example: <br> `edit-projects 1 dl/Finish Feature-A by: 09-09-2023` <br>                                                                                                |
+| **find developers** | Format: <br>`find-developer p/<Project Name>` <br> Example: <br>`find-developer p/2103/T` <br>                                                                                                                                                           |
+| **find clients**    | Format: <br>`find-client n/<Name>` <br> Example: <br>`find-client n/Amy` <br>                                                                                                                                                                            |
+| **find projects**   | Format: <br>`find-project dr/description` <br> Example: <br>`find-project dr/school semester project` <br>                                                                                                                                               |
+| **delete**          | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                      |
+| **list**            | Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`                                                                                                                                                                                 |
+| **help**            | `help`                                                                                                                                                                                                                                                   |
 
 [Scroll back to Table of Contents](#table-of-contents)
