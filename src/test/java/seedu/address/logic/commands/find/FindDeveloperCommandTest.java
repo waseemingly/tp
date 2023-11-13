@@ -109,7 +109,7 @@ public class FindDeveloperCommandTest {
     }
 
     @Test
-    public void execute_ratingSearch_PersonFound() {
+    public void execute_ratingSearch_personFound() {
         String expectedMessage = "These are the 3 developers with matching information.";
         RatingContainsKeywordsPredicate predicate = prepareRatingPredicate("4.0");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
