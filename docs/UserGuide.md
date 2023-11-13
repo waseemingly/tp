@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-## Welcome to CodeContact
+# Welcome to CodeContact
 **Taking charge of your PROject Management!**
 
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
@@ -11,7 +11,10 @@ facilitating collaboration, and offering command-line efficiency for project man
 
 CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
-management tasks done faster than traditional GUI apps.
+management tasks done faster than traditional GUI apps. **CodeContact** aims to put the **P.R.O** in project management  by enabling project managers to be
+1. **Productive** 
+2. **Reliable**
+3. **Organised**
 
 Here’s an overview of how CodeContact can help you streamline your project management processes.
 * Store and edit information about developers and clients related to projects
@@ -90,7 +93,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 ------------------------------------------------------------------------------------------
 
-## Navigating this guide
+# Navigating this guide
 
 <!-- -->
 
@@ -413,10 +416,8 @@ Projects: CustomWebsite AndroidApp
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-Entered details of a developer incorrectly? You can always undo the action with the [Undo](#undo) command! 
+Entered details of a developer incorrectly? You can always undo the action with the [`undo`](#undo) command! 
 </div>
-
-Learn more about the [Undo](#undo) command here.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -450,10 +451,8 @@ Projects: CustomWebsite AndroidApp
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-Entered details of a client incorrectly? You can always undo the action with the `undo` command! 
+Entered details of a client incorrectly? You can always undo the action with the [`undo`](#undo) command! 
 </div>
-
-Learn more about the [Undo](#undo) command here.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -482,10 +481,8 @@ Deadlines:
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-Entered details of a project incorrectly? You can always undo the action with the `undo` command! 
+Entered details of a project incorrectly? You can always undo the action with the [`undo`](#undo) command! 
 </div>
-
-Learn more about the [Undo](#undo) command here.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -516,10 +513,8 @@ Projects: Appollo Orbital
 if second developer in the list was Bernice Yu
 
 <div markdown="block" class="alert alert-info">:bulb:
-Deleted a wrong developer? You can always undo the action with the `undo` command! 
+Deleted a wrong developer? You can always undo the action with the [`undo`](#undo) command! 
 </div>
-
-Learn more about the [Undo](#undo) command here.
 
 #### Delete client : `delete-client`
 
@@ -545,10 +540,8 @@ Projects: CodeContact
 if second client in the list was George Lim
 
 <div markdown="block" class="alert alert-info">:bulb:
-Deleted a wrong client? You can always undo the action with the `undo` command! 
+Deleted a wrong client? You can always undo the action with the [`undo`](#undo) command! 
 </div>
-
-Learn more about the [Undo](#undo) command here.
 
 #### Delete project : `delete-project`
 
@@ -571,10 +564,8 @@ Deadlines:
 if second project in the list was TeamTrekker
 
 <div markdown="block" class="alert alert-info">:bulb:
-Deleted a wrong project? You can always undo the action with the `undo` command! 
+Deleted a wrong project? You can always undo the action with the [`undo`](#undo) command! 
 </div>
-
-Learn more about the [Undo](#undo) command here.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -615,6 +606,10 @@ Salary: 6999
 Projects: Project1, Project2
 ```
 
+<div markdown="block" class="alert alert-info">:bulb:
+You can always undo the action with the [`undo`](#undo) command! 
+</div>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Edit client details : `edit-client`
@@ -648,6 +643,9 @@ Organisation: Google;
 Document: google.com
 Projects: ProjectA
 ```
+<div markdown="block" class="alert alert-info">:bulb:
+You can always undo the action with the [`undo`](#undo) command! 
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -676,6 +674,9 @@ Description: Juice ordering app;
 Deadlines:
 1. Design backend by: 19-12-2023, priority: HIGH (undone)
 ```
+<div markdown="block" class="alert alert-info">:bulb:
+You can always undo the action with the [`undo`](#undo) command! 
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1131,6 +1132,10 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+<div markdown="block" class="alert alert-info">:bulb:
+You can always undo the action with the [`undo`](#undo) command! 
+</div>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Exiting the program : `exit`
@@ -1164,7 +1169,7 @@ the data of your previous AddressBook home folder.
 4. CodeContact should launch
    <br> <br>
 
-* Method 2: For users that wish to create a script to launch Docedex (Recommended)
+* Method 2: For users that wish to create a script to launch CodeContact (Recommended)
 
 1. Create a new text file
 2. Type the following into the text file:
