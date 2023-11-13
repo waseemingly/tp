@@ -241,16 +241,29 @@ contains the edited fields to update the target object with.
 Executing the command will replace the existing object in the current `model` with the new object with the edited fields.
 
 Other than extending the commands, parsers, and descriptors to account for `Developer`, `Client`, and `Project` separately,
-some changes to the sequence of interactions between the `Logic` and `Model` components were also made. When the
-`EditDeveloperCommandParser` and `EditClientCommandParser` parses edits to a `Project` assigned to a `Developer` or `Client`,
-it calls `Model##----` to check whether there is an existing `Project` with that name.
-
-**Example usage scenario**
+some changes to the sequence of interactions between the `Logic` and `Model` components were also made. When
+`EditDeveloperCommand` and `EditClientCommand` is executed with edits made to a `Project` assigned to a `Developer` or
+`Client`, it calls `Model#areProjectsValid()` to check whether there is an existing `Project` with that name.
 
 Given below is an example usage scenario where the user edits the projects assigned to a `Developer` using the `edit-developer`
 command.
 
-Step 1. ....
+**Step 1.** User launches the application and unlocks the application with the correct password.
+
+**Step 2.** User executes an edit developer command by entering `edit-developer 1 pr/AppleApp` to edit the projects assigned
+to the developer at index 1 (one-based indexing) in the currently displayed developer list.
+
+**Step 3.** The developer at index 1 is edited to be assigned to the project `AppleApp` given that there is an existing
+project with the name `AppleApp` in the address book.
+
+The sequence diagram below illustrates key interactions taking place in the `Logic` component when the command
+`edit-developer 1 pr/AppleApp` is called. A significant modification to take note off is the call to the
+`Model#areProjectsValid()` method. This sequence reflects a successful command execution.
+
+![Interactions inside the Logic component for the `edit-developer 1 pr/AppleApp` Command](images/EditDeveloperSequenceDiagram.png)
+
+The `edit-client` and `edit-project` commands are executed similarly, except project validation checks using the
+`Model#areProjectsValid()` method are not conducted for the latter.
 
 #### Design considerations
 **Aspect: Command syntax**
@@ -264,8 +277,7 @@ automatically switches user to the respective tab.
   * Cons: User needs to ensure that intended tab is open. Allowed parameters are less clearly defined, can lead to
   confusion and mistakes.
 
-
-### Find Feature
+### Find Features
 
 #### Implementation
 
@@ -305,7 +317,7 @@ The following sequence diagram provides an overview of how the find operation is
 
 Given the benefits of a more maintainable and scalable codebase, we've decided to go with the first alternative. Future enhancements might include fuzzy search.
 
-### List feature
+### List features
 
 #### Implementation
 The list command employs a structured approach where specific commands, such as `list-developer` or `list-client`
@@ -322,23 +334,23 @@ relevant lists of data
 
 Given below is an example usage scenario and how the `list` mechanism behaves at each step:
 
-**Step 1** The user used the `find` feature to search for something and the UI is only displaying some
+**Step 1.** The user used the `find` feature to search for something and the UI is only displaying some
 developers
 
-**Step 2** To list all the developers, the user executes the command `list-developer`. `AddressBookParser`
+**Step 2.** To list all the developers, the user executes the command `list-developer`. `AddressBookParser`
 recognizes the `list-developer` command and calls the `ListDeveloperCommand`.
 
-**Step 3** Next, the `ListDeveloperCommand#execute()` method that overides the abstract method `Command#execute()` gets
+**Step 3.** Next, the `ListDeveloperCommand#execute()` method that overides the abstract method `Command#execute()` gets
 activated.This `execute()` method calls the `Model#updateFilteredDeveloperList`, passing in the `Predicate<Developer>`
 that has been set to true.
 
-**Step 4** `Model#updateFilteredDeveloperList` then updates the list in the UI to print all the existing developers.
+**Step 4.** `Model#updateFilteredDeveloperList` then updates the list in the UI to print all the existing developers.
 
 The following sequence diagram provides an overview of how the find operation is executed
 
 ![sequence diagram](images/ListDeveloperSequenceDiagram.png)
 
-### Undo/redo feature
+### Undo/redo features
 
 #### Implementation - undo
 
@@ -356,11 +368,11 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the `undo`/`redo` mechanism behaves at each step.
 
-**Step 1** The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+**Step 1.** The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-**Step 2** The user executes `delete-developer 5` command to delete the 5th developer in the address book. The `delete`
+**Step 2.** The user executes `delete-developer 5` command to delete the 5th developer in the address book. The `delete`
 command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete-developer 5`
 command executes to be saved in the `addressBookStateList`. The successful command message and tab it switched to
 also saved into `successfulCommandMessages` and `tabIndex` respectively. The `currentStatePointer` is then shifted to the newly
@@ -368,7 +380,7 @@ inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-**Step 3** The user executes `add-developer n/David …​` to add a new developer. The `add` command also calls
+**Step 3.** The user executes `add-developer n/David …​` to add a new developer. The `add` command also calls
 `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`,
 and another successful command message and tab switched saved into `successfulCommandMessages` and `tabIndex`.
 
@@ -377,7 +389,7 @@ and another successful command message and tab switched saved into `successfulCo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 </div>
 
-**Step 4** The user now decides that adding the developer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+**Step 4.** The user now decides that adding the developer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -391,7 +403,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-**Step 5** The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+**Step 5.** The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -410,7 +422,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
     execute the `delete-developer-role function`. The process of this implementation had to be very careful just like
     what the cons mentioned, a slight validation error can change the whole `undo` and `redo` feature.
 
-### Add-role feature
+### Add roles feature
 #### Implementation
 The add role command employs a structured approach where specific commands, such as `add-developer-role` or
 `add-client-role`are associated with corresponding functionalities. This allows users to efficiently add
@@ -427,15 +439,15 @@ The classes are similar for `ClientRoles` but just that they are associated with
 
 Given below is an example usage scenario and how the `add-developer-role` mechanism behaves at each step:
 
-**Step 1**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
+**Step 1.**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
 
-**Step 2**  The user executes the command `add-developer-role Tester`. The application recognizes the `add-developer-role`
+**Step 2.**  The user executes the command `add-developer-role Tester`. The application recognizes the `add-developer-role`
 and calls `AddDeveloperRoleCommandParser#parse()`.
 
-**Step 3** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
+**Step 3.** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
 trimmed to `Tester` and calls `AddDeveloperRoleCommand`.
 
-**Step 4** `AddDeveloperRoleCommand#execute()` checks if there is an existing role with the same name and creates
+**Step 4.** `AddDeveloperRoleCommand#execute()` checks if there is an existing role with the same name and creates
 a new developer role if there is no such role.
 
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
@@ -458,11 +470,11 @@ The following sequence diagram shows how the Add-role operation works:
     * Cons: Roles would have to be implemented on the same level as developers, clients and projects which should not be case.
 
 
-### Delete-role feature
+### Delete roles feature
 #### Implementation
 The add role command employs a structured approach where specific commands, such as `delete-developer-role` or
 `delete-client-role`are associated with corresponding functionalities. This allows users to efficiently delete
-information about developers and clients that they no longer need.The system helps you to check if there are any
+information about developers and clients that they no longer need. The system helps you to check if there are any
 developers or clients in the list using this feature. If there is, the command will not be successfully executed.
 This feature is facilitated with the `DeveloperRoles` and `ClientRoles` class which implements the following operations:
 
@@ -476,15 +488,15 @@ The classes are similar for `ClientRoles` but just that they are associated with
 
 Given below is an example usage scenario and how the `delete-developer-role` mechanism behaves at each step:
 
-**Step 1**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
+**Step 1.**  The user launches the application. The list roles for developers and clients are loaded into a list or roles.
 
-**Step 2**  The user executes the command `delete-developer-role Tester`. The application recognizes the `delete-developer-role`
+**Step 2.**  The user executes the command `delete-developer-role Tester`. The application recognizes the `delete-developer-role`
 and calls `DeleteDeveloperRoleCommandParser#parse()`.
 
-**Step 3** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
+**Step 3.** The parser checks if the argument is an empty blank space and trims the input given, in this case ` Tester` is
 trimmed to `Tester` and calls `DeleteDeveloperRoleCommand`.
 
-**Step 4** `DeleteDeveloperRoleCommand#execute()` checks if this is a removable role and removes it from the list of roles
+**Step 4.** `DeleteDeveloperRoleCommand#execute()` checks if this is a removable role and removes it from the list of roles
 if `DeveloperRoles#isRemovableRole()` returns true.
 
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
@@ -497,8 +509,57 @@ The following sequence diagram shows how the Delete-role operation works:
 The following activity diagram shows how the validation check in `DeveloperRoles#isRemovableRole()` works:<br>
 ![ActivityDiagram](images/isRemovableRole.png)
 
-* _{more aspects and alternatives to be added}_
+### Mark/unmark deadline features
+#### Implementation
+The mark and unmark deadline features are implemented using a secondary call to the `edit-project` command. As with
+the other commands, `mark-deadline` and `unmark-deadline` commands are first parsed to return `MarkDeadlineCommandParser`
+and `UnmarkDeadlineCommandParser` respectively. The parses similarly implement the `MarkDeadlineCommandParser#parse()`
+and `UnmarkDeadlineCommandParser#parse()` methods which return `MarkDeadlineCommand` and `UnmarkDeadlineCommand` objects
+respectively. However, in the execution of `MarkDeadlineCommand` and `UnmarkDeadlineCommand`, a new
+`EditProjectCommand` is created and subsequently executed, to get the `CommandResult`.
 
+Consequently, calling `mark-deadline` and `unmark-deadline` on a deadline of project is synonymous to editing the
+project to update the `isDone` status of the deadline.
+
+This is facilitated by the following methods:
+* `MarkDeadlineCommand#editProjectArgs()`  —  Formats each deadline in a list of String representations into a
+String that will be used as the arguments parsed by an EditProjectCommandParser.
+* `Project#markDeadlineStringRep()`  —  Returns a list with each element being the String representation of the
+respective deadline, with the deadline at the given index marked as done.
+* `Project#unmarkDeadlineStringRep()`  —  Returns a list with each element being the String representation of the
+respective deadline, with the deadline at the given index marked as undone.
+
+Relevant checks are conducted at the `MarkDeadlineCommand#execute()` and `UnmarkDeadlineCommand#execute()` stages to
+ensure the index of the project and the edited deadline passed to the `EditProjectCommandParser` as arguments for the
+`EditProjectCommandParser#parse()` as arguments are valid.
+
+The following sequence diagram illustrates the interactions taking place in the `Logic` component when the command
+`mark-deadline 2 1` is called. The sequence reflects a successful command execution, assuming that the current state of
+the displayed project list has a project with the index `2` with at least `1` deadline.
+
+![SequenceDiagram](images/MarkDeadlineSequenceDiagram.png)
+
+#### Design considerations
+**Aspect: Execution of command**
+* Alternative 1: Implement methods in `ModelManager` class that can directly change the `isDone` status of the deadlines
+of a project based on the given project index and deadline index.
+  * Pros: 
+    * More aligned with OOP principles.
+    * Mirrors sequence flow of other commands and can be implemented using current code architecture.
+  * Cons: 
+    * Due to container structure of `Project` and `Deadline`, changing the status of deadlines needs to be done
+    through projects, so more methods need to be added to achieve this.
+    * Given the GUI display of project deadlines in a Javafx TableView, makes it more complicated for changes in
+    deadline status to be automatically reflected in the list of projects and deadlines displayed to the user.
+* Alternative 2 (current choice): Implement execution by creating an `EditProjectCommandParser` and `EditProjectCommand`
+that will replace the existing project entirely with a new one with the updated deadline being marked/unmarked.
+  * Pros:
+    * Fewer methods to implement, allows for more reuse.
+    * Editing the project with new deadlines will ensure that upon execution of the command, the updated project with
+    marked/unmarked deadline is displayed to the user on the app.
+  * Cons:
+    * Slightly more disorganised interactions within `Logic` component since have to go from parsing a command to
+    executing it, then parsing another command again and executing that command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -762,7 +823,7 @@ and commits should follow a consistent naming convention.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Manual Testing**
-testers are expected to do more *exploratory* testing.
+Testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
