@@ -13,13 +13,23 @@ title: Developer Guide
   * [Storage component](#storage-component)
   * [Common Classes](#common-classes)
 * [Implementation](#implementation)
+  * [Add Features (`add-developer`, `add-client`, `add-project`)](#add-features--add-developer--add-client--add-project-)
+  * [Delete Features (`delete-developer`, `delete-client`)](#delete-features--delete-developer--delete-client-)
+  * [Import Features (`import-developer`, `import-client`)](#import-feature--import-developer--import-client-)
+  * [Find Features (`find-developer`, `find-client`, `find-project`)](#find-feature--find-developer--find-client--find-project-)
+  * [Edit Features (`edit-developer`, `edit-client`, `edit-project`)](#edit-feature--edit-developer--edit-client--edit-project-)
+  * [List Features (`list-developer`, `list-client`, `list-project`)](#list-feature--list-developer--list-client--list-project-)
+  * [Undo/redo Features (`undo`, `redo`)](#undoredo-feature--undo--redo-)
+  * [add-role Feature (`add-developer-role`, `add-client-role`)](#add-role-feature--add-developer-role--add-client-role-)
+  * [delete-role Feature (`delete-developer-role`, `delete-client-role`)](#delete-role-feature--delete-developer-role--delete-client-role-)
+  * [GUI Feature](#gui-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
   * [Product Scope](#project-scope)
   * [User Stories](#user-stories)
   * [Use Cases](#use-cases)
   * [Non Functional Requirements](#non-functional-requirements)
-  * [Glossary]
+  * [Glossary](#glossary)
 * [Appendix: Manual Testing](#appendix-manual-testing)
 * [Appendix: Planned Enhancements](#appendix-planned-enhancement)
 * [Appendix: Effort](#appendix-effort)
@@ -28,13 +38,17 @@ title: Developer Guide
 
 ## **Acknowledgements**
 * Adapted from [AB3](https://se-education.org/addressbook-level3/)
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project uses Ratings Bar from  [ControlsFX](https://controlsfx.github.io/)
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up and getting started**
 
 * Refer to the guide [Setting up and getting started](https://ay2324s1-cs2103t-t09-2.github.io/tp/SettingUp.html).
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Design**
@@ -66,7 +80,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-developer 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -81,14 +95,14 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-
+[Scroll back to Table of Contents](#table-of-contents)
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DeveloperListPanel`, `ClientListPanel`, `ProjectListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -97,7 +111,26 @@ The UI component,
 * executes user commands using the Logic component.
 * listens for changes to Model data so that the UI can be updated with the modified data.
 * keeps a reference to the Logic component, because the UI relies on the Logic to execute commands.
-* depends on some classes in the Model component, as it displays Person object residing in the Model.
+* depends on some classes in the Model component, as it displays `Developer`, `Client`, `Project` objects residing in the Model.
+
+#### Main Window
+
+The MainWindow houses all the components that make up the visual display of CodeContact. Its primary function is to listen to user input through the CommandBox, initiate the execution of the command, and display the result through the ResultDisplay and/or tabPane.
+The tabPane houses the DeveloperListPanel, ClientListPanel and ProjectListPanel, which are responsible for displaying the list of developers, clients and projects respectively. The MainWindow also houses the StatusBarFooter, which displays the current status of the application.
+
+Here is a table containing a brief description of the purpose of the smaller components within MainWindow
+
+| Component | Description |
+|-----------|-------------|
+| `CommandBox` | The CommandBox is where the user enters commands to be executed. |
+| `ResultDisplay` | The ResultDisplay displays the result of the command execution. |
+| `DeveloperListPanel`| The DeveloperListPanel displays the list of developers. |
+| `ClientListPanel` | The ClientListPanel displays the list of clients. |
+| `ProjectListPanel` | The ProjectListPanel displays the list of projects. |
+| `StatusBarFooter` | The StatusBarFooter displays the current status of the application. |
+| `HelpWindow` | Displays a help window containing a link to the User Guide. |
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Logic component
 
@@ -109,15 +142,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-developer 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteDeveloperCommandParser`) and uses it to parse the command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteDeveloperCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to delete a developer).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -125,13 +158,15 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddProjectCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddDeveloperCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
+
+<img src="images/ModelClassDiagramB.png" width="450" />
 
 
 The `Model` component,
@@ -167,61 +202,124 @@ This section describes some noteworthy details on how certain features are imple
 
 --------------------------------------------------------------------------------------------------------------------
 ## Implementation
-### Add features
-Upon entry of the add developer command, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+
+### Add Features (`add-developer`, `add-client`, `add-project`)
+Example Uses:
+
+`add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
+
+`add-client n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/HR pr/Appollo pr/Orbital o/Google do/google.com`
+
+`add-project n/Tp dr/Team Project dl/19-12-2023,Design backend,HIGH,0 dl/21-12-2023,Design frontend,LOW,1`
+
+
+#### Intended Result
+Adds a developer, client or project to the address book, and adds them to the bottom of the list of exisitng developers, clients or projects respectively. The newly added developer, client or project will be displayed in the list of developers, clients or projects respectively.
+If the developer, client or project already exists in the address book, the command will not be allowed and an error will be thrown to alert user.
+
+#### Implementation
+Upon entry of the add-developer command for instance, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+A similar implementation is done for the add-client and add-project commands, where a `AddClientCommand` and `AddProjectCommand` class (which similarly extend the `Command` class) is created respectively to add a `Client` or `Project` object to the model’s list of clients or projects.
 
 Given below is an example usage scenario of how the add developer is executed step by step.
 
+Step 1. User launches the application and unlocks the application with the correct password.
+
+Step 2. User executes an add-developer command by entering `add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
+
+Step 3. The developer is added to the model’s list of developers if valid.
+
+add-client and add-project commands are executed in a similar manner.
+
 The following sequence diagram illustrates how the add developer operation works
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Delete Features (`delete-developer`, `delete-client`)
+#### Intended Result
+Deletes a developer or client at the specified **one-based index** of list of currently existing/found developers or clients respectively, depending on the command. Users are able to delete any developers or clients in their respective lists. If an index larger than or equal to the size of the respective lists provided, the command will not be allowed and an error will be thrown to alert user.
+
+Example Uses:
+
+`delete-developer 3`
+
+`delete-client 2`
 #### Implementation
-#### Design considerations
-
-
-### Delete features
-Deletes a developer at the specified **one-based index** of list of currently existing/found developers. Users are able to delete any developer in the list. If an index larger than or equal to the size of the developer’s list is provided, the command will not be allowed and an error will be thrown to alert user.
-
-Example Use: `del-d 1`
-#### Implementation
-Upon entry of the delete developer command, a `DeleteDeveloperCommand` class is created. The `DeleteDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the doctor at specified **one-based index** is removed if the index provided is valid.
+Upon entry of the delete developer command for instance, a `DeleteDeveloperCommand` class is created. The `DeleteDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the developer at specified **one-based index** is removed if the index provided is valid.
 
 Given below is an example usage scenario of how the delete developer command behaves at each step.
-Step 2. User executes `del-d 1` to delete the developer at index 1 (one-based in
+
+Step 1. User launches the application and unlocks the application with the correct password.
+
+Step 2. User executes a delete-developer command by entering `delete-develoepr 1` to delete the developer at index 1 (one-based indexing)
+
 Step 3. The developer at this index is removed if the index provided is valid.
+
+A similar implementation is done for the delete-client command, where a `DeleteClientCommand`class (which similarly extend the `Command` class) is created respectively to delete a `Client` object from the model’s list of clients.
 
 The following sequence diagram illustrates how the delete developer operation works:
 #### Design considerations
 
+[Scroll back to Table of Contents](#table-of-contents)
 
-### Import feature
+### Delete Project Feature (`delete-project`)
+#### Intended Result
+Deletes a project at the specified **one-based index** of list of currently existing/found projects. Users are able to delete any project in project lists. If an index larger than or equal to the size of the project list provided, the command will not be allowed and an error will be thrown to alert user.
+Additionally, if the project is assigned to a developer or client, the project will be removed from the developer or client's set of projects.
+
+Example Uses:
+
+`delete-project 2`
+
+#### Implementation
+Upon entry of the delete project command, a `DeleteProjectCommand` class is created. The `DeleteProjectCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the project at specified **one-based index** is removed if the index provided is valid.
+
+Given below is an example usage scenario of how the delete developer command behaves at each step.
+
+Step 1. User launches the application and unlocks the application with the correct password.
+
+Step 2. User executes a delete-project command by entering `delete-project 1` to delete the project at index 1 (one-based indexing)
+
+Step 3. The project at this index is removed if the index provided is valid. Developer and Client lists are iterated through and the project is removed from the respective project sets if the project is assigned to them.
+
+This is similar to delete-developer and delete-client commands, except that in the delete project method is called in the model, the project is also removed from the respective developer and client's project sets.
+#### Design considerations
+  1. **Alternative 1:** Make the delete-project command call edit-developer and edit-client commands, both to update the project sets of the respective developers and clients.
+      * Pros: Easy to implement.
+      * Cons: May be less efficient as the edit-developer and edit-client commands will have to be called for each developer and client respectively.
+      * Edit command will have to retrieve client and developer project sets, iterate through each set to edit them accordingly and then pass the command, which will be retrieving information from the model to the logic component, which will complicate and potentially break abstractions originally in place.
+  2. **Alternative 2:** Do not edit developer and client project sets
+      * Pros: No extra logic needed to be implemented.
+      * Cons: Information integrity is compromised as the project will still be assigned to the developer and client even after it is deleted, and this will affect other features such as find, and potentially future features.
+  3. **Alternative 3 (current choice):** The delete project method in the model will iterate through developers and clients to make necessary changes to their project sets.
+      * Pros: Information integrity is maintained.
+      * Abstractions in place are not broken
+      * Cons: Implementation is hidden in the model component, and might not be intuitive in a glance in the logic component.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Import Feature (`import-developer`, `import-client`)
 This feature will allow project managers to import existing spreadsheets of developer and client data in the specified format in CSV
 #### Implementation
 
-There are 2 implementations: CLI and GUI
-
-##### CLI Implementation
 Upon entry of the import developer command, an `ImportDeveloperCommand` class is created. The `ImportDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a list of `Developer` objects are added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
 
 Given below is an example usage scenario of how the import developer is executed step by step.
 
-Step 1. User launches the application
+**Step 1.** User launches the application
 
-Step 2. User inputs `import-developer developers.csv` to indicate path and filename of where the spreadsheet of developers is located.
+**Step 2.** User inputs `import-developer developers.csv` to indicate path and filename of where the spreadsheet of developers is located.
 
-Step 3. The developers are added to the model’s list of developers if valid the column names are valid and each row of input is valid.
+**Step 3.** The developers are added to the model’s list of developers if valid the column names are valid and each row of input is valid.
 
 The implementation follows likewise for clients.
 
-The following sequence diagram illustrates how the add developer operation works:
+The following sequence diagram illustrates how the import developer operation works:
+![sequence diagram](images/ImportDeveloperSequenceDiagram.png)
 
-##### GUI Implementation
-A new menu item will be added under File called `Import developers` and `Import clients`
+[Scroll back to Table of Contents](#table-of-contents)
 
-Clicking it will lead to a window to select the location of the respective file in csv format.
-
-The backend implementation of logic follows the CLI implementation by creating a `ImportDeveloperCommand` or `ImportClientCommand`
-
-
-### Edit features
+### Edit Feature (`edit-developer`, `edit-client`, `edit-project`)
 #### Implementation
 The original edit feature from AB-3 has been extended to account for the editing of projects and specific people - developers
 and clients. The edit command will be parsed to return 1 of 3 different commands, depending on the
@@ -277,7 +375,10 @@ automatically switches user to the respective tab.
   * Cons: User needs to ensure that intended tab is open. Allowed parameters are less clearly defined, can lead to
   confusion and mistakes.
 
-### Find Features
+[Scroll back to Table of Contents](#table-of-contents)
+
+
+### Find Feature (`find-developer`, `find-client`, `find-project`)
 
 #### Implementation
 
@@ -317,7 +418,10 @@ The following sequence diagram provides an overview of how the find operation is
 
 Given the benefits of a more maintainable and scalable codebase, we've decided to go with the first alternative. Future enhancements might include fuzzy search.
 
-### List features
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### List Feature (`list-developer`, `list-client`, `list-project`)
 
 #### Implementation
 The list command employs a structured approach where specific commands, such as `list-developer` or `list-client`
@@ -350,7 +454,10 @@ The following sequence diagram provides an overview of how the find operation is
 
 ![sequence diagram](images/ListDeveloperSequenceDiagram.png)
 
-### Undo/redo features
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Undo/redo Feature (`undo`, `redo`)
 
 #### Implementation - undo
 
@@ -396,6 +503,8 @@ and another successful command message and tab switched saved into `successfulCo
 The following sequence diagram shows how the undo operation works:
 ![UndoRedoState3](images/UndoSequenceDiagram.png)
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 #### Implementation - redo
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
@@ -422,7 +531,11 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
     execute the `delete-developer-role function`. The process of this implementation had to be very careful just like
     what the cons mentioned, a slight validation error can change the whole `undo` and `redo` feature.
 
-### Add roles feature
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Add-role Feature (`add-developer-role`, `add-client-role`)
+
 #### Implementation
 The add role command employs a structured approach where specific commands, such as `add-developer-role` or
 `add-client-role`are associated with corresponding functionalities. This allows users to efficiently add
@@ -469,8 +582,11 @@ The following sequence diagram shows how the Add-role operation works:
     * Pros: Easy to implement.
     * Cons: Roles would have to be implemented on the same level as developers, clients and projects which should not be case.
 
+[Scroll back to Table of Contents](#table-of-contents)
 
-### Delete roles feature
+
+### Delete-role Feature (`delete-developer-role`, `delete-client-role`)
+
 #### Implementation
 The add role command employs a structured approach where specific commands, such as `delete-developer-role` or
 `delete-client-role`are associated with corresponding functionalities. This allows users to efficiently delete
@@ -509,7 +625,9 @@ The following sequence diagram shows how the Delete-role operation works:
 The following activity diagram shows how the validation check in `DeveloperRoles#isRemovableRole()` works:<br>
 ![ActivityDiagram](images/isRemovableRole.png)
 
-### Mark/unmark deadline features
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Mark/unmark deadline Feature (`mark-deadline`, `unmark-deadline`)
 #### Implementation
 The mark and unmark deadline features are implemented using a secondary call to the `edit-project` command. As with
 the other commands, `mark-deadline` and `unmark-deadline` commands are first parsed to return `MarkDeadlineCommandParser`
@@ -561,6 +679,29 @@ that will replace the existing project entirely with a new one with the updated 
     * Slightly more disorganised interactions within `Logic` component since have to go from parsing a command to
     executing it, then parsing another command again and executing that command.
 
+[Scroll back to Table of Contents](#table-of-contents)
+
+### GUI Feature
+
+#### Switching tabs automatically
+
+When certain commands are executed, the UI will automatically switch to the relevant tab. For example, when the user
+executes `list-developer`, the UI will automatically switch to the `Developer` tab. This is implemented by specifying
+the `TabIndex` in the `CommandResult` returned in the `execute()` method of the relevant command.
+
+#### Clicking to switch tabs
+
+When the user clicks on a different tab, the `list` command will be executed to display the relevant list of information
+for the tab clicked. This is implemented by adding a listener to the `TabPane` in the `MainWindow` class. When the
+selected tab changes, the `list` command will be executed.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+When the user clicks away from the tab showing the command result and then switches back to the tab, the tab will
+be updated to show the full list of information for that tab again.</div>
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -569,6 +710,8 @@ that will replace the existing project entirely with a new one with the updated 
 * [Logging guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Logging.html)
 * [Configuration guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Configuration.html)
 * [DevOps guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/DevOps.html)
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
@@ -613,21 +756,104 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | project manager | unlock all the data                                                                            | see all these data after locking it                                                            |
 | `* *`    | project manager | change password                                                                                | access these data without worrying data might be stolen                                        |
 | `* *`    | project manager | find by deadline                                                                               | sort out information by deadline due                                                           |
+| `* *`    | project manager | mark deadline                                                                                  | label out completed deadlines as done                                                          |
+| `* *`    | project manager | unmark deadline                                                                                | label out incomplete or reactivated deadlines as undone                                        |
 | `*  `    | project manager | send reminder emails to the developers when deadlines are nearing                              | it can remind them that work is due soon                                                       |
 | `* `     | project manager | give developers feedback directly from CodeContact                                             | reviews can be autogenerated trough my ratings and i need to write a new review each time      |
 
 
-*{More to be added}*
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook`, and the **Actor** is the `user`, unless specified otherwise)unless specified otherwise)
+For all use cases below, we assume the following unless specified otherwise
 
+- The **System** is `CodeContact`
+- The **Actor** is the `user`
+- The following preconditions
+    - The `user` has launched the `CodeContact` application.
 
-#### **Use case:** UC1 - Add a developer
+Furthermore, a lot of **use cases are similar when manipulating
+developers, clients and projects**. Therefore, to keep the developer guide concise, the
+use cases elaborated upon below are only detailed for developers. Nonetheless, they
+can be extrapolated for clients and projects too, without changes to the major details within
+the use case. Such associated pairs of use cases are listed in the table below.
+
+| **Developer use case** | **Client use case** | **Project use case**         |
+|------------------------|---------------------|------------------------------|
+| UC3 - Add a developer  | UC13 - Add a client  | UC14 - Add a project         |
+| UC4 - Delete a developer  | UC15 - Delete a client  | UC16 - Delete a project      |
+| UC5 - Edit a developer  | UC17 - Edit a client  | UC18 - Edit a project        |
+| UC6 - Find a developer  | UC19 - Find a client  | UC20 - Find a project        |
+| UC9 - Add developer role  | UC21 - Add client role  | -                            |
+| UC10 - Delete developer role  | UC22 - Delete client role  | -                            |
+
+#### **Use case:** UC1 - Unlock System
+
+**Preconditions:** 
+1. User is not logged in
+
+**Guarantees:**
+1. The system will be unlocked and all data will be shown.
+
+**MSS**
+
+1.  User requests unlock system with the password.
+2.  System validates if user's inputs are correct.
+3.  System logs user in.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The password entered is incorrect.
+    * 2a1. System informs user password entered is incorrect and shows the default password.
+    * 2a2. User enters password
+      <br> Steps 2a1-2a2 are repeated until the correct password is entered.
+      <br> Use case resumes from step 3.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC2 - Change Password
+
+**Preconditions:**
+1. User is logged in
+
+**Guarantees:**
+1. The system password will be changed.
+
+**MSS**
+
+1.  User requests to change password with current password and new password as inputs.
+2.  System validates if user's new password fulfils the password criteria are correct.
+3.  System changes user's password.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The new password entered is blank or does not follow the format.
+    * 2a1. System informs user password entered does not follow the format.
+    * 2a2. User enters new password.
+      <br> Steps 2a1-2a2 are repeated until the correct password is entered.
+      <br> Use case resumes from step 3.
+* 2b. The current password entered is incorrect.
+    * 2b1. System informs current password entered is incorrect.
+    * 2b2. User enters new password.
+      <br> Steps 2b1-2b2 are repeated until the correct password is entered.
+      <br> Use case resumes from step 3.
+* 2c. The current password is same as new password.
+    * 2c1. System informs current password is same as new password.
+    * 2c2. User enters new password.
+      <br> Steps 2c1-2c2 are repeated until the new password is different.
+      <br> Use case resumes from step 3.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC3 - Add a developer
 
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-Adding developers and clients works the same way, but with different parameters, hence it will not be repeated </div>
+Adding developers, clients and projects have very similar use cases, hence it will not be repeated </div>
 
 **Preconditions:** User is logged in
 
@@ -637,24 +863,26 @@ Adding developers and clients works the same way, but with different parameters,
 **MSS**
 
 1.  User requests to add a developer.
-2.  System requests the details of the developer.
+2.  System requests for the details of the developer.
 3.  User enters the requested details in the required format.
-4.  System validates if user's inputs are valid.
+4.  System validates if the user's inputs are valid.
 6.  System adds the developer to the data.
 
        Use case ends.
 
 **Extensions**
 
-* 3a. The given details are invalid or in an invalid format.
-    * 3a1. System requests for the correct data
-    * 3a2. User enters new data
-<br> Steps 3a1-3a2 are repeated until the data entered are correct.
-<br> Use case resumes from step 4.
+* 4a. The given details are invalid or in an invalid format.
+    * 4a1. System informs users specifically which data is wrong.
+    * 4a2. User enters new data.
+<br> Steps 4a1-4a2 are repeated until the data entered are correct.
+<br> Use case resumes from step 5.
 
-#### **Use case:** UC2 - Delete a developer
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC4 - Delete a developer
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-Deleting developers and clients works the same way, but with different parameters, hence it will not be repeated </div>
+Deleting developers, clients and projects have very similar use cases, hence it will not be repeated </div>
 
 **Preconditions:** User is logged in
 
@@ -664,22 +892,97 @@ Deleting developers and clients works the same way, but with different parameter
 **MSS**
 
 1.  User requests to delete a developer.
-2.  System requests the index of the developer.
+2.  System requests for the index of the developer.
 3.  User enters the index of the developer.
-4.  System validates index is valid.
+4.  System validates if the index is valid.
 5.  System deletes the developer to the data.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The index entered is an invalid number or is not a number.
-    * 3a1. System requests for the correct index
-    * 3a2. User enters new index
+* 4a. The index entered is an invalid number or is not a number.
+    * 4a1. System requests for the correct index
+    * 4a2. User enters new index
+      <br> Steps 4a1-4a2 are repeated until the data entered are correct.
+      <br> Use case resumes from step 5.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC5 - Edit a developer
+ <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Editing developer, client and project have very similar use case, hence it will not be repeated </div>
+
+**Preconditions:** User is logged in
+
+**Guarantees:**
+1. A developer's details are edit from the system after every successful edit
+
+**MSS**
+
+1.  User requests to edit a developer.
+2.  System requests for the the index of the developer and details of what they wish to change.
+3.  User enters the index of the developer and changed details.
+4.  System validates if index is valid and checks if details changed is valid.
+5.  System edits the developer's data.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. The index entered is an invalid number or is not a number.
+    * 4a1. System requests for the correct index.
+    * 4a2. User enters new index.
+      <br> Steps 4a1-4a2 are repeated until the data entered are correct.
+      <br> Use case resumes from step 5.
+
+* 4b. The details entered are the same as the existing details.
+    * 4a1. System informs users the details the same.
+    * 4a2. User enters new details.
+      <br> Steps 4b1-4b2 are repeated until the data entered are correct.
+      <br> Use case resumes from step 5.
+
+* 4c. The details violate certain validation check and is not allowed to change to these details.
+    * 4a1. System informs users why the details cannot be changed.
+    * 4a2. User enters new details.
+      <br> Steps 4c1-4c2 are repeated until the data entered are correct.
+      <br> Use case resumes from step 5.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC6 - Find a developer
+ <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Finding developer, client and project have very similar use case, hence it will not be repeated </div>
+
+**Preconditions:** User is logged in
+
+**Guarantees:**
+1. A developer is found according to the details entered.
+
+**MSS**
+
+1.  User requests to find a developer.
+2.  System requests for the details user wishes to find by.
+3.  User enters the details they wish to find by.
+4.  System searches for developers that matches the details.
+5.  System shows the relevant developer's data.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. There are no details entered.
+    * 3a1. System informs users input cannot be empty.
+    * 3a2. User enters new details.
       <br> Steps 3a1-3a2 are repeated until the data entered are correct.
       <br> Use case resumes from step 4.
 
-#### **Use case:** UCX - Undo
+* 3b. The details entered are incorrect (eg. entering alphabets when finding by phone).
+    * Use case just continues to step 4 but will show that no developers are found in step 5.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC7 - Undo
 
 **Preconditions:** User is logged in
 
@@ -699,7 +1002,9 @@ Deleting developers and clients works the same way, but with different parameter
     * 3a1. System informs users they have reached the first step
     <br> Use case ends
 
-#### **Use case:** UCX - Redo
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC8 - Redo
 
 **Preconditions:** User is logged in
 
@@ -719,7 +1024,9 @@ Deleting developers and clients works the same way, but with different parameter
     * 3a1. System inform users they have reached the last step
       <br> Use case ends
 
-#### **Use case:** UCX - Add developer role
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC9 - Add developer role
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
 Adding developer roles and client roles works the same way, hence add client role use case will not be repeated </div>
 
@@ -739,7 +1046,7 @@ Adding developer roles and client roles works the same way, hence add client rol
 **Extensions**
 
 * 3a. User enters an empty role
-    * 3a1. System requests for the correct role
+    * 3a1. System informs users role cannot be empty and requests for the correct role
     * 3a2. User enters new role
       <br> Steps 3a1-3a2 are repeated until the data entered is not empty
       <br> Use case resumes from step 4.
@@ -750,9 +1057,11 @@ Adding developer roles and client roles works the same way, hence add client rol
     <br> Steps 4a1-4a2 are repeated until the data entered is not empty
     <br> Use case resumes from step 5.
 
-#### **Use case:** UCX - Delete developer role
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC10 - Delete developer role
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-Deleting developer roles and client roles works the same way, hence deleting client role use case will not be repeated </div>
+Deleting developer roles and client roles works the same way, hence deleting client role use case will not be repeated</div>
 
 **Preconditions:** User is logged in
 
@@ -770,7 +1079,7 @@ Deleting developer roles and client roles works the same way, hence deleting cli
 **Extensions**
 
 * 3a. User enters an empty role
-    * 3a1. System requests for the correct role
+    * 3a1. System informs users role cannot be empty and requests for the correct role
     * 3a2. User enters correct role
       <br> Steps 3a1-3a2 are repeated until the data entered is not empty
       <br> Use case resumes from step 4.
@@ -793,6 +1102,68 @@ Deleting developer roles and client roles works the same way, hence deleting cli
       <br> Steps 4a1-4a2 are repeated until the data entered can be deleted
       <br> Use case resumes from step 5.
 
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC11 - Mark Deadline
+
+**Preconditions:** User is logged in
+
+**Guarantees:**
+1. A project deadline will be marked.
+
+**MSS**
+
+1. User requests to mark the deadline of a project.
+2. System requests for the index of the project and the index of the deadline.
+3. User enters relevant indexes.
+4. System validates if user's inputs exists.
+5. System marks the deadline as done.
+
+**Extensions**
+
+* 3a. User enters an empty index
+    * 3a1. System informs users indexes should not be empty and requests for the correct role
+    * 3a2. User enters new indexes
+      <br> Steps 3a1-3a2 are repeated until the data entered is not empty
+      <br> Use case resumes from step 4.
+
+* 4a. User enters an invalid index (i.e no project with such index or no deadline in project with this index)
+    * 4a1. System informs users indexes are invalid
+    * 4a2. User enters new indexes
+      <br> Steps 4a1-4a2 are repeated until the data entered is not empty
+      <br> Use case resumes from step 5.
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### **Use case:** UC12 - Unmark Deadline
+
+**Preconditions:** User is logged in
+
+**Guarantees:**
+1. A project deadline will be unmarked.
+
+**MSS**
+
+1. User requests to unmark the deadline of a project.
+2. System requests for the index of the project and the index of the deadline.
+3. User enters relevant indexes.
+4. System validates if user's inputs exists.
+5. System marks the deadline as undone.
+
+**Extensions**
+
+* 3a. User enters an empty index
+    * 3a1. System informs users indexes should not be empty and requests for the correct role
+    * 3a2. User enters new indexes
+      <br> Steps 3a1-3a2 are repeated until the data entered is not empty
+      <br> Use case resumes from step 4.
+
+* 4a. User enters an invalid index (i.e no project with such index or no deadline in project with this index)
+    * 4a1. System informs users indexes are invalid
+    * 4a2. User enters new indexes
+      <br> Steps 4a1-4a2 are repeated until the data entered is not empty
+      <br> Use case resumes from step 5.
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Non-Functional Requirements
 
 #### System/Performance Requirements
@@ -809,7 +1180,7 @@ Deleting developer roles and client roles works the same way, hence deleting cli
 in a clear and user-friendly manner.
 * Context-sensitive help and tooltips shall be available to assist users in understanding complex features.
 * A comprehensive user manual or online documentation shall be provided to explain how to use the application.
-#### Process Requirements
+### Process Requirements
 * The project is expected to adhere to a schedule that completes a milestone set every two weeks.
 * The project shall follow an iterative breadth-first development methodology
 * Automated testing suits shall be maintained and run for each build
@@ -819,7 +1190,35 @@ reviewing each piece of code before it is merged
 and commits should follow a consistent naming convention.
 * Coding standards and style guidelines shall be defined and followed consistently by all development team members.
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Glossary
+
+| Term                 | Definition                                                                                                |
+|----------------------|-----------------------------------------------------------------------------------------------------------|
+| AddressBook-Level3   | A project created by the SE-EDU initiative, which this project is based on.                               |
+| App                  | An application created by the project.                                                                    |
+| API                  | An application programming interface.                                                                     |
+| Architecture Diagram | A diagram that explains the high-level design of the App.                                                 |
+| Class diagram        | A diagram that shows the classes of the App and the relationships between them.                           |
+| CLI                  | Command Line Interface, for users to perform actions through typing commands.                             |
+| CommandBox           | A component of the UI that allows users to enter commands.                                                |
+| Commons              | A collection of classes used by multiple other components.                                                |
+| Component            | A modular part of the App that serves a specific function.                                                |
+| ContactDisplay       | A component of the UI that displays contact information.                                                  |
+| GUI                  | Graphical User Interface, a visual way for users to interact with a software program                      |
+| Logic component      | The component responsible for executing user commands.                                                    |
+| Main                 | A class with two subclasses, Main and MainApp, that initializes and shuts down the components of the App. |
+| MainWindow           | The main window of the UI that houses all the UI components.                                              |
+| Model                | The data model used by the App.                                                                           |
+| Navigability         | A concept referring to instances of one class holding a reference to instances of another class.          |
+| PlantUML             | A tool used to create diagrams.                                                                           |
+| ResultDisplay        | A component of the UI that displays the results of commands.                                              |
+| Sequence Diagram     | A diagram that shows the sequence of events between components.                                           |
+| UML                  | [Unified Modeling Language](https://en.wikipedia.org/wiki/Unified_Modeling_Language)                      |
+
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Manual Testing**
@@ -986,6 +1385,7 @@ For these tests, each test case has respective prerequisites that must be met be
 2. You can re-launch the app by double-clicking the jar file.<br>
    Expected: The application should load with any previous changes made during the previous running of the app.
 
+[Scroll back to Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancement**
@@ -1015,8 +1415,39 @@ same time.<br>
 **Enhanced Behavior:** There should be a limit to the deadline line dates like 10-20 years before and after the current date.
 
 ### Password Recovery
-**Current Behavior:** If you forgot your password, there is no way to retrieve it.<br>
+
+**Current Behavior:** If you forgot your password, there is no way to retrieve it<br>
 **Enhanced Behavior:** Links the system to email or have verifications that allows users to reset their password.
 
+### Additional menu item for `import-developer` and `import-client`
+**Current Behavior:** The import function is only available in CLI.<br>
+**Enhanced Behavior:** A new menu item will be added under File called `Import developers` and `Import clients`
+Clicking it will lead to a window to select the location of the respective file in csv format.
+The backend implementation of logic follows the CLI implementation by creating a `ImportDeveloperCommand` or `ImportClientCommand`
+
+### Exporting data
+**Current Behavior:** There is only import csv function and no options for export<br>
+**Enhanced Behavior:** A new menu item will be added under File called `Export data` and clicking it will lead to a window
+where users can select the location to save the files for Developers, Clients and Projects. The file will be saved in csv format.
+
+[Scroll back to Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**
+| Feature       | AB3 | CodeContact |
+|---------------|-----|-------------|
+| Effort        | 10  | 30          |
+| Lines of Code | 6k  | +18k        |
+
+The CodeContact project involved a significant effort to adapt the AddressBook-Level3 (AB3) application to a new domain of Developers, Clients and Projects in a Software Engineering setting. One of the major changes was the addition of three new models, Developer, Client and Project, which required modifying the existing data model and the associated logic components. Another significant change was the complete redesign of the user interface using JavaFX, which required a significant amount of time and effort to learn and implement.
+
+Firstly, although code was reused from AB3, a lot of it had to be refactored to fit our use case. We now had to deal with 3 entity types, Developer, Client and Project, which meant that the way we stored the information also had to change. Moreover, with more attributes for both `Developer` and `Client` classes, it also meant more effort in validating the inputs and writing high quality test cases for each attribute, an extremely time-consuming process.
+
+The most significant challenge was implementing the logic for tabs within the user interface. Not only was it challenging to implement the tabs at the UI level, the integration of switching tabs based on the command executed was challenging as well. Careful and deliberate decisions were made for the action to take when switching tabs. For example, when switching to the `Developer` tab, the `list-developer` command is executed to show the list of developers.
+
+Other challenges include the implementations of features that seem trivial on the surface level. Something that started as a validation check for valid developer and client roles, evolved to 4 commands allowing users to add and delete roles, and these roles had to be stored in separate files. This feature also affected the undo and redo commands, which had to explicitly check for commands involving roles as they are stored outside of `addressbook.json`.
+
+Due to limitations in the storage format in `addressbook.json`, we had to get creative in the way we store the associations between Developers, Clients and the projects they have been assigned to. We decided to store the associations in the `Developer` and `Client` classes themselves, which meant that we had to update the logic components to update the associations when a project is deleted. This was a significant change from AB3, which only had to deal with a single entity type. Other constraints had to be included such as not allowing names of Projects to be edited, and not allowing Developers and Clients to be assigned to Projects that do not exist.
+
+The effort required to implement the features in CodeContact was significantly more than AB3, which is reflected in the number of lines of code. However, the effort was well worth it as we were able to create a useful application that can be used by project managers to manage their projects and teams.
+
+[Scroll back to Table of Contents](#table-of-contents)
