@@ -125,12 +125,12 @@ Here are some notes about these parameters.
 
 #### Developer Parameters
 
-| Parameter | Description                  | Constraints                                                                    | Valid Examples | Invalid Examples     |
-|-----------|------------------------------|--------------------------------------------------------------------------------|----------------|----------------------|
-| `g/`      | github username of developer | alphanumeric characters, and it should not be blank                            | johng, amy123  |                      |
-| `d/`      | date joined of developer     | numeric characters in DD-MM-YYYY format, and it should not be blank            | 19-11-2023     | 19/11/2023, 1/1/2023 |
-| `s/`      | salary of developer          | numeric characters, and it should not be blank                                 | 5000           |                      |
-| `rt/`     | rating of developer          | numeric characters with 1 decimal place and spaces, and it should not be blank | 5.0, 3.5       | 5,3                  |
+| Parameter | Description                  | Constraints                                                                                      | Valid Examples | Invalid Examples     |
+|-----------|------------------------------|--------------------------------------------------------------------------------------------------|----------------|----------------------|
+| `g/`      | github username of developer | alphanumeric characters, and it should not be blank                                              | johng, amy123  |                      |
+| `d/`      | date joined of developer     | numeric characters in dd-MM-yyyy format, should not be a future date, and it should not be blank | 11-11-2023     | 19-11-2024, 1/1/2023 |
+| `s/`      | salary of developer          | numeric characters, and it should not be blank                                                   | 5000           |                      |
+| `rt/`     | rating of developer          | numeric characters between 0 to 5                                                                | 5, 3.5         | -0, -1, 6            |
 
 #### Client Parameters
 
@@ -325,25 +325,17 @@ Password changed successfully.
 
 ### Add
 
-Project Manager can add developers, clients and projects.
+#### Add developer : `add-developer`
 
-#### Add Developer: `add-developer`
+Adds a new developer to the address book.
 
-* Type in:
-    * `add-developer`
-* And populate his/her details with prefixes and fields by typing in
-    * `n/NAME` for the developer's name
-    * `p/PHONE_NUMBER` for the developer's phone number
-    * `e/EMAIL` for the developer's email
-    * `a/ADDRESS` for the developer's address
-    * `r/ROLE` for the developer's assigned role
-    * `pr/{PROJECT1, PROJECT2…}` for developer's assigned projects
-    * `s/SALARY` for the developer's salary
-    * `d/DATE_JOINED` for the date the developer joined
-    * `g/GITHUBID` for the developer's githubid
-    * `rt/RATING` for the assigned rating for the developer
-* In the following overall format
-    * `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE pr/PROJECT1 pr/PROJECT2 s/SALARY d/DATE_JOINED g/GITHUBID rt/RATING`
+Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... gh/GITHUB_ID ra/RATING`
+
+* Adds the developer with the given details to the address book.
+* Not specifying any `PROJECT_NAME` will add the developer without assigning them to any projects.
+* Not specifying the `DATE_JOINED` will automatically use today's date as the date joined.
+* `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
+* If specified, `PROJECT_NAME` should be the exact name of an existing project.
 
 Example:
 

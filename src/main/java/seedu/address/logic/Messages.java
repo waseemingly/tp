@@ -20,7 +20,7 @@ public class Messages {
 
     public static final String MESSAGE_VALID_LOCKED_COMMANDS = "Valid commands are: \n unlock, help, exit";
     public static final String MESSAGE_VALID_UNLOCKED_COMMANDS = "Type \"help\" to see the list of valid commands in"
-            + " User Guide";
+            + " User Guide!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_FILE = "File does not exist!\n";
     public static final String MESSAGE_INVALID_DEVELOPER_DISPLAYED_INDEX = "The developer index provided is invalid!";

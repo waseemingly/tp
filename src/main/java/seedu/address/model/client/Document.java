@@ -6,7 +6,7 @@ package seedu.address.model.client;
  */
 public class Document {
 
-    public static final String MESSAGE_CONSTRAINTS = "Invalid URL format";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid URL format!";
 
     // Regular expression to match a valid URL
     public static final String VALIDATION_REGEX =
