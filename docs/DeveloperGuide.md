@@ -130,9 +130,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete-client 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete-developer 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-client 1` Command](images/DeleteClientSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -223,6 +223,8 @@ add-client and add-project commands are executed in a similar manner.
 
 The following sequence diagram illustrates how the add developer operation works
 
+<img src="images/AddDeveloperSequenceDiagram.png" width="450" />
+
 
 ### Delete features (delete-developer, delete-client)
 #### Intended Result
@@ -247,6 +249,10 @@ Step 3. The developer at this index is removed if the index provided is valid.
 A similar implementation is done for the delete-client command, where a `DeleteClientCommand`class (which similarly extend the `Command` class) is created respectively to delete a `Client` object from the model’s list of clients.
 
 The following sequence diagram illustrates how the delete developer operation works:
+
+<img src="images/DeleteClientSequenceDiagram.png" width="450" />
+
+
 #### Design considerations
 
 ### Delete Project Feature (delete-project)
@@ -270,6 +276,10 @@ Step 2. User executes a delete-project command by entering `delete-project 1` to
 Step 3. The project at this index is removed if the index provided is valid. Developer and Client lists are iterated through and the project is removed from the respective project sets if the project is assigned to them.
 
 This is similar to delete-developer and delete-client commands, except that in the delete project method is called in the model, the project is also removed from the respective developer and client's project sets.
+The following sequence diagram illustrates how the delete-project operation works:
+
+<img src="images/DeleteProjectSequenceDiagram.png" width="450" />
+
 #### Design considerations
   1. **Alternative 1:** Make the delete-project command call edit-developer and edit-client commands, both to update the project sets of the respective developers and clients.
       * Pros: Easy to implement.
@@ -279,8 +289,7 @@ This is similar to delete-developer and delete-client commands, except that in t
       * Pros: No extra logic needed to be implemented.
       * Cons: Information integrity is compromised as the project will still be assigned to the developer and client even after it is deleted, and this will affect other features such as find, and potentially future features.
   3. **Alternative 3 (current choice):** The delete project method in the model will iterate through developers and clients to make necessary changes to their project sets.
-      * Pros: Information integrity is maintained.
-      * Abstractions in place are not broken
+      * Pros: Information integrity is maintained. Abstractions in place are not broken. Complies with implemented Validation checks.
       * Cons: Implementation is hidden in the model component, and might not be intuitive in a glance in the logic component.
 
 ### Import feature
