@@ -21,7 +21,7 @@ Here’s an overview of how CodeContact can help you streamline your project man
 If you are familiar with CodeContact, jump to our [**Table of Contents**](#table-of-contents) to find out what you are looking
 for!
 
-If you are new here, you may start with learning [**how to naviagte this guide**](#navigating-this-guide) and visit
+If you are new here, you may start with learning [**how to navigate this guide**](#navigating-this-guide) and visit
 the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 <div style="page-break-after: always;"></div>
 
@@ -92,9 +92,13 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 ------------------------------------------------------------------------------------------
 
 ## Navigating this guide
+
 <!-- -->
+
 ### Glossary
+
 <!-- -->
+
 ### Definitions
 
 | Term          | Definition                                                                                                                |
@@ -409,6 +413,12 @@ Salary: 4500;
 Projects: CustomWebsite AndroidApp
 ```
 
+<div markdown="block" class="alert alert-info">:bulb:
+Entered details of a developer incorrectly? You can always undo the action with the `undo` command! 
+</div>
+
+Learn more about the [Undo](#undo) command here.
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Add client : `add-client`
@@ -440,6 +450,12 @@ Document: google.com;
 Projects: CustomWebsite AndroidApp
 ```
 
+<div markdown="block" class="alert alert-info">:bulb:
+Entered details of a client incorrectly? You can always undo the action with the `undo` command! 
+</div>
+
+Learn more about the [Undo](#undo) command here.
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Add project : `add-project`
@@ -466,6 +482,12 @@ Deadlines:
 2. Design frontend by: 25-12-2023, priority: MEDIUM (undone)
 ```
 
+<div markdown="block" class="alert alert-info">:bulb:
+Entered details of a project incorrectly? You can always undo the action with the `undo` command! 
+</div>
+
+Learn more about the [Undo](#undo) command here.
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Delete
@@ -478,7 +500,27 @@ Format: `delete-developer INDEX`
 
 Example of usage: `delete-developer 2`
 
-* Deletes second developer from the list
+* Deletes second developer in the developer list from the developer list and from the address book.
+
+When command succeeds, CLI shows:
+
+```
+Deleted Developer: Bernice Yu; 
+Phone: 99272758; 
+Email: berniceyu@example.com; 
+Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; 
+Date Joined: 16-11-2020; 
+Role: Developer; 
+Salary: 6000; 
+Projects: Appollo Orbital 
+```
+if second developer in the list was Bernice Yu
+
+<div markdown="block" class="alert alert-info">:bulb:
+Deleted a wrong developer? You can always undo the action with the `undo` command! 
+</div>
+
+Learn more about the [Undo](#undo) command here.
 
 #### Delete client : `delete-client`
 
@@ -488,17 +530,52 @@ Format: `delete-client INDEX`
 
 Example of usage: `delete-client 3`
 
-* Deletes third client in list.
+* Deletes third client in the client list from the client list and from the address book.
+
+When command succeeds, CLI shows:
+```
+Deleted Client: George Lim; 
+Phone: 76543210; 
+Email: george@example.com; 
+Address: Blk 789 Woodlands Ave 6, #03-03; 
+Organisation: MNO Company; 
+Role: Developer; 
+Document: https://www.mno.com/; 
+Projects: CodeContact 
+```
+if second client in the list was George Lim
+
+<div markdown="block" class="alert alert-info">:bulb:
+Deleted a wrong client? You can always undo the action with the `undo` command! 
+</div>
+
+Learn more about the [Undo](#undo) command here.
 
 #### Delete project : `delete-project`
 
-Deletes the details of an existing project in the address book.
+Deletes the details of an existing project in the address book and updates developer and client project details accordingly.
 
 Format: `delete-project INDEX`
 
 Example of usage: `delete-project 2`
 
-* Deletes second project from the list and updates developers and client details accordingly
+* Deletes second project in the project list from the project list and from the address book.
+* Deletes project from developers' and clients' project lists if they were assigned to this project.
+
+When command succeeds, CLI shows:
+```
+Deleted Project: TeamTrekker;
+Description: A team collaboration tool;
+Deadlines:
+1. Phase 2 by: 13-11-2021, priority: MEDIUM (undone)
+```
+if second project in the list was TeamTrekker
+
+<div markdown="block" class="alert alert-info">:bulb:
+Deleted a wrong project? You can always undo the action with the `undo` command! 
+</div>
+
+Learn more about the [Undo](#undo) command here.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
