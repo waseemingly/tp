@@ -59,7 +59,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 ------------------------------------------------------------------------------------------
 
-# Navigating this guide
+# **Navigating this guide**
 
 <!-- -->
 
@@ -289,7 +289,7 @@ To view all our features, you may visit our [Features](#features) section
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-# Features
+# **Features**
 
 | [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
 |:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
@@ -835,7 +835,7 @@ followed by the matching project's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Find deadlines : `find-deadline`
+#### Find deadlines : `find-deadline`
 
 Finds deadlines in project tab based on date and/or priority.
 
@@ -856,8 +856,8 @@ These are the 3 projects with matching information.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-## **List**
-### Listing information : `list`
+### **List**
+#### Listing information : `list`
 
 Shows a list of all developers in the address book.
 
@@ -997,7 +997,7 @@ Role for clients deleted: Boss
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### **Mark**
-### Mark project deadline as done : `mark-deadline`
+#### Mark project deadline as done : `mark-deadline`
 
 Marks the indicated deadline for the project as done.
 
@@ -1017,7 +1017,7 @@ The deadline has been marked as completed!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Mark deadline as undone : `unmark-deadline`
+#### Mark deadline as undone : `unmark-deadline`
 
 Marks the indicated deadline for the project as undone.
 
