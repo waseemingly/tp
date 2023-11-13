@@ -19,7 +19,8 @@ public class OrganisationContainsKeywordsPredicate implements KeywordPredicate<C
     @Override
     public boolean test(Client client) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getOrganisation().toString(), keyword));
+                .anyMatch(keyword ->
+                        StringUtil.containsPartialWordIgnoreCase(client.getOrganisation().toString(), keyword));
     }
 
     @Override
@@ -33,7 +34,8 @@ public class OrganisationContainsKeywordsPredicate implements KeywordPredicate<C
             return false;
         }
 
-        OrganisationContainsKeywordsPredicate otherOrganisationContainsKeywordsPredicate = (OrganisationContainsKeywordsPredicate) other;
+        OrganisationContainsKeywordsPredicate otherOrganisationContainsKeywordsPredicate =
+                (OrganisationContainsKeywordsPredicate) other;
         return keywords.equals(otherOrganisationContainsKeywordsPredicate.keywords);
     }
 

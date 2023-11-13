@@ -10,17 +10,15 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
-import seedu.address.model.client.Client;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.client.Client;
 import seedu.address.model.developer.Developer;
-import seedu.address.model.project.Project;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-public
-class JsonSerializableAddressBook {
+public class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_DEVELOPER = "Persons list contains duplicate developer(s).";
     public static final String MESSAGE_DUPLICATE_CLIENT = "Persons list contains duplicate client(s).";
@@ -48,7 +46,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        developers.addAll(source.getDeveloperList().stream().map(JsonAdaptedDeveloper::new).collect(Collectors.toList()));
+        developers.addAll(source.getDeveloperList().stream().map(JsonAdaptedDeveloper::new)
+                .collect(Collectors.toList()));
         clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
@@ -75,7 +74,7 @@ class JsonSerializableAddressBook {
             addressBook.addClient(client);
         }
         for (JsonAdaptedProject jsonAdaptedProject : projects) {
-            Project project = jsonAdaptedProject.toModelType();
+            seedu.address.model.project.Project project = jsonAdaptedProject.toModelType();
             if (addressBook.hasProject(project)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
             }

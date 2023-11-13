@@ -3,20 +3,25 @@ package seedu.address.model.client;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateClientException;
 import seedu.address.model.person.exceptions.ClientNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateClientException;
 
 /**
  * A list of clients that enforces uniqueness between its elements and does not allow nulls.
  * A client is considered unique by comparing using {@code Client#isSameClient(Client)}.
- * As such, adding and updating of clients use Client#isSameClient(Client) for equality to ensure that the client being added or updated is unique in terms of identity in the UniqueClientList.
- * However, the removal of a client uses Client#equals(Object) to ensure that the client with exactly the same fields will be removed.
- *
+ * As such, adding and updating of clients use Client#isSameClient(Client)
+ * for equality to ensure that the client being added or updated
+ * is unique in terms of identity in the UniqueClientList.
+ * However, the removal of a client uses Client#equals(Object) to
+ * ensure that the client with exactly the same fields will be removed.
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Client#isSameClient(Client)
@@ -24,7 +29,8 @@ import seedu.address.model.person.exceptions.ClientNotFoundException;
 public class UniqueClientList implements Iterable<Client> {
 
     private final ObservableList<Client> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Client> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Client> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent client as the given argument.
@@ -100,6 +106,22 @@ public class UniqueClientList implements Iterable<Client> {
      */
     public ObservableList<Client> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Updates the projects of all clients by removing a specific project.
+     *
+     * @param project The project to be removed from the clients' projects.
+     */
+    public void updateClientProjects(String project) {
+        iterator().forEachRemaining(
+                client -> {
+                    Set<String> newprojectset = new HashSet<>(client.getProjects());
+                    newprojectset.remove(project);
+                    setClient(client, new Client(client.getName(), client.getPhone(), client.getEmail(),
+                            client.getAddress(), client.getRole(), newprojectset,
+                            client.getOrganisation(), client.getDocument()));
+                });
     }
 
     @Override

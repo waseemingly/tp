@@ -12,7 +12,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.controlsfx.control.Rating;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -39,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private int resultTabIndex;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -72,7 +72,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
 
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -101,6 +100,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tabPane= new TabPane();
+        //tabPane = new TabPane();
         // Create tabs
         /*developerTab = new Tab("Developer");
         clientTab = new Tab("Client");
@@ -156,10 +156,24 @@ public class MainWindow extends UiPart<Stage> {
 
         // Add tabs to the TabPane
         tabPane.getTabs().addAll(developerTab, clientTab, projectTab);
-
-        //tabPane.getSelectionModel().select(1);
+        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() != resultTabIndex) {
+                try {
+                    if (newValue.intValue() == 0) {
+                        executeCommand("list-developer");
+                    } else if (newValue.intValue() == 1) {
+                        executeCommand("list-client");
+                    } else if (newValue.intValue() == 2) {
+                        executeCommand("list-project");
+                    }
+                } catch (CommandException | ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         resultDisplay = new ResultDisplay();
+        resultDisplay.setFeedbackToUser("Welcome to CodeContact!\nUnlock to continue.");
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -212,9 +226,11 @@ public class MainWindow extends UiPart<Stage> {
     public DeveloperListPanel getDeveloperListPanel() {
         return developerListPanel;
     }
+
     public ClientListPanel getClientListPanel() {
         return clientListPanel;
     }
+
     public ProjectListPanel getProjectListPanel() {
         return projectListPanel;
     }
@@ -229,8 +245,9 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            tabPane.getSelectionModel().select(commandResult.getIndex());
-
+            resultTabIndex = commandResult.getIndex();
+            System.out.println("resultTabIndex: " + resultTabIndex);
+            tabPane.getSelectionModel().select(resultTabIndex);
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

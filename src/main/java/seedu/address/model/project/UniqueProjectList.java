@@ -13,11 +13,12 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
  * A list of projects that enforces uniqueness between its elements and does not allow nulls.
- * A project is considered unique by comparing using {@code Project#isSameProject(Project)}. As such, adding and updating of
+ * A project is considered unique by comparing using {@code Project#isSameProject(Project)}.
+ * As such, adding and updating of
  * projects use Project#isSameProject(Project) for equality so as to ensure that the project being added or updated is
- * unique in terms of identity in the UniqueProjectList. However, the removal of a project uses Project#equals(Object) so
- * as to ensure that the project with exactly the same fields will be removed.
- *
+ * unique in terms of identity in the UniqueProjectList. However, the removal of a project uses
+ * Project#equals(Object) to ensure that the project with exactly the same fields will be removed.
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Project#isSameProject(Project)
@@ -34,6 +35,23 @@ public class UniqueProjectList implements Iterable<Project> {
     public boolean contains(Project toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameProject);
+    }
+
+    /**
+     * Checks if the project list contains a project with the same name as the specified string.
+     *
+     * @param toCheck The string representing the name of the project to search for.
+     * @return True if a project with the same name is found in the list, false otherwise.
+     * @throws NullPointerException If the specified string is null.
+     */
+    public boolean contains(String toCheck) {
+        requireNonNull(toCheck);
+        for (Project p : internalList) {
+            if (p.isSameProject(toCheck)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

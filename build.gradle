@@ -19,7 +19,7 @@ repositories {
 
 javafx {
     version = "17.0.7"
-    modules = [ 'javafx.controls','javafx.fxml' ]
+    modules = ['javafx.controls', 'javafx.fxml']
 }
 
 checkstyle {
@@ -49,6 +49,7 @@ task coverage(type: JacocoReport) {
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '17.0.7'
+    implementation group: 'com.azure.tools', name: 'azure-sdk-build-tool', version: '1.0.0'
     implementation group: 'org.controlsfx', name: 'controlsfx', version: '11.1.2'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -74,8 +75,11 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'CodeContact.jar'
 }
 
 defaultTasks 'clean', 'test'
 
+run {
+    enableAssertions = true
+}

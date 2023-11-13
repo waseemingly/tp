@@ -1,18 +1,25 @@
 package seedu.address.storage;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Client;
-
+import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;
 import seedu.address.model.commons.Name;
-import seedu.address.model.person.Role;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 
+/**
+ * Jackson-friendly version of {@link seedu.address.model.client.Client}.
+ */
 public class JsonAdaptedClient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
@@ -26,11 +33,24 @@ public class JsonAdaptedClient {
     private final String organisation;
     private final String document;
 
+    /**
+     * Constructs a {@code JsonAdaptedClient} with the given client details.
+     *
+     * @param name        Name of the client.
+     * @param phone       Phone number of the client.
+     * @param email       Email address of the client.
+     * @param address     Address of the client.
+     * @param role        Role of the client.
+     * @param projects    List of projects associated with the client.
+     * @param organisation Name of the client's organization.
+     * @param document    Document URL associated with the client.
+     */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("role") String role, @JsonProperty("projects") List<String> projects,
-                             @JsonProperty("organisation") String organisation, @JsonProperty("document") String document) {
+                             @JsonProperty("organisation") String organisation,
+                             @JsonProperty("document") String document) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -41,6 +61,11 @@ public class JsonAdaptedClient {
         this.document = document;
     }
 
+    /**
+     * Constructs a {@code JsonAdaptedClient} with data from the given {@code Client}.
+     *
+     * @param source The client object from which to extract data.
+     */
     public JsonAdaptedClient(Client source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -52,6 +77,11 @@ public class JsonAdaptedClient {
         document = source.getDocument().toString();
     }
 
+    /**
+     * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted client.
+     */
     public Client toModelType() throws IllegalValueException {
         final List<String> clientProjects = new ArrayList<>();
         for (String project : projects) {
@@ -91,12 +121,13 @@ public class JsonAdaptedClient {
         final Address modelAddress = new Address(address);
 
         if (role == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientRoles.class.getSimpleName()));
         }
-        if (!Role.isValidRole(role)) {
-            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        if (!ClientRoles.isValidRole(role)) {
+            throw new IllegalValueException(ClientRoles.NO_SUCH_CLIENT_ROLE);
         }
-        final Role modelRole = new Role(role);
+        final ClientRoles modelRole = new ClientRoles(role);
 
         if (organisation == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -107,7 +138,8 @@ public class JsonAdaptedClient {
         final Name modelOrganisation = new Name(organisation);
 
         if (document == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Document.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Document.class.getSimpleName()));
         }
         if (!Document.isValidUrl(document)) {
             throw new IllegalValueException(Document.MESSAGE_CONSTRAINTS);

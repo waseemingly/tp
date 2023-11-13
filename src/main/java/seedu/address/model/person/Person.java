@@ -2,7 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.commons.Name;
@@ -18,8 +21,6 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
-    private final Role role;
-
     // Data fields
     private final Address address;
     private final Set<String> projects = new HashSet<>();
@@ -27,13 +28,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Role role, Set<String> projects) {
-        requireAllNonNull(name, phone, email, address, role, projects);
+    public Person(Name name, Phone phone, Email email, Address address, Set<String> projects) {
+        requireAllNonNull(name, phone, email, address, projects);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.role = role;
         this.projects.addAll(projects);
     }
 
@@ -52,11 +52,6 @@ public class Person {
     public Address getAddress() {
         return address;
     }
-
-    public Role getRole(){
-        return role;
-    }
-
 
 
     /**
@@ -100,14 +95,13 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && role.equals(otherPerson.role)
                 && projects.equals(otherPerson.projects);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, role, projects);
+        return Objects.hash(name, phone, email, address, projects);
     }
 
     @Override
@@ -117,7 +111,6 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("role", role)
                 .add("projects", projects)
                 .toString();
     }
