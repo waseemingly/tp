@@ -597,7 +597,7 @@ selected tab changes, the `list` command will be executed.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
 When the user clicks away from the tab showing the command result and then switches back to the tab, the tab will
-be updated to show the full list of information for that tab again.
+be updated to show the full list of information for that tab again.</div>
 
 
 --------------------------------------------------------------------------------------------------------------------
