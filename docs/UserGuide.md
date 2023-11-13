@@ -166,10 +166,12 @@ Here are the explanations behind the formatting we use through this guide.<br>
   3. File names such as `CodeContact.jar`
   <br>
 <div markdown="block" class="alert alert-info">
-:bulb: This is a blue box. It can be used for additional tips or more useful information.</div>
+:bulb: This is a blue box. It can be used for additional tips or more useful information.
+</div>
 
 <div markdown="block" class="alert alert-warning">
-:exclamation: This is a warning box. It can be used to give more details on the warnings and limitations of features.</div>
+:exclamation: This is a warning box. It can be used to give more details on the warnings and limitations of features.
+</div>
 
 #### Command Formatting
 
@@ -209,7 +211,8 @@ Here is a quick summary of each GUI component within CodeContact:
 <div markdown="block" class="alert alert-warning">
 If you executed a `find` command in developer tab and switched to the client tab, when you return to the developer tab the find results will be cleared and
 the whole list of developers will be shown again. This is the intended behavior of CodeContact as we hope that this can save you the time
-from always needing to call the list command. </div>
+from always needing to call the list command. 
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -252,7 +255,8 @@ This is a tutorial for **first-time** CodeContact users.
 1. You can **change the password** to unlock CodeContact.
     * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box
    <div markdown="block" class="alert alert-info">:bulb:
-You can always lock and unlock CodeContact using the `lock` and `unlock` commands </div>
+You can always lock and unlock CodeContact using the `lock` and `unlock` commands 
+</div>
 
 1. Let us try **adding a project** to our CodeContact.
     * Enter the
@@ -821,11 +825,13 @@ Format: `add-developer-role ROLE_NAME`
 * There are 3 preset roles in the list of roles: `Frontend Developer`,`Backend Developer`,`Developer`.
 * You will not be able to add a developer to a role that does not exist in this list of developer roles.
 <div markdown="block" class="alert alert-warning">
-:exclamation: **Note** :This command is **not** case-sensitive, even if `Developer` is a role, `developer` can still be added.</div>
+:exclamation: **Note** :This command is **not** case-sensitive, even if `Developer` is a role, `developer` can still be added.
+</div>
 
 <div markdown="block" class="alert alert-info">:bulb:
 If you wish to check what roles are there, you can key in `delete-developer-role <anything random>`, `<anything
-random>` should not be an existing role. <div>
+random>` should not be an existing role.
+</div>
 
 Example of usage:`add-developer-role Tester`
 
@@ -850,11 +856,13 @@ Format: `add-client-role ROLE_NAME`
 * There are 4 preset roles in the list of roles: `HR`,`Manager`,`Developer`,`Client`.
 * You will not be able to add a client to a role that does not exist in this list of client roles.
 <div markdown="block" class="alert alert-warning">
-:exclamation: **Note** :This command is **not** case-sensitive, even if `HR` is a role, `hr` can still be added.</div>
+:exclamation: **Note** :This command is **not** case-sensitive, even if `HR` is a role, `hr` can still be added.
+</div>
 
 <div markdown="block" class="alert alert-info">:bulb:
 If you wish to check what roles are there, you can key in `delete-client-role <anything random>`, `<anything
-random>` should not be an existing role. <div>
+random>` should not be an existing role.
+<div>
 
 Example of usage:`add-client-role Boss`
 
