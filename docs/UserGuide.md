@@ -46,8 +46,9 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 * [CodeContact Tutorial](#codecontact-tutorial--for-new-users-)
 * [Features](#features)
 
-| [Security Features](#security-features) | [Lock `lock`](#lock-lock) | [Unlock `unlock`](#unlock-unlock) | [Change password `change-password`](#change-password-change-password) |
-|:----------------------------------------|:-------------------------:|:---------------------------------:|:---------------------------------------------------------------------:|
+| [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
+|:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
+| [Password Protection](#password-protection) |    [`lock`](#lock-lock)    |  [`unlock`](#unlock-unlock)  | [`change-password`](#change-password-change-password) |
 
 | [Management Features](#management-features)         |                                 Developer                                 |                              Client                              |                                                         Project                                                          |
 |:----------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
@@ -61,8 +62,9 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 | [Deleting role](#delete-roles)                      | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                            -                                                             |
 | [Marking Project Deadlies](#mark-project-deadlines) |                                     -                                     |                                -                                 | [`mark-deadline`](#mark-deadline-as-done--mark-deadline), [`unmark-deadline`](#mark-deadline-as-undone--unmark-deadline) |
 
-| [Miscellaneous Fetures](#miscellaneous-fetures) | [Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
-|:------------------------------------------------|:----------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
+| [Additional Features](#additional-features)       |              Finding Help               |                     Clearing data                     |                  Exiting program                  |
+|:--------------------------------------------------|:---------------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
+| [Miscellaneous Features](#miscellaneous-features) | [View Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
 
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
@@ -315,8 +317,11 @@ To view all our features, you may visit our [Features](#features) section
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Features
-### Security Features
+# Features
+## Security Features
+
+### Password Protection
+Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and customizable password.
 ### Lock `lock`
 
 Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
@@ -369,7 +374,7 @@ Password changed successfully.
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-### Management Features
+## Management Features
 ### Add
 
 #### Add developer : `add-developer`
@@ -1033,8 +1038,10 @@ Projects: CustomWebsite AndroidApp
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-### Miscellaneous Fetures
-### Viewing help : `help`
+## Additional Features
+### Miscellaneous Features
+Listed below are some miscellaneous features that are available in CodeContact to improve your user experience.
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -1042,7 +1049,7 @@ Format: `help`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
@@ -1050,7 +1057,7 @@ Format: `clear`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
