@@ -392,14 +392,14 @@ given that they already exist in the address book.
 When command succeeds, CLI shows:
 
 ```
-New developer added: John Doe; 
-Phone: 98765432; 
-Email: johnd@example.com; 
-Address: 311, Clementi Ave 2, #02-25; 
-Date Joined: 11-11-2023; 
-Role: Developer; 
-Salary: 4500; 
-Projects: CustomWebsite AndroidApp 
+New developer added: John Doe;
+Phone: 98765432;
+Email: johnd@example.com;
+Address: 311, Clementi Ave 2, #02-25;
+Date Joined: 11-11-2023;
+Role: Developer;
+Salary: 4500;
+Projects: CustomWebsite AndroidApp
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -423,14 +423,14 @@ Example of usage: `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, C
 When command succeeds, CLI shows:
 
 ```
-New client added: Jack Doe; 
-Phone: 98765432; 
-Email: jackd@example.com; 
-Address: 311, Clementi Ave 2, #02-25; 
-Organisation: Google; 
-Role: Developer; 
-Document: google.com; 
-Projects: CustomWebsite AndroidApp 
+New client added: Jack Doe;
+Phone: 98765432;
+Email: jackd@example.com;
+Address: 311, Clementi Ave 2, #02-25;
+Organisation: Google;
+Role: Developer;
+Document: google.com;
+Projects: CustomWebsite AndroidApp
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
