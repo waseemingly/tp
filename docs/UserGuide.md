@@ -9,12 +9,12 @@ title: User Guide
 ***Taking charge of your PROject Management!***
 
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
-facilitating collaboration, and offering command-line efficiency for project managers
+facilitating collaboration, and offering command-line efficiency for project managers.
 
 CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
 management tasks done faster than traditional GUI apps. **CodeContact** aims to put the **P.R.O** in project management  by enabling project managers to be
-1. **Productive** 
+1. **Productive**
 2. **Reliable**
 3. **Organised**
 
@@ -37,7 +37,6 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 
 * Table of Contents
 {:toc}
-
 -------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -185,7 +184,7 @@ Here is a quick summary of each GUI component within CodeContact:
 <div markdown="block" class="alert alert-warning">
 If you executed a `find` command in developer tab and switched to the client tab, when you return to the developer tab the find results will be cleared and
 the whole list of developers will be shown again. This is the intended behavior of CodeContact as we hope that this can save you the time
-from always needing to call the list command. 
+from always needing to call the list command.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -220,64 +219,54 @@ This is a tutorial for **first-time** CodeContact users.
 
 1. Launch CodeContact. You may refer to the instructions [here](#quick-start).
     * On launch, CodeContact will not contain any developer or client records.
-
-
-1. You will be asked to **enter a password** to unlock CodeContact.
+2. You will be asked to **enter a password** to unlock CodeContact.
     * Enter the command `unlock pw/Password123!` in the command box.
 
-
-1. You can **change the password** to unlock CodeContact.
+3. You can **change the password** to unlock CodeContact.
     * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box
-   <div markdown="block" class="alert alert-info">:bulb:
-You can always lock and unlock CodeContact using the `lock` and `unlock` commands 
+
+<div markdown="block" class="alert alert-info">:bulb:
+You can always lock and unlock CodeContact using the `lock` and `unlock` commands
 </div>
 
 1. Let us try **adding a project** to our CodeContact.
     * Enter the
       command `add-project n/AndroidApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0 `
 
-
-1. We can then **add a developer** to our CodeContact.
+2. We can then **add a developer** to our CodeContact.
     * Enter the
       command `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp s/4500 d/01-11-2023 g/johng rt/3`
     * Try adding more developers with different details for each parameter!
     * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you wish to add new developers with other roles and
       project.
 
-
-1. We can also **add a client** to our CodeContact.
+3. We can also **add a client** to our CodeContact.
     * Enter the
       command `add-client n/Amy p/88765423 e/amy@example.com a/31, Clementi Ave 6, #03-12 r/Client pr/AndroidApp o/Google do/google.com`
     * Try adding more clients with different details for each parameter!
     * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you which to add new client with other roles and project.
 
-
-1. Let us try **editing the name** of a developer stored in CodeContact.
+4. Let us try **editing the name** of a developer stored in CodeContact.
     * Enter the command `edit-developer 1 n/Jhonny`
     * Try editing other parameters or developers and projects too!
     * More details of what you can edit can be found [here](#edit)
 
-
-1. We can also easily **find** for information in CodeContact.
+5. We can also easily **find** for information in CodeContact.
     * Enter the command `find-developer n/John s/4500`
     * Try looking for other information and search with multiple parameters!
     * More details of what you can find can be found [here](#find)
 
-
-1. You can always **show the full list** after finding in CodeContact.
+6. You can always **show the full list** after finding in CodeContact.
     * Enter the command `list-developer`, `list-client` or `list-project`.
 
-
-1. You can **delete developers, clients or projects** in CodeContact.
+7. You can **delete developers, clients or projects** in CodeContact.
     * Enter the command `delete-developer 3` to delete the 3rd developer in CodeContact
     * More details on how delete works can be found [here](#delete-developer--delete-developer)
 
-
-1. If you realise that you did not delete this developer, you can **undo** this action in CodeContact.
+8. If you realise that you did not delete this developer, you can **undo** this action in CodeContact.
     * Enter the command `undo` and it will revert your previous actions.
 
-
-1. If you realise you actually want it deleted, you can **redo** this action in CodeContact.
+9. If you realise you actually want it deleted, you can **redo** this action in CodeContact.
     * Enter the command `redo` and it will redo your previous actions.
 
 Congratulations! You are now ready to use CodeContact!
@@ -857,7 +846,7 @@ These are the 3 projects with matching information.
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### **List**
-#### Listing information : `list`
+#### List information : `list`
 
 Shows a list of all developers in the address book.
 
