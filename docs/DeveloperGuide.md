@@ -170,6 +170,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagramB.png" width="450" />
 
+<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
@@ -278,6 +279,8 @@ Additionally, if the project is assigned to a developer or client, the project w
 Example Uses:
 
 `delete-project 2`
+
+<div style="page-break-after: always;"></div>
 
 #### Implementation
 Upon entry of the delete project command, a `DeleteProjectCommand` class is created. The `DeleteProjectCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the project at specified **one-based index** is removed if the index provided is valid.
@@ -415,6 +418,8 @@ The following sequence diagram provides an overview of how the find operation is
 
 
 ![Interactions Inside the Logic Component for the `find-developer n/alice` Command](images/FindDeveloperSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 **Aspect:** Implementation of the predicate map:<br>
@@ -717,6 +722,8 @@ be updated to show the full list of information for that tab again.
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 * [Documentation guide](https://ay2324s1-cs2103t-t09-2.github.io/tp/Documentation.html)
