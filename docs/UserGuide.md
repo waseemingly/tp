@@ -48,8 +48,11 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
     * [Lock `lock`](#lock-lock)
     * [Unlock `unlock`](#unlock-unlock)
     * [Change password `change-password`](#change-password-change-password)
+      
+| Security Features                                  |                                 Lock [`lock`](#lock-lock)                 |                              Unlock [`unlock`](#unlock-unlock)   |                                                Change password [`change-password`](#change-password-change-password)|
+|:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
 
-| Description                                       |                                 Developer                                 |                              Client                              |                                                Project                                                |
+| Management Features                                       |                                 Developer                                 |                              Client                              |                                                Project                                                |
 |:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
 | [Adding new information](#add)                    |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                              [`add-project`](#add-project--add-project)                               |
 | [Deleting information](#delete)                   |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                          [`delete-project`](#delete-project--delete-project)                          |
@@ -59,6 +62,10 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 | [Listing information](#listing-information--list) |                             `list-developer`                              |                          `list-client`                           |                                            `list-project`                                             |
 | [Adding new role](#add-roles)                     |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |                                                   -                                                   |
 | [Deleting role](#delete-roles)                    | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                   -                                                   |
+| [Marking Project Deadlies](#mark-project-deadlines) | - | - | [`mark-deadline`](#mark-deadline-as-done--mark-deadline), [`unmark-deadline`](#mark-deadline-as-undone--unmark-deadline) |
+
+| Miscellaneous Fetures                                       |                                 [Help `help`](#viewing-help--help)                                 |                              [Clear entries `clear`](#clearing-all-entries--clear)                              |                                                [Exit program `exit`](#exiting-the-program--exit)                                                |
+|:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
 
 *
     * [Mark deadline as done `mark-deadline`](#mark-deadline-as-done--mark-deadline)
@@ -316,6 +323,30 @@ To view all our features, you may visit our [Features](#features) section
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command format:**<br>
+
+  * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+  * Items in square brackets are optional.<br>
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+  * Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+  * Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+  * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+  ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+  * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
+  as space characters surrounding line-breaks may be omitted when copied over to the application.
+  </div>
 
 ### Lock `lock`
 
@@ -936,6 +967,10 @@ The deadline has been marked as completed!
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+## Mark Project Deadlines
+Allows managers to mark project specific deadlines as done, or revert this change by unmarking them as undone
+
 
 ### Mark deadline as undone : `unmark-deadline`
 
