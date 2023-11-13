@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.deleteroles.DeleteClientRoleCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -51,7 +52,7 @@ public class UndoCommandTest {
     }
 
     @Test
-    public void execute_undoRoleCommand_success() throws CommandException {
+    public void execute_undoClientRoleCommand_success() throws CommandException {
         // Add a new role for a client
         ClientRoles.addClientRole(new ClientRoles("NewRole"));
         model.commitAddressBook(model, "New role for client added: NewRole", TabIndex.Client);
@@ -100,8 +101,7 @@ public class UndoCommandTest {
         undoCommand.execute(model);
 
         assertTrue(ClientRoles.isValidRole("NewRole"));
-
-        undoCommand.execute(model);
+        ClientRoles.deleteClientRole(new ClientRoles("NewRole"));
     }
 
     @Test
@@ -117,7 +117,6 @@ public class UndoCommandTest {
         undoCommand.execute(model);
 
         assertTrue(DeveloperRoles.isValidRole("RoleToDelete"));
-
-        undoCommand.execute(model);
+        DeveloperRoles.deleteDeveloperRole(new DeveloperRoles("RoleToDelete"));
     }
 }

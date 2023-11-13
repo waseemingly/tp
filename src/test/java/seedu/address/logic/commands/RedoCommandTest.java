@@ -21,6 +21,7 @@ public class RedoCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model modelAfterChange = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private RedoCommand redoCommand = new RedoCommand();
+    private UndoCommand undoCommand = new UndoCommand();
 
     @Test
     public void execute_validRedo_success() throws CommandException {
@@ -46,12 +47,13 @@ public class RedoCommandTest {
         // Undo a command that added a new role for a client
         ClientRoles.addClientRole(new ClientRoles("NewRole"));
         model.commitAddressBook(model, "New role for client added: NewRole", TabIndex.Client);
-        model.undoAddressBook(model);
+        undoCommand.execute(model);
 
         // Redo the role addition
         redoCommand.execute(model);
 
         assertTrue(ClientRoles.isValidRole("NewRole"));
+        ClientRoles.deleteClientRole(new ClientRoles("NewRole"));
     }
 
     @Test
@@ -59,12 +61,12 @@ public class RedoCommandTest {
         // Undo a command that added a new role for a developer
         DeveloperRoles.addDeveloperRole(new DeveloperRoles("NewRole"));
         model.commitAddressBook(model, "New role for developer added: NewRole", TabIndex.Developer);
-        model.undoAddressBook(model);
+        undoCommand.execute(model);
 
         // Redo the role addition
         redoCommand.execute(model);
-        assertTrue(ClientRoles.isValidRole("NewRole"));
-        model.undoAddressBook(model);
+        assertTrue(DeveloperRoles.isValidRole("NewRole"));
+        DeveloperRoles.deleteDeveloperRole(new DeveloperRoles("NewRole"));
     }
 
     @Test
@@ -75,7 +77,7 @@ public class RedoCommandTest {
         // Undo a command that deleted a role for a client
         ClientRoles.deleteClientRole(new ClientRoles("RoleToDelete"));
         model.commitAddressBook(model, "Role for clients deleted: RoleToDelete", TabIndex.Client);
-        model.undoAddressBook(model);
+        undoCommand.execute(model);
 
         // Redo the role deletion
         redoCommand.execute(model);
@@ -91,7 +93,7 @@ public class RedoCommandTest {
         // Undo a command that deleted a role for a developer
         DeveloperRoles.deleteDeveloperRole(new DeveloperRoles("RoleToDelete"));
         model.commitAddressBook(model, "Role for developers deleted: RoleToDelete", TabIndex.Developer);
-        model.undoAddressBook(model);
+        undoCommand.execute(model);
 
         // Redo the role deletion
         redoCommand.execute(model);
