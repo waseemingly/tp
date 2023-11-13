@@ -105,7 +105,17 @@ public class FindClientCommandTest {
     }
 
     @Test
-    public void execute_noMatchingClients_noClientFound() {
+    public void execute_partialOrganisation_clientFound() {
+        String expectedMessage = "This is the 1 client with matching information.";
+        OrganisationContainsKeywordsPredicate predicate = prepareOrganisationPredicate("Micro");
+        FindClientCommand command = new FindClientCommand(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        assertClientCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(DANIEL), model.getFilteredClientList());
+    }
+
+    @Test
+    public void execute_noMatchingClientName_noClientFound() {
         String expectedMessage = "There are no clients with matching information.";
         NameClientContainsKeywordsPredicate predicate = prepareNamePredicate("NonExistentClient");
         FindClientCommand command = new FindClientCommand(predicate);
@@ -114,6 +124,15 @@ public class FindClientCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
 
+    @Test
+    public void execute_noMatchingClientOrganisation_noClientFound() {
+        String expectedMessage = "There are no clients with matching information.";
+        OrganisationContainsKeywordsPredicate predicate = prepareOrganisationPredicate("NonExistentClient");
+        FindClientCommand command = new FindClientCommand(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        assertClientCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredClientList());
+    }
 
     /**
      * Parses {@code userInput} into a {@code NameClientContainsKeywordsPredicate}.

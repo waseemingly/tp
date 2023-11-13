@@ -3,6 +3,8 @@ package seedu.address.logic.commands.find;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalDevelopers.ALICE;
+import static seedu.address.testutil.TypicalDevelopers.BENSON;
 import static seedu.address.testutil.TypicalDevelopers.CARL;
 import static seedu.address.testutil.TypicalDevelopers.ELLE;
 import static seedu.address.testutil.TypicalDevelopers.FIONA;
@@ -18,6 +20,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
+import seedu.address.model.developer.RatingContainsKeywordsPredicate;
+import seedu.address.model.developer.SalaryContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindDeveloperCommand}.
@@ -57,7 +61,7 @@ public class FindDeveloperCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         //String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         String expectedMessage = "There are no developers with matching information.";
-        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("hii");
+        NameDeveloperContainsKeywordsPredicate predicate = prepareNamePredicate("hii");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
         expectedModel.updateFilteredDeveloperList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -68,7 +72,7 @@ public class FindDeveloperCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         //String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         String expectedMessage = "These are the 3 developers with matching information.";
-        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameDeveloperContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
         expectedModel.updateFilteredDeveloperList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -87,17 +91,37 @@ public class FindDeveloperCommandTest {
     @Test
     public void execute_caseInsensitiveSearch_personFound() {
         String expectedMessage = "This is the 1 developer with matching information.";
-        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("ElLe"); // using mixed case
+        NameDeveloperContainsKeywordsPredicate predicate = prepareNamePredicate("ElLe"); // using mixed case
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
         expectedModel.updateFilteredDeveloperList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ELLE), model.getFilteredDeveloperList());
+    }
+
+    @Test
+    public void execute_salarySearch_personFound() {
+        String expectedMessage = "This is the 1 developer with matching information.";
+        SalaryContainsKeywordsPredicate predicate = prepareSalaryPredicate("40000"); // using mixed case
+        FindDeveloperCommand command = new FindDeveloperCommand(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE), model.getFilteredDeveloperList());
+    }
+
+    @Test
+    public void execute_ratingSearch_PersonFound() {
+        String expectedMessage = "These are the 3 developers with matching information.";
+        RatingContainsKeywordsPredicate predicate = prepareRatingPredicate("4.0");
+        FindDeveloperCommand command = new FindDeveloperCommand(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, ELLE, FIONA), model.getFilteredDeveloperList());
     }
 
     @Test
     public void execute_partialName_personFound() {
         String expectedMessage = "This is the 1 developer with matching information.";
-        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("Ell");
+        NameDeveloperContainsKeywordsPredicate predicate = prepareNamePredicate("Ell");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
         expectedModel.updateFilteredDeveloperList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -105,22 +129,70 @@ public class FindDeveloperCommandTest {
     }
 
     @Test
-    public void execute_noMatchingPersons_noPersonFound() {
+    public void execute_partialSalary_noPersonFound() {
         String expectedMessage = "There are no developers with matching information.";
-        NameDeveloperContainsKeywordsPredicate predicate = preparePredicate("NonExistentDeveloper");
+        SalaryContainsKeywordsPredicate predicate = prepareSalaryPredicate("4000");
         FindDeveloperCommand command = new FindDeveloperCommand(predicate);
         expectedModel.updateFilteredDeveloperList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredDeveloperList());
     }
 
+    @Test
+    public void execute_partialRating_noPersonFound() {
+        String expectedMessage = "There are no developers with matching information.";
+        RatingContainsKeywordsPredicate predicate = prepareRatingPredicate("4");
+        FindDeveloperCommand command = new FindDeveloperCommand(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredDeveloperList());
+    }
 
+    @Test
+    public void execute_noMatchingPersons_noPersonFound() {
+        String expectedMessage = "There are no developers with matching information.";
+        NameDeveloperContainsKeywordsPredicate predicate = prepareNamePredicate("NonExistentDeveloper");
+        FindDeveloperCommand command = new FindDeveloperCommand(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredDeveloperList());
+    }
 
+    @Test
+    public void execute_noMatchingSalary_noPersonFound() {
+        String expectedMessage = "There are no developers with matching information.";
+        SalaryContainsKeywordsPredicate predicate = prepareSalaryPredicate("30000");
+        FindDeveloperCommand command = new FindDeveloperCommand(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredDeveloperList());
+    }
+
+    @Test
+    public void execute_noMatchingRating_noPersonFound() {
+        String expectedMessage = "There are no developers with matching information.";
+        RatingContainsKeywordsPredicate predicate = prepareRatingPredicate("2.5");
+        FindDeveloperCommand command = new FindDeveloperCommand(predicate);
+        expectedModel.updateFilteredDeveloperList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredDeveloperList());
+    }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameDeveloperContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameDeveloperContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameDeveloperContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    private SalaryContainsKeywordsPredicate prepareSalaryPredicate(String userInput) {
+        return new SalaryContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    private RatingContainsKeywordsPredicate prepareRatingPredicate(String userInput) {
+        return new RatingContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
