@@ -38,6 +38,8 @@ title: Developer Guide
 
 * Refer to the guide [Setting up and getting started](https://ay2324s1-cs2103t-t09-2.github.io/tp/SettingUp.html).
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## **Design**
 
@@ -68,7 +70,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-developer 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -83,14 +85,14 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-
+[Scroll back to Table of Contents](#table-of-contents)
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DeveloperListPanel`, `ClientListPanel`, `ProjectListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -99,7 +101,26 @@ The UI component,
 * executes user commands using the Logic component.
 * listens for changes to Model data so that the UI can be updated with the modified data.
 * keeps a reference to the Logic component, because the UI relies on the Logic to execute commands.
-* depends on some classes in the Model component, as it displays Person object residing in the Model.
+* depends on some classes in the Model component, as it displays `Developer`, `Client`, `Project` objects residing in the Model.
+
+#### Main Window
+
+The MainWindow houses all the components that make up the visual display of CodeContact. Its primary function is to listen to user input through the CommandBox, initiate the execution of the command, and display the result through the ResultDisplay and/or tabPane.
+The tabPane houses the DeveloperListPanel, ClientListPanel and ProjectListPanel, which are responsible for displaying the list of developers, clients and projects respectively. The MainWindow also houses the StatusBarFooter, which displays the current status of the application.
+
+Here is a table containing a brief description of the purpose of the smaller components within MainWindow
+
+| Component | Description |
+|-----------|-------------|
+| `CommandBox` | The CommandBox is where the user enters commands to be executed. |
+| `ResultDisplay` | The ResultDisplay displays the result of the command execution. |
+| `DeveloperListPanel`| The DeveloperListPanel displays the list of developers. |
+| `ClientListPanel` | The ClientListPanel displays the list of clients. |
+| `ProjectListPanel` | The ProjectListPanel displays the list of projects. |
+| `StatusBarFooter` | The StatusBarFooter displays the current status of the application. |
+| `HelpWindow` | Displays a help window containing a link to the User Guide. |
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Logic component
 
@@ -111,15 +132,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-developer 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteDeveloperCommandParser`) and uses it to parse the command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteDeveloperCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to delete a developer).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -127,8 +148,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddProjectCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddDeveloperCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -494,6 +515,24 @@ The following activity diagram shows how the validation check in `DeveloperRoles
 
 * _{more aspects and alternatives to be added}_
 
+### GUI Feature
+
+#### Switching tabs automatically
+
+When certain commands are executed, the UI will automatically switch to the relevant tab. For example, when the user
+executes `list-developer`, the UI will automatically switch to the `Developer` tab. This is implemented by specifying
+the `TabIndex` in the `CommandResult` returned in the `execute()` method of the relevant command.
+
+#### Clicking to switch tabs
+
+When the user clicks on a different tab, the `list` command will be executed to display the relevant list of information
+for the tab clicked. This is implemented by adding a listener to the `TabPane` in the `MainWindow` class. When the
+selected tab changes, the `list` command will be executed.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+When the user clicks away from the tab showing the command result and then switches back to the tab, the tab will
+be updated to show the full list of information for that tab again.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -686,7 +725,8 @@ Adding developer roles and client roles works the same way, hence add client rol
 
 #### **Use case:** UCX - Delete developer role
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-Deleting developer roles and client roles works the same way, hence deleting client role use case will not be repeated </div>
+Deleting developer roles and client roles works the same way, hence deleting client role use case will not be repeated 
+</div>
 
 **Preconditions:** User is logged in
 

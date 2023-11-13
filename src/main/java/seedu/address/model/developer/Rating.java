@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Rating {
     public static final String MESSAGE_CONSTRAINTS =
-            "Rating should be between 0.0 and 5.0";
+            "Rating should be between 0 and 5!";
     public static final String VALIDATION_REGEX = "[0-5](\\.[0-9]*)?";
     public final double rating;
 

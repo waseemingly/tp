@@ -15,10 +15,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("import-developer developers.csv")
+[-> LogicManager : execute\n("import-developer\n developers.csv")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("import-developer developers.csv")
+LogicManager -> AddressBookParser : parseCommand\n("import-developer\n developers.csv")
 activate AddressBookParser
 
 create ImportDeveloperCommandParser
@@ -28,7 +28,7 @@ activate ImportDeveloperCommandParser
 ImportDeveloperCommandParser --> AddressBookParser
 deactivate ImportDeveloperCommandParser
 
-AddressBookParser -> ImportDeveloperCommandParser : parse("Developers.csv")
+AddressBookParser -> ImportDeveloperCommandParser : parse\n("Developers.csv")
 activate ImportDeveloperCommandParser
 
 create ImportDeveloperCommand
