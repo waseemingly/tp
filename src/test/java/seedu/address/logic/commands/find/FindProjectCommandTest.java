@@ -113,7 +113,8 @@ public class FindProjectCommandTest {
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertProjectCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_C, PROJECT_A_NO_SPACING), model.getFilteredProjectList());
+        assertEquals(Arrays.asList(PROJECT_A, PROJECT_B, PROJECT_C, PROJECT_A_NO_SPACING),
+                model.getFilteredProjectList());
     }
 
 
