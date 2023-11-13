@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-## Welcome to CodeContact
+# Welcome to CodeContact
 **Taking charge of your PROject Management!**
 
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
@@ -11,7 +11,10 @@ facilitating collaboration, and offering command-line efficiency for project man
 
 CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
-management tasks done faster than traditional GUI apps.
+management tasks done faster than traditional GUI apps. **CodeContact** aims to put the **P.R.O** in project management  by enabling project managers to be
+1. **Productive** 
+2. **Reliable**
+3. **Organised**
 
 Here’s an overview of how CodeContact can help you streamline your project management processes.
 * Store and edit information about developers and clients related to projects
@@ -21,7 +24,7 @@ Here’s an overview of how CodeContact can help you streamline your project man
 If you are familiar with CodeContact, jump to our [**Table of Contents**](#table-of-contents) to find out what you are looking
 for!
 
-If you are new here, you may start with learning [**how to naviagte this guide**](#navigating-this-guide) and visit
+If you are new here, you may start with learning [**How to navigate this guide**](#navigating-this-guide) and visit
 the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 <div style="page-break-after: always;"></div>
 
@@ -46,8 +49,9 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 * [CodeContact Tutorial](#codecontact-tutorial--for-new-users-)
 * [Features](#features)
 
-| [Security Features](#security-features) | [Lock `lock`](#lock-lock) | [Unlock `unlock`](#unlock-unlock) | [Change password `change-password`](#change-password-change-password) |
-|:----------------------------------------|:-------------------------:|:---------------------------------:|:---------------------------------------------------------------------:|
+| [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
+|:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
+| [Password Protection](#password-protection) |    [`lock`](#lock-lock)    |  [`unlock`](#unlock-unlock)  | [`change-password`](#change-password-change-password) |
 
 | [Management Features](#management-features)         |                                 Developer                                 |                              Client                              |                                                         Project                                                          |
 |:----------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
@@ -61,8 +65,9 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 | [Deleting role](#delete-roles)                      | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                            -                                                             |
 | [Marking Project Deadlies](#mark-project-deadlines) |                                     -                                     |                                -                                 | [`mark-deadline`](#mark-deadline-as-done--mark-deadline), [`unmark-deadline`](#mark-deadline-as-undone--unmark-deadline) |
 
-| [Miscellaneous Fetures](#miscellaneous-fetures) | [Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
-|:------------------------------------------------|:----------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
+| [Additional Features](#additional-features)       |              Finding Help               |                     Clearing data                     |                  Exiting program                  |
+|:--------------------------------------------------|:---------------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
+| [Miscellaneous Features](#miscellaneous-features) | [View Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
 
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
@@ -81,18 +86,21 @@ explanations on when and how to use them.
 
 Further questions are also answered within a [FAQ](#faq) section below.
 
-Confused about the terms or formatting used in this guide? Learn how to **navigate this guide
-** [here](#navigating-this-guide).
+Confused about the terms or formatting used in this guide? Learn how to **navigate this guide** [here](#navigating-this-guide).
 
 Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
 [here](#navigating-the-graphical-user-interface--gui-).
 
 ------------------------------------------------------------------------------------------
 
-## Navigating this guide
+# Navigating this guide
+
 <!-- -->
-### Glossary
+
+## Glossary
+
 <!-- -->
+
 ### Definitions
 
 | Term          | Definition                                                                                                                |
@@ -315,8 +323,11 @@ To view all our features, you may visit our [Features](#features) section
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Features
-### Security Features
+# Features
+## Security Features
+
+### Password Protection
+Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and customizable password.
 ### Lock `lock`
 
 Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
@@ -369,7 +380,7 @@ Password changed successfully.
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-### Management Features
+## Management Features
 ### Add
 
 #### Add developer : `add-developer`
@@ -404,6 +415,10 @@ Salary: 4500;
 Projects: CustomWebsite AndroidApp
 ```
 
+<div markdown="block" class="alert alert-info">:bulb:
+Entered details of a developer incorrectly? You can always undo the action with the [`undo`](#undo) command! 
+</div>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Add client : `add-client`
@@ -435,6 +450,10 @@ Document: google.com;
 Projects: CustomWebsite AndroidApp
 ```
 
+<div markdown="block" class="alert alert-info">:bulb:
+Entered details of a client incorrectly? You can always undo the action with the [`undo`](#undo) command! 
+</div>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Add project : `add-project`
@@ -461,6 +480,10 @@ Deadlines:
 2. Design frontend by: 25-12-2023, priority: MEDIUM (undone)
 ```
 
+<div markdown="block" class="alert alert-info">:bulb:
+Entered details of a project incorrectly? You can always undo the action with the [`undo`](#undo) command! 
+</div>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Delete
@@ -473,7 +496,25 @@ Format: `delete-developer INDEX`
 
 Example of usage: `delete-developer 2`
 
-* Deletes second developer from the list
+* Deletes second developer in the developer list from the developer list and from the address book.
+
+When command succeeds, CLI shows:
+
+```
+Deleted Developer: Bernice Yu; 
+Phone: 99272758; 
+Email: berniceyu@example.com; 
+Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; 
+Date Joined: 16-11-2020; 
+Role: Developer; 
+Salary: 6000; 
+Projects: Appollo Orbital 
+```
+if second developer in the list was Bernice Yu
+
+<div markdown="block" class="alert alert-info">:bulb:
+Deleted a wrong developer? You can always undo the action with the [`undo`](#undo) command! 
+</div>
 
 #### Delete client : `delete-client`
 
@@ -483,17 +524,48 @@ Format: `delete-client INDEX`
 
 Example of usage: `delete-client 3`
 
-* Deletes third client in list.
+* Deletes third client in the client list from the client list and from the address book.
+
+When command succeeds, CLI shows:
+```
+Deleted Client: George Lim; 
+Phone: 76543210; 
+Email: george@example.com; 
+Address: Blk 789 Woodlands Ave 6, #03-03; 
+Organisation: MNO Company; 
+Role: Developer; 
+Document: https://www.mno.com/; 
+Projects: CodeContact 
+```
+if second client in the list was George Lim
+
+<div markdown="block" class="alert alert-info">:bulb:
+Deleted a wrong client? You can always undo the action with the [`undo`](#undo) command! 
+</div>
 
 #### Delete project : `delete-project`
 
-Deletes the details of an existing project in the address book.
+Deletes the details of an existing project in the address book and updates developer and client project details accordingly.
 
 Format: `delete-project INDEX`
 
 Example of usage: `delete-project 2`
 
-* Deletes second project from the list and updates developers and client details accordingly
+* Deletes second project in the project list from the project list and from the address book.
+* Deletes project from developers' and clients' project lists if they were assigned to this project.
+
+When command succeeds, CLI shows:
+```
+Deleted Project: TeamTrekker;
+Description: A team collaboration tool;
+Deadlines:
+1. Phase 2 by: 13-11-2021, priority: MEDIUM (undone)
+```
+if second project in the list was TeamTrekker
+
+<div markdown="block" class="alert alert-info">:bulb:
+Deleted a wrong project? You can always undo the action with the [`undo`](#undo) command! 
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -534,6 +606,10 @@ Salary: 6999
 Projects: Project1, Project2
 ```
 
+<div markdown="block" class="alert alert-info">:bulb:
+You can always undo the action with the [`undo`](#undo) command! 
+</div>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Edit client details : `edit-client`
@@ -567,6 +643,9 @@ Organisation: Google;
 Document: google.com
 Projects: ProjectA
 ```
+<div markdown="block" class="alert alert-info">:bulb:
+You can always undo the action with the [`undo`](#undo) command! 
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -595,6 +674,9 @@ Description: Juice ordering app;
 Deadlines:
 1. Design backend by: 19-12-2023, priority: HIGH (undone)
 ```
+<div markdown="block" class="alert alert-info">:bulb:
+You can always undo the action with the [`undo`](#undo) command! 
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1033,8 +1115,10 @@ Projects: CustomWebsite AndroidApp
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-### Miscellaneous Fetures
-### Viewing help : `help`
+## Additional Features
+### Miscellaneous Features
+Listed below are some miscellaneous features that are available in CodeContact to improve your user experience.
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -1042,15 +1126,19 @@ Format: `help`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
+<div markdown="block" class="alert alert-info">:bulb:
+You can always undo the action with the [`undo`](#undo) command! 
+</div>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
@@ -1081,7 +1169,7 @@ the data of your previous AddressBook home folder.
 4. CodeContact should launch
    <br> <br>
 
-* Method 2: For users that wish to create a script to launch Docedex (Recommended)
+* Method 2: For users that wish to create a script to launch CodeContact (Recommended)
 
 1. Create a new text file
 2. Type the following into the text file:
