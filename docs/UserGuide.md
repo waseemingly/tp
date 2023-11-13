@@ -45,36 +45,25 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 * [Quick Start](#quick-start)
 * [CodeContact Tutorial](#codecontact-tutorial--for-new-users-)
 * [Features](#features)
-    * [Lock `lock`](#lock-lock)
-    * [Unlock `unlock`](#unlock-unlock)
-    * [Change password `change-password`](#change-password-change-password)
 
-| Security Features                                  |                                 Lock [`lock`](#lock-lock)                 |                              Unlock [`unlock`](#unlock-unlock)   |                                                Change password [`change-password`](#change-password-change-password)|
-|:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
+| [Security Features](#security-features) | [Lock `lock`](#lock-lock) | [Unlock `unlock`](#unlock-unlock) | [Change password `change-password`](#change-password-change-password) |
+|:----------------------------------------|:-------------------------:|:---------------------------------:|:---------------------------------------------------------------------:|
 
-| Management Features                                       |                                 Developer                                 |                              Client                              |                                                Project                                                |
-|:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
-| [Adding new information](#add)                    |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                              [`add-project`](#add-project--add-project)                               |
-| [Deleting information](#delete)                   |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                          [`delete-project`](#delete-project--delete-project)                          |
-| [Editing information](#edit)                      |        [`edit-developer`](#edit-developer-details--edit-developer)        |        [`edit-client`](#edit-client-details--edit-client)        |                         [`edit-project`](#edit-project-details--edit-project)                         |
-| [Importing information](#import-information)      |        [`import-developer` ](#import-developers-import-developer)         |         [`import-client`](#import-clients-import-client)         |                                                   -                                                   |
-| [Finding information](#find)                      |                [`find-developer`](#find-developer-details)                |              [`find-client`](#find-client-details)               |       [`find-project`](#find-project-details), [`find-deadline`](#find-deadlines-find-deadline)       |
-| [Listing information](#listing-information--list) |                             `list-developer`                              |                          `list-client`                           |                                            `list-project`                                             |
-| [Adding new role](#add-roles)                     |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |                                                   -                                                   |
-| [Deleting role](#delete-roles)                    | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                   -                                                   |
-| [Marking Project Deadlies](#mark-project-deadlines) | - | - | [`mark-deadline`](#mark-deadline-as-done--mark-deadline), [`unmark-deadline`](#mark-deadline-as-undone--unmark-deadline) |
+| [Management Features](#management-features)         |                                 Developer                                 |                              Client                              |                                                         Project                                                          |
+|:----------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
+| [Adding new information](#add)                      |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                                        [`add-project`](#add-project--add-project)                                        |
+| [Deleting information](#delete)                     |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                                   [`delete-project`](#delete-project--delete-project)                                    |
+| [Editing information](#edit)                        |        [`edit-developer`](#edit-developer-details--edit-developer)        |        [`edit-client`](#edit-client-details--edit-client)        |                                  [`edit-project`](#edit-project-details--edit-project)                                   |
+| [Importing information](#import-information)        |        [`import-developer` ](#import-developers-import-developer)         |         [`import-client`](#import-clients-import-client)         |                                                            -                                                             |
+| [Finding information](#find)                        |                [`find-developer`](#find-developer-details)                |              [`find-client`](#find-client-details)               |                [`find-project`](#find-project-details), [`find-deadline`](#find-deadlines-find-deadline)                 |
+| [Listing information](#listing-information--list)   |                             `list-developer`                              |                          `list-client`                           |                                                      `list-project`                                                      |
+| [Adding new role](#add-roles)                       |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |                                                            -                                                             |
+| [Deleting role](#delete-roles)                      | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                            -                                                             |
+| [Marking Project Deadlies](#mark-project-deadlines) |                                     -                                     |                                -                                 | [`mark-deadline`](#mark-deadline-as-done--mark-deadline), [`unmark-deadline`](#mark-deadline-as-undone--unmark-deadline) |
 
-| Miscellaneous Fetures                                       |                                 [Help `help`](#viewing-help--help)                                 |                              [Clear entries `clear`](#clearing-all-entries--clear)                              |                                                [Exit program `exit`](#exiting-the-program--exit)                                                |
-|:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
+| [Miscellaneous Fetures](#miscellaneous-fetures) | [Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
+|:------------------------------------------------|:----------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
 
-*
-    * [Mark deadline as done `mark-deadline`](#mark-deadline-as-done--mark-deadline)
-    * [Mark deadline as undone `unmark-deadline`](#mark-deadline-as-undone--unmark-deadline)
-    * [Undo `undo`](#undo--undo)
-    * [Redo `redo`](#redo--redo)
-    * [Help `help`](#viewing-help--help)
-    * [Clear entries `clear`](#clearing-all-entries--clear)
-    * [Exit program `exit`](#exiting-the-program--exit)
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
@@ -101,9 +90,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 ------------------------------------------------------------------------------------------
 
 ## Navigating this guide
-
 ### Glossary
-
 ### Definitions
 
 | Term          | Definition                                                                                                                |
@@ -130,42 +117,42 @@ Here are some notes about these parameters.
 * Each parameter comes with **constraints**. These constraints detail the specific formats of text that
   each parameter accepts as valid user input.
     * Not following these constraints will **result in an error** when entering the command.
-      *Nonetheless, CodeContact will not stop working. Rather, a message will be provided to you on
+    * Nonetheless, CodeContact will not stop working. Rather, a message will be provided to you on
       how to correct your command.
 
 #### Common Parameters
 
-| Parameter | Description                              | Constraints                                                    | Valid Examples              | Invalid Examples                            |
-|-----------|------------------------------------------|----------------------------------------------------------------|-----------------------------|---------------------------------------------|
-| `n/`      | name of developer/client/project         | alphanumeric characters and spaces, and it should not be blank | Tom Hanks, Elizabeth 2      | 成龍, 潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran |
-| `p/`      | phone number of developer/client/project | numeric characters, and it should not be blank                 | 94566835                    |                                             |
-| `e/`      | email of developer/client/project        | alphanumeric characters, and it should not be blank            | amy@gmail.com               |                                             |
-| `a/`      | address of developer/client/project      | alphanumeric characters and spaces, and it should not be blank | 311, Clementi Ave 2, #02-25 |                                             |
-| `r/`      | role of developer/client/project         | alphabetical characters and spaces, and it should not be blank | Developer                   |                                             |
-| `pr/`     | project name                             | alphanumeric characters and spaces, and it should not be blank | CS2103T                     |                                             |
+| Parameter | Description                              | Constraints                                                       | Valid Examples              | Invalid Examples                            |
+|-----------|------------------------------------------|-------------------------------------------------------------------|-----------------------------|---------------------------------------------|
+| `n/`      | name of developer/client/project         | alphanumeric characters and spaces, and it should not be blank    | Tom Hanks, Elizabeth 2      | 成龍, 潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran |
+| `p/`      | phone number of developer/client/project | 8 numeric characters, and it should not be blank                  | 94566835                    | 123, 432, 5678@                             |
+| `e/`      | email of developer/client/project        | alphanumeric characters, contains an @ and it should not be blank | amy@gmail.com               | amy!gmail.com, amy$gmail                    |
+| `a/`      | address of developer/client/project      | alphanumeric characters and spaces, and it should not be blank    | 311, Clementi Ave 2, #02-25 | 成龍, 潔 いさぎ 世 よ 一 いち                          |
+| `r/`      | role of developer/client/project         | alphabetical characters and spaces, and it should not be blank    | Developer                   | 成龍, 潔 いさぎ 世 よ 一 いち                          |
+| `pr/`     | project name                             | alphanumeric characters and spaces, and it should not be blank    | CS2103T                     | 成龍, 潔 いさぎ 世 よ 一 いち                          |
 
 #### Developer Parameters
 
 | Parameter | Description                  | Constraints                                                                                      | Valid Examples | Invalid Examples     |
 |-----------|------------------------------|--------------------------------------------------------------------------------------------------|----------------|----------------------|
-| `g/`      | github username of developer | alphanumeric characters, and it should not be blank                                              | johng, amy123  |                      |
+| `g/`      | github username of developer | alphanumeric characters, follows github username convention and it should not be blank           | johng, amy123  | g, y                 |
 | `d/`      | date joined of developer     | numeric characters in dd-MM-yyyy format, should not be a future date, and it should not be blank | 11-11-2023     | 19-11-2024, 1/1/2023 |
-| `s/`      | salary of developer          | positive integers of at least 4 digits, should not be blank                                      | 5000           |                      |
+| `s/`      | salary of developer          | positive integers of at least 4 digits, should not be blank                                      | 5000           | 5000.0, 4321.32.22   |
 | `rt/`     | rating of developer          | numeric characters between 0 to 5                                                                | 5, 3.5         | -0, -1, 6            |
 
 #### Client Parameters
 
 | Parameter | Description                 | Constraints                                                    | Valid Examples | Invalid Examples |
 |-----------|-----------------------------|----------------------------------------------------------------|----------------|------------------|
-| `o/`      | organisation name of client | alphanumeric characters and spaces, and it should not be blank | Google         |                  |
-| `do/`     | document name of client     | alphanumeric characters and spaces, and it should not be blank | google.com     |                  |
+| `o/`      | organisation name of client | alphanumeric characters and spaces, and it should not be blank | Google         | 谷歌               |
+| `do/`     | document name of client     | alphanumeric characters and spaces, and it should not be blank | google.com     | 谷歌.com           |
 
 #### Project Parameters
 
-| Parameter | Description            | Constraints                                                    | Valid Examples                                  | Invalid Examples |
-|-----------|------------------------|----------------------------------------------------------------|-------------------------------------------------|------------------|
-| `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered |                  |
-| `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             |                  |
+| Parameter | Description            | Constraints                                                    | Valid Examples                                  | Invalid Examples                   |
+|-----------|------------------------|----------------------------------------------------------------|-------------------------------------------------|------------------------------------|
+| `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered | 成龍, 潔 いさぎ 世 よ 一 いち                 |
+| `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             | 19.1.2023, 潔 いさぎ 世 よ 一 いち, NONE, 5 |
 
 ### Format
 #### General Formatting
@@ -196,15 +183,15 @@ Here are the explanations behind the formatting we use through this guide.<br>
 <div style="page-break-after: always;"></div>
 
 -----------------------------------------------------------------------------------------------
-
 ## Navigating the Graphical User Interface (GUI)
 CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
 of the different sections of our GUI, as well as some notes regarding the use of the GUI.
 ### Quick Orientation
 ![image](images/UG%20UI%202.png)
+<br>
 ![image](images/UG%20UI%201.png)
 
-Here is a quick summary of each GUI component within CodeContact.
+Here is a quick summary of each GUI component within CodeContact:
 
 | Name                             | Description                                                                                                                                                                                                |
 |----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -227,7 +214,6 @@ from always needing to call the list command.
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -238,32 +224,33 @@ from always needing to call the list command.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CodeContact.jar`
    command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app might contain some sample data.<br>
+
+5. A GUI similar to the below should appear in a few seconds. Note how the app might contain some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
+6. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 [Scroll back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## CodeContact Tutorial (for new users)
 
 This is a tutorial for **first-time** CodeContact users.
 
 1. Launch CodeContact. You may refer to the instructions [here](#quick-start).
-    * On launch, CodeContact will not contain any doctor or patient records.
+    * On launch, CodeContact will not contain any developer or client records.
 
 
 1. You will be asked to **enter a password** to unlock CodeContact.
-    * Enter the command `unlock pw/Password123!` in the command box
+    * Enter the command `unlock pw/Password123!` in the command box.
 
 
 1. You can **change the password** to unlock CodeContact.
     * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box
-   <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+   <div markdown="block" class="alert alert-info">:bulb:
 You can always lock and unlock CodeContact using the `lock` and `unlock` commands </div>
 
 1. Let us try **adding a project** to our CodeContact.
@@ -273,9 +260,9 @@ You can always lock and unlock CodeContact using the `lock` and `unlock` command
 
 1. We can then **add a developer** to our CodeContact.
     * Enter the
-      command `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp s/4500 d/19-11-2023 g/johng rt/3`
+      command `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp s/4500 d/01-11-2023 g/johng rt/3`
     * Try adding more developers with different details for each parameter!
-    * Remember to add a new project or [role](#add-roles) if you which to add new developers with other roles and
+    * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you wish to add new developers with other roles and
       project.
 
 
@@ -283,7 +270,7 @@ You can always lock and unlock CodeContact using the `lock` and `unlock` command
     * Enter the
       command `add-client n/Amy p/88765423 e/amy@example.com a/31, Clementi Ave 6, #03-12 r/Client pr/AndroidApp o/Google do/google.com`
     * Try adding more clients with different details for each parameter!
-    * Remember to add a new project or [role](#add-roles) if you which to add new client with other roles and project.
+    * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you which to add new client with other roles and project.
 
 
 1. Let us try **editing the name** of a developer stored in CodeContact.
@@ -304,13 +291,14 @@ You can always lock and unlock CodeContact using the `lock` and `unlock` command
 
 1. You can **delete developers, clients or projects** in CodeContact.
     * Enter the command `delete-developer 3` to delete the 3rd developer in CodeContact
+    * More details on how delete works can be found [here](#delete-developer--delete-developer)
 
 
-1. If you realise that you did not delete this developer, you can undo this action in CodeContact.
+1. If you realise that you did not delete this developer, you can **undo** this action in CodeContact.
     * Enter the command `undo` and it will revert your previous actions.
 
 
-1. If you realise you actually want it deleted, you can redo this action in CodeContact.
+1. If you realise you actually want it deleted, you can **redo** this action in CodeContact.
     * Enter the command `redo` and it will redo your previous actions.
 
 Congratulations! You are now ready to use CodeContact!
@@ -321,33 +309,8 @@ To view all our features, you may visit our [Features](#features) section
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
-
-  <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the command format:**<br>
-
-  * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-  * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-  * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-  * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-  * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
-  ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-  * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
-  as space characters surrounding line-breaks may be omitted when copied over to the application.
-  </div>
-
+## Security Features
 ### Lock `lock`
 
 Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
@@ -398,7 +361,9 @@ Password changed successfully.
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
+## Management Features
 ### Add
 
 #### Add developer : `add-developer`
@@ -412,7 +377,7 @@ Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r
 * Not specifying the `DATE_JOINED` will automatically use today's date as the date joined.
 * `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
 * If specified, `PROJECT_NAME` should be the exact name of an existing project.
-* Note that for `RATING` values that not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
+* Note that for `RATING` values that are not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
 may not be reflected as clearly in the coloured stars.
 
 Example of usage: `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
@@ -853,19 +818,22 @@ Format: `add-developer-role ROLE_NAME`
 * Adds the ROLE_NAME to list of developer roles.
 * There are 3 preset roles in the list of roles: `Frontend Developer`,`Backend Developer`,`Developer`.
 * You will not be able to add a developer to a role that does not exist in this list of developer roles.
-* ❗Note: This command is **not** case-sensitive, even if `Developer` is a role, `developer` can still be added.
-* If you wish to check what roles are there, you can key in `delete-developer-role <anything random>`, `<anything
-  random>` should not be an existing role.
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Note** :This command is **not** case-sensitive, even if `Developer` is a role, `developer` can still be added.
+</div>
+<div markdown="block" class="alert alert-info">:bulb:
+If you wish to check what roles are there, you can key in `delete-developer-role <anything random>`, `<anything
+random>` should not be an existing role. </div>
 
-Example of usage:`add-developer-role UIDesigner`
+Example of usage:`add-developer-role Tester`
 
-* Adds the UIDesigner role to list of developer roles.
-* You can now add developers with UIDesigner as their roles.
+* Adds the Tester role to list of developer roles.
+* You can now add developers with Tester as their roles.
 
 When command succeeds, CLI shows:
 
 ```
-New role for developer added: UIDesigner
+New role for developer added: Tester
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -879,9 +847,13 @@ Format: `add-client-role ROLE_NAME`
 * Adds the ROLE_NAME to list of client roles.
 * There are 4 preset roles in the list of roles: `HR`,`Manager`,`Developer`,`Client`.
 * You will not be able to add a client to a role that does not exist in this list of client roles.
-* * ❗Note: This command is **not** case-sensitive, even if `HR` is a role, `hr` can still be added.
-* If you wish to check what roles are there, you can key in `delete-client-role <anything random>`, `<anything
-  random>` should not be an existing role.
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Note** :This command is **not** case-sensitive, even if `HR` is a role, `hr` can still be added.
+</div>
+
+<div markdown="block" class="alert alert-info">:bulb:
+If you wish to check what roles are there, you can key in `delete-client-role <anything random>`, `<anything
+random>` should not be an existing role. </div>
 
 Example of usage:`add-client-role Boss`
 
@@ -942,9 +914,6 @@ When command succeeds, CLI shows:
 ```
 Role for clients deleted: Boss
 ```
-❗Note: When this command is deleted, regardless if it was a successful delete,
-the client tab will be cleared or only showing the clients with role you are deleting.
-Use `list-client` to see all the data again
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1053,7 +1022,9 @@ Projects: CustomWebsite AndroidApp
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
+## Miscellaneous Fetures
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -1080,10 +1051,9 @@ Format: `exit`
 
 ### Feedback System `[coming in v2.0]`
 
-<span style="page-break-after: always;"></span>
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -1132,9 +1102,9 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
    application before running the application again.
 
 [Scroll back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
 | Action               | Format, Examples                                                                                                                                                                                                                                                                                                                 |
