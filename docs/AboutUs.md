@@ -12,7 +12,7 @@ You can reach us at the email `mahidharah@gmail.com`
 
 <img src="images/mahidharah.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+[[portfolio](team/mahidharah.md)]
 [[github](https://github.com/Mahidharah)]
 [[Linkedin](https://www.linkedin.com/in/mahidharah/)]
 
