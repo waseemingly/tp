@@ -194,7 +194,7 @@ This section describes some noteworthy details on how certain features are imple
 ## Implementation
 
 ### Add features (add-developer, add-client, add-project)
-Example Uses: 
+Example Uses:
 
 `add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
 
@@ -203,8 +203,8 @@ Example Uses:
 `add-project n/Tp dr/Team Project dl/19-12-2023,Design backend,HIGH,0 dl/21-12-2023,Design frontend,LOW,1`
 
 
-#### Intended Result 
-Adds a developer, client or project to the address book, and adds them to the bottom of the list of exisitng developers, clients or projects respectively. The newly added developer, client or project will be displayed in the list of developers, clients or projects respectively. 
+#### Intended Result
+Adds a developer, client or project to the address book, and adds them to the bottom of the list of exisitng developers, clients or projects respectively. The newly added developer, client or project will be displayed in the list of developers, clients or projects respectively.
 If the developer, client or project already exists in the address book, the command will not be allowed and an error will be thrown to alert user.
 
 #### Implementation
@@ -219,7 +219,7 @@ Step 2. User executes an add-developer command by entering `add-developer n/Mahi
 
 Step 3. The developer is added to the model’s list of developers if valid.
 
-add-client and add-project commands are executed in a similar manner. 
+add-client and add-project commands are executed in a similar manner.
 
 The following sequence diagram illustrates how the add developer operation works
 
@@ -228,7 +228,7 @@ The following sequence diagram illustrates how the add developer operation works
 #### Intended Result
 Deletes a developer or client at the specified **one-based index** of list of currently existing/found developers or clients respectively, depending on the command. Users are able to delete any developers or clients in their respective lists. If an index larger than or equal to the size of the respective lists provided, the command will not be allowed and an error will be thrown to alert user.
 
-Example Uses: 
+Example Uses:
 
 `delete-developer 3`
 
@@ -791,8 +791,7 @@ Adding developer roles and client roles works the same way, hence add client rol
 
 #### **Use case:** UCX - Delete developer role
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-Deleting developer roles and client roles works the same way, hence deleting client role use case will not be repeated 
-</div>
+Deleting developer roles and client roles works the same way, hence deleting client role use case will not be repeated</div>
 
 **Preconditions:** User is logged in
 

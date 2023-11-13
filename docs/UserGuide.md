@@ -48,7 +48,7 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
     * [Lock `lock`](#lock-lock)
     * [Unlock `unlock`](#unlock-unlock)
     * [Change password `change-password`](#change-password-change-password)
-      
+
 | Security Features                                  |                                 Lock [`lock`](#lock-lock)                 |                              Unlock [`unlock`](#unlock-unlock)   |                                                Change password [`change-password`](#change-password-change-password)|
 |:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
 
