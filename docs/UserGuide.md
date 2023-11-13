@@ -315,7 +315,7 @@ To view all our features, you may visit our [Features](#features) section
 
 ### Password Protection
 Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and customizable password.
-### Lock `lock`
+#### Lock `lock`
 
 Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
 except `unlock`, `help`, and `delete`
@@ -330,7 +330,7 @@ Locked all data
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Unlock `unlock`
+#### Unlock `unlock`
 
 Unlocks the system by making all the information visible and allows all commands to be parsed.
 
@@ -347,7 +347,7 @@ Unlocked all data
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Change password `change-password`
+#### Change password `change-password`
 
 Allows for password to be changed, given the current password and new password matches criteria
 
@@ -883,9 +883,9 @@ Listed all developers
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-## **Add roles**
+### **Add roles**
 
-### Add developer roles : `add-developer-role`
+#### Add developer roles : `add-developer-role`
 
 Adds new developer roles into the system.
 
@@ -916,7 +916,7 @@ New role for developer added: Tester
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Add client roles : `add-client-role`
+#### Add client roles : `add-client-role`
 
 Adds new client roles into the system.
 
@@ -947,9 +947,9 @@ New role for client added: Boss
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-## **Delete roles**
+### **Delete roles**
 
-### Delete developer roles : `delete-developer-role`
+#### Delete developer roles : `delete-developer-role`
 
 Delete developer roles from the system.
 
@@ -973,7 +973,7 @@ Role for developers deleted: UIDesigner
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Delete client roles : `delete-client-role`
+#### Delete client roles : `delete-client-role`
 
 Delete client roles from the system.
 
@@ -996,7 +996,7 @@ Role for clients deleted: Boss
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-## **Mark**
+### **Mark**
 ### Mark project deadline as done : `mark-deadline`
 
 Marks the indicated deadline for the project as done.
@@ -1037,8 +1037,8 @@ The deadline has been marked as undone!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-## **Undo**
-### Undo : `undo`
+### **Undo**
+#### Undo : `undo`
 
 Undo the previous command you entered.
 
@@ -1069,7 +1069,7 @@ Projects: CustomWebsite AndroidApp
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Redo : `redo`
+#### Redo : `redo`
 
 Redo the previous command you undid.
 
@@ -1101,7 +1101,7 @@ Projects: CustomWebsite AndroidApp
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-## Additional Features
+## **Additional Features**
 ### **Miscellaneous Features**
 Listed below are some miscellaneous features that are available in CodeContact to improve your user experience.
 #### Viewing help : `help`
@@ -1137,7 +1137,7 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **FAQ**
+# **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -1178,7 +1178,7 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Known issues
+# **Known issues**
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
@@ -1189,7 +1189,7 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-# Command summary
+# **Command summary**
 
 | Action               | Format, Examples                                                                                                                                                                                                                                                                                                                 |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
