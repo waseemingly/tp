@@ -25,13 +25,13 @@ Given below are my contributions to the project.
     * Justification: Decided to separate these as different commands instead of having a single `delete` command to allow for more flexibility with parameters changes to these features in the future (from basic OOP principles). This also allows for more specific error messages to be displayed to users when they input invalid parameters, utilising polymorphism.
     * Highlights: Automatically switches tabs according to command.
 
-      
+<div style="page-break-after: always;"></div>
+
 * **New Feature 3**: `delete-project`
     * What it does: Deletes a project from the address book and accordingly removes it from the set of projects for all developers and clients.
     * Justification: I decided to implement the feature such that it triggers updates on developers and clients with hopes that this feature will be a major quality of life improvement for project managers, enabling them to remove projects easily without having to edit the information for relevant clients and developers to maintain integrity of the data.
     * Highlights: Automatically switches tabs according to command. This feature uses the iterator java class and its for each remaining method effectively to simplify code and ensure efficiency.
 
-<div style="page-break-after: always;"></div>
 
 * **Enhancements to existing features**:
     * Contributed to the GUI component of CodeContact by creating relevant classes and FXML files for developer and client cards (Pull request [\#79](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/79))
@@ -47,6 +47,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=Mahidharah&tabRepo=AY2324S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
+<div style="page-break-after: always;"></div>
 
 * **Project management(team-based tasks contributions)**:
     * Responsible for the timely pivot of our team project in v1.2 after checking in with tutors and professors
