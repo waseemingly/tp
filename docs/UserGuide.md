@@ -21,7 +21,7 @@ Here’s an overview of how CodeContact can help you streamline your project man
 If you are familiar with CodeContact, jump to our [**Table of Contents**](#table-of-contents) to find out what you are looking
 for!
 
-If you are new here, you may start with learning [**how to navigate this guide**](#navigating-this-guide) and visit
+If you are new here, you may start with learning [**How to navigate this guide**](#navigating-this-guide) and visit
 the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 <div style="page-break-after: always;"></div>
 
@@ -83,8 +83,7 @@ explanations on when and how to use them.
 
 Further questions are also answered within a [FAQ](#faq) section below.
 
-Confused about the terms or formatting used in this guide? Learn how to **navigate this guide
-** [here](#navigating-this-guide).
+Confused about the terms or formatting used in this guide? Learn how to **navigate this guide** [here](#navigating-this-guide).
 
 Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
 [here](#navigating-the-graphical-user-interface--gui-).
@@ -414,7 +413,7 @@ Projects: CustomWebsite AndroidApp
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-Entered details of a developer incorrectly? You can always undo the action with the `undo` command! 
+Entered details of a developer incorrectly? You can always undo the action with the [Undo](#undo) command! 
 </div>
 
 Learn more about the [Undo](#undo) command here.
