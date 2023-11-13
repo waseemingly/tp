@@ -862,7 +862,7 @@ Format: `add-client-role ROLE_NAME`
 <div markdown="block" class="alert alert-info">:bulb:
 If you wish to check what roles are there, you can key in `delete-client-role <anything random>`, `<anything
 random>` should not be an existing role.
-<div>
+</div>
 
 Example of usage:`add-client-role Boss`
 
