@@ -823,56 +823,187 @@ and commits should follow a consistent naming convention.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Manual Testing**
-Testers are expected to do more *exploratory* testing.
+Given below are some instructions to test the app manually.
 
-1. Initial launch
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions are meant to provide a
+starting point for testers to work with, testers should do more *exploratory* testing.
+</div>
 
-   1. Download the jar file and copy into an empty folder
+### Launching the app
+#### Initial launch
+1. Download the jar file and copy into an empty folder.
+2. Double-click the jar file.<br> 
+Expected: Shows the GUI with a message prompting user to unlock to continue.
+3. Enter the command `unlock pw/Password123!` in the command box.<br>
+Expected: Shows the unlocked GUI.
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+### Lock
+1. Test case: `lock`<br>
+  Expected: All the information in the GUI has been hidden. The execution of all commands except `unlock`, `help`, and
+  `delete` have also been disabled.
 
-2. Saving window preferences
+### Unlock
+1. Test case: `unlock pw/Password123!`<br>
+   Expected: Shows the unlocked GUI.
+2. Test case: `unlock pw/abc`<br>
+  Expected: GUI remains locked. Error details shown in the status message.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Change password
+1. Test case: `change-password pw/Password123! npw/Password321!`<br>
+  Expected: Password is changed successfully. Command success status message shown.
+2. Test case: `change-password pw/Password123! npw/abc`<br>
+  Expected: Password is not changed. Error details shown in the status message.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+### Adding
+#### Adding projects
+1. Test case: `add-project n/JuiceApp dr/App to allow for different juices to be ordered
+dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`<br>
+  Expected: New project with the name JuiceApp is created, provided there is no existing project with that name.
+   Command success status message shown.
+2. Test case: `add-project n/JuiceApp dr/App to allow for different juices to be ordered
+   dl/invaliddeadline`<br>
+  Expected: No project is added. Error details shown in the status message.
 
-3. _{ more test cases …​ }_
-    @@ -628,23 +756,24 @@ testers are expected to do more *exploratory* testing.
+#### Adding developers
+1. Test case: `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer 
+s/4500 d/11-11-2023 g/johng rt/3` <br>
+  Expected: New developer with the name John Doe is created, provided there is no existing developer with that name.
+   Command success status message shown.
+2. Test case: `add-developer n/John Does p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer
+s/4500 d/11-11-2023 g/johng rt/6` <br>
+  Expected: No developer is added. Error details shown in the status message.
 
-4. Deleting a developer while all developers are being shown
+#### Adding clients
+1. Prerequisites: Add a project with the name `AndroidApp` and another project with the name `CustomWebsite` before
+  testing.
+2. Test case: `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer
+   pr/AndroidApp pr/CustomWebsite o/Google do/google.com`<br>
+   Expected: New client with the name Jack Doe is created, provided there is no existing client with that name.
+   Command success status message shown.
+3. Test case: `add-developer n/John Does p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer
+   pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/6` <br>
+   Expected: No developer is added. Error details shown in the status message.
 
-   1. Prerequisites: List all developers using the `list` command. Multiple developers in the list.
+### Listing
+1. Test case: `list-developer`<br>
+  Expected: Lists all the developers.
+2. Test case: `list-client`<br>
+   Expected: Lists all the clients.
+3. Test case: `list-project`<br>
+   Expected: Lists all the projects.
+4. Test case: `lists-project`<br>
+   Expected: No change in GUI. Error details shown in the status message.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Deleting
+#### Deleting projects
+1. Prerequisites: List all projects using the `list-project` command. Ensure there is at least 1 project in the list.
+2. Test case: `delete-project 1`<br>
+  Expected: First project is deleted from the list. Command success status message shown.
+3. Test case: `delete-project x` where `x` is an integer larger than the number of projects listed.
+  Expected: No change. Error details shown in the status message.
 
-   3. Test case: `delete 0`<br>
-      Expected: No developer is deleted. Error details shown in the status message. Status bar remains the same.
+#### Deleting developers
+1. Prerequisites: List all developers using the `list-developer` command. Ensure there is at least 1 developer in the
+list.
+2. Test case: `delete-developer 1`<br>
+  Expected: First developer is deleted from the list. Command success status message shown.
+3. Test case: `delete-developer x` where `x` is an integer larger than the number of developers listed.
+  Expected: No change. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### Deleting clients
+1. Prerequisites: List all clients using the `list-client` command. Ensure there is at least 1 client in the list.
+2. Test case: `delete-client 1`<br>
+   Expected: First client is deleted from the list. Command success status message shown.
+3. Test case: `delete-client x` where `x` is an integer larger than the number of client listed.
+   Expected: No change. Error details shown in the status message.
 
-5. _{ more test cases …​ }_
+### Editing
+#### Editing projects
+1. Prerequisites: List all projects using the `list-project` command. Ensure there are at least 2 projects in the list.
+2. Test case: `edit-project 1 dl/01-12-2023,Design backend,HIGH,0 dl/19-12-2023,Design frontend,HIGH,0`<br>
+  Expected: First project in the list is successfully updated. Command success status message shown.
+3. Test case: `edit-project 1 dr/update desc`
+   Expected: First project in the list is successfully updated. Command success status message shown.
+4. Test case: `edit-project 2 dl/invaliddeadline`
+  Expected: Edit to the second project in the list is unsuccessful. Error details shown in the status message.
 
-### Saving data
+#### Editing developers
+1. Prerequisites: List all developers using the `list-developer` command. Ensure there are at least 2 clients in the
+list.
+2. Test case: `edit-developer 2 p/98989898`<br>
+   Expected: Second developer in the list is successfully updated. Command success status message shown.
+3. Test case: `edit-developer 1 s/-200`<br>
+   Expected: Edit to the first developer in the list is unsuccessful. Error details shown in the status message.
 
-1. Dealing with missing/corrupted data files
+#### Editing clients
+1. Prerequisites: List all clients using the `list-client` command. Ensure there is at least 1 client in the list.
+2. Test case: `edit-client 1 p/98989898`<br>
+   Expected: First client in the list is successfully updated. Command success status message shown.
+3. Test case: `edit-developer 1 p/10`<br>
+   Expected: No edit is made. Error details shown in the status message.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Importing information
+#### Importing developers
+1. Prerequisites: Create a CSV file populated with developer details in the correct format. Add the CSV file to the same
+folder as JAR file of this app.
+2. Test case: `import-developer developers.csv`<br>
+  Expected: All developers with their details specified in the CSV are added, assuming the data in the file is in the
+  correct format. Command success status message shown.
+3. Test case: `import-developer`<br>
+  Expected: No developer is added. Error details shown in the status message.
 
-2. _{ more test cases …​ }_
+#### Importing clients
+1. Prerequisites: Create a CSV file populated with client details in the correct format. Add the CSV file to the same
+   folder as JAR file of this app.
+2. Test case: `import-client clients.csv`<br>
+   Expected: All clients with their details specified in the CSV are added, assuming the data in the file is in the
+   correct format. Command success status message shown.
+3. Test case: `import-client`<br>
+   Expected: No client is added. Error details shown in the status message.
+
+### Undoing commands
+For these tests, each test case has respective prerequisites that must be met before executing the test.
+1. Prerequisites: Relaunch the app and unlock it with your password. Do NOT execute any other command after `unlock`.
+   2. Test case: `undo`<br>
+   Expected: Nothing is undone since no command has been executed yet. Error details shown in the status message.
+
+1. Prerequisites: Execute either an edit or delete command after unlocking the app.
+   2. Test case: `undo` <br>
+   Expected: The most recent command executed is undone. Command success status message shown.
+
+### Redoing commands
+For these tests, each test case has respective prerequisites that must be met before executing the test.
+1. Prerequisites: Relaunch the app and unlock it with your password. Do NOT execute any other command after `unlock`.
+  2. Test case: `redo`<br>
+     Expected: Nothing is redone since no command has been executed yet. Error details shown in the status message.
+
+1. Prerequisites: Execute either an edit or delete command after unlocking the app, then execute the `undo` command.
+  2. Test case: `redo` <br>
+     Expected: The changes from the recent `undo` command executed are reverted. Command success status message shown.
+
+### Exiting the app
+1. After executing some commands, use the `exit` command to exit the app.
+2. You can re-launch the app by double-clicking the jar file.<br>
+   Expected: The application should load with any previous changes made during the previous running of the app.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancement**
 
-### Validation checks for edit
-**Current Behavior:** Two developers can have the same address, contact number etc. As long as they don't have the same name
-they can both be added.<br>
-**Enhanced Behavior:** Validation checks should be added for email, contact number and address to make sure there are no 2
-people with repeated the details.
+### Validation checks for duplicate fields in edit commands
+**Current Behavior:** Two developers can have the same details (eg. address, phone number, email) as long as their name
+is not the same. This program behaviour also exists for clients.
+<br>
+**Enhanced Behavior:** Validation checks should be conducted for email, contact number and address when adding or
+editing developers or clients to make sure that no two developers or clients have repeated details since this is
+unrealistic.
+
+### Validation checks for unedited fields in edit commands
+**Current Behavior:** A developer, client, or project can be edited to have the exact same details as it currently has.
+<br>
+**Enhanced Behavior:** Validation checks should be conducted which notifies the user when they try to edit an existing
+developer, client, or project, to have the exact same details as it currently has. This makes it more user-friendly as
+if such an occurrence happens, it is likely that it was a mistake or typo in the command.
 
 ### Case-sensitive validation checks for adding roles
 **Current Behavior:** Two similar roles with different cases can both be added. `Developer` and `developer` can exist at the
@@ -884,7 +1015,7 @@ same time.<br>
 **Enhanced Behavior:** There should be a limit to the deadline line dates like 10-20 years before and after the current date.
 
 ### Password Recovery
-**Current Behavior:** If you forgot your password, there is no way to retrieve it
+**Current Behavior:** If you forgot your password, there is no way to retrieve it.<br>
 **Enhanced Behavior:** Links the system to email or have verifications that allows users to reset their password.
 
 --------------------------------------------------------------------------------------------------------------------
