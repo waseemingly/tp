@@ -256,15 +256,15 @@ To view all our features, you may visit our [Features](#features) section
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [pr/PROJECT_NAME]` can be used as `n/John Doe pr/ProjectA` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[pr/PROJECT_NAME]…​` can be used as ` ` (i.e. 0 times), `pr/ProjectA`, `pr/ProjectA pr/ProjectB` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -293,8 +293,8 @@ Unlocks the system by making all the information visible and allows all commands
 
 Format: `unlock pw/Password123!`
 
-* Default password is `Password123!`
-* You are highly recommended to change to a different password
+* Default password is `Password123!`.
+* You are highly recommended to change to a different password.
 
 When command succeeds, CLI shows:
 
@@ -308,7 +308,7 @@ Unlocked all data
 
 Allows for password to be changed, given the current password and new password matches criteria
 
-Format: `change-password pw/[CURRENT_PASSWORD] npw/[NEW_PASSWORD]`
+Format: `change-password pw/CURRENT_PASSWORD npw/NEW_PASSWORD`
 
 * Password must be at least 8 characters long and contain at least one digit, one lowercase letter,
   one uppercase letter, and one special character.
