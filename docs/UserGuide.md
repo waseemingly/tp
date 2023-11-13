@@ -128,6 +128,7 @@ Here are some notes about these parameters.
 |-----------|------------------------|----------------------------------------------------------------|-------------------------------------------------|------------------------------------|
 | `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered | 成龍, 潔 いさぎ 世 よ 一 いち                 |
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             | 19.1.2023, 潔 いさぎ 世 よ 一 いち, NONE, 5 |
+<div style="page-break-after: always;"></div>
 
 ### Format
 #### General Formatting
@@ -1162,6 +1163,7 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # **Known issues**
 
