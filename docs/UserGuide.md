@@ -38,47 +38,6 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 * Table of Contents
 {:toc}
 
-* [How can this guide help me?](#how-can-this-guide-help-me)
-* [Navigating this guide](#navigating-this-guide)
-    * [Glossary](#glossary)
-        * [Definitions](#definitions)
-        * [Parameter Information](#parameter-information)
-            * [Common parameters](#common-parameters)
-            * [Developer parameters](#developer-parameters)
-            * [Client parameters](#client-parameters)
-            * [Project parameters](#project-parameters)
-    * [Format](#format)
-        * [General Formatting](#general-formatting)
-        * [Command Format](#command-format)
-* [Navigating the Graphical User Interface (GUI)](#navigating-the-graphical-user-interface--gui-)
-* [Quick Start](#quick-start)
-* [CodeContact Tutorial](#codecontact-tutorial--for-new-users-)
-* [Features](#features)
-
-| [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
-|:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
-| [Password Protection](#password-protection) |    [`lock`](#lock-lock)    |  [`unlock`](#unlock-unlock)  | [`change-password`](#change-password-change-password) |
-
-| [Management Features](#management-features)         |                                 Developer                                 |                              Client                              |                                                         Project                                                          |
-|:----------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
-| [Adding new information](#add)                      |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                                        [`add-project`](#add-project--add-project)                                        |
-| [Deleting information](#delete)                     |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                                   [`delete-project`](#delete-project--delete-project)                                    |
-| [Editing information](#edit)                        |        [`edit-developer`](#edit-developer-details--edit-developer)        |        [`edit-client`](#edit-client-details--edit-client)        |                                  [`edit-project`](#edit-project-details--edit-project)                                   |
-| [Importing information](#import-information)        |        [`import-developer` ](#import-developers-import-developer)         |         [`import-client`](#import-clients-import-client)         |                                                            -                                                             |
-| [Finding information](#find)                        |                [`find-developer`](#find-developer-details)                |              [`find-client`](#find-client-details)               |                [`find-project`](#find-project-details), [`find-deadline`](#find-deadlines-find-deadline)                 |
-| [Listing information](#listing-information--list)   |                             `list-developer`                              |                          `list-client`                           |                                                      `list-project`                                                      |
-| [Adding new role](#add-roles)                       |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |                                                            -                                                             |
-| [Deleting role](#delete-roles)                      | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                            -                                                             |
-| [Marking Project Deadlies](#mark-project-deadlines) |                                     -                                     |                                -                                 | [`mark-deadline`](#mark-deadline-as-done--mark-deadline), [`unmark-deadline`](#mark-deadline-as-undone--unmark-deadline) |
-
-| [Additional Features](#additional-features)       |              Finding Help               |                     Clearing data                     |                  Exiting program                  |
-|:--------------------------------------------------|:---------------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
-| [Miscellaneous Features](#miscellaneous-features) | [View Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
-
-* [FAQ](#faq)
-* [Known Issues](#known-issues)
-* [Command Summary](#command-summary)
-
 -------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -330,6 +289,26 @@ To view all our features, you may visit our [Features](#features) section
 <div style="page-break-after: always;"></div>
 
 # Features
+
+| [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
+|:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
+| [Password Protection](#password-protection) |    [`lock`](#lock-lock)    |  [`unlock`](#unlock-unlock)  | [`change-password`](#change-password-change-password) |
+
+| [Management Features](#management-features)         |                                 Developer                                 |                              Client                              |                                                         Project                                                          |
+|:----------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
+| [Adding new information](#add)                      |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                                        [`add-project`](#add-project--add-project)                                        |
+| [Deleting information](#delete)                     |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                                   [`delete-project`](#delete-project--delete-project)                                    |
+| [Editing information](#edit)                        |        [`edit-developer`](#edit-developer-details--edit-developer)        |        [`edit-client`](#edit-client-details--edit-client)        |                                  [`edit-project`](#edit-project-details--edit-project)                                   |
+| [Importing information](#import-information)        |        [`import-developer` ](#import-developers-import-developer)         |         [`import-client`](#import-clients-import-client)         |                                                            -                                                             |
+| [Finding information](#find)                        |                [`find-developer`](#find-developer-details)                |              [`find-client`](#find-client-details)               |                [`find-project`](#find-project-details), [`find-deadline`](#find-deadlines-find-deadline)                 |
+| [Listing information](#listing-information--list)   |                             `list-developer`                              |                          `list-client`                           |                                                      `list-project`                                                      |
+| [Adding new role](#add-roles)                       |     [`add-developer-role`](#add-developer-roles--add-developer-role)      |     [`add-client-role`](#add-client-roles--add-client-role)      |                                                            -                                                             |
+| [Deleting role](#delete-roles)                      | [`delete-developer-role`](#delete-developer-roles--delete-developer-role) | [`delete-client-role`](#delete-client-roles--delete-client-role) |                                                            -                                                             |
+| [Marking Project Deadlies](#mark-project-deadlines) |                                     -                                     |                                -                                 | [`mark-deadline`](#mark-deadline-as-done--mark-deadline), [`unmark-deadline`](#mark-deadline-as-undone--unmark-deadline) |
+
+| [Additional Features](#additional-features)       |              Finding Help               |                     Clearing data                     |                  Exiting program                  |
+|:--------------------------------------------------|:---------------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
+| [Miscellaneous Features](#miscellaneous-features) | [View Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
 ## Security Features
 
 ### Password Protection
