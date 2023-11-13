@@ -167,30 +167,96 @@ This section describes some noteworthy details on how certain features are imple
 
 --------------------------------------------------------------------------------------------------------------------
 ## Implementation
-### Add features
-Upon entry of the add developer command, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+
+### Add features (add-developer, add-client, add-project)
+Example Uses: 
+
+`add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
+
+`add-client n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/HR pr/Appollo pr/Orbital o/Google do/google.com`
+
+`add-project n/Tp dr/Team Project dl/19-12-2023,Design backend,HIGH,0 dl/21-12-2023,Design frontend,LOW,1`
+
+
+#### Intended Result 
+Adds a developer, client or project to the address book, and adds them to the bottom of the list of exisitng developers, clients or projects respectively. The newly added developer, client or project will be displayed in the list of developers, clients or projects respectively. 
+If the developer, client or project already exists in the address book, the command will not be allowed and an error will be thrown to alert user.
+
+#### Implementation
+Upon entry of the add-developer command for instance, an `AddDeveloperCommand` class is created. The `AddDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Developer` object is added to the model’s list of developers if all the attributes provided are valid and a duplicate instance does not exist.
+A similar implementation is done for the add-client and add-project commands, where a `AddClientCommand` and `AddProjectCommand` class (which similarly extend the `Command` class) is created respectively to add a `Client` or `Project` object to the model’s list of clients or projects.
 
 Given below is an example usage scenario of how the add developer is executed step by step.
 
+Step 1. User launches the application and unlocks the application with the correct password.
+
+Step 2. User executes an add-developer command by entering `add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
+
+Step 3. The developer is added to the model’s list of developers if valid.
+
+add-client and add-project commands are executed in a similar manner. 
+
 The following sequence diagram illustrates how the add developer operation works
+
+
+### Delete features (delete-developer, delete-client)
+#### Intended Result
+Deletes a developer or client at the specified **one-based index** of list of currently existing/found developers or clients respectively, depending on the command. Users are able to delete any developers or clients in their respective lists. If an index larger than or equal to the size of the respective lists provided, the command will not be allowed and an error will be thrown to alert user.
+
+Example Uses: 
+
+`delete-developer 3`
+
+`delete-client 2`
 #### Implementation
-#### Design considerations
-
-
-### Delete features
-Deletes a developer at the specified **one-based index** of list of currently existing/found developers. Users are able to delete any developer in the list. If an index larger than or equal to the size of the developer’s list is provided, the command will not be allowed and an error will be thrown to alert user.
-
-Example Use: `del-d 1`
-#### Implementation
-Upon entry of the delete developer command, a `DeleteDeveloperCommand` class is created. The `DeleteDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the doctor at specified **one-based index** is removed if the index provided is valid.
+Upon entry of the delete developer command for instance, a `DeleteDeveloperCommand` class is created. The `DeleteDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the developer at specified **one-based index** is removed if the index provided is valid.
 
 Given below is an example usage scenario of how the delete developer command behaves at each step.
-Step 2. User executes `del-d 1` to delete the developer at index 1 (one-based in
+
+Step 1. User launches the application and unlocks the application with the correct password.
+
+Step 2. User executes a delete-developer command by entering `delete-develoepr 1` to delete the developer at index 1 (one-based indexing)
+
 Step 3. The developer at this index is removed if the index provided is valid.
+
+A similar implementation is done for the delete-client command, where a `DeleteClientCommand`class (which similarly extend the `Command` class) is created respectively to delete a `Client` object from the model’s list of clients.
 
 The following sequence diagram illustrates how the delete developer operation works:
 #### Design considerations
 
+### Delete Project Feature (delete-project)
+#### Intended Result
+Deletes a project at the specified **one-based index** of list of currently existing/found projects. Users are able to delete any project in project lists. If an index larger than or equal to the size of the project list provided, the command will not be allowed and an error will be thrown to alert user.
+Additionally, if the project is assigned to a developer or client, the project will be removed from the developer or client's set of projects.
+
+Example Uses:
+
+`delete-project 2`
+
+#### Implementation
+Upon entry of the delete project command, a `DeleteProjectCommand` class is created. The `DeleteProjectCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the project at specified **one-based index** is removed if the index provided is valid.
+
+Given below is an example usage scenario of how the delete developer command behaves at each step.
+
+Step 1. User launches the application and unlocks the application with the correct password.
+
+Step 2. User executes a delete-project command by entering `delete-project 1` to delete the project at index 1 (one-based indexing)
+
+Step 3. The project at this index is removed if the index provided is valid. Developer and Client lists are iterated through and the project is removed from the respective project sets if the project is assigned to them.
+
+This is similar to delete-developer and delete-client commands, except that in the delete project method is called in the model, the project is also removed from the respective developer and client's project sets.
+#### Design considerations
+  1. **Alternative 1:** Make the delete-project command call edit-developer and edit-client commands, both to update the project sets of the respective developers and clients.
+      * Pros: Easy to implement.
+      * Cons: May be less efficient as the edit-developer and edit-client commands will have to be called for each developer and client respectively.
+      * Edit command will have to retrieve client and developer project sets, iterate through each set to edit them accordingly and then pass the command, which will be retrieving information from the model to the logic component, which will complicate and potentially break abstractions originally in place.
+  2. **Alternative 2:** Do not edit developer and client project sets
+      * Pros: No extra logic needed to be implemented.
+      * Cons: Information integrity is compromised as the project will still be assigned to the developer and client even after it is deleted, and this will affect other features such as find, and potentially future features.
+  3. **Alternative 3 (current choice):** The delete project method in the model will iterate through developers and clients to make necessary changes to their project sets.
+      * Pros: Information integrity is maintained.
+      * Abstractions in place are not broken
+      * Cons: Implementation is hidden in the model component, and might not be intuitive in a glance in the logic component.
 
 ### Import feature
 This feature will allow project managers to import existing spreadsheets of developer and client data in the specified format in CSV
