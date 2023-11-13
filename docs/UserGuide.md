@@ -2,7 +2,9 @@
 layout: page
 title: User Guide
 ---
-## Introduction
+
+## Welcome to CodeContact
+**Taking charge of your PROject Management!**
 
 Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
 facilitating collaboration, and offering command-line efficiency for project managers
@@ -11,33 +13,24 @@ CodeContact is a **desktop app for managing contacts, optimized for use via a Co
 having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
 management tasks done faster than traditional GUI apps.
 
+Here’s an overview of how CodeContact can help you streamline your project management processes.
+* Store and edit information about developers and clients related to projects
+* Store and manage projects and their deadlines
+* Assign projects to developers and clients
+
+If you are familiar with CodeContact, jump to our [**Table of Contents**](#table-of-contents) to find out what you are looking
+for!
+
+If you are new here, you may start with learning [**how to naviagte this guide**](#navigating-this-guide) and visit
+the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
+<div style="page-break-after: always;"></div>
+
 -------------------------------------------------------------------------------------
-
-## How can this guide help me?
-
-If you are a new user, we hope to first inform you on how you can [get started](#quick-start) using CodeContact.
-
-As you use CodeContact, you may also have questions on how to perform certain actions within the
-application. This guide thus contains a comprehensive list of [Features](#features) offered with CodeContact, as well as
-explanations on when and how to use them.
-
-Further questions are also answered within a [FAQ](#faq) section below.
-
-Confused about the terms or formatting used in this guide? Learn how to **navigate this guide
-** [here](#navigating-this-guide).
-
-Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
-[here](#navigating-the-graphical-user-interface--gui-).
-
-------------------------------------------------------------------------------------------
-
-## Navigating this guide
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* How can this guide help me?
-* Navigating this guide
+* [How can this guide help me?](#how-can-this-guide-help-me)
+* [Navigating this guide](#navigating-this-guide)
     * [Glossary](#glossary)
         * [Definitions](#definitions)
         * [Parameter Information](#parameter-information)
@@ -61,7 +54,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 | Management Features                                       |                                 Developer                                 |                              Client                              |                                                Project                                                |
 |:--------------------------------------------------|:-------------------------------------------------------------------------:|:----------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
-| [Adding new information](#add)                    |             [`add-developer`](#Add-Developer--add-developer)              |             [`add-client`](#Add-Client--add-client)              |                              [`add-project`](#Add-Project--add-project)                               |
+| [Adding new information](#add)                    |             [`add-developer`](#add-developer--add-developer)              |             [`add-client`](#add-client--add-client)              |                              [`add-project`](#add-project--add-project)                               |
 | [Deleting information](#delete)                   |         [`delete-developer`](#delete-developer--delete-developer)         |         [`delete-client`](#delete-client--delete-client)         |                          [`delete-project`](#delete-project--delete-project)                          |
 | [Editing information](#edit)                      |        [`edit-developer`](#edit-developer-details--edit-developer)        |        [`edit-client`](#edit-client-details--edit-client)        |                         [`edit-project`](#edit-project-details--edit-project)                         |
 | [Importing information](#import-information)      |        [`import-developer` ](#import-developers-import-developer)         |         [`import-client`](#import-clients-import-client)         |                                                   -                                                   |
@@ -85,8 +78,29 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
+<div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------
+
+## How can this guide help me?
+
+If you are a new user, we hope to first inform you on how you can [get started](#quick-start) using CodeContact.
+
+As you use CodeContact, you may also have questions on how to perform certain actions within the
+application. This guide thus contains a comprehensive list of [Features](#features) offered with CodeContact, as well as
+explanations on when and how to use them.
+
+Further questions are also answered within a [FAQ](#faq) section below.
+
+Confused about the terms or formatting used in this guide? Learn how to **navigate this guide
+** [here](#navigating-this-guide).
+
+Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
+[here](#navigating-the-graphical-user-interface--gui-).
+
+------------------------------------------------------------------------------------------
+
+## Navigating this guide
 
 ### Glossary
 
@@ -128,16 +142,16 @@ Here are some notes about these parameters.
 | `e/`      | email of developer/client/project        | alphanumeric characters, and it should not be blank            | amy@gmail.com               |                                             |
 | `a/`      | address of developer/client/project      | alphanumeric characters and spaces, and it should not be blank | 311, Clementi Ave 2, #02-25 |                                             |
 | `r/`      | role of developer/client/project         | alphabetical characters and spaces, and it should not be blank | Developer                   |                                             |
-| `pr/`     | project name of developer/client/project | alphanumeric characters and spaces, and it should not be blank | CS2103T                     |                                             |
+| `pr/`     | project name                             | alphanumeric characters and spaces, and it should not be blank | CS2103T                     |                                             |
 
 #### Developer Parameters
 
-| Parameter | Description                  | Constraints                                                                    | Valid Examples | Invalid Examples     |
-|-----------|------------------------------|--------------------------------------------------------------------------------|----------------|----------------------|
-| `g/`      | github username of developer | alphanumeric characters, and it should not be blank                            | johng, amy123  |                      |
-| `d/`      | date joined of developer     | numeric characters in DD-MM-YYYY format, and it should not be blank            | 19-11-2023     | 19/11/2023, 1/1/2023 |
-| `s/`      | salary of developer          | numeric characters, and it should not be blank                                 | 5000           |                      |
-| `rt/`     | rating of developer          | numeric characters with 1 decimal place and spaces, and it should not be blank | 5.0, 3.5       | 5,3                  |
+| Parameter | Description                  | Constraints                                                                                      | Valid Examples | Invalid Examples     |
+|-----------|------------------------------|--------------------------------------------------------------------------------------------------|----------------|----------------------|
+| `g/`      | github username of developer | alphanumeric characters, and it should not be blank                                              | johng, amy123  |                      |
+| `d/`      | date joined of developer     | numeric characters in dd-MM-yyyy format, should not be a future date, and it should not be blank | 11-11-2023     | 19-11-2024, 1/1/2023 |
+| `s/`      | salary of developer          | positive integers of at least 4 digits, should not be blank                                      | 5000           |                      |
+| `rt/`     | rating of developer          | numeric characters between 0 to 5                                                                | 5, 3.5         | -0, -1, 6            |
 
 #### Client Parameters
 
@@ -153,11 +167,64 @@ Here are some notes about these parameters.
 | `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered |                  |
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             |                  |
 
+### Format
+#### General Formatting
+Here are the explanations behind the formatting we use through this guide.<br>
+
+* Words in `grey blocks (like these)` usually represent any of the following:
+  1. Text used in commands, such as `add-developer`
+  2. Keys on your keyboard like `Enter`
+  3. File names such as `CodeContact.jar`
+  <br>
+<div markdown="block" class="alert alert-info">
+:bulb: This is a blue box. It can be used for additional tips or more useful information.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: This is a warning box. It can be used to give more details on the warnings and limitations of features.
+</div>
+
+#### Command Formatting
+
+| Format                                       | Explanation                                                        | Example                            |
+|----------------------------------------------|--------------------------------------------------------------------|------------------------------------|
+| words in `[UPPER_CASE]` with square brackets | parameter values that are supplied by the user                     | `add-developer n/NAME n/PHONE` |
+| Items with `…` after them                    | parameters that can be used multiple times (or omitted completely) | `add-developer [pr/PROJECT]...`    |
+
+
 [Scroll back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 -----------------------------------------------------------------------------------------------
 
 ## Navigating the Graphical User Interface (GUI)
+CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
+of the different sections of our GUI, as well as some notes regarding the use of the GUI.
+### Quick Orientation
+![image](images/UG%20UI%202.png)
+![image](images/UG%20UI%201.png)
+
+Here is a quick summary of each GUI component within CodeContact.
+
+| Name                             | Description                                                                                                                                                                                                |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Menu Bar                         | Contains dropdown menu options for the CodeContact application.                                                                                                                                            |
+| Command Box                      | Allows users to enter CodeContact commands.                                                                                                                                                                |
+| Result Display                   | 1. Provides CLI-based feedback upon a user command. <br> 2. Allows users to see if their command was successful or not. <br> 3. Provides error messages to guide users on how to use CodeContact commands. |
+| Tabs                             | Allows users to see different lists of information on clicking on the relevant tabs. The tabs will also automatically switch to the correct tab corresponding to the command executed.                     |
+| Developers/Clients/Projects card | Displays a list of Developer, Client or Project Cards. This list can be manipulated through commands like `find` and `list`                                                                                |
+| Deadlines progress               | Displays the progress of deadlines for a certain project.                                                                                                                                                  |
+| Deadline list with details       | Displays the details of the deadline in a table form                                                                                                                                                       |
+| Re-sort                          | Click on the respective words, there will be a small black arrow that appears. You can press to resort the data eg. Show date from furthest to nearest day                                                 |
+
+### Notes on GUI
+<div markdown="block" class="alert alert-warning">
+If you executed a `find` command in developer tab and switched to the client tab, when you return to the developer tab the find results will be cleared and
+the whole list of developers will be shown again. This is the intended behavior of CodeContact as we hope that this can save you the time
+from always needing to call the list command.
+</div>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -165,13 +232,13 @@ Here are some notes about these parameters.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `codecontact.jar`.
+2. Download the latest `CodeContact.jar`.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your CodeContact.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codecontact.jar`
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CodeContact.jar`
    command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app might contain some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
@@ -186,7 +253,7 @@ Here are some notes about these parameters.
 
 This is a tutorial for **first-time** CodeContact users.
 
-1. Launch CodeContact.You may refer to the instructions [here](#quick-start)
+1. Launch CodeContact. You may refer to the instructions [here](#quick-start).
     * On launch, CodeContact will not contain any doctor or patient records.
 
 
@@ -251,6 +318,8 @@ Congratulations! You are now ready to use CodeContact!
 To view all our features, you may visit our [Features](#features) section
 
 [Scroll back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -300,8 +369,8 @@ Unlocks the system by making all the information visible and allows all commands
 
 Format: `unlock pw/Password123!`
 
-* Default password is `Password123!`
-* You are highly recommended to change to a different password
+* Default password is `Password123!`.
+* You are highly recommended to change to a different password.
 
 When command succeeds, CLI shows:
 
@@ -315,7 +384,7 @@ Unlocked all data
 
 Allows for password to be changed, given the current password and new password matches criteria
 
-Format: `change-password pw/[CURRENT_PASSWORD] npw/[NEW_PASSWORD]`
+Format: `change-password pw/CURRENT_PASSWORD npw/NEW_PASSWORD`
 
 * Password must be at least 8 characters long and contain at least one digit, one lowercase letter,
   one uppercase letter, and one special character.
@@ -332,129 +401,94 @@ Password changed successfully.
 
 ### Add
 
-Project Manager can add developers, clients and projects.
+#### Add developer : `add-developer`
 
-#### Add Developer: `add-developer`
+Adds a new developer to the address book.
 
-* Type in:
-    * `add-developer`
-* And populate his/her details with prefixes and fields by typing in
-    * `n/NAME` for the developer's name
-    * `p/PHONE_NUMBER` for the developer's phone number
-    * `e/EMAIL` for the developer's email
-    * `a/ADDRESS` for the developer's address
-    * `r/ROLE` for the developer's assigned role
-    * `pr/{PROJECT1, PROJECT2…}` for developer's assigned projects
-    * `s/SALARY` for the developer's salary
-    * `d/DATE_JOINED` for the date the developer joined
-    * `g/GITHUBID` for the developer's githubid
-    * `rt/RATING` for the assigned rating for the developer
-* In the following overall format
-    * `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE pr/PROJECT1 pr/PROJECT2 s/SALARY d/DATE_JOINED g/GITHUBID rt/RATING`
+Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... gh/GITHUB_ID rt/RATING`
 
-Example:
+* Adds the developer with the given details to the address book.
+* Not specifying any `PROJECT_NAME` will add the developer without assigning them to any projects.
+* Not specifying the `DATE_JOINED` will automatically use today's date as the date joined.
+* `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
+* If specified, `PROJECT_NAME` should be the exact name of an existing project.
+* Note that for `RATING` values that not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
+may not be reflected as clearly in the coloured stars.
 
-`add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
+Example of usage: `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
 
-* When command succeeds
-    * Continuing from the above example, CLI shows:
-    ```
-  The following user has been added:
-    New developer added: Mahidharah;
-    Phone: 81256788;
-    Email: aunus@nus.com;
-    Address: Blk 88 Lorong 8 Serangoon Gardens, #08-88;
-    Date Joined: 20-10-2020;
-    Role: Developer;
-    Salary: 8880;
-   Projects: AppolloOrbital
-  ```
-* When command fails
-    * User particular's error
-        * `This developer already exists in the address book`
-    * Format error
-        * `<PARTICULAR> should ...`
-        * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
-    * Missing particular's error (when prefixes are missing)
-        * `Invalid command format!`
+* Adds a new developer `John Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
+given that they already exist in the address book.
+
+When command succeeds, CLI shows:
+
+```
+New developer added: John Doe;
+Phone: 98765432;
+Email: johnd@example.com;
+Address: 311, Clementi Ave 2, #02-25;
+Date Joined: 11-11-2023;
+Role: Developer;
+Salary: 4500;
+Projects: CustomWebsite AndroidApp
+```
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Add Client: `add-client`
+#### Add client : `add-client`
 
-* Type in:
-    * `add-client`
-* And populate his/her details with prefixes and fields by typing in
-    * `n/NAME` for the client's name
-    * `p/PHONE_NUMBER` for the client's phone number
-    * `e/EMAIL` for the client's email
-    * `a/ADDRESS` for the client's address
-    * `r/ROLE` for the client's role in their organisation
-    * `pr/{PROJECT1, PROJECT2…}` for client's assigned projects
-    * `o/ORGANISATION` for the organisation the client is representing
-    * `do/DOCUMENT` for the document associated with the client
-* In the following overall format
-    * `add-client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE pr/PROJECT1 pr/PROJECT2 o/ORGANISATION do/document`
+Adds a new client to the address book.
 
-Example:
+Format: `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`
 
-`add-client n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/HR pr/Appollo pr/Orbital o/Google do/google.com`
+* Adds the client with the given details to the address book.
+* Not specifying any `PROJECT_NAME` will add the client without assigning them to any projects.
+* `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
+* If specified, `PROJECT_NAME` should be the exact name of an existing project.
 
-* When command succeeds
-    * Continuing from the above example, CLI shows:
-    ```
-  New client added: Mahidharah;
-  Phone: 81256788;
-  Email: aunus@nus.com;
-  Address: Blk 88 Lorong 8 Serangoon Gardens, #08-88;
-  Organisation: Google;
-  Role: HR;
-  Document: google.com;
-  Projects: AppolloOrbital
-  ```
-* When command fails
-    * User particular's error
-        * `This client already exists in the address book`
-    * Format error
-        * `<PARTICULAR> should ...`
-        * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
-    * Missing particular's error (when prefixes are missing)
-        * `Invalid command format!`
+Example of usage: `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
+
+* Adds a new client `Jack Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
+  given that they already exist in the address book.
+
+When command succeeds, CLI shows:
+
+```
+New client added: Jack Doe;
+Phone: 98765432;
+Email: jackd@example.com;
+Address: 311, Clementi Ave 2, #02-25;
+Organisation: Google;
+Role: Developer;
+Document: google.com;
+Projects: CustomWebsite AndroidApp
+```
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Add Project: `add-project`
+#### Add project : `add-project`
 
-* Type in:
-    * `add-project`
-* And populate its details with prefixes and fields by typing in
-    * `n/NAME` for the project's name
-    * `dr/DESCRIPTION` for the project's description
-    * `dl/{DEADLINE1, DEADLINE2...}` for deadlines associated with the project
-* In the following overall format
-    * `add-project n/NAME dr/DESCRIPTION dl/DEADLINE1 dl/DEADLINE2`
+Adds a new project to the address book.
 
-Example:
+Format: `add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`
 
-`add-project n/Tp dr/Team Project dl/19-12-2023,Design backend,HIGH,0 dl/21-12-2023,Design frontend,LOW,1`
+* Adds the project with the given details to the address book.
+* Not specifying any deadline will add the project without assigning deadlines to it.
+* `NAME` cannot be the same as another existing project's name in the address book. Checks are case-insensitive.
 
-* When command succeeds
-    * Continuing from the above example, CLI shows:
-    ```
-  New project added: Tp;
-  Description: Team Project;
-  Deadlines:
-  1. Design backend by: 19-12-2023, priority: HIGH (undone)
-  2. Design frontend by: 21-12-2023, priority: LOW (done)
-  ```
-* When command fails
-    * User particular's error
-        * `This project already exists in the address book`
-    * Format error
-        * `<PARTICULAR> should ...`
-        * E.g.:  `Names can only consist of capital and small letters, spaces and hyphens.`
-    * Missing particular's error (when prefixes are missing)
-        * `Invalid command format!`
+Example of usage: `add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`
+
+* Adds a new project `JuiceApp` with the respective details.
+
+When command succeeds, CLI shows:
+
+```
+New project added: JuiceApp;
+Description: App to allow for different juices to be ordered;
+Deadlines:
+1. Design backend by: 19-12-2023, priority: HIGH (undone)
+2. Design frontend by: 25-12-2023, priority: MEDIUM (undone)
+```
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -492,14 +526,13 @@ Example of usage: `delete-project 2`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-
 ### Edit
 
 #### Edit developer details : `edit-developer`
 
 Edits the details of an existing developer in the address book.
 
-Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`
+Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [rt/RATING]`
 
 * Edits the developer at the specified `INDEX` in the currently displayed developer list.
 * At least one of the optional fields must be provided.
@@ -510,6 +543,8 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 * `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
 * You can, however, edit the casing of an existing developer's `NAME`.
 * `PROJECT_NAME` should be the exact name of an existing project.
+* Note that for `RATING` values that not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
+ may not be reflected as clearly in the coloured stars.
 
 Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
 
@@ -568,7 +603,7 @@ Projects: ProjectA
 
 Edits the details of an existing project in the address book.
 
-Format: `edit-project INDEX [desc/DESCRIPTION] [dl/DEADLINE]...`
+Format: `edit-project INDEX [dr/DESCRIPTION] [dl/DEADLINE]...`
 
 * Edits the project at the specified `INDEX` in the currently displayed project list.
 * At least one of the optional fields must be provided.
@@ -594,7 +629,7 @@ Deadlines:
 
 ### Import information
 
-#### Import developers `import-developer`
+#### Import developers : `import-developer`
 
 Takes in a CSV file and populates the internal list of developers if the file is formatted correctly
 
@@ -617,7 +652,7 @@ Michael,999999999,michael@email.com,567 Birch St,06-03-2020,Developer,7000,Micha
 
 Example of usage: `import-developer developers.csv`
 
-* imports `developers.csv` and adds a new developer for each row of data.
+* Imports `developers.csv` and adds a new developer for each row of data.
 
 When command succeeds, CLI shows:
 
@@ -632,11 +667,11 @@ Salary: 3333;
 Projects: ProjectBAndroidApp
 ```
 
-for each developer successfully added
+for each developer successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Import clients `import-client`
+#### Import clients : `import-client`
 
 Takes in a CSV file and populates the internal list of clients if the file is formatted correctly
 
@@ -659,7 +694,7 @@ Laura,888555555,laura@email.com,101 Birch St,HR,Software Systems,software.com/do
 
 Example of usage: `import-client clients.csv`
 
-* imports `clients.csv` and adds a new client for each row of data.
+* Imports `clients.csv` and adds a new client for each row of data.
 
 When command succeeds, CLI shows:
 
@@ -674,17 +709,17 @@ Document: docs.google.com/abd;
 Projects: ProjectBAndroidApp
 ```
 
-for each client successfully added
+for each client successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Find
 
-#### Find developer details
+#### Find developer details : `find-developer`
 
 Finds the details of an existing developer in the address book.
 
-Format: `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [gh/GITHUB_ID] [ra/RATING]`
+Format: `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [gh/GITHUB_ID] [rt/RATING]`
 
 * Finds for developers based on the attributes provided.
 * At least one of the optional fields must be provided.
@@ -700,13 +735,14 @@ Example of usage: `find-developer pr/2103T rt/5.0`
 When command succeeds, CLI shows:
 
 ```
-This is the one developer with matching information
+This is the one developer with matching information.
 ```
+
 followed by the matching developer's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Find client details
+#### Find client details : `find-client`
 
 Finds the details of an existing client in the address book.
 
@@ -721,22 +757,23 @@ Format: `find-client [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [o/ORGANISATION] [
 
 Example of usage: `find-client o/Google r/Senior developer`
 
-* Prints clients from Google of the senior developer role
+* Prints clients from Google of the senior developer role.
 
 When command succeeds, CLI shows:
 
 ```
-These are the 2 clients with matching information
+These are the 2 clients with matching information.
 ```
+
 followed by the matching clients' details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Find project details
+#### Find project details : `find-project`
 
 Finds the details of an existing project in the address book.
 
-Format: `find-project [pr/PROJECT_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
+Format: `find-project [pr/PROJECT_NAME] [dr/DESCRIPTION] [dl/DEADLINE]`
 
 * Finds for projects based on the attributes provided.
 * At least one of the optional fields must be provided.
@@ -752,20 +789,20 @@ Example of usage: `find-project pr/JuiceApp`
 When command succeeds, CLI shows:
 
 ```
-This is the one project with matching information
+This is the one project with matching information.
 ```
 followed by the matching project's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Find deadlines `find-deadline`
+### Find deadlines : `find-deadline`
 
-Finds deadlines in project tab based on date and/or priority
+Finds deadlines in project tab based on date and/or priority.
 
 Format: `find-deadline [d/DATE] [pri/PRIORITY]`
 
-* When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date
-* When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown
+* When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date.
+* When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown.
 
 Example of usage: `find-deadline d/20-11-2023 pri/MEDIUM`
 
@@ -787,7 +824,7 @@ Format: `list-TYPE`
 
 * Lists the specific type of thing you are asking.
 
-Examples of usage:`list-developer`
+Example of usage:`list-developer`
 
 * Lists all the developers.
 
@@ -820,7 +857,7 @@ Format: `add-developer-role ROLE_NAME`
 * If you wish to check what roles are there, you can key in `delete-developer-role <anything random>`, `<anything
   random>` should not be an existing role.
 
-Examples of usage:`add-developer-role UIDesigner`
+Example of usage:`add-developer-role UIDesigner`
 
 * Adds the UIDesigner role to list of developer roles.
 * You can now add developers with UIDesigner as their roles.
@@ -846,7 +883,7 @@ Format: `add-client-role ROLE_NAME`
 * If you wish to check what roles are there, you can key in `delete-client-role <anything random>`, `<anything
   random>` should not be an existing role.
 
-Examples of usage:`add-client-role Boss`
+Example of usage:`add-client-role Boss`
 
 * Adds the Boss role to list of developer roles.
 * You can now add clients with Boss as their roles.
@@ -872,7 +909,7 @@ Format: `delete-developer-role ROLE_NAME`
   cannot be deleted.
 * You will not be able to delete a developer role if there are developers in the list with that role.
 
-Examples of usage:`delete-developer-role UI Manager`
+Example of usage:`delete-developer-role UI Manager`
 
 * Deletes the UI Manager from the list of developer roles.
 * You can no longer add developers with UIDesigner as their roles.
@@ -966,7 +1003,7 @@ Format: `undo`
   you cannot undo anymore.
 * `undo` works for all `edit`, `add-TYPE` and `delete` commands.
 
-Examples of usage: `undo`
+Example of usage: `undo`
 
 * You just deleted a new developer, and you wish to `undo`.
 
@@ -981,7 +1018,7 @@ Address: 42, Clementi Ave 7, #02-2;
 Date Joined: 23-11-2023;
 Role: Frontend Developer;
 Salary: 5000;
-Projects: CustomWebsiteAndroidApp
+Projects: CustomWebsite AndroidApp
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -998,7 +1035,7 @@ Format: `redo`
   you cannot redo anymore.
 * `redo` works for all `edit`, `add-TYPE` and `delete` commands.
 
-Examples of usage:
+Example of usage:
 
 * You just `undo` delete developer, and you wish to `redo` to add it back.
   When command succeeds, CLI shows:
@@ -1012,7 +1049,7 @@ Address: 42, Clementi Ave 7, #02-2;
 Date Joined: 23-11-2023;
 Role: Frontend Developer;
 Salary: 5000;
-Projects: CustomWebsiteAndroidApp
+Projects: CustomWebsite AndroidApp
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -1042,6 +1079,8 @@ Format: `exit`
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Feedback System `[coming in v2.0]`
+
+<span style="page-break-after: always;"></span>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1098,19 +1137,19 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 
 ## Command summary
 
-| Action              | Format, Examples                                                                                                                                                                                                                                             |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add developers**  | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
-| **add clients**     | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
-| **add projects**    | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
-| **edit developers** | Format: <br>`edit-developer INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-developers 2 p/98989898 pr/Project2 pr/Project3` <br> |
-| **edit clients**    | Format: <br>`edit-client INDEX INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-clients 3 p/bob@gmail.com` <br>                          |
-| **edit projects**   | Format: <br>`edit-project INDEX [n/NAME] [desc/DESCRIPTION] [gh/GITHUB_REPO] [d/DEADLINE]...`  <br> Example: <br> `edit-projects 1 d/Finish Feature-A by: 09-09-2023` <br>                                                                                   |
-| **find developers** | Format: <br>`find-developer p/<Project Name>` <br> Example: <br>`find-developer p/2103/T` <br>                                                                                                                                                               |
-| **find clients**    | Format: <br>`find-client n/<Name>` <br> Example: <br>`find-client n/Amy` <br>                                                                                                                                                                                |
-| **find projects**   | Format: <br>`find-project dr/description` <br> Example: <br>`find-project dr/school semester project` <br>                                                                                                                                                   |
-| **delete**          | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                          |
-| **list**            | Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`                                                                                                                                                                                     |
-| **help**            | `help`                                                                                                                                                                                                                                                       |
+| Action              | Format, Examples                                                                                                                                                                                                                                         |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add developers**  | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                      |
+| **add clients**     | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                      |
+| **add projects**    | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                      |
+| **edit developers** | Format: <br>`edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [rt/RATING]`  <br> Example: <br> `edit-developer 2 p/98989898 pr/Project2 pr/Project3` <br> |
+| **edit clients**    | Format: <br>`edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-client 3 p/bob@gmail.com` <br>                         |
+| **edit projects**   | Format: <br>`edit-project INDEX [n/NAME] [dr/DESCRIPTION] [dl/DEADLINE]...`  <br> Example: <br> `edit-projects 1 dl/Finish Feature-A by: 09-09-2023` <br>                                                                                                |
+| **find developers** | Format: <br>`find-developer p/<Project Name>` <br> Example: <br>`find-developer p/2103/T` <br>                                                                                                                                                           |
+| **find clients**    | Format: <br>`find-client n/<Name>` <br> Example: <br>`find-client n/Amy` <br>                                                                                                                                                                            |
+| **find projects**   | Format: <br>`find-project dr/description` <br> Example: <br>`find-project dr/school semester project` <br>                                                                                                                                               |
+| **delete**          | Format: <br> <br> Example: <br><br>                                                                                                                                                                                                                      |
+| **list**            | Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`                                                                                                                                                                                 |
+| **help**            | `help`                                                                                                                                                                                                                                                   |
 
 [Scroll back to Table of Contents](#table-of-contents)

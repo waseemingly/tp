@@ -61,11 +61,11 @@ public class EditDeveloperCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_ROLE + "ROLE] "
-            + "[" + PREFIX_PROJECT + "PROJECT]...\n"
+            + "[" + PREFIX_PROJECT + "PROJECT]... "
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_DATEJOINED + "DATE JOINED] "
             + "[" + PREFIX_GITHUBID + "GITHUBID] "
-            + "[" + PREFIX_RATING + "RATING] "
+            + "[" + PREFIX_RATING + "RATING] \n"
             + "Example: \n" + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
