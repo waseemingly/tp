@@ -3,11 +3,34 @@ layout: page
 title: User Guide
 ---
 
+## Welcome to CodeContact
+**Taking charge of your PROject Management!**
+
+Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
+facilitating collaboration, and offering command-line efficiency for project managers
+
+CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
+having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
+management tasks done faster than traditional GUI apps.
+
+Here’s an overview of how CodeContact can help you streamline your project management processes.
+* Store and edit information about developers and clients related to projects
+* Store and manage projects and their deadlines
+* Assign projects to developers and clients
+
+If you are familiar with CodeContact, jump to our [**Table of Contents**](#table-of-contents) to find out what you are looking
+for!
+
+If you are new here, you may start with learning [**how to naviagte this guide**](#navigating-this-guide) and visit
+the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
+<div style="page-break-after: always;"></div>
+
+-------------------------------------------------------------------------------------
+
 ## Table of Contents
 
-* [Introduction](#introduction)
-* How can this guide help me?
-* Navigating this guide
+* [How can this guide help me?](#how-can-this-guide-help-me)
+* [Navigating this guide](#navigating-this-guide)
     * [Glossary](#glossary)
         * [Definitions](#definitions)
         * [Parameter Information](#parameter-information)
@@ -48,16 +71,7 @@ title: User Guide
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
-
--------------------------------------------------------------------------------------
-## Introduction
-
-Seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts,
-facilitating collaboration, and offering command-line efficiency for project managers
-
-CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
-having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
-management tasks done faster than traditional GUI apps.
+<div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------
 
@@ -146,11 +160,64 @@ Here are some notes about these parameters.
 | `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered |                  |
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             |                  |
 
+### Format
+#### General Formatting
+Here are the explanations behind the formatting we use through this guide.<br>
+
+* Words in `grey blocks (like these)` usually represent any of the following:
+  1. Text used in commands, such as `add-developer`
+  2. Keys on your keyboard like `Enter`
+  3. File names such as `CodeContact.jar`
+  <br>
+<div markdown="block" class="alert alert-info">
+:bulb: This is a blue box. It can be used for additional tips or more useful information.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: This is a warning box. It can be used to give more details on the warnings and limitations of features.
+</div>
+
+#### Command Formatting
+
+| Format                                       | Explanation                                                        | Example                            |
+|----------------------------------------------|--------------------------------------------------------------------|------------------------------------|
+| words in `[UPPER_CASE]` with square brackets | parameter values that are supplied by the user                     | `add-developer [n/NAME] [n/PHONE]` |
+| Items with `…` after them                    | parameters that can be used multiple times (or omitted completely) | `add-developer [pr/PROJECT]...`    |
+
+
 [Scroll back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 -----------------------------------------------------------------------------------------------
 
 ## Navigating the Graphical User Interface (GUI)
+CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
+of the different sections of our GUI, as well as some notes regarding the use of the GUI.
+### Quick Orientation
+![image](images/UG%20UI%202.png)
+![image](images/UG%20UI%201.png)
+
+Here is a quick summary of each GUI component within CodeContact.
+
+| Name                             | Description                                                                                                                                                                                                |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Menu Bar                         | Contains dropdown menu options for the CodeContact application.                                                                                                                                            |
+| Command Box                      | Allows users to enter CodeContact commands.                                                                                                                                                                |
+| Result Display                   | 1. Provides CLI-based feedback upon a user command. <br> 2. Allows users to see if their command was successful or not. <br> 3. Provides error messages to guide users on how to use CodeContact commands. |
+| Tabs                             | Allows users to see different lists of information on clicking on the relevant tabs. The tabs will also automatically switch to the correct tab corresponding to the command executed.                     |
+| Developers/Clients/Projects card | Displays a list of Developer, Client or Project Cards. This list can be manipulated through commands like `find` and `list`                                                                                |
+| Deadlines progress               | Displays the progress of deadlines for a certain project.                                                                                                                                                  |
+| Deadline list with details       | Displays the details of the deadline in a table form                                                                                                                                                       |
+| Re-sort                          | Click on the respective words, there will be a small black arrow that appears. You can press to resort the data eg. Show date from furthest to nearest day                                                 |
+
+### Notes on GUI
+<div markdown="block" class="alert alert-warning">
+If you executed a `find` command in developer tab and switched to the client tab, when you return to the developer tab the find results will be cleared and
+the whole list of developers will be shown again. This is the intended behavior of CodeContact as we hope that this can save you the time
+from always needing to call the list command.
+</div>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,13 +225,13 @@ Here are some notes about these parameters.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `codecontact.jar`.
+2. Download the latest `CodeContact.jar`.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your CodeContact.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar codecontact.jar`
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CodeContact.jar`
    command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app might contain some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
@@ -244,33 +311,11 @@ Congratulations! You are now ready to use CodeContact!
 To view all our features, you may visit our [Features](#features) section
 
 [Scroll back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
-  ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
-  as space characters surrounding line-breaks may be omitted when copied over to the application.
-
 
 ### Lock `lock`
 
@@ -1031,6 +1076,8 @@ Format: `exit`
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Feedback System `[coming in v2.0]`
+
+<span style="page-break-after: always;"></span>
 
 --------------------------------------------------------------------------------------------------------------------
 
