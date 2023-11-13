@@ -104,7 +104,7 @@ public class Messages {
                 .append("; \nSalary: ")
                 .append(developer.getSalary())
                 .append("; \nProjects: ");
-        developer.getProjects().forEach(builder::append);
+        developer.getProjects().forEach(t -> builder.append(t).append(" "));
         return builder.toString();
     }
 
@@ -130,7 +130,7 @@ public class Messages {
                 .append("; \nDocument: ")
                 .append(client.getDocument())
                 .append("; \nProjects: ");
-        client.getProjects().forEach(builder::append);
+        client.getProjects().forEach(t -> builder.append(t).append(" "));
         return builder.toString();
     }
 
