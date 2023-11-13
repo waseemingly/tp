@@ -41,7 +41,8 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 -------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## How can this guide help me?
+### How can this guide help me?
+{: .no_toc}
 
 If you are a new user, we hope to first inform you on how you can [get started](#quick-start) using CodeContact.
 
@@ -62,7 +63,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 <!-- -->
 
-## Glossary
+## **Glossary**
 
 <!-- -->
 
@@ -159,7 +160,7 @@ Here are the explanations behind the formatting we use through this guide.<br>
 -----------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Navigating the Graphical User Interface (GUI)
+## **Navigating the Graphical User Interface (GUI)**
 CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
 of the different sections of our GUI, as well as some notes regarding the use of the GUI.
 ### Quick Orientation
@@ -190,7 +191,7 @@ from always needing to call the list command.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -213,7 +214,7 @@ from always needing to call the list command.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## CodeContact Tutorial (for new users)
+## **CodeContact Tutorial (for new users)**
 
 This is a tutorial for **first-time** CodeContact users.
 
@@ -309,7 +310,8 @@ To view all our features, you may visit our [Features](#features) section
 | [Additional Features](#additional-features)       |              Finding Help               |                     Clearing data                     |                  Exiting program                  |
 |:--------------------------------------------------|:---------------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
 | [Miscellaneous Features](#miscellaneous-features) | [View Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
-## Security Features
+
+## **Security Features**
 
 ### Password Protection
 Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and customizable password.
@@ -365,8 +367,8 @@ Password changed successfully.
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-## Management Features
-### Add
+## **Management Features**
+### **Add**
 
 #### Add developer : `add-developer`
 
@@ -471,7 +473,7 @@ Entered details of a project incorrectly? You can always undo the action with th
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Delete
+### **Delete**
 
 #### Delete developer : `delete-developer`
 
@@ -554,7 +556,7 @@ Deleted a wrong project? You can always undo the action with the [`undo`](#undo)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Edit
+### **Edit**
 
 #### Edit developer details : `edit-developer`
 
@@ -665,9 +667,9 @@ You can always undo the action with the [`undo`](#undo) command!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Import information
+### **Import**
 
-#### Import developers : `import-developer`
+#### Import developers' deatils: `import-developer`
 
 Takes in a CSV file and populates the internal list of developers if the file is formatted correctly
 
@@ -709,7 +711,7 @@ for each developer successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Import clients : `import-client`
+#### Import clients' details: `import-client`
 
 Takes in a CSV file and populates the internal list of clients if the file is formatted correctly
 
@@ -751,7 +753,7 @@ for each client successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Find
+### **Find**
 
 #### Find developer details : `find-developer`
 
@@ -854,6 +856,7 @@ These are the 3 projects with matching information.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+## **List**
 ### Listing information : `list`
 
 Shows a list of all developers in the address book.
@@ -880,9 +883,9 @@ Listed all developers
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Add roles
+## **Add roles**
 
-#### Add developer roles : `add-developer-role`
+### Add developer roles : `add-developer-role`
 
 Adds new developer roles into the system.
 
@@ -913,7 +916,7 @@ New role for developer added: Tester
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Add client roles : `add-client-role`
+### Add client roles : `add-client-role`
 
 Adds new client roles into the system.
 
@@ -944,9 +947,9 @@ New role for client added: Boss
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Delete roles
+## **Delete roles**
 
-#### Delete developer roles : `delete-developer-role`
+### Delete developer roles : `delete-developer-role`
 
 Delete developer roles from the system.
 
@@ -970,7 +973,7 @@ Role for developers deleted: UIDesigner
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Delete client roles : `delete-client-role`
+### Delete client roles : `delete-client-role`
 
 Delete client roles from the system.
 
@@ -993,7 +996,8 @@ Role for clients deleted: Boss
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Mark deadline as done : `mark-deadline`
+## **Mark**
+### Mark project deadline as done : `mark-deadline`
 
 Marks the indicated deadline for the project as done.
 
@@ -1012,10 +1016,6 @@ The deadline has been marked as completed!
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
-
-## Mark Project Deadlines
-Allows managers to mark project specific deadlines as done, or revert this change by unmarking them as undone
-
 
 ### Mark deadline as undone : `unmark-deadline`
 
@@ -1037,6 +1037,7 @@ The deadline has been marked as undone!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+## **Undo**
 ### Undo : `undo`
 
 Undo the previous command you entered.
@@ -1101,7 +1102,7 @@ Projects: CustomWebsite AndroidApp
 <div style="page-break-after: always;"></div>
 
 ## Additional Features
-### Miscellaneous Features
+### **Miscellaneous Features**
 Listed below are some miscellaneous features that are available in CodeContact to improve your user experience.
 #### Viewing help : `help`
 
@@ -1136,7 +1137,7 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -1177,7 +1178,7 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+# Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
@@ -1188,7 +1189,7 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Command summary
+# Command summary
 
 | Action               | Format, Examples                                                                                                                                                                                                                                                                                                                 |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
