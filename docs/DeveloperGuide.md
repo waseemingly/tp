@@ -697,7 +697,8 @@ selected tab changes, the `list` command will be executed.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
 When the user clicks away from the tab showing the command result and then switches back to the tab, the tab will
-be updated to show the full list of information for that tab again.</div>
+be updated to show the full list of information for that tab again.
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1379,6 +1380,46 @@ For these tests, each test case has respective prerequisites that must be met be
 1. Prerequisites: Execute either an edit or delete command after unlocking the app, then execute the `undo` command.
   2. Test case: `redo` <br>
      Expected: The changes from the recent `undo` command executed are reverted. Command success status message shown.
+
+### Adding roles
+#### Adding Developer Roles
+1. Test case: `add-developer-role UIDesigner`<br>
+Expected results: UIDesigner added as a role. Command status success message shown.
+2. Test case: `add-developer-role Developer`<br>
+Expected results: No role added. Error details shows role cannot be added as it exists.
+3. **Test Case 1 must be completed** `add-developer-role UIDesigner`<br>
+Expected results: No role added. Error details shows role cannot be added as it exists.
+
+#### Adding Client Roles
+1. Test case: `add-client-role Tester`<br>
+   Expected results: Tester added as a role. Command status success message shown.
+2. Test case: `add-client-role HR`<br>
+   Expected results: No role added. Error details shows role cannot be added as it exists.
+3. **Test Case 1 must be completed** `add-developer-role Tester`<br>
+   Expected results: No role added. Error details shows role cannot be added as it exists.
+
+### Delete roles
+#### Deleting Developer Roles
+1. Prerequisite: role `UIDesigner` has been added in already (i.e. add in this role if it is after any of the test case)
+2. Test case: `delete-developer-role UIDesigner`
+Expected results: UIDesigner deleted as a role. Command status success message shown.
+3. Test case: assign the `UIDesigner` role to any developer, then execute `delete-developer-role UIDesigner`
+Expected results:  No role deleted. Error details shows role cannot be deleted as there are developers using it.
+4. Test case: `delete-developer-role Developer`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as this is a pre-declared role.
+5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role UIDesigner`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
+
+#### Deleting Client Roles
+1. Prerequisite: role `Tester` has been added in already (i.e. add in this role if it is after any of the test case)
+2. Test case: `delete-client-role Tester`
+   Expected results: Tester deleted as a role. Command status success message shown.
+3. Test case: assign the `Tester` role to any client, then execute `delete-client-role Tester`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as there are clients using it.
+4. Test case: `delete-client-role HR`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as this is a pre-declared role.
+5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role Tester`
+   Expected results:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
 
 ### Finding
 #### Finding projects
