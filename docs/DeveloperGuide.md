@@ -1380,6 +1380,43 @@ For these tests, each test case has respective prerequisites that must be met be
   2. Test case: `redo` <br>
      Expected: The changes from the recent `undo` command executed are reverted. Command success status message shown.
 
+### Finding
+#### Finding projects
+1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
+2. Test case: 'find-project pr/Laundry App'<br>
+  Expected: Projects with the name, Laundry App, are shown on the list. Command success status message shown.
+3. Test case: 'find-developer Laundry App'
+  Expected: No search result due to error in format. No prefix provided before project name. Error details shown in the status message.
+
+#### Finding developers
+1. Prerequisites: List all developers using the 'list-developer' command. Multiple developers in the list.
+2. Test case: 'find-developer n/Alice'<br>
+   Expected: Developers with the name, Alice, are shown on the list. Command success status message shown.
+3. Test case: 'find-developer Alice'
+   Expected: No search result due to error in format. No prefix provided before name. Error details shown in the status message.
+
+#### Finding clients
+1. Prerequisites: List all clients using the 'list-client' command. Multiple clients in the list.
+2. Test case: 'find-client o/Google'<br>
+   Expected: Clients from the organisation, Google, are shown on the list. Command success status message shown.
+3. Test case: 'find-client Google'
+   Expected: No search result due to error in format. No prefix provided before organisation. Error details shown in the status message.
+
+### Marking project deadlines
+#### Mark deadline as done
+1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
+2. Test case: 'mark-deadline 1 2'<br>
+   Expected: The second deadline of the first project in the currently displayed project list is marked as done. Command success status message shown.
+3. Test case: 'mark-deadline 1 x' where 'x' is an integer larger than the number of deadlines for the project specified.
+   Expected: No change. Error details shown in the status message.
+
+#### Mark deadline as undone
+1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
+2. Test case: 'unmark-deadline 1 2'<br>
+   Expected: The second deadline of the first project in the currently displayed project list is marked as undone. Command success status message shown.
+3. Test case: 'unmark-deadline 1 x' where 'x' is an integer larger than the number of deadlines for the project specified.
+   Expected: No change. Error details shown in the status message.
+   
 ### Exiting the app
 1. After executing some commands, use the `exit` command to exit the app.
 2. You can re-launch the app by double-clicking the jar file.<br>
@@ -1415,7 +1452,6 @@ same time.<br>
 **Enhanced Behavior:** There should be a limit to the deadline line dates like 10-20 years before and after the current date.
 
 ### Password Recovery
-
 **Current Behavior:** If you forgot your password, there is no way to retrieve it<br>
 **Enhanced Behavior:** Links the system to email or have verifications that allows users to reset their password.
 
@@ -1429,6 +1465,16 @@ The backend implementation of logic follows the CLI implementation by creating a
 **Current Behavior:** There is only import csv function and no options for export<br>
 **Enhanced Behavior:** A new menu item will be added under File called `Export data` and clicking it will lead to a window
 where users can select the location to save the files for Developers, Clients and Projects. The file will be saved in csv format.
+
+### Find Autocomplete
+**Current Behavior:** While searching, users are not prompted for autocomplete suggestions.
+**Enhanced Behavior:** Implement autocomplete suggestions as users type their search queries. This can help users avoid
+typos and provide quick access to commonly used search terms.
+
+### Sort Results
+**Current Behavior:** After each command, the list of contacts shown are based on the order the contact was added.
+**Enhanced Behavior:** Allow users to sort the search results based on different criteria such as name, date, or
+priority. This provides users with more flexibility in organizing and viewing the search results.
 
 [Scroll back to Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
