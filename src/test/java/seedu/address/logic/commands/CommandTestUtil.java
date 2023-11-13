@@ -31,6 +31,8 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.NameClientContainsKeywordsPredicate;
 import seedu.address.model.developer.Developer;
 import seedu.address.model.developer.NameDeveloperContainsKeywordsPredicate;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 import seedu.address.testutil.EditDeveloperDescriptorBuilder;
 
@@ -280,6 +282,20 @@ public class CommandTestUtil {
         model.updateFilteredClientList(new NameClientContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showProjectAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
+
+        Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
+        final String[] splitName = project.getName().split("\\s+");
+        model.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(4, model.getFilteredProjectList().size());
     }
 
 }
