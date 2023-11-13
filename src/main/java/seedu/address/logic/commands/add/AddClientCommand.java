@@ -50,7 +50,7 @@ public class AddClientCommand extends Command {
             + PREFIX_DOCUMENT + "google.com ";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book!";
 
     private final Client toAdd;
 

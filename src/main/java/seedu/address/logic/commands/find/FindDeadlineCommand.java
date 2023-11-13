@@ -25,7 +25,7 @@ public class FindDeadlineCommand extends Command {
             + "Parameters: "
             + PREFIX_DATEJOINED + "DATE (Shows deadlines before this date) \n"
             + "[" + PREFIX_PRIORITY + "[HIGH/MEDIUM/LOW] (Shows deadlines based on priority)\n"
-            + "Example: " + COMMAND_WORD + " d/2023-12-31 pri/HIGH\n";
+            + "Example: " + COMMAND_WORD + " d/28-12-2021 pri/HIGH\n";
 
     private final Predicate<Deadline> predicate;
 
