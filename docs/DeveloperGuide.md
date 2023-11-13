@@ -20,8 +20,8 @@ title: Developer Guide
   * [Edit Features (`edit-developer`, `edit-client`, `edit-project`)](#edit-feature--edit-developer--edit-client--edit-project-)
   * [List Features (`list-developer`, `list-client`, `list-project`)](#list-feature--list-developer--list-client--list-project-)
   * [Undo/redo Features (`undo`, `redo`)](#undoredo-feature--undo--redo-)
-  * [add-role Feature (`add-developer-role`, `add-client-role`)](#add-role-feature--add-developer-role--add-client-role-)
-  * [delete-role Feature (`delete-developer-role`, `delete-client-role`)](#delete-role-feature--delete-developer-role--delete-client-role-)
+  * [Add-role Feature (`add-developer-role`, `add-client-role`)](#add-role-feature--add-developer-role--add-client-role-)
+  * [Delete-role Feature (`delete-developer-role`, `delete-client-role`)](#delete-role-feature--delete-developer-role--delete-client-role-)
   * [GUI Feature](#gui-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
@@ -51,6 +51,8 @@ title: Developer Guide
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -201,6 +203,8 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Implementation
 
 ### Add Features (`add-developer`, `add-client`, `add-project`)
@@ -263,8 +267,6 @@ The following sequence diagram illustrates how the delete developer operation wo
 
 <img src="images/DeleteClientSequenceDiagram.png" width="450" />
 
-
-#### Design considerations
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -414,6 +416,7 @@ The following sequence diagram provides an overview of how the find operation is
 
 ![Interactions Inside the Logic Component for the `find-developer n/alice` Command](images/FindDeveloperSequenceDiagram.png)
 
+#### Design considerations
 **Aspect:** Implementation of the predicate map:<br>
 **Alternative 1:**
 - Use a long chain of `if-else` conditions for each attribute.
@@ -525,7 +528,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-
+#### Design considerations
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
@@ -582,6 +585,7 @@ This is not a case-sensitive feature. The command allows users to add `developer
 The following sequence diagram shows how the Add-role operation works:
 ![SequenceDiagram](images/AddDeveloperRoleSequenceDiagram.png)
 
+#### Design considerations
 **Aspect: How add-role executes:**
 * **Alternative 1 (current choice):** Treat role as a variable, has a separate load and unload list
     * Pros: Role can just be treated as an attributed that needs more validation checks
@@ -668,7 +672,7 @@ the displayed project list has a project with the index `2` with at least `1` de
 
 #### Design considerations
 **Aspect: Execution of command**
-* Alternative 1: Implement methods in `ModelManager` class that can directly change the `isDone` status of the deadlines
+* **Alternative 1**: Implement methods in `ModelManager` class that can directly change the `isDone` status of the deadlines
 of a project based on the given project index and deadline index.
   * Pros: 
     * More aligned with OOP principles.
@@ -678,7 +682,7 @@ of a project based on the given project index and deadline index.
     through projects, so more methods need to be added to achieve this.
     * Given the GUI display of project deadlines in a Javafx TableView, makes it more complicated for changes in
     deadline status to be automatically reflected in the list of projects and deadlines displayed to the user.
-* Alternative 2 (current choice): Implement execution by creating an `EditProjectCommandParser` and `EditProjectCommand`
+* **Alternative 2 (current choice)**: Implement execution by creating an `EditProjectCommandParser` and `EditProjectCommand`
 that will replace the existing project entirely with a new one with the updated deadline being marked/unmarked.
   * Pros:
     * Fewer methods to implement, allows for more reuse.
@@ -724,6 +728,8 @@ be updated to show the full list of information for that tab again.
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Project Scope
@@ -789,14 +795,14 @@ use cases elaborated upon below are only detailed for developers. Nonetheless, t
 can be extrapolated for clients and projects too, without changes to the major details within
 the use case. Such associated pairs of use cases are listed in the table below.
 
-| **Developer use case** | **Client use case** | **Project use case**         |
-|------------------------|---------------------|------------------------------|
-| UC3 - Add a developer  | UC13 - Add a client  | UC14 - Add a project         |
-| UC4 - Delete a developer  | UC15 - Delete a client  | UC16 - Delete a project      |
-| UC5 - Edit a developer  | UC17 - Edit a client  | UC18 - Edit a project        |
-| UC6 - Find a developer  | UC19 - Find a client  | UC20 - Find a project        |
-| UC9 - Add developer role  | UC21 - Add client role  | -                            |
-| UC10 - Delete developer role  | UC22 - Delete client role  | -                            |
+| **Use Case** | **Developer command** | **Client command** | **Project command** |
+|--------------|:----------------------|:------------------:|:-------------------:|
+| UC3          | Add a developer       |    Add a client    |    Add a project    |
+| UC4          | Delete a developer    |  Delete a client   |  Delete a project   |
+| UC5          | Edit a developer      |   Edit a client    |   Edit a project    |
+| UC6          | Find a developer      |   Find a client    |   Find a project    |
+| UC7          | Add developer role    |  Add client role   |          -          |
+| UC8          | Delete developer role | Delete client role |          -          |
 
 #### **Use case:** UC1 - Unlock System
 
@@ -1177,11 +1183,11 @@ Deleting developer roles and client roles works the same way, hence deleting cli
 ### Non-Functional Requirements
 
 #### System/Performance Requirements
-* Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+* Should work on any _mainstream OS_ as long as it has Java `11` or above installed.<br>
 #### Reliability Requirements
 * Should be able to handle failures and show relevant error messages (hardware/network failures)
 * Should ensure that data is protected from corruption or loss
-* Should be able to recover immediately after inaccurate/invalid commands
+* Should be able to recover immediately after inaccurate/invalid commands<br>
 #### Usability Requirements
 * Should follow specific code design and usability guidelines
 * The user interface shall follow a consistent design pattern and layout throughout the application.
@@ -1189,8 +1195,8 @@ Deleting developer roles and client roles works the same way, hence deleting cli
 * Users shall receive informative feedback on their actions (e.g., success messages, error messages)
 in a clear and user-friendly manner.
 * Context-sensitive help and tooltips shall be available to assist users in understanding complex features.
-* A comprehensive user manual or online documentation shall be provided to explain how to use the application.
-### Process Requirements
+* A comprehensive user manual or online documentation shall be provided to explain how to use the application.<br>
+#### Process Requirements
 * The project is expected to adhere to a schedule that completes a milestone set every two weeks.
 * The project shall follow an iterative breadth-first development methodology
 * Automated testing suits shall be maintained and run for each build
@@ -1198,7 +1204,7 @@ in a clear and user-friendly manner.
 reviewing each piece of code before it is merged
 * All project source code shall be stored in a version control system (e.g., Git),
 and commits should follow a consistent naming convention.
-* Coding standards and style guidelines shall be defined and followed consistently by all development team members.
+* Coding standards and style guidelines shall be defined and followed consistently by all development team members.<br>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1231,6 +1237,8 @@ and commits should follow a consistent naming convention.
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Manual Testing**
 Given below are some instructions to test the app manually.
 
@@ -1473,7 +1481,9 @@ Expected results:  No role deleted. Error details shows role cannot be deleted a
    Expected: The application should load with any previous changes made during the previous running of the app.
 
 [Scroll back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Planned Enhancement**
 
@@ -1522,17 +1532,21 @@ where users can select the location to save the files for Developers, Clients an
 typos and provide quick access to commonly used search terms.
 
 ### Sort Results
-**Current Behavior:** After each command, the list of contacts shown are based on the order the contact was added.
+**Current Behavior:** After each command, the list of contacts shown are based on the order the contact was added.<br>
 **Enhanced Behavior:** Allow users to sort the search results based on different criteria such as name, date, or
 priority. This provides users with more flexibility in organizing and viewing the search results.
 
 [Scroll back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Effort**
-| Feature       | AB3 | CodeContact |
-|---------------|-----|-------------|
-| Effort        | 10  | 30          |
-| Lines of Code | 6k  | +18k        |
+
+| Feature        |  AB3  |  CodeContact  |
+|:---------------|:-----:|:-------------:|
+| Effort         |  10   |      30       |
+| Lines of Code  |  6k   |     +18k      |
 
 The CodeContact project involved a significant effort to adapt the AddressBook-Level3 (AB3) application to a new domain of Developers, Clients and Projects in a Software Engineering setting. One of the major changes was the addition of three new models, Developer, Client and Project, which required modifying the existing data model and the associated logic components. Another significant change was the complete redesign of the user interface using JavaFX, which required a significant amount of time and effort to learn and implement.
 
