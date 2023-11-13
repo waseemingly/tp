@@ -54,7 +54,7 @@ Further questions are also answered within a [FAQ](#faq) section below.
 Confused about the terms or formatting used in this guide? Learn how to **navigate this guide** [here](#navigating-this-guide).
 
 Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
-[here](#navigating-the-graphical-user-interface-).
+[here](#navigating-the-graphical-user-interface-gui).
 
 ------------------------------------------------------------------------------------------
 
