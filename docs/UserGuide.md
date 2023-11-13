@@ -67,9 +67,9 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
 * [Command Summary](#command-summary)
-<div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## How can this guide help me?
 
@@ -90,7 +90,9 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 ------------------------------------------------------------------------------------------
 
 ## Navigating this guide
+<!-- -->
 ### Glossary
+<!-- -->
 ### Definitions
 
 | Term          | Definition                                                                                                                |
@@ -164,12 +166,10 @@ Here are the explanations behind the formatting we use through this guide.<br>
   3. File names such as `CodeContact.jar`
   <br>
 <div markdown="block" class="alert alert-info">
-:bulb: This is a blue box. It can be used for additional tips or more useful information.
-</div>
+:bulb: This is a blue box. It can be used for additional tips or more useful information.</div>
 
 <div markdown="block" class="alert alert-warning">
-:exclamation: This is a warning box. It can be used to give more details on the warnings and limitations of features.
-</div>
+:exclamation: This is a warning box. It can be used to give more details on the warnings and limitations of features.</div>
 
 #### Command Formatting
 
@@ -180,15 +180,16 @@ Here are the explanations behind the formatting we use through this guide.<br>
 
 
 [Scroll back to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 -----------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Navigating the Graphical User Interface (GUI)
 CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
 of the different sections of our GUI, as well as some notes regarding the use of the GUI.
 ### Quick Orientation
 ![image](images/UG%20UI%202.png)
-<br>
+<br><br>
 ![image](images/UG%20UI%201.png)
 
 Here is a quick summary of each GUI component within CodeContact:
@@ -208,12 +209,11 @@ Here is a quick summary of each GUI component within CodeContact:
 <div markdown="block" class="alert alert-warning">
 If you executed a `find` command in developer tab and switched to the client tab, when you return to the developer tab the find results will be cleared and
 the whole list of developers will be shown again. This is the intended behavior of CodeContact as we hope that this can save you the time
-from always needing to call the list command.
-</div>
-
-<div style="page-break-after: always;"></div>
+from always needing to call the list command. </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -233,9 +233,10 @@ from always needing to call the list command.
 7. Refer to the [Features](#features) below for details of each command.
 
 [Scroll back to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## CodeContact Tutorial (for new users)
 
 This is a tutorial for **first-time** CodeContact users.
@@ -306,11 +307,12 @@ Congratulations! You are now ready to use CodeContact!
 To view all our features, you may visit our [Features](#features) section
 
 [Scroll back to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Features
-## Security Features
+### Security Features
 ### Lock `lock`
 
 Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
@@ -363,7 +365,7 @@ Password changed successfully.
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-## Management Features
+### Management Features
 ### Add
 
 #### Add developer : `add-developer`
@@ -819,11 +821,11 @@ Format: `add-developer-role ROLE_NAME`
 * There are 3 preset roles in the list of roles: `Frontend Developer`,`Backend Developer`,`Developer`.
 * You will not be able to add a developer to a role that does not exist in this list of developer roles.
 <div markdown="block" class="alert alert-warning">
-:exclamation: **Note** :This command is **not** case-sensitive, even if `Developer` is a role, `developer` can still be added.
-</div>
+:exclamation: **Note** :This command is **not** case-sensitive, even if `Developer` is a role, `developer` can still be added.</div>
+
 <div markdown="block" class="alert alert-info">:bulb:
 If you wish to check what roles are there, you can key in `delete-developer-role <anything random>`, `<anything
-random>` should not be an existing role. </div>
+random>` should not be an existing role. <div>
 
 Example of usage:`add-developer-role Tester`
 
@@ -848,12 +850,11 @@ Format: `add-client-role ROLE_NAME`
 * There are 4 preset roles in the list of roles: `HR`,`Manager`,`Developer`,`Client`.
 * You will not be able to add a client to a role that does not exist in this list of client roles.
 <div markdown="block" class="alert alert-warning">
-:exclamation: **Note** :This command is **not** case-sensitive, even if `HR` is a role, `hr` can still be added.
-</div>
+:exclamation: **Note** :This command is **not** case-sensitive, even if `HR` is a role, `hr` can still be added.</div>
 
 <div markdown="block" class="alert alert-info">:bulb:
 If you wish to check what roles are there, you can key in `delete-client-role <anything random>`, `<anything
-random>` should not be an existing role. </div>
+random>` should not be an existing role. <div>
 
 Example of usage:`add-client-role Boss`
 
@@ -1024,7 +1025,7 @@ Projects: CustomWebsite AndroidApp
 [Scroll back to Table of Contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
-## Miscellaneous Fetures
+### Miscellaneous Fetures
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -1051,9 +1052,9 @@ Format: `exit`
 
 ### Feedback System `[coming in v2.0]`
 
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -1102,9 +1103,10 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
    application before running the application again.
 
 [Scroll back to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 | Action               | Format, Examples                                                                                                                                                                                                                                                                                                                 |
