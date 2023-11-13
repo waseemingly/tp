@@ -309,11 +309,11 @@ When command succeeds, CLI shows:
 Password changed successfully.
 ```
 
-### Add
+## Add
 
-Project Manager can add developers, clients and projects.
+Project Managers can add developers, clients and projects.
 
-#### Add Developer: `add-developer`
+### Add Developer: `add-developer`
 
 * Type in:
     * `add-developer`
@@ -357,21 +357,25 @@ Example:
     * Missing particular's error (when prefixes are missing)
         * `Invalid command format!`
 
-#### Add Client: `add-client`
+### Add Client: `add-client`
 
-* Type in:
-    * `add-client`
-* And populate his/her details with prefixes and fields by typing in
-    * `n/NAME` for the client's name
-    * `p/PHONE_NUMBER` for the client's phone number
-    * `e/EMAIL` for the client's email
-    * `a/ADDRESS` for the client's address
-    * `r/ROLE` for the client's role in their organisation
-    * `pr/{PROJECT1, PROJECT2…}` for client's assigned projects
-    * `o/ORGANISATION` for the organisation the client is representing
-    * `do/DOCUMENT` for the document associated with the client
-* In the following overall format
-    * `add-client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE pr/PROJECT1 pr/PROJECT2 o/ORGANISATION do/document`
+Type in:
+     `add-client`
+
+And populate his/her details with prefixes and fields by typing in
+* `n/NAME` for the client's name
+* `p/PHONE_NUMBER` for the client's phone number
+* `e/EMAIL` for the client's email
+* `a/ADDRESS` for the client's address
+* `r/ROLE` for the client's role in their organisation
+* `pr/{PROJECT1, PROJECT2…}` for client's assigned projects
+* `o/ORGANISATION` for the organisation the client is representing
+* `do/DOCUMENT` for the document associated with the client
+
+
+In the following overall format
+
+`add-client n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE pr/PROJECT1 pr/PROJECT2 o/ORGANISATION do/document`
 
 Example:
 
@@ -398,16 +402,17 @@ Example:
     * Missing particular's error (when prefixes are missing)
         * `Invalid command format!`
 
-#### Add Project: `add-project`
+### Add Project: `add-project`
 
-* Type in:
-    * `add-project`
-* And populate its details with prefixes and fields by typing in
-    * `n/NAME` for the project's name
-    * `dr/DESCRIPTION` for the project's description
-    * `dl/{DEADLINE1, DEADLINE2...}` for deadlines associated with the project
-* In the following overall format
-    * `add-project n/NAME dr/DESCRIPTION dl/DEADLINE1 dl/DEADLINE2`
+Type in: `add-project`
+And populate its details with prefixes and fields by typing in
+* `n/NAME` for the project's name
+* `dr/DESCRIPTION` for the project's description
+* `dl/{DEADLINE1, DEADLINE2...}` for deadlines associated with the project
+
+In the following overall format
+
+`add-project n/NAME dr/DESCRIPTION dl/DEADLINE1 dl/DEADLINE2 ...`
 
 Example:
 
@@ -431,9 +436,9 @@ Example:
     * Missing particular's error (when prefixes are missing)
         * `Invalid command format!`
 
-### Delete
+## Delete
 
-#### Delete developer details : `delete-developer`
+### Delete developer: `delete-developer`
 
 Deletes developer in the address book.
 
@@ -443,7 +448,7 @@ Example of usage: `delete-developer 2`
 
 * Deletes second developer from the list
 
-#### Delete client : `delete-client`
+### Delete client: `delete-client`
 
 Deletes client in the address book.
 
@@ -453,7 +458,7 @@ Example of usage: `delete-client 3`
 
 * Deletes third client in list.
 
-#### Delete project details : `delete-project`
+### Delete project: `delete-project`
 
 Deletes the details of an existing project in the address book.
 
