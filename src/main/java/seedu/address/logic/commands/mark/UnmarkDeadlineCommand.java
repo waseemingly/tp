@@ -105,7 +105,7 @@ public class UnmarkDeadlineCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkDeadlineCommand)) {
+        if (!(other instanceof UnmarkDeadlineCommand)) {
             return false;
         }
 

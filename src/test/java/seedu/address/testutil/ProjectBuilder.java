@@ -54,7 +54,30 @@ public class ProjectBuilder {
 
     /** Sets the {@code Deadline} of the {@code Project} that we are building. */
     public ProjectBuilder withDeadline(String deadline) {
+        this.deadlineList = new ArrayList<>();
         this.deadlineList.add(new Deadline(deadline, 1));
+        return this;
+    }
+
+    /** Sets the {@code Deadline} of the {@code Project} that we are building. */
+    public ProjectBuilder withDeadlines(List<Deadline> deadlines) {
+        this.deadlineList = new ArrayList<>();
+        int index = 1;
+        for (Deadline d : deadlines) {
+            this.deadlineList.add(new Deadline(d.getStringRepresentation(), index));
+            index += 1;
+        }
+        return this;
+    }
+
+    /** Sets the {@code Deadline} of the {@code Project} that we are building. */
+    public ProjectBuilder withDeadlinesString(List<String> deadlines) {
+        this.deadlineList = new ArrayList<>();
+        int index = 1;
+        for (String d : deadlines) {
+            this.deadlineList.add(new Deadline(d, index));
+            index += 1;
+        }
         return this;
     }
 
