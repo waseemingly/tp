@@ -23,13 +23,14 @@ You can reach us at the email `mahidharah@gmail.com`
 <img src="images/emzm2023.png" width="200px">
 
 [[github](http://github.com/emzm2023)]
+[[portfolio](team/emzm2023.md)]
 
 ### Wan Mingyu
 
 <img src="images/mingyu-wan.png" width="200px">
 
 [[github](http://github.com/mingyu-wan)]
-[[portfolio](team/waseemingly.md)]
+[[portfolio](team/mingyu-wan.md)]
 
 * Role: Developer
 
