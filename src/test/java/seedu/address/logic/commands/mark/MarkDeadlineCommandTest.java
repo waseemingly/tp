@@ -16,11 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.ProjectBuilder;
 
@@ -89,15 +87,6 @@ public class MarkDeadlineCommandTest {
         // different project index -> returns false
         assertFalse(markFirstCommand.equals(markSecondCommand));
     }
-
-//    /**
-//     * Generates a new MarkDeadlineCommand with the details of the given project index and deadline index.
-//     */
-//    private MarkDeadlineCommand prepareCommand(Index projIndex, Index deadlineIndex) {
-//        MarkDeadlineCommand markDeadlineCommand = new MarkDeadlineCommand(projIndex, deadlineIndex);
-//        markDeadlineCommand.setData(model, new CommandResult("", TabIndex.Project));
-//        return markDeadlineCommand;
-//    }
 
     @Test
     public void execute_validIndexesFilteredList_success() {

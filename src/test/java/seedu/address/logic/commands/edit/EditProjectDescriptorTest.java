@@ -2,14 +2,9 @@ package seedu.address.logic.commands.edit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PROJECT1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PROJECT2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_FULL_PROJECT_DEADLINE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FULL_PROJECT_DEADLINE_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_APPLEAPP;
 
 import org.junit.jupiter.api.Test;
@@ -43,8 +38,8 @@ public class EditProjectDescriptorTest {
         assertNotEquals(DESC_PROJECT1, editedProj);
 
         // different deadlines -> returns false
-        editedProj = new EditProjectDescriptorBuilder(DESC_PROJECT1).
-                withDeadline(VALID_FULL_PROJECT_DEADLINE_2).build();
+        editedProj = new EditProjectDescriptorBuilder(DESC_PROJECT1)
+                .withDeadline(VALID_FULL_PROJECT_DEADLINE_2).build();
         assertNotEquals(DESC_PROJECT1, editedProj);
     }
 

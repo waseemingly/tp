@@ -16,11 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.ProjectBuilder;
 
@@ -71,14 +69,14 @@ public class UnmarkDeadlineCommandTest {
     @Test
     public void equals() {
         UnmarkDeadlineCommand unmarkFirstCommand = new UnmarkDeadlineCommand(INDEX_FIRST_PROJECT, INDEX_FIRST_PROJECT);
-        UnmarkDeadlineCommand unmarkSecondCommand = 
+        UnmarkDeadlineCommand unmarkSecondCommand =
                 new UnmarkDeadlineCommand(INDEX_SECOND_PROJECT, INDEX_SECOND_PROJECT);
 
         // same object -> returns true
         assertTrue(unmarkFirstCommand.equals(unmarkFirstCommand));
 
         // same values -> returns true
-        UnmarkDeadlineCommand unmarkFirstCommandCopy = 
+        UnmarkDeadlineCommand unmarkFirstCommandCopy =
                 new UnmarkDeadlineCommand(INDEX_FIRST_PROJECT, INDEX_FIRST_PROJECT);
         assertTrue(unmarkFirstCommand.equals(unmarkFirstCommandCopy));
 

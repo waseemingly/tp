@@ -1,17 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.edit.EditProjectCommand;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.commons.util.ToStringBuilder;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 /**
  * A utility class to help with building EditProjectDescriptor objects.

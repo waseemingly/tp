@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.model.commons.Name;
 import seedu.address.model.project.Deadline;
@@ -81,7 +80,7 @@ public class ProjectBuilder {
         }
         return this;
     }
-    
+
     /** Builds a Project object. */
     public Project build() {
         return new Project(name, description, deadlineList);

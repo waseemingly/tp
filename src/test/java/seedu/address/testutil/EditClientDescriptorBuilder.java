@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.edit.EditClientCommand;
-import seedu.address.logic.commands.edit.EditClientCommandTest;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientRoles;
 import seedu.address.model.client.Document;

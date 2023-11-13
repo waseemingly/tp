@@ -7,18 +7,12 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_PROJECT1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PROJECT2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FULL_PROJECT_DEADLINE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_APPLEAPP;
-import static seedu.address.logic.commands.CommandTestUtil.assertClientCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertProjectCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
-import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +23,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
@@ -86,7 +79,7 @@ public class EditProjectCommandTest {
                 Messages.format(editedProject));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-    
+
         assertProjectCommandSuccess(editProjectCommand, model, expectedMessage, expectedModel);
     }
 

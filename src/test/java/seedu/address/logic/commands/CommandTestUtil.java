@@ -191,7 +191,7 @@ public class CommandTestUtil {
         DESC_DAN = new EditClientDescriptorBuilder().withName(VALID_NAME_DAN).withPhone(VALID_PHONE_DAN)
                 .withAddress(VALID_ADDRESS_DAN).withEmail(VALID_EMAIL_DAN).withProjects(VALID_PROJECT_1_DAN)
                 .withDocument(VALID_DOCUMENT_DAN).build();
-        
+
         DESC_PROJECT1 = new EditProjectDescriptorBuilder().withDescription(VALID_PROJECT_DESCRIPTION_ANDROIDAPP)
                 .withDeadlines(VALID_FULL_PROJECT_DEADLINE_1).build();
         DESC_PROJECT2 = new EditProjectDescriptorBuilder().withDescription(VALID_PROJECT_DESCRIPTION_APPLEAPP)
@@ -245,7 +245,7 @@ public class CommandTestUtil {
                 false, TabIndex.Client);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
-    
+
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
@@ -314,7 +314,6 @@ public class CommandTestUtil {
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
         final String[] splitName = project.getName().split("\\s+");
         model.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-//        assertEquals(1, model.getFilteredProjectList().size());
     }
 
 }
