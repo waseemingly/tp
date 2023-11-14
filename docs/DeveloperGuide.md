@@ -229,11 +229,11 @@ A similar implementation is done for the add-client and add-project commands, wh
 
 Given below is an example usage scenario of how the add developer is executed step by step.
 
-Step 1. User launches the application and unlocks the application with the correct password.
+**Step 1.** User launches the application and unlocks the application with the correct password.
 
-Step 2. User executes an add-developer command by entering `add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
+**Step 2.** User executes an add-developer command by entering `add-developer n/Mahidharah p/81256788 e/aunus@nus.com a/Blk 88 Lorong 8 Serangoon Gardens, #08-88 r/Developer pr/Appollo pr/Orbital s/8880 d/20-10-2020 g/mahidharah88 rt/5.0`
 
-Step 3. The developer is added to the model’s list of developers if valid.
+**Step 3.** The developer is added to the model’s list of developers if valid.
 
 add-client and add-project commands are executed in a similar manner.
 
@@ -257,11 +257,11 @@ Upon entry of the delete developer command for instance, a `DeleteDeveloperComma
 
 Given below is an example usage scenario of how the delete developer command behaves at each step.
 
-Step 1. User launches the application and unlocks the application with the correct password.
+**Step 1.** User launches the application and unlocks the application with the correct password.
 
-Step 2. User executes a delete-developer command by entering `delete-develoepr 1` to delete the developer at index 1 (one-based indexing)
+**Step 2.** User executes a delete-developer command by entering `delete-develoepr 1` to delete the developer at index 1 (one-based indexing)
 
-Step 3. The developer at this index is removed if the index provided is valid.
+**Step 3.** The developer at this index is removed if the index provided is valid.
 
 A similar implementation is done for the delete-client command, where a `DeleteClientCommand`class (which similarly extend the `Command` class) is created respectively to delete a `Client` object from the model’s list of clients.
 
@@ -288,11 +288,11 @@ Upon entry of the delete project command, a `DeleteProjectCommand` class is crea
 
 Given below is an example usage scenario of how the delete developer command behaves at each step.
 
-Step 1. User launches the application and unlocks the application with the correct password.
+**Step 1.** User launches the application and unlocks the application with the correct password.
 
-Step 2. User executes a delete-project command by entering `delete-project 1` to delete the project at index 1 (one-based indexing)
+**Step 2.** User executes a delete-project command by entering `delete-project 1` to delete the project at index 1 (one-based indexing)
 
-Step 3. The project at this index is removed if the index provided is valid. Developer and Client lists are iterated through and the project is removed from the respective project sets if the project is assigned to them.
+**Step 3.** The project at this index is removed if the index provided is valid. Developer and Client lists are iterated through and the project is removed from the respective project sets if the project is assigned to them.
 
 This is similar to delete-developer and delete-client commands, except that in the delete project method is called in the model, the project is also removed from the respective developer and client's project sets.
 The following sequence diagram illustrates how the delete-project operation works:
@@ -300,16 +300,19 @@ The following sequence diagram illustrates how the delete-project operation work
 <img src="images/DeleteProjectSequenceDiagram.png" width="450" />
 
 #### Design considerations
-1. **Alternative 1:** Make the delete-project command call edit-developer and edit-client commands, both to update the project sets of the respective developers and clients.
-  * Pros: Easy to implement.
-  * Cons: May be less efficient as the edit-developer and edit-client commands will have to be called for each developer and client respectively.
-  * Edit command will have to retrieve client and developer project sets, iterate through each set to edit them accordingly and then pass the command, which will be retrieving information from the model to the logic component, which will complicate and potentially break abstractions originally in place.
-2. **Alternative 2:** Do not edit developer and client project sets
-  * Pros: No extra logic needed to be implemented.
-  * Cons: Information integrity is compromised as the project will still be assigned to the developer and client even after it is deleted, and this will affect other features such as find, and potentially future features.
-3. **Alternative 3 (current choice):** The delete project method in the model will iterate through developers and clients to make necessary changes to their project sets.
-  * Pros: Information integrity is maintained. Abstractions in place are not broken. Complies with implemented Validation checks.
-  * Cons: Implementation is hidden in the model component, and might not be intuitive in a glance in the logic component.
+  1. **Alternative 1:** Make the delete-project command call edit-developer and edit-client commands, both to update the project sets of the respective developers and clients.
+      * Pros: Easy to implement.
+      * Cons: May be less efficient as the edit-developer and edit-client commands will have to be called for each developer and client respectively.
+      * Edit command will have to retrieve client and developer project sets, iterate through each set to edit them accordingly and then pass the command, which will be retrieving information from the model to the logic component, which will complicate and potentially break abstractions originally in place.
+<div style="page-break-after: always;"></div>
+
+  2. **Alternative 2:** Do not edit developer and client project sets
+      * Pros: No extra logic needed to be implemented.
+      * Cons: Information integrity is compromised as the project will still be assigned to the developer and client even after it is deleted, and this will affect other features such as find, and potentially future features.
+  3. **Alternative 3 (current choice):** The delete project method in the model will iterate through developers and clients to make necessary changes to their project sets.
+    * Pros: Information integrity is maintained. Abstractions in place are not broken. Complies with implemented Validation checks.
+    * Cons: Implementation is hidden in the model component, and might not be intuitive in a glance in the logic component.
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -371,7 +374,7 @@ project with the name `AppleApp` in the address book.
 
 The sequence diagram below illustrates key interactions taking place in the `Logic` component when the command
 `edit-developer 1 pr/AppleApp` is called. A significant modification to take note off is the call to the
-`Model#areProjectsValid()` method. This sequence reflects a successful command execution.
+`Model#areProjectsValid()` method. The sequence diagram below reflects a successful command execution.
 
 ![Interactions inside the Logic component for the `edit-developer 1 pr/AppleApp` Command](images/EditDeveloperSequenceDiagram.png)
 
@@ -380,12 +383,12 @@ The `edit-client` and `edit-project` commands are executed similarly, except pro
 
 #### Design considerations
 **Aspect: Command syntax**
-* Alternative 1 (current choice): Have separate commands for each `Developer`, `Client`, and `Project`. Executing the command
-  automatically switches user to the respective tab.
+* **Alternative 1 (current choice)**: Have separate commands for each `Developer`, `Client`, and `Project`. Executing the command
+automatically switches user to the respective tab.
   * Pros: More specific and straightforward, allowed parameters in command are easier to navigate for users. More flexible
     as do not need to be in respective tab to edit.
   * Cons: More classes to create, user needs to type more.
-* Alternative 2: Have one general `edit` command. The edit will be made based on the current tab displayed.
+* **Alternative 2**: Have one general `edit` command. The edit will be made based on the current tab displayed.
   * Pros: User as can be less specific when typing command.
   * Cons: User needs to ensure that intended tab is open. Allowed parameters are less clearly defined, can lead to
     confusion and mistakes.
@@ -398,6 +401,8 @@ The `edit-client` and `edit-project` commands are executed similarly, except pro
 #### Implementation
 
 The find feature is facilitated by a map-based strategy, associating specific prefixes (e.g., "find-developer n/" or "find-client r/") with corresponding predicates, allowing dynamic generation of filtering criteria based on user input.
+
+<div style="page-break-after: always;"></div>
 
 Implemented operations include:
 - `FindCommandParser#parse()`: Interprets the user's input and generates the appropriate predicate to filter the list of developers or clients.
@@ -581,6 +586,8 @@ trimmed to `Tester` and calls `AddDeveloperRoleCommand`.
 **Step 4.** `AddDeveloperRoleCommand#execute()` checks if there is an existing role with the same name and creates
 a new developer role if there is no such role.
 
+<div style="page-break-after: always;"></div>
+
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
 Although no changes is made to the address book, this stage is still committed so that the success command
 message and tab index switched to can be changed, the currentPointer can also note that there is an action done here.</div>
@@ -603,6 +610,7 @@ The following sequence diagram shows how the Add-role operation works:
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Delete-role Feature (`delete-developer-role`, `delete-client-role`)
 
@@ -641,7 +649,7 @@ message and tab index switched to can be changed, the currentPointer can also no
 The following sequence diagram shows how the Delete-role operation works:
 ![SequenceDiagram](images/DeleteDeveloperRoleSequenceDiagram.png)
 
-The following activity diagram shows how the validation check in `DeveloperRoles#isRemovableRole()` works:<br>
+The following activity diagram shows how the validation check `isRemovableRole()` works:<br>
 ![ActivityDiagram](images/isRemovableRole.png)
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -787,6 +795,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -1188,6 +1198,8 @@ Deleting developer roles and client roles works the same way, hence deleting cli
     <br> Use case resumes from step 5.
     [Scroll back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 #### System/Performance Requirements
@@ -1272,6 +1284,8 @@ starting point for testers to work with, testers should do more *exploratory* te
    Expected: Shows the unlocked GUI.
 2. Test case: `unlock pw/abc`<br>
    Expected: GUI remains locked. Error details shown in the status message.
+
+<div style="page-break-after: always;"></div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1424,6 +1438,8 @@ For these tests, each test case has respective prerequisites that must be met be
    Expected results: No role added. Error details shows role cannot be added as it exists.
 3. **Test Case 1 must be completed** `add-developer-role Tester`<br>
    Expected results: No role added. Error details shows role cannot be added as it exists.
+
+<div style="page-break-after: always;"></div>
 
 ### Delete roles
 #### Deleting Developer Roles
