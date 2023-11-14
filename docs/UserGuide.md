@@ -31,6 +31,12 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 <div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------
+## Table of Contents
+{: .no_toc}
+
+* Table of Contents
+{:toc}
+
 
 ## Table of Contents
 * [Navigating this guide](#navigating-this-guide)
