@@ -163,14 +163,14 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddProjectCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddDeveloperCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 <img src="images/ModelClassDiagramB.png" width="450" />
-
-<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
@@ -184,6 +184,8 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 
 ### Storage component
@@ -1271,6 +1273,8 @@ Expected: Shows the unlocked GUI.
    Expected: Shows the unlocked GUI.
 2. Test case: `unlock pw/abc`<br>
   Expected: GUI remains locked. Error details shown in the status message.
+
+<div style="page-break-after: always;"></div>
 
 ### Change password
 1. Test case: `change-password pw/Password123! npw/Password321!`<br>
