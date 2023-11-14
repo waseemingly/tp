@@ -1221,6 +1221,7 @@ where users can select the location to save the files for Developers, Clients an
 [Scroll back to Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**
+
 | Feature       | AB3 | CodeContact |
 |---------------|-----|-------------|
 | Effort        | 10  | 30          |
