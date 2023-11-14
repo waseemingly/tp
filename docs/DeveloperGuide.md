@@ -642,6 +642,8 @@ trimmed to `Tester` and calls `DeleteDeveloperRoleCommand`.
 **Step 4.** `DeleteDeveloperRoleCommand#execute()` checks if this is a removable role and removes it from the list of roles
 if `DeveloperRoles#isRemovableRole()` returns true.
 
+<div style="page-break-after: always;"></div>
+
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
 Although no changes is made to the address book, this stage is still committed so that the success command
 message and tab index switched to can be changed, the currentPointer can also note that there is an action done here.</div>
@@ -651,6 +653,8 @@ The following sequence diagram shows how the Delete-role operation works:
 
 The following activity diagram shows how the validation check `isRemovableRole()` works:<br>
 ![ActivityDiagram](images/isRemovableRole.png)
+<img src="images/isRemovableRole.png" alt="Activity Diagram" width="auto" height="650"/>
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -919,6 +923,7 @@ Adding developers, clients and projects have very similar use cases, hence it wi
 Deleting developers, clients and projects have very similar use cases, hence it will not be repeated </div>
 
 **Preconditions:** User is logged in
+<div style="page-break-after: always;"></div>
 
 **Guarantees:**
 1. A developer deleted from the system after every successful delete
@@ -961,6 +966,8 @@ Editing developer, client and project have very similar use case, hence it will 
 5.  System edits the developer's data.
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -1052,6 +1059,8 @@ Finding developer, client and project have very similar use case, hence it will 
 3.  System redoes the change.
     <br> Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Extensions**
 
 * 3a. There are no undone changes before
@@ -1092,6 +1101,8 @@ Adding developer roles and client roles works the same way, hence add client rol
     <br> Use case resumes from step 5.
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 #### **Use case:** UC10 - Delete developer role
  <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
@@ -1137,6 +1148,8 @@ Deleting developer roles and client roles works the same way, hence deleting cli
       <br> Use case resumes from step 5.
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 #### **Use case:** UC11 - Mark Deadline
 
@@ -1462,6 +1475,8 @@ Expected results:  No role deleted. Error details shows role cannot be deleted a
 5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role Tester`
    Expected results:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
 
+<div style="page-break-after: always;"></div>
+
 ### Finding
 #### Finding projects
 1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
@@ -1491,6 +1506,8 @@ Expected results:  No role deleted. Error details shows role cannot be deleted a
    Expected: The second deadline of the first project in the currently displayed project list is marked as done. Command success status message shown.
 3. Test case: 'mark-deadline 1 x' where 'x' is an integer larger than the number of deadlines for the project specified.
    Expected: No change. Error details shown in the status message.
+
+<div style="page-break-after: always;"></div>
 
 #### Mark deadline as undone
 1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
