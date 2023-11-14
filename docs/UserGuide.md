@@ -13,7 +13,7 @@ facilitating collaboration, and offering command-line efficiency for project man
 
 CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
-management tasks done faster than traditional GUI apps. **CodeContact** aims to put the **P.R.O** in project management  by enabling project managers to be
+management tasks done faster than traditional GUI apps. **CodeContact** aims to put the **P.R.O** in project management  by enabling project managers to be:
 1. **Productive**
 2. **Reliable**
 3. **Organised**
@@ -68,17 +68,17 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 ### Definitions
 
-| Term          | Definition                                                                                                                |
-|---------------|---------------------------------------------------------------------------------------------------------------------------|
-| Parameter     | Parameters are specific details you would include about the developer/client/project.(eg. name, date joined, description) |
-| Command       | An input from the user that tells CodeContact to perform an action (i.e. add a client)                                    |
-| GUI           | Graphical User Interface (GUI) represents the visual display of CodeContact that users can see.                           |
-| GUI Component | A subsection of the Graphical User Interface. For more information on specific GUI components, refer to [this section](). |
-| CLI           | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                     |
-| Character     | Any letter or symbol that is recognized by the computer, and can form a line of text (eg. `a` , `+` , `$` ).              |
-| JSON          | [Javascript Object Notation](https://en.wikipedia.org/wiki/JSON)                                                          |
-| JAR file      | [Java Archive File](https://en.wikipedia.org/wiki/JAR_(file_format))                                                      |
-| CSV file      | [Comma-separated Values File](https://en.wikipedia.org/wiki/Comma-separated_values)                                       |
+| Term          | Definition                                                                                                                 |
+|---------------|----------------------------------------------------------------------------------------------------------------------------|
+| Parameter     | Parameters are specific details you would include about the developer/client/project.(eg. name, date joined, description). |
+| Command       | An input from the user that tells CodeContact to perform an action (i.e. add a client).                                    |
+| GUI           | Graphical User Interface (GUI) represents the visual display of CodeContact that users can see.                            |
+| GUI Component | A subsection of the Graphical User Interface. For more information on specific GUI components, refer to [this section]().  |
+| CLI           | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                      |
+| Character     | Any letter or symbol that is recognized by the computer, and can form a line of text (eg. `a` , `+` , `$` ).               |
+| JSON          | [Javascript Object Notation](https://en.wikipedia.org/wiki/JSON)                                                           |
+| JAR file      | [Java Archive File](https://en.wikipedia.org/wiki/JAR_(file_format))                                                       |
+| CSV file      | [Comma-separated Values File](https://en.wikipedia.org/wiki/Comma-separated_values)                                        |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -109,11 +109,11 @@ Here are some notes about these parameters.
 #### Developer Parameters
 
 | Parameter | Description                  | Constraints                                                                                      | Valid Examples | Invalid Examples     |
-|-----------|------------------------------|--------------------------------------------------------------------------------------------------|----------------|----------------------|
-| `g/`      | github username of developer | alphanumeric characters, follows github username convention and it should not be blank           | johng, amy123  | g, y                 |
-| `d/`      | date joined of developer     | numeric characters in dd-MM-yyyy format, should not be a future date, and it should not be blank | 11-11-2023     | 19-11-2024, 1/1/2023 |
-| `s/`      | salary of developer          | positive integers of at least 4 digits, should not be blank                                      | 5000           | 5000.0, 4321.32.22   |
-| `rt/`     | rating of developer          | numeric characters between 0 to 5                                                                | 5, 3.5         | -0, -1, 6            |
+|----------|------------------------------|--------------------------------------------------------------------------------------------------|----------------|----------------------|
+| `g/`     | github username of developer | alphanumeric characters, follows github username convention and it should not be blank           | johng, amy123  | g, y                 |
+| `d/`     | date joined of developer     | numeric characters in dd-MM-yyyy format, should not be a future date, and it should not be blank | 11-11-2023     | 19-11-2024, 1/1/2023 |
+| `s/`     | salary of developer          | positive integers of at least 4 digits, should not be blank                                      | 5000           | 5000.0, 4321.32.22   |
+| `rt/`    | rating of developer          | numeric characters between 0 to 5                                                                | 5, 3.5         | -0, -1, 6            |
 
 #### Client Parameters
 
@@ -177,10 +177,10 @@ Here is a quick summary of each GUI component within CodeContact:
 | Command Box                      | Allows users to enter CodeContact commands.                                                                                                                                                                |
 | Result Display                   | 1. Provides CLI-based feedback upon a user command. <br> 2. Allows users to see if their command was successful or not. <br> 3. Provides error messages to guide users on how to use CodeContact commands. |
 | Tabs                             | Allows users to see different lists of information on clicking on the relevant tabs. The tabs will also automatically switch to the correct tab corresponding to the command executed.                     |
-| Developers/Clients/Projects card | Displays a list of Developer, Client or Project Cards. This list can be manipulated through commands like `find` and `list`                                                                                |
+| Developers/Clients/Projects card | Displays a list of Developer, Client or Project Cards. This list can be manipulated through commands like `find` and `list`.                                                                               |
 | Deadlines progress               | Displays the progress of deadlines for a certain project.                                                                                                                                                  |
-| Deadline list with details       | Displays the details of the deadline in a table form                                                                                                                                                       |
-| Re-sort                          | Click on the respective words, there will be a small black arrow that appears. You can press to resort the data eg. Show date from furthest to nearest day                                                 |
+| Deadline list with details       | Displays the details of the deadline in a table form.                                                                                                                                                      |
+| Re-sort                          | Click on the respective words, there will be a small black arrow that appears. You can press to resort the data eg. show date from furthest to nearest day.                                                |
 
 ### Notes on GUI
 <div markdown="block" class="alert alert-warning">
@@ -225,45 +225,45 @@ This is a tutorial for **first-time** CodeContact users.
     * Enter the command `unlock pw/Password123!` in the command box.
 
 3. You can **change the password** to unlock CodeContact.
-    * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box
+    * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box.
 
 <div markdown="block" class="alert alert-info">:bulb:
-You can always lock and unlock CodeContact using the `lock` and `unlock` commands
+You can always lock and unlock CodeContact using the `lock` and `unlock` commands.
 </div>
 
 1. Let us try **adding a project** to our CodeContact.
     * Enter the
-      command `add-project n/AndroidApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0 `
+      command `add-project n/AndroidApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0 `.
 
 2. We can then **add a developer** to our CodeContact.
     * Enter the
-      command `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp s/4500 d/01-11-2023 g/johng rt/3`
+      command `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp s/4500 d/01-11-2023 g/johng rt/3`.
     * Try adding more developers with different details for each parameter!
     * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you wish to add new developers with other roles and
       project.
 
 3. We can also **add a client** to our CodeContact.
     * Enter the
-      command `add-client n/Amy p/88765423 e/amy@example.com a/31, Clementi Ave 6, #03-12 r/Client pr/AndroidApp o/Google do/google.com`
+      command `add-client n/Amy p/88765423 e/amy@example.com a/31, Clementi Ave 6, #03-12 r/Client pr/AndroidApp o/Google do/google.com`.
     * Try adding more clients with different details for each parameter!
     * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you which to add new client with other roles and project.
 
 4. Let us try **editing the name** of a developer stored in CodeContact.
-    * Enter the command `edit-developer 1 n/Jhonny`
+    * Enter the command `edit-developer 1 n/Jhonny`.
     * Try editing other parameters or developers and projects too!
-    * More details of what you can edit can be found [here](#edit)
+    * More details of what you can edit can be found [here](#edit).
 
 5. We can also easily **find** for information in CodeContact.
-    * Enter the command `find-developer n/John s/4500`
+    * Enter the command `find-developer n/John s/4500`.
     * Try looking for other information and search with multiple parameters!
-    * More details of what you can find can be found [here](#find)
+    * More details of what you can find can be found [here](#find).
 
 6. You can always **show the full list** after finding in CodeContact.
     * Enter the command `list-developer`, `list-client` or `list-project`.
 
 7. You can **delete developers, clients or projects** in CodeContact.
-    * Enter the command `delete-developer 3` to delete the 3rd developer in CodeContact
-    * More details on how delete works can be found [here](#delete-developer--delete-developer)
+    * Enter the command `delete-developer 3` to delete the 3rd developer in CodeContact.
+    * More details on how delete works can be found [here](#delete-developer--delete-developer).
 
 8. If you realise that you did not delete this developer, you can **undo** this action in CodeContact.
     * Enter the command `undo` and it will revert your previous actions.
@@ -273,7 +273,7 @@ You can always lock and unlock CodeContact using the `lock` and `unlock` command
 
 Congratulations! You are now ready to use CodeContact!
 
-To view all our features, you may visit our [Features](#features) section
+To view all our features, you may visit our [Features](#features) section.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -306,7 +306,7 @@ To view all our features, you may visit our [Features](#features) section
 
 ### Password Protection
 Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and customizable password.
-#### Lock `lock`
+#### Lock : `lock`
 
 Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
 except `unlock`, `help`, and `delete`.
@@ -321,7 +321,7 @@ Locked all data
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Unlock `unlock`
+#### Unlock : `unlock`
 
 Unlocks the system by making all the information visible and allows all commands to be parsed.
 
@@ -338,7 +338,7 @@ Unlocked all data
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Change password `change-password`
+#### Change password : `change-password`
 
 Allows for password to be changed, given the current password and new password matches criteria.
 
@@ -365,7 +365,7 @@ Password changed successfully.
 
 Adds a new developer to the address book.
 
-Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... gh/GITHUB_ID rt/RATING`
+Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`
 
 * Adds the developer with the given details to the address book.
 * Not specifying any `PROJECT_NAME` will add the developer without assigning them to any projects.
@@ -488,7 +488,7 @@ Role: Developer;
 Salary: 6000;
 Projects: Appollo Orbital
 ```
-if second developer in the list was Bernice Yu
+if second developer in the list was Bernice Yu.
 
 <div markdown="block" class="alert alert-info">:bulb:
 Deleted a wrong developer? You can always undo the action with the [`undo`](#undo) command!
@@ -515,7 +515,7 @@ Role: Developer;
 Document: https://www.mno.com/;
 Projects: CodeContact
 ```
-if second client in the list was George Lim
+if second client in the list was George Lim.
 
 <div markdown="block" class="alert alert-info">:bulb:
 Deleted a wrong client? You can always undo the action with the [`undo`](#undo) command!
@@ -539,7 +539,7 @@ Description: A team collaboration tool;
 Deadlines:
 1. Phase 2 by: 13-11-2021, priority: MEDIUM (undone)
 ```
-if second project in the list was TeamTrekker
+if second project in the list was TeamTrekker.
 
 <div markdown="block" class="alert alert-info">:bulb:
 Deleted a wrong project? You can always undo the action with the [`undo`](#undo) command!
@@ -553,7 +553,7 @@ Deleted a wrong project? You can always undo the action with the [`undo`](#undo)
 
 Edits the details of an existing developer in the address book.
 
-Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [rt/RATING]`
+Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [g/GITHUB_ID] [rt/RATING]`
 
 * Edits the developer at the specified `INDEX` in the currently displayed developer list.
 * At least one of the optional fields must be provided.
@@ -581,7 +581,7 @@ Address: NUS UTOWN
 Date Joined: 06-09-2023
 Role: Developer
 Salary: 6999
-Projects: Project1, Project2
+Projects: Project3 Project2
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
@@ -642,7 +642,7 @@ Format: `edit-project INDEX [dr/DESCRIPTION] [dl/DEADLINE]...`
 
 Example of usage: `edit-project 1 dl/19-12-2023,Design backend,HIGH,0`
 
-* Deletes existing project deadlines and adds new deadline `Design backend by: 19-12-2023, priority: HIGH (undone)`
+* Deletes existing project deadlines and adds new deadline `Design backend by: 19-12-2023, priority: HIGH (undone)`.
 
 When command succeeds, CLI shows:
 
@@ -660,9 +660,9 @@ You can always undo the action with the [`undo`](#undo) command!
 
 ### **Import**
 
-#### Import developers' deatils: `import-developer`
+#### Import developers' details : `import-developer`
 
-Takes in a CSV file and populates the internal list of developers if the file is formatted correctly
+Takes in a CSV file and populates the internal list of developers if the file is formatted correctly.
 
 Format: `import-developer [FILENAME]`
 
@@ -695,16 +695,16 @@ Address: utown;
 Date Joined: 12-12-2020;
 Role: Developer;
 Salary: 3333;
-Projects: ProjectBAndroidApp
+Projects: ProjectB AndroidApp
 ```
 
 for each developer successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Import clients' details: `import-client`
+#### Import clients' details : `import-client`
 
-Takes in a CSV file and populates the internal list of clients if the file is formatted correctly
+Takes in a CSV file and populates the internal list of clients if the file is formatted correctly.
 
 Format: `import-client [FILENAME]`
 
@@ -737,7 +737,7 @@ Address: utown;
 Organisation: Google;
 Role: HR;
 Document: docs.google.com/abd;
-Projects: ProjectBAndroidApp
+Projects: ProjectB AndroidApp
 ```
 
 for each client successfully added.
@@ -750,7 +750,7 @@ for each client successfully added.
 
 Finds the details of an existing developer in the address book.
 
-Format: `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [gh/GITHUB_ID] [rt/RATING]`
+Format: `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [g/GITHUB_ID] [rt/RATING]`
 
 * Finds for developers based on the attributes provided.
 * At least one of the optional fields must be provided.
@@ -788,7 +788,7 @@ Format: `find-client [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [o/ORGANISATION] [
 
 Example of usage: `find-client o/Google r/Senior developer`
 
-* Prints clients from Google of the senior developer role.
+* Prints clients from Google with the Senior developer role.
 
 When command succeeds, CLI shows:
 
@@ -815,7 +815,7 @@ Format: `find-project [pr/PROJECT_NAME] [dr/DESCRIPTION] [dl/DEADLINE]`
 
 Example of usage: `find-project pr/JuiceApp`
 
-* Print projects with the name 2103T project.
+* Print projects with the name JuiceApp.
 
 When command succeeds, CLI shows:
 
@@ -894,7 +894,7 @@ If you wish to check what roles are there, you can key in `delete-developer-role
 random>` should not be an existing role.
 </div>
 
-Example of usage:`add-developer-role Tester`
+Example of usage: `add-developer-role Tester`
 
 * Adds the Tester role to list of developer roles.
 * You can now add developers with Tester as their roles.
@@ -925,7 +925,7 @@ If you wish to check what roles are there, you can key in `delete-client-role <a
 random>` should not be an existing role.
 </div>
 
-Example of usage:`add-client-role Boss`
+Example of usage: `add-client-role Boss`
 
 * Adds the Boss role to list of developer roles.
 * You can now add clients with Boss as their roles.
@@ -951,7 +951,7 @@ Format: `delete-developer-role ROLE_NAME`
   cannot be deleted.
 * You will not be able to delete a developer role if there are developers in the list with that role.
 
-Example of usage:`delete-developer-role UI Manager`
+Example of usage: `delete-developer-role UI Manager`
 
 * Deletes the UI Manager from the list of developer roles.
 * You can no longer add developers with UIDesigner as their roles.
@@ -1128,7 +1128,7 @@ Format: `exit`
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous CodeContact home folder.
 
 **Q**: How can I launch CodeContact if the clicking on the JAR file does not work? <br>
 **A**: There are two possible methods to launch CodeContact.
@@ -1136,30 +1136,30 @@ the data of your previous AddressBook home folder.
 
 * Method 1: For users familiar with the command prompt
 
-1. Open the command prompt
-2. Navigate to the directory where the JAR file is located using cd [JAR file location]
-3. Type java -jar CodeContact.jar and press enter
-4. CodeContact should launch
+1. Open the command prompt.
+2. Navigate to the directory where the JAR file is located using cd [JAR file location].
+3. Type `java -jar CodeContact.jar` and press enter.
+4. CodeContact should launch.
    <br> <br>
 
 * Method 2: For users that wish to create a script to launch CodeContact (Recommended)
 
-1. Create a new text file
+1. Create a new text file.
 2. Type the following into the text file:
-   `java -jar [JAR file location]/CodeContact.jar`
-3. Save the text file as CodeContact.bat (Windows) or CodeContact.sh (MacOS/Linux)
+   `java -jar [JAR file location]/CodeContact.jar`.
+3. Save the text file as CodeContact.bat (Windows) or CodeContact.sh (MacOS/Linux).
 4. Change the admin settings of the script to allow it to run as a program:
     * Windows: Right-click on the script and select Properties. Under General , check
-      the box that says Allow this file to run as a program .
+      the box that says Allow this file to run as a program.
     * MacOS/Linux: Open the terminal and navigate to the directory where the script is
-      located. Type `chmod +x [script name]` and press enter. ( `chmod +x` changes
-      permissions of the script to allow it to be executed.)
-5. Double-click on the script to launch CodeContact
-6. CodeContact should launch
+      located. Type `chmod +x [script name]` and press enter (`chmod +x` changes
+      permissions of the script to allow it to be executed).
+5. Double-click on the script to launch CodeContact.
+6. CodeContact should launch.
 
 **Q**: How can I check my java version?<br>
-**A**: Open a command prompt and type `java -version` . If you do not have Java installed, you
-can download it [here](https://www.oracle.com/java/technologies/downloads/#java11)
+**A**: Open a command prompt and type `java -version`. If you do not have Java installed, you
+can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1179,37 +1179,37 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 
 # **Command summary**
 
-| Action               | Format, Examples                                                                                                                                                                                                                                                                                                                 |
-|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **lock**             | `lock`                                                                                                                                                                                                                                                                                                                           |
-| **unlock**           | Format: <br>`unlock pw/PASSWORD` <br> Example: <br>`unlock pw/Password123!`                                                                                                                                                                                                                                                      |
-| **change password**  | Format: <br>`change-password pw/CURRENT_PASSWORD npw/NEW_PASSWORD` <br> Example: <br>`change-password pw/Password123! npw/Password123!`                                                                                                                                                                                          |
-| **add developers**   | Format: <br> `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... gh/GITHUB_ID rt/RATING`<br> Example: <br>`add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`<br> |
-| **add clients**      | Format: <br> `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`<br> Example: <br>`add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`<br>                                         |
-| **add projects**     | Format: <br> `add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`<br> Example: <br> `add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`<br>                                        |
-| **edit developers**  | Format: <br>`edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [rt/RATING]`  <br> Example: <br> `edit-developer 2 p/98989898 pr/Project2 pr/Project3` <br>                                                                            |
-| **edit clients**     | Format: <br>`edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [gh/GITHUB_ID] [ra/RATING]`  <br> Example: <br> `edit-client 3 p/bob@gmail.com` <br>                                                                                                     |
-| **edit projects**    | Format: <br>`edit-project INDEX [dr/DESCRIPTION] [dl/DEADLINE]...`  <br> Example: <br> `edit-projects 1 dl/Finish Feature-A by: 09-09-2023` <br>                                                                                                                                                                                 |
-| **find developers**  | Format: <br>`find-developer p/<Project Name>` <br> Example: <br>`find-developer p/2103/T` <br>                                                                                                                                                                                                                                   |
-| **find clients**     | Format: <br>`find-client n/<Name>` <br> Example: <br>`find-client n/Amy` <br>                                                                                                                                                                                                                                                    |
-| **find projects**    | Format: <br>`find-project dr/description` <br> Example: <br>`find-project dr/school semester project` <br>                                                                                                                                                                                                                       |
-| **find deadlines**   | Format: <br>`find-deadline [d/DATE] [pri/PRIORITY]` <br> Example: <br>`find-deadline d/20-11-2023 pri/MEDIUM` <br>                                                                                                                                                                                                               |
-| **delete developer** | Format: <br> `delete-developer INDEX`<br> Example: <br>`delete-developer 1`<br>                                                                                                                                                                                                                                                   |
-| **delete client**    | Format: <br> `delete-client INDEX`<br> Example: <br>`delete-client 1`<br>                                                                                                                                                                                                                                                         |
-| **delete project**   | Format: <br> `delete-project INDEX`<br> Example: <br>`delete-project 1`<br>                                                                                                                                                                                                                                                       |
-| **import developer** | Format: <br> `import-developer [FILENAME]`<br> Example: <br>`import-developer developers.csv`<br>                                                                                                                                                                                                                               |
-| **import client**    | Format: <br> `import-client [FILENAME]`<br> Example: <br>`import-client clients.csv`<br>                                                                                                                                                                                                                                         |
-| **add developer role** | Format: <br> `add-developer-role ROLE_NAME`<br> Example: <br>`add-developer-role UIDesigner`<br>                                                                                                                                                                                                                               |
-| **add client role** | Format: <br> `add-client-role ROLE_NAME`<br> Example: <br>`add-client-role Boss`<br>                                                                                                                                                                                                                               |
-| **delete developer role** | Format: <br> `delete-developer-role ROLE_NAME`<br> Example: <br>`delete-developer-role UIDesigner`<br>                                                                                                                                                                                                                               |
-| **delete client role** | Format: <br> `delete-client-role ROLE_NAME`<br> Example: <br>`delete-client-role Boss`<br>                                                                                                                                                                                                                               |
-| **list**             | Format: <br> `list-developers` <br>  `list-projects` <br> `list-clients`                                                                                                                                                                                                                                                         |
-| **mark deadline**    | Format: <br> `mark-deadline PROJECT_INDEX DEADLINE_INDEX`<br> Example: <br> `mark-deadline 2 1`<br>                                                                                                                                                                                                                              |
-| **unmark deadline**  | Format: <br> `unmark-deadline PROJECT_INDEX DEADLINE_INDEX`<br> Example: <br> `unmark-deadline 2 1`<br>                                                                                                                                                                                                                          |
-| **undo**             | `undo`                                                                                                                                                                                                                                                                                                                           |
-| **redo**             | `redo`                                                                                                                                                                                                                                                                                                                           |
-| **clear**            | `clear`                                                                                                                                                                                                                                                                                                                          |
-| **exit**             | `exit`                                                                                                                                                                                                                                                                                                                           |
-| **help**             | `help`                                                                                                                                                                                                                                                                                                                           |
+| Action                    | Format, Examples                                                                                                                                                                                                                                                                                                                         |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **lock**                  | `lock`                                                                                                                                                                                                                                                                                                                                   |
+| **unlock**                | Format: <br>`unlock pw/PASSWORD` <br> Example: <br>`unlock pw/Password123!`                                                                                                                                                                                                                                                              |
+| **change password**       | Format: <br>`change-password pw/CURRENT_PASSWORD npw/NEW_PASSWORD` <br> Example: <br>`change-password pw/Password123! npw/Password123!`                                                                                                                                                                                                  |
+| **add developers**        | Format: <br> `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`<br> Example: <br>`add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`<br> |
+| **add clients**           | Format: <br> `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`<br> Example: <br>`add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`<br>                                                 |
+| **add projects**          | Format: <br> `add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`<br> Example: <br> `add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`<br>                                                |
+| **edit developers**       | Format: <br>`edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [g/GITHUB_ID] [rt/RATING]`  <br> Example: <br> `edit-developer 2 p/98989898 pr/Project2 pr/Project3` <br>                                                                                     |
+| **edit clients**          | Format: <br>`edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [g/GITHUB_ID] [rt/RATING]`  <br> Example: <br> `edit-client 3 p/bob@gmail.com` <br>                                                                                                              |
+| **edit projects**         | Format: <br>`edit-project INDEX [dr/DESCRIPTION] [dl/DEADLINE]...`  <br> Example: <br> `edit-project 1 dl/Finish Feature-A by: 09-09-2023` <br>                                                                                                                                                                                          |
+| **find developers**       | Format: <br>`find-developer pr/<Project Name>` <br> Example: <br>`find-developer pr/2103/T` <br>                                                                                                                                                                                                                                         |
+| **find clients**          | Format: <br>`find-client n/<Name>` <br> Example: <br>`find-client n/Amy` <br>                                                                                                                                                                                                                                                            |
+| **find projects**         | Format: <br>`find-project dr/description` <br> Example: <br>`find-project dr/school semester project` <br>                                                                                                                                                                                                                               |
+| **find deadlines**        | Format: <br>`find-deadline [d/DATE] [pri/PRIORITY]` <br> Example: <br>`find-deadline d/20-11-2023 pri/MEDIUM` <br>                                                                                                                                                                                                                       |
+| **delete developer**      | Format: <br> `delete-developer INDEX`<br> Example: <br>`delete-developer 1`<br>                                                                                                                                                                                                                                                          |
+| **delete client**         | Format: <br> `delete-client INDEX`<br> Example: <br>`delete-client 1`<br>                                                                                                                                                                                                                                                                |
+| **delete project**        | Format: <br> `delete-project INDEX`<br> Example: <br>`delete-project 1`<br>                                                                                                                                                                                                                                                              |
+| **import developer**      | Format: <br> `import-developer [FILENAME]`<br> Example: <br>`import-developer developers.csv`<br>                                                                                                                                                                                                                                        |
+| **import client**         | Format: <br> `import-client [FILENAME]`<br> Example: <br>`import-client clients.csv`<br>                                                                                                                                                                                                                                                 |
+| **add developer role**    | Format: <br> `add-developer-role ROLE_NAME`<br> Example: <br>`add-developer-role UIDesigner`<br>                                                                                                                                                                                                                                         |
+| **add client role**       | Format: <br> `add-client-role ROLE_NAME`<br> Example: <br>`add-client-role Boss`<br>                                                                                                                                                                                                                                                     |
+| **delete developer role** | Format: <br> `delete-developer-role ROLE_NAME`<br> Example: <br>`delete-developer-role UIDesigner`<br>                                                                                                                                                                                                                                   |
+| **delete client role**    | Format: <br> `delete-client-role ROLE_NAME`<br> Example: <br>`delete-client-role Boss`<br>                                                                                                                                                                                                                                               |
+| **list**                  | Format: <br> `list-developer` <br>  `list-project` <br> `list-client`                                                                                                                                                                                                                                                                    |
+| **mark deadline**         | Format: <br> `mark-deadline PROJECT_INDEX DEADLINE_INDEX`<br> Example: <br> `mark-deadline 2 1`<br>                                                                                                                                                                                                                                      |
+| **unmark deadline**       | Format: <br> `unmark-deadline PROJECT_INDEX DEADLINE_INDEX`<br> Example: <br> `unmark-deadline 2 1`<br>                                                                                                                                                                                                                                  |
+| **undo**                  | `undo`                                                                                                                                                                                                                                                                                                                                   |
+| **redo**                  | `redo`                                                                                                                                                                                                                                                                                                                                   |
+| **clear**                 | `clear`                                                                                                                                                                                                                                                                                                                                  |
+| **exit**                  | `exit`                                                                                                                                                                                                                                                                                                                                   |
+| **help**                  | `help`                                                                                                                                                                                                                                                                                                                                   |
 
 [Scroll back to Table of Contents](#table-of-contents)
