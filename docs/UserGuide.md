@@ -123,6 +123,9 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 <!-- -->
 
+
+-------------------------------------------------------------------------------------
+
 ### Definitions
 
 | Term          | Definition                                                                                                                 |
@@ -139,6 +142,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+-------------------------------------------------------------------------------------
 ### Parameter Information
 
 Within the tables below, you can find out more about the parameters that CodeContact supports. These parameters come in
@@ -189,6 +193,8 @@ Here are some notes about these parameters.
 
 <div style="page-break-after: always;"></div>
 
+-------------------------------------------------------------------------------------
+
 ### Format
 #### General Formatting
 Here are the explanations behind the formatting we use through this guide.<br>
@@ -216,8 +222,9 @@ Here are the explanations behind the formatting we use through this guide.<br>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
+-----------------------------------------------------------------------------------------------
 
 ## **Navigating the Graphical User Interface (GUI)**
 CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
@@ -360,7 +367,12 @@ To view all our features, you may visit our [Features](#features) section.
 |:--------------------------------------------------|:---------------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------:|
 | [Miscellaneous Features](#miscellaneous-features) | [View Help `help`](#viewing-help--help) | [Clear entries `clear`](#clearing-all-entries--clear) | [Exit program `exit`](#exiting-the-program--exit) |
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Security Features**
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Password Protection
 Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and customizable password.
@@ -379,6 +391,8 @@ Locked all data
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Unlock : `unlock`
 
 Unlocks the system by making all the information visible and allows all commands to be parsed.
@@ -395,6 +409,8 @@ Unlocked all data
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Change password : `change-password`
 
@@ -414,10 +430,14 @@ Password changed successfully.
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## **Management Features**
 ### **Add**
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Add developer : `add-developer`
 
@@ -457,6 +477,8 @@ Entered details of a developer incorrectly? You can always undo the action with 
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Add client : `add-client`
 
 Adds a new client to the address book.
@@ -492,6 +514,8 @@ Entered details of a client incorrectly? You can always undo the action with the
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Add project : `add-project`
 
 Adds a new project to the address book.
@@ -522,7 +546,11 @@ Entered details of a project incorrectly? You can always undo the action with th
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### **Delete**
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Delete developer : `delete-developer`
 
@@ -552,6 +580,9 @@ if second developer in the list was Bernice Yu.
 Deleted a wrong developer? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
+
 #### Delete client : `delete-client`
 
 Deletes client in the address book.
@@ -579,6 +610,8 @@ if second client in the list was George Lim.
 Deleted a wrong client? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Delete project : `delete-project`
 
 Deletes the details of an existing project in the address book and updates developer and client project details accordingly.
@@ -605,7 +638,11 @@ Deleted a wrong project? You can always undo the action with the [`undo`](#undo)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### **Edit**
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Edit developer details : `edit-developer`
 
@@ -648,6 +685,8 @@ You can always undo the action with the [`undo`](#undo) command!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Edit client details : `edit-client`
 
 Edits the details of an existing client in the address book.
@@ -685,6 +724,8 @@ You can always undo the action with the [`undo`](#undo) command!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Edit project details : `edit-project`
 
 Edits the details of an existing project in the address book.
@@ -716,7 +757,11 @@ You can always undo the action with the [`undo`](#undo) command!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### **Import**
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Import developers' details : `import-developer`
 
@@ -760,6 +805,8 @@ for each developer successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Import clients' details : `import-client`
 
 Takes in a CSV file and populates the internal list of clients if the file is formatted correctly.
@@ -802,7 +849,11 @@ for each client successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### **Find**
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Find developer details : `find-developer`
 
@@ -831,6 +882,8 @@ followed by the matching developer's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Find client details : `find-client`
 
 Finds the details of an existing client in the address book.
@@ -858,6 +911,8 @@ followed by the matching clients' details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Find project details : `find-project`
 
 Finds the details of an existing project in the address book.
@@ -884,6 +939,8 @@ followed by the matching project's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Find deadlines : `find-deadline`
 
 Finds deadlines in project tab based on date and/or priority.
@@ -905,7 +962,12 @@ These are the 3 projects with matching information.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### **List**
+
+--------------------------------------------------------------------------------------------------------------------
+
 #### List information : `list`
 
 Shows a list of all developers in the address book.
@@ -932,7 +994,11 @@ Listed all developers
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### **Add roles**
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Add developer roles : `add-developer-role`
 
@@ -965,6 +1031,8 @@ New role for developer added: Tester
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Add client roles : `add-client-role`
 
 Adds new client roles into the system.
@@ -996,7 +1064,11 @@ New role for client added: Boss
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### **Delete roles**
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Delete developer roles : `delete-developer-role`
 
@@ -1022,6 +1094,8 @@ Role for developers deleted: UIDesigner
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Delete client roles : `delete-client-role`
 
 Delete client roles from the system.
@@ -1045,9 +1119,14 @@ Role for clients deleted: Boss
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ### **Mark**
+
+--------------------------------------------------------------------------------------------------------------------
+
 #### Mark project deadline as done : `mark-deadline`
 
 Marks the indicated deadline for the project as done.
@@ -1067,6 +1146,8 @@ The deadline has been marked as completed!
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Mark project deadline as undone : `unmark-deadline`
 
@@ -1088,7 +1169,12 @@ The deadline has been marked as undone!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### **Undo**
+
+--------------------------------------------------------------------------------------------------------------------
+
 #### Undo : `undo`
 
 Undo the previous command you entered.
@@ -1120,6 +1206,8 @@ Projects: CustomWebsite AndroidApp
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Redo : `redo`
 
 Redo the previous command you undid.
@@ -1150,11 +1238,19 @@ Projects: CustomWebsite AndroidApp
 ```
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## **Additional Features**
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### **Miscellaneous Features**
 Listed below are some miscellaneous features that are available in CodeContact to improve your user experience.
+
+--------------------------------------------------------------------------------------------------------------------
+
 #### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -1162,6 +1258,8 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### Clearing all entries : `clear`
 
@@ -1171,6 +1269,8 @@ Format: `clear`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### Exiting the program : `exit`
 
 Exits the program.
@@ -1179,6 +1279,8 @@ Format: `exit`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Feedback System `[coming in v2.0]`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1186,9 +1288,13 @@ Format: `exit`
 
 # **FAQ**
 
+--------------------------------------------------------------------------------------------------------------------
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous CodeContact home folder.
+
+--------------------------------------------------------------------------------------------------------------------
 
 **Q**: How can I launch CodeContact if the clicking on the JAR file does not work? <br>
 **A**: There are two possible methods to launch CodeContact.
@@ -1216,6 +1322,8 @@ the data of your previous CodeContact home folder.
       permissions of the script to allow it to be executed).
 5. Double-click on the script to launch CodeContact.
 6. CodeContact should launch.
+
+--------------------------------------------------------------------------------------------------------------------
 
 **Q**: How can I check my java version?<br>
 **A**: Open a command prompt and type `java -version`. If you do not have Java installed, you
