@@ -8,7 +8,7 @@ title: Mahidharah's Project Portfolio Page
 CodeContact is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, CodeContact can get your contact management tasks done faster than traditional GUI apps.
 
-Our product helps seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers. 
+Our product helps seamlessly integrate contact, client, and project management, simplifying access to coding-related contacts, facilitating collaboration, and offering command-line efficiency for project managers.
 
 Given below are my contributions to the project.
 
