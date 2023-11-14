@@ -1299,7 +1299,6 @@ starting point for testers to work with, testers should do more *exploratory* te
 
 <div style="page-break-after: always;"></div>
 
-<div style="page-break-after: always;"></div>
 
 ### Change password
 1. Test case: `change-password pw/Password123! npw/Password321!`<br>
@@ -1581,7 +1580,6 @@ priority. This provides users with more flexibility in organizing and viewing th
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
 
