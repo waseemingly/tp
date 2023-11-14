@@ -989,6 +989,8 @@ Role for clients deleted: Boss
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### **Mark**
 #### Mark project deadline as done : `mark-deadline`
 
