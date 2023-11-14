@@ -306,8 +306,6 @@ The following sequence diagram illustrates how the delete-project operation work
       * Pros: Easy to implement.
       * Cons: May be less efficient as the edit-developer and edit-client commands will have to be called for each developer and client respectively.
       * Edit command will have to retrieve client and developer project sets, iterate through each set to edit them accordingly and then pass the command, which will be retrieving information from the model to the logic component, which will complicate and potentially break abstractions originally in place.
-<div style="page-break-after: always;"></div>
-
   2. **Alternative 2:** Do not edit developer and client project sets
       * Pros: No extra logic needed to be implemented.
       * Cons: Information integrity is compromised as the project will still be assigned to the developer and client even after it is deleted, and this will affect other features such as find, and potentially future features.
@@ -317,6 +315,8 @@ The following sequence diagram illustrates how the delete-project operation work
 
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Import Feature (`import-developer`, `import-client`)
 This feature will allow project managers to import existing spreadsheets of developer and client data in the specified format in CSV
