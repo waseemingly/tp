@@ -239,7 +239,7 @@ add-client and add-project commands are executed in a similar manner.
 
 The following sequence diagram illustrates how the add developer operation works
 
-<img src="images/AddDeveloperSequenceDiagram.png" width="450" />
+![image](images/AddDeveloperSequenceDiagram.png)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -267,7 +267,7 @@ A similar implementation is done for the delete-client command, where a `DeleteC
 
 The following sequence diagram illustrates how the delete developer operation works:
 
-<img src="images/DeleteClientSequenceDiagram.png" width="450" />
+![image](images/DeleteClientSequenceDiagram.png)
 
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -297,7 +297,7 @@ Given below is an example usage scenario of how the delete developer command beh
 This is similar to delete-developer and delete-client commands, except that in the delete project method is called in the model, the project is also removed from the respective developer and client's project sets.
 The following sequence diagram illustrates how the delete-project operation works:
 
-<img src="images/DeleteProjectSequenceDiagram.png" width="450" />
+![image](images/DeleteProjectSequenceDiagram.png)
 
 #### Design considerations
   1. **Alternative 1:** Make the delete-project command call edit-developer and edit-client commands, both to update the project sets of the respective developers and clients.
