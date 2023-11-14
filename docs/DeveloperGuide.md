@@ -1436,84 +1436,84 @@ For these tests, each test case has respective prerequisites that must be met be
 ### Adding roles
 #### Adding Developer Roles
 1. Test case: `add-developer-role UIDesigner`<br>
-   Expected results: UIDesigner added as a role. Command status success message shown.
+Expected: UIDesigner added as a role. Command status success message shown.
 2. Test case: `add-developer-role Developer`<br>
-   Expected results: No role added. Error details shows role cannot be added as it exists.
+Expected: No role added. Error details shows role cannot be added as it exists.
 3. **Test Case 1 must be completed** `add-developer-role UIDesigner`<br>
-   Expected results: No role added. Error details shows role cannot be added as it exists.
+Expected: No role added. Error details shows role cannot be added as it exists.
 
 #### Adding Client Roles
 1. Test case: `add-client-role Tester`<br>
-   Expected results: Tester added as a role. Command status success message shown.
+   Expected: Tester added as a role. Command status success message shown.
 2. Test case: `add-client-role HR`<br>
-   Expected results: No role added. Error details shows role cannot be added as it exists.
+   Expected: No role added. Error details shows role cannot be added as it exists.
 3. **Test Case 1 must be completed** `add-developer-role Tester`<br>
-   Expected results: No role added. Error details shows role cannot be added as it exists.
+   Expected: No role added. Error details shows role cannot be added as it exists.
 
 <div style="page-break-after: always;"></div>
 
 ### Delete roles
 #### Deleting Developer Roles
 1. Prerequisite: role `UIDesigner` has been added in already (i.e. add in this role if it is after any of the test case)
-2. Test case: `delete-developer-role UIDesigner`
-   Expected results: UIDesigner deleted as a role. Command status success message shown.
-3. Test case: assign the `UIDesigner` role to any developer, then execute `delete-developer-role UIDesigner`
-   Expected results:  No role deleted. Error details shows role cannot be deleted as there are developers using it.
-4. Test case: `delete-developer-role Developer`
-   Expected results:  No role deleted. Error details shows role cannot be deleted as this is a pre-declared role.
-5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role UIDesigner`
-   Expected results:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
+2. Test case: `delete-developer-role UIDesigner`<br>
+   Expected: UIDesigner deleted as a role. Command status success message shown.
+3. Test case: assign the `UIDesigner` role to any developer, then execute `delete-developer-role UIDesigner`<br>
+   Expected:  No role deleted. Error details shows role cannot be deleted as there are developers using it.
+4. Test case: `delete-developer-role Developer`<br>
+   Expected:  No role deleted. Error details shows role cannot be deleted as this is a pre-declared role.
+5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role UIDesigner`<br>
+   Expected:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
 
 #### Deleting Client Roles
 1. Prerequisite: role `Tester` has been added in already (i.e. add in this role if it is after any of the test case)
-2. Test case: `delete-client-role Tester`
-   Expected results: Tester deleted as a role. Command status success message shown.
-3. Test case: assign the `Tester` role to any client, then execute `delete-client-role Tester`
-   Expected results:  No role deleted. Error details shows role cannot be deleted as there are clients using it.
-4. Test case: `delete-client-role HR`
-   Expected results:  No role deleted. Error details shows role cannot be deleted as this is a pre-declared role.
-5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role Tester`
-   Expected results:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
+2. Test case: `delete-client-role Tester`<br>
+   Expected: Tester deleted as a role. Command status success message shown.
+3. Test case: assign the `Tester` role to any client, then execute `delete-client-role Tester`<br>
+   Expected:  No role deleted. Error details shows role cannot be deleted as there are clients using it.
+4. Test case: `delete-client-role HR`<br>
+   Expected:  No role deleted. Error details shows role cannot be deleted as this is a pre-declared role.
+5. Test case: **Test Case 1 must be completed** then execute `delete-developer-role Tester`<br>
+   Expected:  No role deleted. Error details shows role cannot be deleted as it doesn't exist.
 
 <div style="page-break-after: always;"></div>
 
 ### Finding
 #### Finding projects
-1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
-2. Test case: 'find-project pr/Laundry App'<br>
+1. Prerequisites: List all projects using the `list-project` command. Multiple projects in the list.
+2. Test case: `find-project pr/Laundry App`<br>
    Expected: Projects with the name, Laundry App, are shown on the list. Command success status message shown.
-3. Test case: 'find-developer Laundry App'
+3. Test case: `find-developer Laundry App`<br>
    Expected: No search result due to error in format. No prefix provided before project name. Error details shown in the status message.
 
 #### Finding developers
-1. Prerequisites: List all developers using the 'list-developer' command. Multiple developers in the list.
-2. Test case: 'find-developer n/Alice'<br>
+1. Prerequisites: List all developers using the `list-developer` command. Multiple developers in the list.
+2. Test case: `find-developer n/Alice`<br>
    Expected: Developers with the name, Alice, are shown on the list. Command success status message shown.
-3. Test case: 'find-developer Alice'
+3. Test case: `find-developer Alice`<br>
    Expected: No search result due to error in format. No prefix provided before name. Error details shown in the status message.
 
 #### Finding clients
-1. Prerequisites: List all clients using the 'list-client' command. Multiple clients in the list.
-2. Test case: 'find-client o/Google'<br>
+1. Prerequisites: List all clients using the `list-client` command. Multiple clients in the list.
+2. Test case: `find-client o/Google`<br>
    Expected: Clients from the organisation, Google, are shown on the list. Command success status message shown.
-3. Test case: 'find-client Google'
+3. Test case: `find-client Google`<br>
    Expected: No search result due to error in format. No prefix provided before organisation. Error details shown in the status message.
 
 <div style="page-break-after: always;"></div>
 
 ### Marking project deadlines
 #### Mark deadline as done
-1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
-2. Test case: 'mark-deadline 1 2'<br>
+1. Prerequisites: List all projects using the `list-project` command. Multiple projects in the list.
+2. Test case: `mark-deadline 1 2`<br>
    Expected: The second deadline of the first project in the currently displayed project list is marked as done. Command success status message shown.
-3. Test case: 'mark-deadline 1 x' where 'x' is an integer larger than the number of deadlines for the project specified.
+3. Test case: `mark-deadline 1 x` where `x` is an integer larger than the number of deadlines for the project specified.<br>
    Expected: No change. Error details shown in the status message.
 
 #### Mark deadline as undone
-1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
-2. Test case: 'unmark-deadline 1 2'<br>
+1. Prerequisites: List all projects using the `list-project` command. Multiple projects in the list.
+2. Test case: `unmark-deadline 1 2`<br>
    Expected: The second deadline of the first project in the currently displayed project list is marked as undone. Command success status message shown.
-3. Test case: 'unmark-deadline 1 x' where 'x' is an integer larger than the number of deadlines for the project specified.
+3. Test case: `unmark-deadline 1 x` where `x` is an integer larger than the number of deadlines for the project specified.
    Expected: No change. Error details shown in the status message.
 
 ### Exiting the app
@@ -1526,7 +1526,7 @@ For these tests, each test case has respective prerequisites that must be met be
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **Appendix: Planned Enhancement**
+## **Appendix: Planned Enhancements**
 
 ### Validation checks for duplicate fields in edit commands
 **Current Behavior:** Two developers can have the same details (eg. address, phone number, email) as long as their name
