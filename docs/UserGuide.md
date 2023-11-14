@@ -41,7 +41,7 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
           * [Developer Parameters](#developer-parameters)
           * [Client Parameters](#client-parameters)
           * [Project Parameters](#project-parameters)
-       * [Format] (#format)
+       * [Format]
           * [General Formatting](#general-formatting)
           * [Command Formatting](#command-formatting)
     * [Navigating the Graphical User Interface (GUI)](#navigating-the-graphical-user-interface-gui)
