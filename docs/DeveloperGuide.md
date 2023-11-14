@@ -31,7 +31,7 @@ title: Developer Guide
   * [Non Functional Requirements](#non-functional-requirements)
   * [Glossary](#glossary)
 * [Appendix: Manual Testing](#appendix-manual-testing)
-* [Appendix: Planned Enhancements](#appendix-planned-enhancement)
+* [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 * [Appendix: Effort](#appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
