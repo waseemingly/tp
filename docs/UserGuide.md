@@ -36,7 +36,7 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 {: .no_toc}
 
 * Table of Contents
-{:toc}
+  {:toc}
 -------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -97,14 +97,14 @@ Here are some notes about these parameters.
 
 #### Common Parameters
 
-| Parameter | Description                              | Constraints                                                       | Valid Examples              | Invalid Examples                            |
-|-----------|------------------------------------------|-------------------------------------------------------------------|-----------------------------|---------------------------------------------|
-| `n/`      | name of developer/client/project         | alphanumeric characters and spaces, and it should not be blank    | Tom Hanks, Elizabeth 2      | 成龍, 潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran |
-| `p/`      | phone number of developer/client/project | 8 numeric characters, and it should not be blank                  | 94566835                    | 123, 432, 5678@                             |
-| `e/`      | email of developer/client/project        | alphanumeric characters, contains an @ and it should not be blank | amy@gmail.com               | amy!gmail.com, amy$gmail                    |
-| `a/`      | address of developer/client/project      | alphanumeric characters and spaces, and it should not be blank    | 311, Clementi Ave 2, #02-25 | 成龍, 潔 いさぎ 世 よ 一 いち                          |
-| `r/`      | role of developer/client/project         | alphabetical characters and spaces, and it should not be blank    | Developer                   | 成龍, 潔 いさぎ 世 よ 一 いち                          |
-| `pr/`     | project name                             | alphanumeric characters and spaces, and it should not be blank    | CS2103T                     | 成龍, 潔 いさぎ 世 よ 一 いち                          |
+| Parameter | Description                      | Constraints                                                                                                                         | Valid Examples              | Invalid Examples                            |
+|-----------|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|---------------------------------------------|
+| `n/`      | name of developer/client/project | alphanumeric characters and spaces, and it should not be blank                                                                      | Tom Hanks, Elizabeth 2      | 成龍, 潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran |
+| `p/`      | phone number of developer/client | 8 numeric characters, and it should not be blank                                                                                    | 94566835                    | 123, 432, 5678@                             |
+| `e/`      | email of developer/client        | alphanumeric characters, contains an @ and it should not be blank                                                                   | amy@gmail.com               | amy!gmail.com, amy$gmail                    |
+| `a/`      | address of developer/client      | alphanumeric characters and spaces, and it should not be blank                                                                      | 311, Clementi Ave 2, #02-25 | 成龍, 潔 いさぎ 世 よ 一 いち                          |
+| `r/`      | role of developer/client         | alphabetical characters and spaces, and it should not be blank                                                                      | Developer                   | 成龍, 潔 いさぎ 世 よ 一 いち                          |
+| `pr/`     | project name                     | alphanumeric characters and spaces, and it should not be blank, used in the context or Developer/Client when assigned to project(s) | CS2103T                     | 成龍, 潔 いさぎ 世 よ 一 いち                          |
 
 #### Developer Parameters
 
@@ -117,10 +117,10 @@ Here are some notes about these parameters.
 
 #### Client Parameters
 
-| Parameter | Description                 | Constraints                                                    | Valid Examples | Invalid Examples |
-|-----------|-----------------------------|----------------------------------------------------------------|----------------|------------------|
-| `o/`      | organisation name of client | alphanumeric characters and spaces, and it should not be blank | Google         | 谷歌               |
-| `do/`     | document name of client     | alphanumeric characters and spaces, and it should not be blank | google.com     | 谷歌.com           |
+| Parameter | Description                 | Constraints                                                                                       | Valid Examples | Invalid Examples |
+|-----------|-----------------------------|---------------------------------------------------------------------------------------------------|----------------|------------------|
+| `o/`      | organisation name of client | alphanumeric characters and spaces, and it should not be blank                                    | Google         | 谷歌               |
+| `do/`     | document link of client     | alphanumeric characters and spaces, and it should not be blank, follows standard hyperlink format | google.com     | 谷歌.com           |
 
 #### Project Parameters
 
@@ -128,6 +128,7 @@ Here are some notes about these parameters.
 |-----------|------------------------|----------------------------------------------------------------|-------------------------------------------------|------------------------------------|
 | `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered | 成龍, 潔 いさぎ 世 よ 一 いち                 |
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             | 19.1.2023, 潔 いさぎ 世 よ 一 いち, NONE, 5 |
+| `pri/`    | priority of deadline   | HIGH, MEDIUM, LOW                                              | HIGH, MEDIUM, LOW                               | 5, 3.5, -1, high, M                |
 
 <div style="page-break-after: always;"></div>
 
@@ -136,10 +137,10 @@ Here are some notes about these parameters.
 Here are the explanations behind the formatting we use through this guide.<br>
 
 * Words in `grey blocks (like these)` usually represent any of the following:
-  1. Text used in commands, such as `add-developer`
-  2. Keys on your keyboard like `Enter`
-  3. File names such as `CodeContact.jar`
-  <br>
+    1. Text used in commands, such as `add-developer`
+    2. Keys on your keyboard like `Enter`
+    3. File names such as `CodeContact.jar`
+       <br>
 <div markdown="block" class="alert alert-info">
 :bulb: This is a blue box. It can be used for additional tips or more useful information.
 </div>
@@ -373,12 +374,12 @@ Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r
 * `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
 * If specified, `PROJECT_NAME` should be the exact name of an existing project.
 * Note that for `RATING` values that are not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
-may not be reflected as clearly in the coloured stars.
+  may not be reflected as clearly in the coloured stars.
 
 Example of usage: `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
 
 * Adds a new developer `John Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
-given that they already exist in the address book.
+  given that they already exist in the address book.
 
 When command succeeds, CLI shows:
 
@@ -565,7 +566,7 @@ Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d
 * You can, however, edit the casing of an existing developer's `NAME`.
 * `PROJECT_NAME` should be the exact name of an existing project.
 * Note that for `RATING` values that not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
- may not be reflected as clearly in the coloured stars.
+  may not be reflected as clearly in the coloured stars.
 
 Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
 
@@ -716,11 +717,11 @@ Format: `import-client [FILENAME]`
 ```
 Name, Contact Number, Email, Address, Role, Organisation, Document, Projects,
 Mahi,87554321,mahi@u.com,utown,HR,Google,docs.google.com/abd,AndroidApp,ProjectB
-Jane,654321876,jane@email.com,456 Oak St,HR,Acme Corp,acme.com/docs,AndroidApp,ProjectB
-Robert,987123456,robert@email.com,789 Elm St,HR,Tech Solutions,techdocs.com/123,AndroidApp,ProjectB
-Maria,321987654,maria@email.com,123 Maple St,HR,Innovate Inc,innovate.com/docs,AndroidApp,
-Chris,876543219,chris@email.com,567 Pine St,HR,Data Insights,datainsights.com/docs,AndroidApp,
-Laura,888555555,laura@email.com,101 Birch St,HR,Software Systems,software.com/docs,AndroidApp,
+Jane,654321876,jane@email.com,456 Oak St,HR,Acme Corp,acme.com/docs,AndroidApp
+Robert,987123456,robert@email.com,789 Elm St,HR,Tech Solutions,techdocs.com/123
+Maria,321987654,maria@email.com,123 Maple St,HR,Innovate Inc,innovate.com/docs
+Chris,876543219,chris@email.com,567 Pine St,HR,Data Insights,datainsights.com/docs
+Laura,888555555,laura@email.com,101 Birch St,HR,Software Systems,software.com/docs
 ```
 
 Example of usage: `import-client clients.csv`
@@ -1171,6 +1172,9 @@ can download it [here](https://www.oracle.com/java/technologies/downloads/#java1
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
    application before running the application again.
+2. **When tampering with the storage files**, if you tamper with the storage files leading to incorrect format, the application will not be able to
+   read the data and will throw an error. The remedy is to delete the `addressbook.json` file created by the application before
+   running the application again.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
