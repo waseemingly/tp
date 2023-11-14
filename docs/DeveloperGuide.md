@@ -239,7 +239,7 @@ add-client and add-project commands are executed in a similar manner.
 
 The following sequence diagram illustrates how the add developer operation works
 
-<img src="images/AddDeveloperSequenceDiagram.png" width="450" />
+![image](images/AddDeveloperSequenceDiagram.png)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -252,6 +252,8 @@ Example Uses:
 `delete-developer 3`
 
 `delete-client 2`
+<div style="page-break-after: always;"></div>
+
 #### Implementation
 Upon entry of the delete developer command for instance, a `DeleteDeveloperCommand` class is created. The `DeleteDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the developer at specified **one-based index** is removed if the index provided is valid.
 
@@ -267,10 +269,12 @@ A similar implementation is done for the delete-client command, where a `DeleteC
 
 The following sequence diagram illustrates how the delete developer operation works:
 
-<img src="images/DeleteClientSequenceDiagram.png" width="450" />
+![image](images/DeleteClientSequenceDiagram.png)
 
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Delete Project Feature (`delete-project`)
 #### Intended Result
@@ -280,8 +284,6 @@ Additionally, if the project is assigned to a developer or client, the project w
 Example Uses:
 
 `delete-project 2`
-
-<div style="page-break-after: always;"></div>
 
 #### Implementation
 Upon entry of the delete project command, a `DeleteProjectCommand` class is created. The `DeleteProjectCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the project at specified **one-based index** is removed if the index provided is valid.
@@ -297,15 +299,13 @@ Given below is an example usage scenario of how the delete developer command beh
 This is similar to delete-developer and delete-client commands, except that in the delete project method is called in the model, the project is also removed from the respective developer and client's project sets.
 The following sequence diagram illustrates how the delete-project operation works:
 
-<img src="images/DeleteProjectSequenceDiagram.png" width="450" />
+![image](images/DeleteProjectSequenceDiagram.png)
 
 #### Design considerations
   1. **Alternative 1:** Make the delete-project command call edit-developer and edit-client commands, both to update the project sets of the respective developers and clients.
       * Pros: Easy to implement.
       * Cons: May be less efficient as the edit-developer and edit-client commands will have to be called for each developer and client respectively.
       * Edit command will have to retrieve client and developer project sets, iterate through each set to edit them accordingly and then pass the command, which will be retrieving information from the model to the logic component, which will complicate and potentially break abstractions originally in place.
-<div style="page-break-after: always;"></div>
-
   2. **Alternative 2:** Do not edit developer and client project sets
       * Pros: No extra logic needed to be implemented.
       * Cons: Information integrity is compromised as the project will still be assigned to the developer and client even after it is deleted, and this will affect other features such as find, and potentially future features.
@@ -315,6 +315,8 @@ The following sequence diagram illustrates how the delete-project operation work
 
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Import Feature (`import-developer`, `import-client`)
 This feature will allow project managers to import existing spreadsheets of developer and client data in the specified format in CSV
