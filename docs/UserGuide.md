@@ -396,7 +396,7 @@ Projects: CustomWebsite AndroidApp
 ```
 
 <div markdown="block" class="alert alert-info">:bulb:
-Entered details of a developer incorrectly? You can always undo the action with the [`undo`](#undo) command! 
+Entered details of a developer incorrectly? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
