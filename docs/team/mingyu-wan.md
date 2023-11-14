@@ -10,27 +10,17 @@ CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 
 
 Given below are my contributions to the project.
 
-* **New Feature 1**: `Undo`
-  * What it does: <br> Allows users to undo their previous command easily.
-  * Justification: <br> The undo feature enhances user experience by allowing effortless reversal of previous actions,
-  providing convenience in scenarios where unintended changes are made..
-  * Highlights: <br> TThe undo feature is unlimited, allowing users to revert all the way to their first command using
-  the simple undo command, ensuring ease of use.
-  * Credits: <br> Inspired by the AB-3 developer guide, the redo feature employs a pointer to change the address book at each redo command.
+* **New Feature 1**: `Undo` n `Redo`
+  * What it does: <br> Allows users to undo and redo their command easily.
+  * Justification: <br> This feature enhances user experience by allowing effortless reversal of previous actions,
+  providing convenience in scenarios where unintended changes are made.
+  * Highlights: <br> The undo and redo feature is unlimited, allowing users to revert all the way to their first or last command using
+  the simple `undo` or `redo` command, ensuring ease of use.
+  * Credits: <br> Inspired by the AB-3 developer guide, this feature employs a pointer to change the address book at each undo or redo command.
   Additional validation checks were added for CodeContact's complexity.
 <br>
 
-
-* **New Feature 2**: `Redo`
-    * What it does: <br> Allows users to redo their previous undone command easily.
-    * Justification: <br> The redo feature streamlines user interaction, allowing easy correction of mistakes and smooth iteration through different states.
-    * Highlights: <br> Users can redo without limits, moving all the way to the first command. Simple redo command usage with friendly reminders makes it user-friendly.
-  It seamlessly integrates with the undo feature for effortless navigation through commands.
-    * Credits: <br>  Inspired by the AB-3 developer guide, the redo feature employs a pointer to change the address book at each redo command.
-  Additional validation checks were added for CodeContact's complexity.
-<br>
-
-* **New Feature 3**: `Adding roles `
+* **New Feature 2**: `Adding roles `
     * What it does: <br> Allows users to add different roles.
     * Justification: <br> This feature minimizes risks associated with incorrect role assignments by allowing explicit
 definition and addition of developer or client roles. It ensures a standardized set of role names,
@@ -40,7 +30,7 @@ adding clarity to the role assignment process. A pre-added list of roles for cli
     * Credits: N.A.
 <br>
 
-* **New Feature 4**: `Deleting roles `
+* **New Feature 3**: `Deleting roles `
     * What it does: <br> Allows users to delete different roles.
     * Justification: <br> This CodeContact feature is crucial for user data management, enabling users to refine and update the list of roles.
   Deleting roles is essential for maintaining a clean and relevant role structure, empowering users to adapt roles to evolving needs and ensuring accuracy in the address book.
@@ -76,8 +66,7 @@ adding clarity to the role assignment process. A pre-added list of roles for cli
     * Developer Guide Contributions:
         * Added use case (abandoned due to a shift in project): [\#43](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/43)
         * Reformatted entire DG format: [\#244](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/244)
-        * Wrote user stories: [\#246](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/246)
-        * Wrote new use case: [\#247](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/247)
+        * Wrote user stories and use case: [\#246](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/246) [\#247](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/247)
         * Wrote implementations, sequence and activity diagrams for features i implemented: [\#246](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/246)
         * Wrote in appendix: planned enhancements: [\#247](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/246)
 <br>
