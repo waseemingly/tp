@@ -652,8 +652,7 @@ The following sequence diagram shows how the Delete-role operation works:
 ![SequenceDiagram](images/DeleteDeveloperRoleSequenceDiagram.png)
 
 The following activity diagram shows how the validation check `isRemovableRole()` works:<br>
-![ActivityDiagram](images/isRemovableRole.png)
-<img src="images/isRemovableRole.png" alt="Activity Diagram" width="auto" height="650"/>
+<img src="images/isRemovableRole.png" alt="Activity Diagram" width="auto" height="500"/>
 
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -1499,6 +1498,8 @@ Expected results:  No role deleted. Error details shows role cannot be deleted a
 3. Test case: 'find-client Google'
    Expected: No search result due to error in format. No prefix provided before organisation. Error details shown in the status message.
 
+<div style="page-break-after: always;"></div>
+
 ### Marking project deadlines
 #### Mark deadline as done
 1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
@@ -1506,8 +1507,6 @@ Expected results:  No role deleted. Error details shows role cannot be deleted a
    Expected: The second deadline of the first project in the currently displayed project list is marked as done. Command success status message shown.
 3. Test case: 'mark-deadline 1 x' where 'x' is an integer larger than the number of deadlines for the project specified.
    Expected: No change. Error details shown in the status message.
-
-<div style="page-break-after: always;"></div>
 
 #### Mark deadline as undone
 1. Prerequisites: List all projects using the 'list-project' command. Multiple projects in the list.
