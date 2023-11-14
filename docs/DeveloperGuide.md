@@ -252,6 +252,8 @@ Example Uses:
 `delete-developer 3`
 
 `delete-client 2`
+<div style="page-break-after: always;"></div>
+
 #### Implementation
 Upon entry of the delete developer command for instance, a `DeleteDeveloperCommand` class is created. The `DeleteDeveloperCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the developer at specified **one-based index** is removed if the index provided is valid.
 
@@ -272,6 +274,8 @@ The following sequence diagram illustrates how the delete developer operation wo
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Delete Project Feature (`delete-project`)
 #### Intended Result
 Deletes a project at the specified **one-based index** of list of currently existing/found projects. Users are able to delete any project in project lists. If an index larger than or equal to the size of the project list provided, the command will not be allowed and an error will be thrown to alert user.
@@ -280,8 +284,6 @@ Additionally, if the project is assigned to a developer or client, the project w
 Example Uses:
 
 `delete-project 2`
-
-<div style="page-break-after: always;"></div>
 
 #### Implementation
 Upon entry of the delete project command, a `DeleteProjectCommand` class is created. The `DeleteProjectCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the project at specified **one-based index** is removed if the index provided is valid.
