@@ -1297,7 +1297,6 @@ Expected: Shows the unlocked GUI.
 2. Test case: `unlock pw/abc`<br>
   Expected: GUI remains locked. Error details shown in the status message.
 
-<div style="page-break-after: always;"></div>
 
 ### Change password
 1. Test case: `change-password pw/Password123! npw/Password321!`<br>
@@ -1579,7 +1578,6 @@ priority. This provides users with more flexibility in organizing and viewing th
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
 
