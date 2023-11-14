@@ -12,77 +12,45 @@ Given below are my contributions to the project.
 
 * **New Feature 1**: `Undo`
   * What it does: <br> Allows users to undo their previous command easily.
-  * Justification: <br> Users can now effortlessly revert their previous actions, providing a more forgiving and
-  user-friendly experience. This feature adds a layer of convenience, especially in scenarios where users might
-  make unintended changes.
-  * Highlights: <br> The undo feature has no limits to how many times you can undo, and you can undo all the way to
-  your first command.The command is as easy as `undo`, making this feature really easy to use.
-  * Credits: <br> The general structure of how `undo` works is inspired from the AB-3 developer guide, which is
-  using a pointer that changes which addressbook to point to at each `undo` command. However, due to the nature and
-  large number of fields CodeContact have, alot more validation checks were added in.
+  * Justification: <br> The undo feature enhances user experience by allowing effortless reversal of previous actions,
+  providing convenience in scenarios where unintended changes are made..
+  * Highlights: <br> TThe undo feature is unlimited, allowing users to revert all the way to their first command using
+  the simple undo command, ensuring ease of use.
+  * Credits: <br> Inspired by the AB-3 developer guide, the redo feature employs a pointer to change the address book at each redo command.
+  Additional validation checks were added for CodeContact's complexity.
 <br>
 
 
 * **New Feature 2**: `Redo`
     * What it does: <br> Allows users to redo their previous undone command easily.
-    * Justification: <br> By allowing users to easily redo their previous undone commands, we enhance the overall user
-  experience and streamline the workflow within the CLI and GUI interfaces. This feature provides a valuable
-  mechanism for users to correct mistakes, iterate through different states, and maintain a smooth interaction
-  with the application.
-    * Highlights: <br> The undo feature has no limits to how many times you can redo, you can redo all the way to
-  your first command. The system is also friendly to remind you when you have reached the latest stage and can no
-  longer redo. The command is as easy as `redo`, making this feature really easy to use. Coupled with the `undo
-  feature, it allows users to easily move front and back through their commands.
-    * Credits: <br> The general structure of how `redo` works is inspired from the AB-3 developer guide, which is
-  using a pointer that changes which addressbook to point to at each `redo` command. However, due to the nature and
-  large number of fields CodeContact have, alot more validation checks were added in.
+    * Justification: <br> The redo feature streamlines user interaction, allowing easy correction of mistakes and smooth iteration through different states.
+    * Highlights: <br> Users can redo without limits, moving all the way to the first command. Simple redo command usage with friendly reminders makes it user-friendly.
+  It seamlessly integrates with the undo feature for effortless navigation through commands.
+    * Credits: <br>  Inspired by the AB-3 developer guide, the redo feature employs a pointer to change the address book at each redo command.
+  Additional validation checks were added for CodeContact's complexity.
 <br>
 
 * **New Feature 3**: `Adding roles `
     * What it does: <br> Allows users to add different roles.
-    * Justification: <br> This feature addresses the potential pitfalls associated with incorrect role assignments.
-  By allowing users to explicitly define and add developer or client roles, CodeContact ensures that the user base
-  adheres to a standardized set of role names. This proactive approach minimizes the risk of mislabeling and
-  enhances the searchability of individuals within the application.
-    * Highlights: <br> The feature caters to the unique needs of adding both developers and clients by providing
-  separate commands (`add-developer-role` and `add-client-role`). This level of specificity adds clarity to the
-  role assignment process. To facilitate users, there is also a pre-added list of roles for both clients and
-  developers so that users can seamlessly add in commands when they start using CodeContact and can slowly explore
-  other roles they wish to add thereafter. There are also validation checks done when adding roles to prevent you
-  from adding repeated roles.
+    * Justification: <br> This feature minimizes risks associated with incorrect role assignments by allowing explicit
+definition and addition of developer or client roles. It ensures a standardized set of role names,
+reducing the chance of mislabeling and improving searchability within CodeContact.
+    * Highlights: <br> The feature provides separate commands (add-developer-role and add-client-role) for adding developers and clients,
+adding clarity to the role assignment process. A pre-added list of roles for clients and developers facilitates user adoption, and validation checks prevent the addition of repeated roles.
     * Credits: N.A.
 <br>
 
 * **New Feature 4**: `Deleting roles `
     * What it does: <br> Allows users to delete different roles.
-    * Justification: <br> This feature in CodeContact plays a pivotal role in user data management
-  , allowing users to refine and update the list of available roles. Deleting roles is essential for maintaining
-  a clean and relevant role structure within the application. This feature empowers users to adapt the roles
-  available to their evolving needs, ensuring that the address book remains accurate.
-    * Highlights: <br> The feature caters to the unique needs of deleting both developers and clients by providing
-  separate commands (`delete-developer-role` and `delete-client-role`). To make sure that users don't accidentally
-  delete the roles when there are still developers and clients using that role, the feature searches through the
-  developers and clients to make sure that no contact is using this role before deleting it. If there are still
-  contacts assigned to these roles, deleting these roles will not be allowed. As CodeContact provides a
-  pre-added list of roles, users are also not allowed to delete these roles.
+    * Justification: <br> This CodeContact feature is crucial for user data management, enabling users to refine and update the list of roles.
+  Deleting roles is essential for maintaining a clean and relevant role structure, empowering users to adapt roles to evolving needs and ensuring accuracy in the address book.
+    * Highlights: <br> Separate commands (delete-developer-role and delete-client-role) cater to the unique needs of deleting developers and clients.
+  To prevent accidental deletion when roles are in use, the feature checks for active developers and clients before deletion. Users cannot delete pre-added roles from CodeContact.
     * Credits: N.A.
 <br>
 
-* **New Feature 5**: `list `
-    * What it does: <br> Allows users to list project, developers or clients.
-    * Justification: <br> The feature `list` the respective information when called and switches to the relevant tabs
-  accordingly. This feature enhances user visibility and understanding of the available projects, developers,
-  and clients. By allowing users to list these entities, CodeContact ensures that users have quick access to
-  a comprehensive overview.
-    * Highlights: <br> The "List" feature provides users with immediate access to critical information, allowing them
-  to view all existing projects, developers, or clients within the application. It plays an important part in
-  helping users identify the index of each contact so that they can easily execute other commands like `edit`
-  or `delete`.
-    * Credits: <br> The general `list` implementation follows how it was implemented for AB3 but some modification have
-  been made such that it is customised to CodeContact.
-<br>
-
 * **Enhancements to existing features**:
+    * Modified list feature to work with our new tab and fields (Pull requests [\#113](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/113))  
     * Fixed parts of the test cases to pass again (Pull requests [\#225](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/225))
     * Increased code coverage from `32.28%` to `38%` and from `48.9%` to `54.39%`.(Pull requests [\#250](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/250)
       [\#241](https://github.com/AY2324S1-CS2103T-T09-2/tp/pull/241))
