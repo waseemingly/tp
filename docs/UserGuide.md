@@ -33,7 +33,64 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 -------------------------------------------------------------------------------------
 
 ## Table of Contents
-{:toc}
+* [Navigating this guide](#navigating-this-guide)
+    * [Glossary](#glossary)
+       * [Definitions](#definitions)
+       * Parameter Information
+          * [Common Parameters](#common-parameters)
+          * [Developer Parameters](#developer-parameters)
+          * [Client Parameters](#client-parameters)
+          * [Project Parameters](#project-parameters)
+       * [Format] (#format)
+          * [General Formatting](#general-formatting)
+          * [Command Formatting](#command-formatting)
+    * [Navigating the Graphical User Interface (GUI)](#navigating-the-graphical-user-interface-gui)
+       * [Quick Orientation](#quick-orientation)
+       * [Notes on GUI](#notes-on-gui)
+    * [Quick start](#quick-start)
+    * [CodeContact Tutorial (for new users)](#codecontact-tutorial-for-new-users)
+* [Features](#features)
+    * [Security Features](#security-features)
+       * [Password Protection](#password-protection)
+          * [Lock `lock`](#lock--lock)
+          * [Unlock `unlock`](#unlock--unlock)
+          * [Change Password `change-password`](#change-password--change-password)
+       * [Management Features](#management-features)
+          * [Add](#add)
+             * [Add developer : `add-developer`](#add-developer--add-developer)
+             * [Add client : `add-client`](#add-client--add-client)
+             * [Add project : `add-project`](#add-project--add-project)
+          * [Delete](#delete)
+             * [Delete developer : `delete-developer`](#delete-developer--delete-developer)
+             * [Delete client : `delete-client`](#delete-client--delete-client)
+             * [Delete project : `delete-project`](#delete-project--delete-project)
+          * [Edit](#edit)
+             * [Edit developer details : `edit-developer`](#edit-developer-details--edit-developer)
+             * [Edit client details : `edit-client`](#edit-client-details--edit-client)
+             * [Edit project details : `edit-project`](#edit-project-details--edit-project)
+          * [Import](#import)
+             * [Import developers' details : `import-developer`](#import-developers-details--import-developer)
+             * [Import clients' details : `import-client`](#import-clients-details--import-client)
+          * [Find](#find)
+             * [Find developer details : `find-developer`](#find-developer-details--find-developer)
+             * [Find client details : `find-client`](#find-client-details--find-client)
+             * [Find project details : `find-project`](#find-project-details--find-project)
+             * [Find deadlines : `find-deadline`](#find-deadlines--find-deadline)
+          * [List](#list)
+             * [List information : `list`](#list-information--list)
+          * [Mark](#mark)
+             * [Mark project deadline as done : `mark-deadline`](#mark-project-deadline-as-done--mark-deadline)] 
+             * [Mark project deadline as undone : `unmark-deadline`](#mark-project-deadline-as-undone--unmark-deadline)
+          * [Undo](#undo)
+             * [Undo : `undo`](#undo--undo)
+             * [Redo : `redo`](#redo--redo)
+       * [Miscellaneous Features](#miscellaneous-features)
+          * [Viewing help : `help`](#viewing-help--help)
+          * [Clearing all entries : `clear`](#clearing-all-entries--clear)
+          * [Exiting the program : `exit`](#exiting-the-program--exit)
+* [FAQ](#faq)
+* [Known issues](#known-issues)
+* [Command Summary](#command-summary)
 
 -------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -1009,7 +1066,7 @@ The deadline has been marked as completed!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Mark deadline as undone : `unmark-deadline`
+#### Mark project deadline as undone : `unmark-deadline`
 
 Marks the indicated deadline for the project as undone.
 
