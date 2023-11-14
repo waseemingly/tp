@@ -33,29 +33,29 @@ public class TypicalDevelopers {
 
     public static final Developer ALICE = new DeveloperBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withRole("Developer").withSalary("50000")
-            .withGithubId("mahidharah").withRating("3").withDateJoined("01-01-2022")
+            .withPhone("94351253").withRole("Developer").withSalary("40000")
+            .withGithubId("mahidharah").withRating("3.0").withDateJoined("01-01-2022")
             .withProjects("AndroidApp").build();
     public static final Developer BENSON = new DeveloperBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com")
             .withPhone("98765432").withRole("Developer").withSalary("50000")
-            .withGithubId("mahidharah").withRating("4").withDateJoined("01-01-2022")
+            .withGithubId("mahidharah").withRating("4.0").withDateJoined("01-01-2022")
             .withProjects("owesMoney", "friends").build();
     public static final Developer CARL = new DeveloperBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withRole("Developer").withSalary("50000").withGithubId("mahidharah").withRating("5")
+            .withRole("Developer").withSalary("50000").withGithubId("mahidharah").withRating("5.0")
             .withDateJoined("01-01-2022").withEmail("heinz@example.com")
             .withAddress("wall street").withProjects("AppleApp").build();
     public static final Developer DANIEL = new DeveloperBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
-            .withRole("Developer").withSalary("50000").withGithubId("mahidharah").withRating("1")
+            .withRole("Developer").withSalary("50000").withGithubId("mahidharah").withRating("1.0")
             .withProjects("friends").withDateJoined("01-01-2022").build();
     public static final Developer ELLE = new DeveloperBuilder().withName("Elle Meyer").withPhone("94822244")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withRole("Developer").withSalary("50000").withGithubId("mahidharah").withRating("4")
+            .withRole("Developer").withSalary("50000").withGithubId("mahidharah").withRating("4.0")
             .withDateJoined("01-01-2022").withProjects("AndroidApp").build();
     public static final Developer FIONA = new DeveloperBuilder().withName("Fiona Kunz").withPhone("94824273")
             .withEmail("lydia@example.com").withAddress("little tokyo").withRole("Developer")
-            .withSalary("50000").withGithubId("mahidharah").withRating("4").withDateJoined("01-01-2022")
+            .withSalary("50000").withGithubId("mahidharah").withRating("4.0").withDateJoined("01-01-2022")
             .withProjects("AppleApp").build();
     public static final Developer GEORGE = new DeveloperBuilder().withName("George Best").withPhone("94824423")
             .withEmail("anna@example.com").withAddress("4th street").withRole("Developer")

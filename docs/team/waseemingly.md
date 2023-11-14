@@ -44,13 +44,14 @@ Given below are my contributions to the project.
         * Added UI screenshots of the app to display examples of certain features.
     * Developer Guide Contributions:
         * Added implementation details of the `find` feature.
+        * Added planned enhancements for filter results and autocorrect search.
+        * Added manual testing cases for `find` and `mark project deadlines` features.
     * README Contributions:
         * Maintained README page of repository
 
 
 * **Community (Review/mentoring contributions)**:
     * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Reported bugs and suggestions for other teams in the cohort.
 
 * **Contributions beyond the project team:**:
     * Reported bugs and suggestions for other teams in the cohort.
