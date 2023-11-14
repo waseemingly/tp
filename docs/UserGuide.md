@@ -1,8 +1,8 @@
 ---
 layout: page
-title: User Guide
+title: CodeContact User Guide
 ---
-
+**-------------------------------------------------------------------------------------**
 ## Welcome to CodeContact
 {: .no_toc}
 
@@ -14,9 +14,9 @@ facilitating collaboration, and offering command-line efficiency for project man
 CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
 management tasks done faster than traditional GUI apps. **CodeContact** aims to put the **P.R.O** in project management  by enabling project managers to be:
-1. **Productive**
-2. **Reliable**
-3. **Organised**
+  > **1. Productive**
+  > **2. Reliable**
+  > **3. Organised**
 
 Here’s an overview of how CodeContact can help you streamline your project management processes.
 * Store and edit information about developers and clients related to projects
@@ -28,17 +28,8 @@ for!
 
 If you are new here, you may start with learning [**How to navigate this guide**](#navigating-this-guide) and visit
 the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
-<div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------
-## Table of Contents
-{: .no_toc}
-
-* Table of Contents
-{:toc}
-
--------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ### How can this guide help me?
 {: .no_toc}
@@ -56,14 +47,25 @@ Confused about the terms or formatting used in this guide? Learn how to **naviga
 Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
 [here](#navigating-the-graphical-user-interface-gui).
 
-------------------------------------------------------------------------------------------
-# **Navigating this guide**
-
-<!-- -->
-
-## **Glossary**
 -------------------------------------------------------------------------------------
-### Definitions
+
+<div style="page-break-after: always;"></div>
+
+-------------------------------------------------------------------------------------
+## Table of Contents
+{: .no_toc}
+
+* Table of Contents
+{:toc}
+
+------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+# **Navigating this guide**
+**-------------------------------------------------------------------------------------**
+## ***Glossary***
+-------------------------------------------------------------------------------------
+### **Definitions**
 
 | Term          | Definition                                                                                                                 |
 |---------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -80,7 +82,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 [Scroll back to Table of Contents](#table-of-contents)
 
 -------------------------------------------------------------------------------------
-### Parameter Information
+### **Parameter Information**
 
 Within the tables below, you can find out more about the parameters that CodeContact supports. These parameters come in
 handy when crafting commands in CodeContact.
@@ -128,8 +130,6 @@ Here are some notes about these parameters.
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             | 19.1.2023, 潔 いさぎ 世 よ 一 いち, NONE, 5 |
 | `pri/`    | priority of deadline   | HIGH, MEDIUM, LOW                                              | HIGH, MEDIUM, LOW                               | 5, 3.5, -1, high, M                |
 
-<div style="page-break-after: always;"></div>
-
 -------------------------------------------------------------------------------------
 ### Format
 #### General Formatting
@@ -162,7 +162,7 @@ Here are the explanations behind the formatting we use through this guide.<br>
 
 -----------------------------------------------------------------------------------------------
 
-## **Navigating the Graphical User Interface (GUI)**
+## ***Navigating the Graphical User Interface (GUI)***
 CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
 of the different sections of our GUI, as well as some notes regarding the use of the GUI.
 ### Quick Orientation
@@ -170,7 +170,7 @@ of the different sections of our GUI, as well as some notes regarding the use of
 <br><br>
 ![image](images/UG%20UI%201.png)
 
-Here is a quick summary of each GUI component within CodeContact:
+**Here is a quick summary of each GUI component within CodeContact:**
 
 | Name                             | Description                                                                                                                                                                                                |
 |----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -282,6 +282,8 @@ To view all our features, you may visit our [Features](#features) section.
 <div style="page-break-after: always;"></div>
 
 # **Features**
+
+**--------------------------------------------------------------------------------------------------------------------**
 
 | [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
 |:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
