@@ -2,7 +2,7 @@
 layout: page
 title: CodeContact User Guide
 ---
-**-------------------------------------------------------------------------------------**
+-------------------------------------------------------------------------------------
 ## Welcome to CodeContact
 {: .no_toc}
 
@@ -51,7 +51,6 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 
 <div style="page-break-after: always;"></div>
 
--------------------------------------------------------------------------------------
 ## Table of Contents
 {: .no_toc}
 
@@ -193,7 +192,7 @@ from always needing to call the list command.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **Quick start**
+## ***Quick start***
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -216,7 +215,7 @@ from always needing to call the list command.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **CodeContact Tutorial (for new users)**
+## ***CodeContact Tutorial (for new users)***
 
 This is a tutorial for **first-time** CodeContact users.
 
@@ -312,11 +311,12 @@ To view all our features, you may visit our [Features](#features) section.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Password Protection
-Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and customizable password.
+> **Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and
+> customizable password.**
 #### Lock : `lock`
 
-Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
-except `unlock`, `help`, and `delete`.
+> Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
+> except `unlock`, `help`, and `delete`.
 
 Format: `lock`
 
@@ -331,7 +331,7 @@ Locked all data
 --------------------------------------------------------------------------------------------------------------------
 #### Unlock : `unlock`
 
-Unlocks the system by making all the information visible and allows all commands to be parsed.
+> Unlocks the system by making all the information visible and allows all commands to be parsed.
 
 Format: `unlock pw/Password123!`
 
@@ -349,7 +349,7 @@ Unlocked all data
 --------------------------------------------------------------------------------------------------------------------
 #### Change password : `change-password`
 
-Allows for password to be changed, given the current password and new password matches criteria.
+> Allows for password to be changed, given the current password and new password matches criteria.
 
 Format: `change-password pw/CURRENT_PASSWORD npw/NEW_PASSWORD`
 
@@ -377,7 +377,7 @@ Password changed successfully.
 --------------------------------------------------------------------------------------------------------------------
 #### Add developer : `add-developer`
 
-Adds a new developer to the address book.
+> Adds a new developer to the address book.
 
 Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`
 
@@ -416,7 +416,7 @@ Entered details of a developer incorrectly? You can always undo the action with 
 --------------------------------------------------------------------------------------------------------------------
 #### Add client : `add-client`
 
-Adds a new client to the address book.
+> Adds a new client to the address book.
 
 Format: `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`
 
@@ -452,7 +452,7 @@ Entered details of a client incorrectly? You can always undo the action with the
 --------------------------------------------------------------------------------------------------------------------
 #### Add project : `add-project`
 
-Adds a new project to the address book.
+> Adds a new project to the address book.
 
 Format: `add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`
 
