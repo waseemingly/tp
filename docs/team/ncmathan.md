@@ -14,7 +14,7 @@ Given below are my contributions to the project.
     * What it does: Gives users the ability to import developers and clients from a CSV file.
     * Justification: Allows users to easily import a large number of developers and clients into the address book. This
       is especially useful for companies that have a large number of employees and those who are new to CodeContact porting over from other address book applications.
-    * Highlights: 
+    * Highlights:
     * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in
       the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
