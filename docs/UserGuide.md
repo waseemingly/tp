@@ -68,6 +68,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 ## ***Glossary***
 -------------------------------------------------------------------------------------
 ### **Definitions**
+-------------------------------------------------------------------------------------
 
 | Term          | Definition                                                                                                                 |
 |---------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -136,7 +137,8 @@ Here are some notes about these parameters.
 | `pri/`    | priority of deadline   | HIGH, MEDIUM, LOW                                              | HIGH, MEDIUM, LOW                               | 5, 3.5, -1, high, M                |
 
 
-### Format
+### **Format**
+-------------------------------------------------------------------------------------
 #### General Formatting
 Here are the explanations behind the formatting we use through this guide.<br>
 
@@ -335,11 +337,11 @@ To view all our features, you may visit our [Features](#features) section.
 ## ***Security Features***
 
 --------------------------------------------------------------------------------------------------------------------
-### Password Protection
+### **Password Protection**
 
 > **Grant yourself exclusive access and deny access by others to CodeContact with a personal and
 > customizable password.**
-
+-------------------------------------------------------------------------------------
 #### Lock : `lock`
 
 > Locks the system and hides all the information, denying access to all information and commands
@@ -896,7 +898,6 @@ for each client successfully added.
 
 ### **Find**
 > **Your go-to command to quickly access information in CodeContact**
-
 --------------------------------------------------------------------------------------------------------------------
 #### Find developer details : `find-developer`
 
