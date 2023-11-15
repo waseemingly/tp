@@ -19,9 +19,9 @@ management tasks done faster than traditional GUI apps. **CodeContact** aims to 
   > **3. Organised**
 
 Here’s an overview of how CodeContact can help you streamline your project management processes.
-* Store and edit information about developers and clients related to projects
-* Store and manage projects and their deadlines
-* Assign projects to developers and clients
+* Store and edit information about developers and clients related to projects.
+* Store and manage projects and their deadlines.
+* Assign projects to developers and clients.
 
 If you are familiar with CodeContact, jump to our [**Table of Contents**](#table-of-contents) to find out what you are looking
 for!
@@ -142,9 +142,9 @@ Here are some notes about these parameters.
 Here are the explanations behind the formatting we use through this guide.<br>
 
 * Words in `grey blocks (like these)` usually represent any of the following:
-    1. Text used in commands, such as `add-developer`
-    2. Keys on your keyboard like `Enter`
-    3. File names such as `CodeContact.jar`
+    1. Text used in commands, such as `add-developer`.
+    2. Keys on your keyboard like `Enter`.
+    3. File names such as `CodeContact.jar`.
        <br>
 <div markdown="block" class="alert alert-info">
 :bulb: This is a blue box. It can be used for additional tips or more useful information.
@@ -361,7 +361,7 @@ To view all our features, you may visit our [Features](#features) section.
 **Format:** `lock`
 
 **Example of usage:** `lock`
-Upon entering the above command,
+
 When command succeeds, CLI shows:
 
 ```
@@ -382,9 +382,6 @@ Locked all data
    * Note: The default password is `Password123!`. It is highly recommended to change to a different password with the [`change-password` command](#change-password-chnage-password).
 
 **Example of usage:** `unlock pw/Password123!`
-
-Upon entering the above command,
-* If password matches
 
 When command succeeds, CLI shows:
 ```
@@ -409,9 +406,6 @@ Unlocked all data
 
 **Example of usage:** `change-password pw/Password123! npw/NewPass987!`
 
-Upon entering the above command,    
-* If `CURRENT_PASSWORD` is entered correctly and `NEW_PASSWORD` is valid
-
 When command succeeds, CLI shows:
 ```
 Password changed successfully.
@@ -426,7 +420,7 @@ Password changed successfully.
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Add**
-> **Your accessible command to easily add relevant project details into CodeContact**
+> **Your accessible command to easily add relevant project details into CodeContact.**
 
 
 #### Add developer : `add-developer`
@@ -443,9 +437,9 @@ If project to be assigned does not exist, consider [adding the project](#add-pro
 
 
 **Optional Fields:**    
-  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects
+  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects.
      
-  2. `DATE_JOINED`  - if prefix d/ is missing in the command, the added developer's date joined field will automatically reflect today's date
+  2. `DATE_JOINED`  - if prefix d/ is missing in the command, the added developer's date joined field will automatically reflect today's date.
 
 
 
@@ -456,10 +450,6 @@ If project to be assigned does not exist, consider [adding the project](#add-pro
 **Example of usage:**    
 `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer 
 pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
-
-Upon executing the above command,
-* A new developer, `John Doe`, is added with the respective details.
-* He is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
 
 When command succeeds, CLI shows:
 ```
@@ -499,10 +489,6 @@ If project to be assigned does not exist, consider [adding the project](#add-pro
 **Example of usage:**
 `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
 
-Upon executing the above command, 
-* A new client, `Jack Doe`, is added with the respective details
-* He is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
-
 When command succeeds, CLI shows:
 
 ```
@@ -539,10 +525,6 @@ Entered details of a client incorrectly? You can always undo the action with the
 **Example of usage:**    
 `add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`
 
-Upon executing the above command,
-* A new project, `JuiceApp`, is added with the respective details.
-* Deadlines with the descriptions `Design backend` and `Design frontend` are created and assigned to the newly added project.
-
 When command succeeds, CLI shows:
 
 ```
@@ -563,7 +545,7 @@ Entered details of a project incorrectly? You can always undo the action with th
 <div style="page-break-after: always;"></div>
 
 ### **Delete**
-> **Your quick command to delete project details effectively into CodeContact**
+> **Your quick command to delete project details effectively into CodeContact.**
 
 
 #### Delete developer : `delete-developer`
@@ -573,7 +555,7 @@ Entered details of a project incorrectly? You can always undo the action with th
 **Format:** `delete-developer INDEX`
 
 **Constraints:**
-1. `INDEX` cannot be greater than the number of developers in the list
+1. `INDEX` cannot be greater than the number of developers in the list.
 
 **Example of usage:** `delete-developer 2`
 
@@ -607,7 +589,7 @@ Deleted a wrong developer? You can always undo the action with the [`undo`](#und
 **Format:** `delete-client INDEX`
 
 **Constraints:**
-1. `INDEX` cannot be greater than the number of clients in the list
+1. `INDEX` cannot be greater than the number of clients in the list.
 
 **Example of usage:** `delete-client 3`    
 
@@ -641,10 +623,7 @@ Deleted a wrong client? You can always undo the action with the [`undo`](#undo) 
 **Format:** `delete-project INDEX`
 
 **Constraints:**
-1. `INDEX` cannot be greater than the number of projects in the list
-
-* Deletes second project in the project list from the project list and from the address book.
-* Deletes project from developers' and clients' project lists if they were assigned to this project.
+1. `INDEX` cannot be greater than the number of projects in the list.
 
 **Example of usage:** `delete-project 2`
 
@@ -656,6 +635,11 @@ Deadlines:
 1. Phase 2 by: 13-11-2021, priority: MEDIUM (undone)
 ```
 if second project in the list was TeamTrekker.
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Note** :This command deletes **project from developers' and clients' project lists** if they were assigned to this project.
+</div>
+
 
 <div markdown="block" class="alert alert-info">:bulb:
 Deleted a wrong project? You can always undo the action with the [`undo`](#undo) command!
@@ -799,7 +783,7 @@ You can always undo the action with the [`undo`](#undo) command!
 <div style="page-break-after: always;"></div>
 
 ### **Import**
-> **Your lightning-fast and reliable way of porting over existing project details into CodeContact**
+> **Your lightning-fast and reliable way of porting over existing project details into CodeContact.**
 
 
 #### Import developers' details : `import-developer`
@@ -917,7 +901,7 @@ for each client successfully added.
 
 ### **Find**
 
-> **Your go-to command to quickly access precise information in CodeContact**
+> **Your go-to command to quickly access precise information in CodeContact.**
 
 
 #### Find developer details : `find-developer`
@@ -1068,7 +1052,7 @@ Listed all developers
 <div style="page-break-after: always;"></div>
 
 ### **Add roles**
-> **Your command to take control of the type of roles available in CodeContact**
+> **Your command to take control of the type of roles available in CodeContact.**
 
 
 #### Add developer roles : `add-developer-role`
@@ -1140,7 +1124,7 @@ New role for client added: Boss
 
 ### **Delete roles**
 
-> **Your command to remove unnecessary roles in CodeContact**
+> **Your command to remove unnecessary roles in CodeContact.**
 
 
 #### Delete developer roles : `delete-developer-role`
@@ -1199,7 +1183,7 @@ Role for clients deleted: Boss
 
 ### **Mark**
 
-> **Your quick and reliable command to keep on track with your project deadlines in CodeContact**
+> **Your quick and reliable command to keep on track with your project deadlines in CodeContact.**
 
 
 #### Mark project deadline as done : `mark-deadline`
@@ -1249,8 +1233,7 @@ The deadline has been marked as undone!
 
 ### **Undo**
 
-> **Your quick and hassle free command to revert changes in CodeContact**
-
+> **Your quick and hassle free command to revert changes in CodeContact.**
 
 
 #### Undo : `undo`
@@ -1325,7 +1308,7 @@ Projects: CustomWebsite AndroidApp
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Miscellaneous Features**
-> **Accessible features for you to navigate smoothly through CodeContact**
+> **Accessible features for you to navigate smoothly through CodeContact.**
 
 
 #### Viewing help : `help`
