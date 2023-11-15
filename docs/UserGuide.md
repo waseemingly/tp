@@ -1096,6 +1096,7 @@ New role for client added: Boss
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Delete roles**
+
 > **Your command to remove unnecessary roles in CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1154,6 +1155,7 @@ Role for clients deleted: Boss
 <div style="page-break-after: always;"></div>
 
 ### **Mark**
+
 > **Your quick and reliable command to keep on track with your project deadlines in CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1203,7 +1205,9 @@ The deadline has been marked as undone!
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Undo**
+
 > **Your quick and hassle free command to revert changes in CodeContact**
+
 --------------------------------------------------------------------------------------------------------------------
 
 #### Undo : `undo`
