@@ -379,7 +379,7 @@ Locked all data
 
 **Constraints:**    
 1. Only unlocks if password exactly matches the current password (which is the last set password).
-   * Note: The default password is `Password123!`. It is highly recommended to change to a different password with the [`change-password` command](#change-password-chnage-password).
+   * Note: The default password is `Password123!`. It is highly recommended to change to a different password with the [`change-password` command](#change-password-chanage-password).
 
 **Example of usage:** `unlock pw/Password123!`
 
@@ -820,13 +820,13 @@ You can always undo the action with the [`undo`](#undo) command!
 2. The CSV file has to strictly follow the column header names and order (given in the example).    
    The entire command will abort if any of column headers do not follow the given format.
 
-3. `NAME` and `PROJECT_NAME` fields for developers to be added via the import feature have the same constraints as the [`add-developer` command](#add-developer) constraints.    
+3. `NAME` and `PROJECT_NAME` fields for developers to be added via the import feature have the same constraints as the [`add-developer` command](#add-developer--add-developer) constraints.    
    The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
 
 **Optional Fields:**     
 While `PROJECT` and `DATE JOINED` column headers are compulsory, they are optional fields, where values (corresponding to the developer to be added) under these columns can be empty.    
 
-If values are empty, corresponding developers will be added with `DATE JOINED` automatically set to today and/or with no projects assigned to them, like the [`add-developer` command](#add-developer).
+If values are empty, corresponding developers will be added with `DATE JOINED` automatically set to today and/or with no projects assigned to them, like the [`add-developer` command](#add-developer--add-developer).
 
 
 Example of valid CSV:
@@ -876,12 +876,12 @@ Reads a CSV file and populates the addressbook with the clients provided.
 2. The CSV file has to strictly follow the column header names and order (given in the example).    
    The entire command will abort if any of column headers do not follow the given format.
 
-3. `NAME` and `PROJECT_NAME` fields for clients to be added via the import feature have the same constraints as the [`add-client` command](#add-client) constraints. The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
+3. `NAME` and `PROJECT_NAME` fields for clients to be added via the import feature have the same constraints as the [`add-client` command](#add-client--add-client) constraints. The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
 
 **Optional Fields:**       
 While the `PROJECT` column header is compulsory, it is an optional fields, where values (corresponding to the client to be added) under this column can be empty.    
 
-If values under the `PROJECT` column are empty, corresponding clients will be added with no projects assigned to them, like the [`add-client` command](#add-client).
+If values under the `PROJECT` column are empty, corresponding clients will be added with no projects assigned to them, like the [`add-client` command](#add-client--add-client).
 
 
 Example of valid CSV:
