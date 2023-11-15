@@ -711,14 +711,22 @@ You can always undo the action with the [`undo`](#undo) command!
 --------------------------------------------------------------------------------------------------------------------
 #### Import developers' details : `import-developer`
 
-Takes in a CSV file and populates the internal list of developers if the file is formatted correctly.
+> Reads a CSV file and populates the addressbook with the developers provided.
 
-Format: `import-developer [FILENAME]`
+**Format:** `import-developer [FILENAME]`
 
-* Note that the CSV file has to be in the same folder as the JAR file for the command to function correctly.
-* The CSV file has to strictly follow the column header names and order for the import to function appropriately.
-* The command will abort if any of the rows have invalid data format.
-* Example of valid CSV:
+**Constraints:**    
+1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.    
+2. The CSV file has to strictly follow the column header names and order (given in the example).    
+   The entire command will abort if any of column headers do not follow the given format.    
+3. `NAME` and `PROJECT_NAME` fields for developers to be added via the import feature have the same constraints as the [`add-developer` command constrainsts](#add-developer). The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
+
+**Optional Fields:** 
+While `PROJECT` and `DATE JOINED` column headers are compulsory, they are optional fields, where values (corresponding to the developer to be added) under these columns can be empty.    
+  * If values are empty, corresponding developers will be added with `DATE JOINED` automatically set to today and/or with no projects assigned to them, like the [`add-developer` command](#add-developer).
+
+
+Example of valid CSV:
 
 ```
 Name, Contact Number, Email, Address, Date Joined, Role, Salary, GithubId, Rating, Projects,,
@@ -730,12 +738,11 @@ Emily,111111111,emily@email.com,321 Pine St,08-10-2018,Developer,4800,EmilyAnaly
 Michael,999999999,michael@email.com,567 Birch St,06-03-2020,Developer,7000,MichaelEngineer,5,AndroidApp,ProjectB,
 ```
 
-Example of usage: `import-developer developers.csv`
+**Example of usage:** `import-developer developers.csv`
 
-* Imports `developers.csv` and adds a new developer for each row of data.
+Reads `developers.csv` and adds a new developer for each row of data.
 
 When command succeeds, CLI shows:
-
 ```
 New developer added: faiz;
 Phone: 87654321;
@@ -746,7 +753,6 @@ Role: Developer;
 Salary: 3333;
 Projects: ProjectB AndroidApp
 ```
-
 for each developer successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -754,15 +760,22 @@ for each developer successfully added.
 --------------------------------------------------------------------------------------------------------------------
 #### Import clients' details : `import-client`
 
-Takes in a CSV file and populates the internal list of clients if the file is formatted correctly.
+Reads a CSV file and populates the addressbook with the clients provided.
 
-Format: `import-client [FILENAME]`
+**Format:** `import-client [FILENAME]`
 
-* Note that the CSV file has to be in the same folder as the JAR file for the command to function correctly.
-* The CSV file has to strictly follow the column header names and order for the import to function appropriately.
-* The command will abort if any of the rows have invalid data format
-* Example of valid CSV:
+**Constraints:**    
+1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.    
+2. The CSV file has to strictly follow the column header names and order (given in the example).    
+   The entire command will abort if any of column headers do not follow the given format.    
+3. `NAME` and `PROJECT_NAME` fields for clients to be added via the import feature have the same constraints as the [`add-client` command constrainsts](#add-client). The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
 
+**Optional Fields:** 
+While the `PROJECT` column header is compulsory, it is an optional fields, where values (corresponding to the client to be added) under this column can be empty.    
+  * If values under the `PROJECT` column are empty, corresponding clients will be added with no projects assigned to them, like the [`add-client` command](#add-client).
+
+
+Example of valid CSV:
 ```
 Name, Contact Number, Email, Address, Role, Organisation, Document, Projects,
 Mahi,87554321,mahi@u.com,utown,HR,Google,docs.google.com/abd,AndroidApp,ProjectB
@@ -773,9 +786,9 @@ Chris,876543219,chris@email.com,567 Pine St,HR,Data Insights,datainsights.com/do
 Laura,888555555,laura@email.com,101 Birch St,HR,Software Systems,software.com/docs
 ```
 
-Example of usage: `import-client clients.csv`
+**Example of usage:** `import-client clients.csv`
 
-* Imports `clients.csv` and adds a new client for each row of data.
+Reads `clients.csv` and adds a new client for each row of data.
 
 When command succeeds, CLI shows:
 
