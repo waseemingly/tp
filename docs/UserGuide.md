@@ -158,8 +158,8 @@ Here are the explanations behind the formatting we use through this guide.<br>
 
 | Format                                       | Explanation                                                        | Example                            |
 |----------------------------------------------|--------------------------------------------------------------------|------------------------------------|
-| words in `UPPER_CASE`                        | **compulsory** parameter values that are supplied by the user         | `add-developer n/NAME n/PHONE` |
-| words in `[UPPER_CASE]` with square brackets | **optional** parameter values that are supplied by the user            | `add-developer n/NAME n/PHONE` |
+| words in `UPPER_CASE`                        | **compulsory** parameter values that are supplied by the user         | `add-developer n/NAME p/PHONE` |
+| words in `[UPPER_CASE]` with square brackets | **optional** parameter values that are supplied by the user            | `add-developer n/NAME p/PHONE [d/DATE_JOINED]` |
 | Items with `…` after them                    | parameters that can be used **multiple times**                        | `add-developer [pr/PROJECT]...`    |
 
 
@@ -577,9 +577,6 @@ Entered details of a project incorrectly? You can always undo the action with th
 
 **Example of usage:** `delete-developer 2`
 
-Upon executing the above command,
-* The second developer in the developer list is deleted from the list and from the address book.
-
 When command succeeds, CLI shows:
 
 ```
@@ -612,9 +609,7 @@ Deleted a wrong developer? You can always undo the action with the [`undo`](#und
 **Constraints:**
 1. `INDEX` cannot be greater than the number of clients in the list
 
-**Example of usage:** `delete-client 3`
-Upon executing the above command,
-* The third client in the client list is deleted from the list and from the address book.
+**Example of usage:** `delete-client 3`    
 
 When command succeeds, CLI shows:
 ```
@@ -811,7 +806,9 @@ You can always undo the action with the [`undo`](#undo) command!
 
 > Reads a CSV file and populates the addressbook with the developers provided.
 
-**Format:** `import-developer FILENAME`
+**Command Format:** `import-developer FILENAME`
+
+**Column Header Format (for CSV file):** `Name`, `Contact Number`, `Email`, `Address`, `Date Joined`, `Role`, `Salary`, `GithubId`, `Rating`, `Projects`
 
 **Constraints:**    
 1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.
@@ -864,7 +861,10 @@ for each developer successfully added.
 
 Reads a CSV file and populates the addressbook with the clients provided.
 
-**Format:** `import-client FILENAME`
+**Command Format:** `import-client FILENAME`
+
+**Column Header Format (for CSV file):** `Name`, `Contact Number`, `Email`, `Address`, `Role`, `Organisation`, `Document`, `Projects`
+
 
 **Constraints:**    
 1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.
