@@ -227,7 +227,8 @@ from always needing to call the list command.
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
+
+
 
 ## ***CodeContact Tutorial (for new users)***
 
@@ -1336,9 +1337,7 @@ Projects: CustomWebsite AndroidApp
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### Feedback System `[coming in v2.0]`
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 # **FAQ**
