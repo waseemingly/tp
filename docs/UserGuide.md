@@ -1271,27 +1271,27 @@ Listed below are some miscellaneous features that are available in CodeContact t
 --------------------------------------------------------------------------------------------------------------------
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+> Shows a message explaining how to access the help page.
 
-Format: `help`
+**Format:** `help`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 #### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+> Clears all entries from the address book.
 
-Format: `clear`
+**Format:** `clear`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 #### Exiting the program : `exit`
 
-Exits the program.
+> Exits the program.
 
-Format: `exit`
+**Format:** `exit`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
