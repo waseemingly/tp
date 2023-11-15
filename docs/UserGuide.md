@@ -136,7 +136,6 @@ Here are some notes about these parameters.
 | `pri/`    | priority of deadline   | HIGH, MEDIUM, LOW                                              | HIGH, MEDIUM, LOW                               | 5, 3.5, -1, high, M                |
 
 
--------------------------------------------------------------------------------------
 ### Format
 #### General Formatting
 Here are the explanations behind the formatting we use through this guide.<br>
