@@ -135,7 +135,7 @@ Here are some notes about these parameters.
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             | 19.1.2023, 潔 いさぎ 世 よ 一 いち, NONE, 5 |
 | `pri/`    | priority of deadline   | HIGH, MEDIUM, LOW                                              | HIGH, MEDIUM, LOW                               | 5, 3.5, -1, high, M                |
 
-<div style="page-break-after: always;"></div>
+
 -------------------------------------------------------------------------------------
 ### Format
 #### General Formatting
@@ -1012,6 +1012,7 @@ These are the 3 projects with matching information.
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### **List**
 > **Your command to view all relevant details in and your keyboard alternative to switching through tabs in CodeContact**
