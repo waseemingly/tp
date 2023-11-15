@@ -657,7 +657,7 @@ Deadlines:
 if second project in the list was TeamTrekker.
 
 <div markdown="block" class="alert alert-warning">
-:exclamation: **Note** :This command deletes **project from developers' and clients' project lists** if they were assigned to this project.
+:exclamation: **Note**: This command deletes **project from developers' and clients' project lists** if they were assigned to this project.
 </div>
 
 
