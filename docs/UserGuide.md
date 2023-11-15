@@ -379,20 +379,20 @@ Password changed successfully.
 --------------------------------------------------------------------------------------------------------------------
 #### Add developer : `add-developer`
 
-> Adds a new developer with the given details to the address book.
+> Adds a new developer to the address book with the entered details.
 
 **Format:**    
 `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`
 
 **Constraints:**    
-  1. `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
-  2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
-     If project to be assigned does not exist, consider [adding the project](#add-project) first!
+1. `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
+2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
+    If project to be assigned does not exist, consider [adding the project](#add-project) first!
 
 
 **Optional Fields:**    
-  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, added developer will not be assigned to any projects
-  2. `DATE_JOINED`  - if prefix d/ is missing in the command, added developer's date joined will automatically use today's date
+  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects
+  2. `DATE_JOINED`  - if prefix d/ is missing in the command, the added developer's date joined field will automatically reflect today's date
 
 
 * Note that for `RATING` values that are not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
@@ -402,8 +402,7 @@ Password changed successfully.
 **Example of usage:**    
 `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
 
-Adds a new developer `John Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
-given that they already exist in the address book.
+Upon executing the above command, a new developer, `John Doe`, is added with the respective details, and is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
 
 When command succeeds, CLI shows:
 ```
@@ -426,19 +425,23 @@ Entered details of a developer incorrectly? You can always undo the action with 
 --------------------------------------------------------------------------------------------------------------------
 #### Add client : `add-client`
 
-> Adds a new client to the address book.
+> Adds a new client to the address book, with the entered details.
 
-Format: `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`    
-* Adds the client with the given details to the address book.
-* Not specifying any `PROJECT_NAME` will add the client without assigning them to any projects.
-* `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
-* If specified, `PROJECT_NAME` should be the exact name of an existing project.
+**Format:**    
+`add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`
 
-Example of usage:    
+**Constraints:**    
+1. `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
+2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
+    If project to be assigned does not exist, consider [adding the project](#add-project) first!
+
+**Optional Fields:**    
+  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects.
+
+**Example of usage:**    
 `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
 
-* Adds a new client `Jack Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
-  given that they already exist in the address book.
+Upon executing the above command, a new client, `Jack Doe`, is added with the respective details and is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
 
 When command succeeds, CLI shows:
 
@@ -462,17 +465,21 @@ Entered details of a client incorrectly? You can always undo the action with the
 --------------------------------------------------------------------------------------------------------------------
 #### Add project : `add-project`
 
-> Adds a new project to the address book.
+> Adds a new project and its relevant deadlines to the address book, with the entered details.
 
-Format: `add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`
+**Format:**     
+`add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`
 
-* Adds the project with the given details to the address book.
-* Not specifying any deadline will add the project without assigning deadlines to it.
-* `NAME` cannot be the same as another existing project's name in the address book. Checks are case-insensitive.
+**Constraints:**    
+1. `NAME` cannot be the same as another existing project's name in the address book. Checks are case-insensitive.
 
-Example of usage: `add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`
+**Optional Fields:**    
+1. `DEADLINE` - if prefix dl/ is missing in the command, the added project will not have any deadlines assigned to it.
 
-* Adds a new project `JuiceApp` with the respective details.
+**Example of usage:**    
+`add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`
+
+Upon executing the above command, a new project, `JuiceApp`, is added with the respective details. Moreover, deadlines with description `Design backend` and `Design frontend` are created and assigned to the newly added project.
 
 When command succeeds, CLI shows:
 
