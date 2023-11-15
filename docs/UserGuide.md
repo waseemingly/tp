@@ -32,6 +32,7 @@ the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 -------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+-------------------------------------------------------------------------------------
 ### How can this guide help me?
 {: .no_toc}
 
@@ -116,6 +117,8 @@ Here are some notes about these parameters.
 | `s/`     | salary of developer          | positive integers of at least 4 digits, should not be blank                                      | 5000           | 5000.0, 4321.32.22   |
 | `rt/`    | rating of developer          | numeric characters between 0 to 5                                                                | 5, 3.5         | -0, -1, 6            |
 
+<div style="page-break-after: always;"></div>
+
 #### Client Specific Parameters
 
 | Parameter | Description                 | Constraints                                                                                       | Valid Examples | Invalid Examples |
@@ -132,6 +135,7 @@ Here are some notes about these parameters.
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             | 19.1.2023, 潔 いさぎ 世 よ 一 いち, NONE, 5 |
 | `pri/`    | priority of deadline   | HIGH, MEDIUM, LOW                                              | HIGH, MEDIUM, LOW                               | 5, 3.5, -1, high, M                |
 
+<div style="page-break-after: always;"></div>
 -------------------------------------------------------------------------------------
 ### Format
 #### General Formatting
@@ -161,9 +165,8 @@ Here are the explanations behind the formatting we use through this guide.<br>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
-
 -----------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## ***Navigating the Graphical User Interface (GUI)***
 CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
@@ -198,21 +201,28 @@ from always needing to call the list command.
 
 ## ***Quick start***
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer.    
 
-2. Download the latest `CodeContact.jar`.
+
+2. Download the latest `CodeContact.jar`.    
+
 
 3. Copy the file to the folder you want to use as the _home folder_ for your CodeContact.
+
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CodeContact.jar`
    command to run the application.<br>
 
+
 5. A GUI similar to the below should appear in a few seconds. Note how the app might contain some sample data.<br>
    ![Ui](images/Ui.png)
 
+
 6. For new users, learn to use CodeContact through our [Tutorial](#codecontact-tutorial--for-new-users-).
 
+
 7. Refer to the [Features](#features) below for details of each command.
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -225,8 +235,11 @@ This is a tutorial for **first-time** CodeContact users.
 
 1. Launch CodeContact. You may refer to the instructions [here](#quick-start).
     * On launch, CodeContact will not contain any developer or client records.
+  
+
 2. You will be asked to **enter a password** to unlock CodeContact.
     * Enter the command `unlock pw/Password123!` in the command box.
+
 
 3. You can **change the password** to unlock CodeContact.
     * Enter the command `change-password pw/Password123! npw/<yourNewPassword>` in the command box.
@@ -239,6 +252,7 @@ You can always lock and unlock CodeContact using the `lock` and `unlock` command
     * Enter the
       command `add-project n/AndroidApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0 `.
 
+
 2. We can then **add a developer** to our CodeContact.
     * Enter the
       command `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp s/4500 d/01-11-2023 g/johng rt/3`.
@@ -246,34 +260,42 @@ You can always lock and unlock CodeContact using the `lock` and `unlock` command
     * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you wish to add new developers with other roles and
       project.
 
+
 3. We can also **add a client** to our CodeContact.
     * Enter the
       command `add-client n/Amy p/88765423 e/amy@example.com a/31, Clementi Ave 6, #03-12 r/Client pr/AndroidApp o/Google do/google.com`.
     * Try adding more clients with different details for each parameter!
     * Remember to add a new [project](#add-project--add-project) or [role](#add-roles) if you which to add new client with other roles and project.
 
+
 4. Let us try **editing the name** of a developer stored in CodeContact.
     * Enter the command `edit-developer 1 n/Jhonny`.
     * Try editing other parameters or developers and projects too!
     * More details of what you can edit can be found [here](#edit).
+
 
 5. We can also easily **find** for information in CodeContact.
     * Enter the command `find-developer n/John s/4500`.
     * Try looking for other information and search with multiple parameters!
     * More details of what you can find can be found [here](#find).
 
+
 6. You can always **show the full list** after finding in CodeContact.
     * Enter the command `list-developer`, `list-client` or `list-project`.
+
 
 7. You can **delete developers, clients or projects** in CodeContact.
     * Enter the command `delete-developer 3` to delete the 3rd developer in CodeContact.
     * More details on how delete works can be found [here](#delete-developer--delete-developer).
 
+
 8. If you realise that you did not delete this developer, you can **undo** this action in CodeContact.
     * Enter the command `undo` and it will revert your previous actions.
 
+
 9. If you realise you actually want it deleted, you can **redo** this action in CodeContact.
     * Enter the command `redo` and it will redo your previous actions.
+
 
 Congratulations! You are now ready to use CodeContact!
 
