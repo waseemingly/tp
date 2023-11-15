@@ -587,6 +587,8 @@ if second developer in the list was Bernice Yu.
 Deleted a wrong developer? You can always undo the action with the [`undo`](#undo) command!
 </div>
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -619,6 +621,8 @@ if second client in the list was George Lim.
 <div markdown="block" class="alert alert-info">:bulb:
 Deleted a wrong client? You can always undo the action with the [`undo`](#undo) command!
 </div>
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -932,7 +936,6 @@ When command succeeds, CLI shows:
 This is the one developer with matching information.
 ```
 
-followed by the matching developer's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -963,7 +966,6 @@ When command succeeds, CLI shows:
 These are the 2 clients with matching information.
 ```
 
-followed by the matching clients' details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -991,7 +993,6 @@ When command succeeds, CLI shows:
 ```
 This is the one project with matching information.
 ```
-followed by the matching project's details in the GUI.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
