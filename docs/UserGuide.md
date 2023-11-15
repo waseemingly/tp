@@ -384,13 +384,13 @@ Password changed successfully.
 **Format:**    
 `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`
 
-**Constraints:**
+**Constraints:**    
   1. `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
-  2. `PROJECT_NAME` should be the exact name of an existing project if specified.
+  2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
      If project to be assigned does not exist, consider [adding the project](#add-project) first!
 
 
-**Optional Fields:**
+**Optional Fields:**    
   1. `PROJECT_NAME` - if prefix pr/ is missing in the command, added developer will not be assigned to any projects
   2. `DATE_JOINED`  - if prefix d/ is missing in the command, added developer's date joined will automatically use today's date
 
