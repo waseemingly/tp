@@ -68,7 +68,6 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 ## ***Glossary***
 -------------------------------------------------------------------------------------
 ### **Definitions**
--------------------------------------------------------------------------------------
 
 | Term          | Definition                                                                                                                 |
 |---------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -341,7 +340,8 @@ To view all our features, you may visit our [Features](#features) section.
 
 > **Grant yourself exclusive access and deny access by others to CodeContact with a personal and
 > customizable password.**
--------------------------------------------------------------------------------------
+
+
 #### Lock : `lock`
 
 > Locks the system and hides all the information, denying access to all information and commands
@@ -417,7 +417,7 @@ Password changed successfully.
 ### **Add**
 > **Your accessible command to easily add relevant project details into CodeContact**
 
---------------------------------------------------------------------------------------------------------------------
+
 #### Add developer : `add-developer`
 
 > Adds a new developer to the address book with the entered details.
@@ -554,7 +554,7 @@ Entered details of a project incorrectly? You can always undo the action with th
 ### **Delete**
 > **Your quick command to delete project details effectively into CodeContact**
 
---------------------------------------------------------------------------------------------------------------------
+
 #### Delete developer : `delete-developer`
 
 > Deletes developer in the address book and their respective list.
@@ -588,6 +588,8 @@ Deleted a wrong developer? You can always undo the action with the [`undo`](#und
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 #### Delete client : `delete-client`
 
 > Deletes client in the address book and their respective list.
@@ -619,6 +621,8 @@ Deleted a wrong client? You can always undo the action with the [`undo`](#undo) 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 #### Delete project : `delete-project`
 
 > Deletes the details of an existing project in the address book and their respective list.
@@ -655,7 +659,7 @@ Deleted a wrong project? You can always undo the action with the [`undo`](#undo)
 ### **Edit**
 > **Your quick and accessible CodeContact command to edit your ever changing project details**
 
---------------------------------------------------------------------------------------------------------------------
+
 #### Edit developer details : `edit-developer`
 
 > Edits the details of an existing developer in the address book.
@@ -787,7 +791,7 @@ You can always undo the action with the [`undo`](#undo) command!
 ### **Import**
 > **Your lightning-fast and reliable way of porting over existing project details into CodeContact**
 
---------------------------------------------------------------------------------------------------------------------
+
 #### Import developers' details : `import-developer`
 
 > Reads a CSV file and populates the addressbook with the developers provided.
@@ -897,8 +901,10 @@ for each client successfully added.
 <div style="page-break-after: always;"></div>
 
 ### **Find**
-> **Your go-to command to quickly access information in CodeContact**
---------------------------------------------------------------------------------------------------------------------
+
+> **Your go-to command to quickly access precise information in CodeContact**
+
+
 #### Find developer details : `find-developer`
 
 > Finds the details of an existing developer in the address book.
@@ -1018,7 +1024,7 @@ These are the 3 projects with matching information.
 ### **List**
 > **Your command to view all relevant details in and your keyboard alternative to switching through tabs in CodeContact**
 
---------------------------------------------------------------------------------------------------------------------
+
 #### List information : `list`
 
 > Shows a list of all developers in the address book.
@@ -1052,7 +1058,7 @@ Listed all developers
 ### **Add roles**
 > **Your command to take control of the type of roles available in CodeContact**
 
---------------------------------------------------------------------------------------------------------------------
+
 #### Add developer roles : `add-developer-role`
 
 > Adds new developer roles into the system.
@@ -1124,7 +1130,7 @@ New role for client added: Boss
 
 > **Your command to remove unnecessary roles in CodeContact**
 
---------------------------------------------------------------------------------------------------------------------
+
 #### Delete developer roles : `delete-developer-role`
 
 > Delete developer roles from the system.
@@ -1183,7 +1189,7 @@ Role for clients deleted: Boss
 
 > **Your quick and reliable command to keep on track with your project deadlines in CodeContact**
 
---------------------------------------------------------------------------------------------------------------------
+
 #### Mark project deadline as done : `mark-deadline`
 
 > Marks the indicated deadline for the project as done.
@@ -1233,7 +1239,7 @@ The deadline has been marked as undone!
 
 > **Your quick and hassle free command to revert changes in CodeContact**
 
---------------------------------------------------------------------------------------------------------------------
+
 
 #### Undo : `undo`
 
@@ -1309,7 +1315,7 @@ Projects: CustomWebsite AndroidApp
 ### **Miscellaneous Features**
 > **Accessible features for you to navigate smoothly through CodeContact**
 
---------------------------------------------------------------------------------------------------------------------
+
 #### Viewing help : `help`
 
 > Shows a message explaining how to access the help page.
