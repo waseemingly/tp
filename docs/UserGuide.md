@@ -815,10 +815,13 @@ for each client successfully added.
 --------------------------------------------------------------------------------------------------------------------
 #### Find developer details : `find-developer`
 
-Finds the details of an existing developer in the address book.
+> Finds the details of an existing developer in the address book.
 
-Format: `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [g/GITHUB_ID] [rt/RATING]`
+**Format:** 
+`find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] 
+[r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [g/GITHUB_ID] [rt/RATING]`
 
+**Additional notes:**
 * Finds for developers based on the attributes provided.
 * At least one of the optional fields must be provided.
 * Existing values will be compared to the input values, and the results will include any items that match the provided
@@ -826,7 +829,8 @@ Format: `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_
 * You can combine multiple attributes for a more specific search.
 * The search is case-insensitive, so you can use any case for the search criteria.
 
-Example of usage: `find-developer pr/2103T rt/5.0`
+**Example of usage:** 
+`find-developer pr/2103T rt/5.0`
 
 * Prints developers in 2103/T project with a 5-star rating.
 
@@ -843,10 +847,12 @@ followed by the matching developer's details in the GUI.
 --------------------------------------------------------------------------------------------------------------------
 #### Find client details : `find-client`
 
-Finds the details of an existing client in the address book.
+> Finds the details of an existing client in the address book.
 
-Format: `find-client [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [o/ORGANISATION] [pr/PROJECT] [d/DOCUMENT]`
+**Format:** 
+`find-client [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [o/ORGANISATION] [pr/PROJECT] [d/DOCUMENT]`
 
+**Additional notes:**
 * Finds for clients based on the attributes provided.
 * At least one of the optional fields must be provided.
 * Existing values will be compared to the input values, and the results will include any items that match the provided
@@ -854,7 +860,7 @@ Format: `find-client [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [o/ORGANISATION] [
 * You can combine multiple attributes for a more specific search.
 * The search is case-insensitive, so you can use any case for the search criteria.
 
-Example of usage: `find-client o/Google r/Senior developer`
+**Example of usage:** `find-client o/Google r/Senior developer`
 
 * Prints clients from Google with the Senior developer role.
 
@@ -871,10 +877,11 @@ followed by the matching clients' details in the GUI.
 --------------------------------------------------------------------------------------------------------------------
 #### Find project details : `find-project`
 
-Finds the details of an existing project in the address book.
+> Finds the details of an existing project in the address book.
 
-Format: `find-project [pr/PROJECT_NAME] [dr/DESCRIPTION] [dl/DEADLINE]`
+**Format:** `find-project [pr/PROJECT_NAME] [dr/DESCRIPTION] [dl/DEADLINE]`
 
+**Additional notes:**
 * Finds for projects based on the attributes provided.
 * At least one of the optional fields must be provided.
 * Existing values will be compared to the input values, and the results will include any items that match the provided
@@ -882,7 +889,7 @@ Format: `find-project [pr/PROJECT_NAME] [dr/DESCRIPTION] [dl/DEADLINE]`
 * You can combine multiple attributes for a more specific search.
 * The search is case-insensitive, so you can use any case for the search criteria.
 
-Example of usage: `find-project pr/JuiceApp`
+**Example of usage:** `find-project pr/JuiceApp`
 
 * Print projects with the name JuiceApp.
 
@@ -898,14 +905,15 @@ followed by the matching project's details in the GUI.
 --------------------------------------------------------------------------------------------------------------------
 #### Find deadlines : `find-deadline`
 
-Finds deadlines in project tab based on date and/or priority.
+> Finds deadlines in project tab based on date and/or priority.
 
-Format: `find-deadline [d/DATE] [pri/PRIORITY]`
+**Format:** `find-deadline [d/DATE] [pri/PRIORITY]`
 
+**Additional notes:**
 * When finding deadlines based on `DATE`, the project tab displays deadlines due before or on the specified date.
 * When finding deadlines based on `PRIORITY`, only that priority (`HIGH`,`MEDIUM`, `LOW`) deadlines are shown.
 
-Example of usage: `find-deadline d/20-11-2023 pri/MEDIUM`
+**Example of usage:** `find-deadline d/20-11-2023 pri/MEDIUM`
 
 * Shows deadlines due before or on `20-11-2023` and with `MEDIUM` priority.
 
@@ -924,17 +932,17 @@ These are the 3 projects with matching information.
 --------------------------------------------------------------------------------------------------------------------
 #### List information : `list`
 
-Shows a list of all developers in the address book.
+> Shows a list of all developers in the address book.
 
-Format: `list-TYPE`
+**Format:** `list-TYPE`
 
 * Lists the specific type of thing you are asking.
 
-Example of usage:`list-developer`
+**Example of usage:** `list-developer`
 
 * Lists all the developers.
 
-Acceptable parameters:
+**Acceptable parameters**:
 
 * `developer` to list the developers
 * `client` to list the clients
@@ -957,10 +965,11 @@ Listed all developers
 --------------------------------------------------------------------------------------------------------------------
 #### Add developer roles : `add-developer-role`
 
-Adds new developer roles into the system.
+> Adds new developer roles into the system.
 
-Format: `add-developer-role ROLE_NAME`
+**Format:** `add-developer-role ROLE_NAME`
 
+**Additional notes:**
 * Adds the ROLE_NAME to list of developer roles.
 * There are 3 preset roles in the list of roles: `Frontend Developer`,`Backend Developer`,`Developer`.
 * You will not be able to add a developer to a role that does not exist in this list of developer roles.
@@ -973,7 +982,7 @@ If you wish to check what roles are there, you can key in `delete-developer-role
 random>` should not be an existing role.
 </div>
 
-Example of usage: `add-developer-role Tester`
+**Example of usage:** `add-developer-role Tester`
 
 * Adds the Tester role to list of developer roles.
 * You can now add developers with Tester as their roles.
@@ -989,10 +998,11 @@ New role for developer added: Tester
 --------------------------------------------------------------------------------------------------------------------
 #### Add client roles : `add-client-role`
 
-Adds new client roles into the system.
+> Adds new client roles into the system.
 
-Format: `add-client-role ROLE_NAME`
+**Format:** `add-client-role ROLE_NAME`
 
+**Additional notes:**
 * Adds the ROLE_NAME to list of client roles.
 * There are 4 preset roles in the list of roles: `HR`,`Manager`,`Developer`,`Client`.
 * You will not be able to add a client to a role that does not exist in this list of client roles.
@@ -1005,7 +1015,7 @@ If you wish to check what roles are there, you can key in `delete-client-role <a
 random>` should not be an existing role.
 </div>
 
-Example of usage: `add-client-role Boss`
+**Example of usage:** `add-client-role Boss`
 
 * Adds the Boss role to list of developer roles.
 * You can now add clients with Boss as their roles.
@@ -1025,16 +1035,17 @@ New role for client added: Boss
 --------------------------------------------------------------------------------------------------------------------
 #### Delete developer roles : `delete-developer-role`
 
-Delete developer roles from the system.
+> Delete developer roles from the system.
 
-Format: `delete-developer-role ROLE_NAME`
+**Format:** `delete-developer-role ROLE_NAME`
 
+**Additional notes:**
 * Deletes the ROLE_NAME to list of developer roles.
 * There are 3 preset roles in the list of roles: `Frontend Developer`,`Backend Developer`,`Developer`. These roles
   cannot be deleted.
 * You will not be able to delete a developer role if there are developers in the list with that role.
 
-Example of usage: `delete-developer-role UI Manager`
+**Example of usage:** `delete-developer-role UI Manager`
 
 * Deletes the UI Manager from the list of developer roles.
 * You can no longer add developers with UIDesigner as their roles.
@@ -1050,15 +1061,16 @@ Role for developers deleted: UIDesigner
 --------------------------------------------------------------------------------------------------------------------
 #### Delete client roles : `delete-client-role`
 
-Delete client roles from the system.
+> Delete client roles from the system.
 
-Format: `delete-client-role ROLE_NAME`
+**Format:** `delete-client-role ROLE_NAME`
 
+**Additional notes:**
 * Deletes the ROLE_NAME to list of developer roles.
 * There are 4 preset roles in the list of roles: `HR`,`Manager`,`Developer`,`Client`. These roles cannot be deleted.
 * You will not be able to delete a client role if there are clients in the list with that role.
 
-Example of usage: `delete-client-role Boss`
+**Example of usage:** `delete-client-role Boss`
 
 * Deletes the Boss from the list of developer roles.
 * You can no longer add clients with Boss as their roles.
@@ -1080,13 +1092,14 @@ Role for clients deleted: Boss
 --------------------------------------------------------------------------------------------------------------------
 #### Mark project deadline as done : `mark-deadline`
 
-Marks the indicated deadline for the project as done.
+> Marks the indicated deadline for the project as done.
 
-Format: `mark-deadline PROJECT_INDEX DEADLINE_INDEX`
+**Format:** `mark-deadline PROJECT_INDEX DEADLINE_INDEX`
 
+**Additional notes:**
 * `PROJECT_INDEX` and `DEADLINE_INDEX` must be valid indexes of existing projects and deadlines.
 
-Example of usage: `mark-deadline 2 1`
+**Example of usage:** `mark-deadline 2 1`
 
 * Marks the 1st deadline of the 2nd project in the currently displayed project list as done.
 
@@ -1101,13 +1114,14 @@ The deadline has been marked as completed!
 --------------------------------------------------------------------------------------------------------------------
 #### Mark project deadline as undone : `unmark-deadline`
 
-Marks the indicated deadline for the project as undone.
+> Marks the indicated deadline for the project as undone.
 
-Format: `unmark-deadline PROJECT_INDEX DEADLINE_INDEX`
+**Format:** `unmark-deadline PROJECT_INDEX DEADLINE_INDEX`
 
+**Additional notes:**
 * `PROJECT_INDEX` and `DEADLINE_INDEX` must be valid indexes of existing projects and deadlines.
 
-Example of usage: `unmark-deadline 2 1`
+**Example of usage:** `unmark-deadline 2 1`
 
 * Marks the 1st deadline of the 2nd project in the currently displayed project list as undone.
 
@@ -1126,16 +1140,17 @@ The deadline has been marked as undone!
 
 #### Undo : `undo`
 
-Undo the previous command you entered.
+> Undo the previous command you entered.
 
-Format: `undo`
+**Format:** `undo`
 
+**Additional notes:**
 * Each time you type undo, you move back one stage.
 * If you made 5 changes, and you wish to undo, you can enter the command `undo` 5 times. The system will remind you when
   you cannot undo anymore.
 * `undo` works for all `edit`, `add-TYPE` and `delete` commands.
 
-Example of usage: `undo`
+**Example of usage:** `undo`
 
 * You just deleted a new developer, and you wish to `undo`.
 
@@ -1158,17 +1173,18 @@ Projects: CustomWebsite AndroidApp
 --------------------------------------------------------------------------------------------------------------------
 #### Redo : `redo`
 
-Redo the previous command you undid.
+> Redo the previous command you undid.
 
-Format: `redo`
+**Format:** `redo`
 
+**Additional notes:**
 * Each time you type redo, you move forward one stage.
 * You can only `redo` if you have `undo` before.
 * If you undid 5 changes, and you wish to redo, you can enter the command `redo` 5 times. The system will remind you when
   you cannot redo anymore.
 * `redo` works for all `edit`, `add-TYPE` and `delete` commands.
 
-Example of usage:
+**Example of usage:**
 
 * You just `undo` delete developer, and you wish to `redo` to add it back.
   When command succeeds, CLI shows:
