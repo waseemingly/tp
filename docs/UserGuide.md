@@ -386,12 +386,14 @@ Password changed successfully.
 
 **Constraints:**    
 1. `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
+   
 2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
     If project to be assigned does not exist, consider [adding the project](#add-project) first!
 
 
 **Optional Fields:**    
   1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects
+     
   2. `DATE_JOINED`  - if prefix d/ is missing in the command, the added developer's date joined field will automatically reflect today's date
 
 
@@ -402,7 +404,9 @@ Password changed successfully.
 **Example of usage:**    
 `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
 
-Upon executing the above command, a new developer, `John Doe`, is added with the respective details, and is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
+Upon executing the above command,
+* A new developer, `John Doe`, is added with the respective details.
+* He is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
 
 When command succeeds, CLI shows:
 ```
@@ -432,6 +436,7 @@ Entered details of a developer incorrectly? You can always undo the action with 
 
 **Constraints:**    
 1. `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
+  
 2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
     If project to be assigned does not exist, consider [adding the project](#add-project) first!
 
@@ -441,7 +446,9 @@ Entered details of a developer incorrectly? You can always undo the action with 
 **Example of usage:**    
 `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
 
-Upon executing the above command, a new client, `Jack Doe`, is added with the respective details and is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
+Upon executing the above command, 
+* A new client, `Jack Doe`, is added with the respective details
+* He is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
 
 When command succeeds, CLI shows:
 
@@ -479,7 +486,9 @@ Entered details of a client incorrectly? You can always undo the action with the
 **Example of usage:**    
 `add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`
 
-Upon executing the above command, a new project, `JuiceApp`, is added with the respective details. Moreover, deadlines with description `Design backend` and `Design frontend` are created and assigned to the newly added project.
+Upon executing the above command,
+* A new project, `JuiceApp`, is added with the respective details.
+* Deadlines with the descriptions `Design backend` and `Design frontend` are created and assigned to the newly added project.
 
 When command succeeds, CLI shows:
 
@@ -505,13 +514,17 @@ Entered details of a project incorrectly? You can always undo the action with th
 --------------------------------------------------------------------------------------------------------------------
 #### Delete developer : `delete-developer`
 
-Deletes developer in the address book.
+> Deletes developer in the address book and their respective list.
 
-Format: `delete-developer INDEX`
+**Format:** `delete-developer INDEX`
 
-Example of usage: `delete-developer 2`
+**Constraints:**
+1. `INDEX` cannot be greater than the number of developers in the list
 
-* Deletes second developer in the developer list from the developer list and from the address book.
+**Example of usage:** `delete-developer 2`
+
+Upon executing the above command,
+* The second developer in the developer list is deleted from the list and from the address book.
 
 When command succeeds, CLI shows:
 
@@ -534,13 +547,17 @@ Deleted a wrong developer? You can always undo the action with the [`undo`](#und
 --------------------------------------------------------------------------------------------------------------------
 #### Delete client : `delete-client`
 
-Deletes client in the address book.
+> Deletes client in the address book and their respective list.
 
-Format: `delete-client INDEX`
+**Format:** `delete-client INDEX`
 
-Example of usage: `delete-client 3`
+**Example of usage:** `delete-client 3`
 
-* Deletes third client in the client list from the client list and from the address book.
+**Constraints:**
+1. `INDEX` cannot be greater than the number of clients in the list
+
+Upon executing the above command,
+* The third client in the client list is deleted from the list and from the address book.
 
 When command succeeds, CLI shows:
 ```
@@ -562,11 +579,15 @@ Deleted a wrong client? You can always undo the action with the [`undo`](#undo) 
 --------------------------------------------------------------------------------------------------------------------
 #### Delete project : `delete-project`
 
-Deletes the details of an existing project in the address book and updates developer and client project details accordingly.
+> Deletes the details of an existing project in the address book and their respective list.
+> Updates developer and client project details accordingly.
 
-Format: `delete-project INDEX`
+**Format:** `delete-project INDEX`
 
-Example of usage: `delete-project 2`
+**Example of usage:** `delete-project 2`
+
+**Constraints:**
+1. `INDEX` cannot be greater than the number of projects in the list
 
 * Deletes second project in the project list from the project list and from the address book.
 * Deletes project from developers' and clients' project lists if they were assigned to this project.
@@ -726,7 +747,8 @@ You can always undo the action with the [`undo`](#undo) command!
 
 **Optional Fields:**     
 While `PROJECT` and `DATE JOINED` column headers are compulsory, they are optional fields, where values (corresponding to the developer to be added) under these columns can be empty.    
-> If values are empty, corresponding developers will be added with `DATE JOINED` automatically set to today and/or with no projects assigned to them, like the [`add-developer` command](#add-developer).
+
+If values are empty, corresponding developers will be added with `DATE JOINED` automatically set to today and/or with no projects assigned to them, like the [`add-developer` command](#add-developer).
 
 
 Example of valid CSV:
@@ -777,7 +799,8 @@ Reads a CSV file and populates the addressbook with the clients provided.
 
 **Optional Fields:**       
 While the `PROJECT` column header is compulsory, it is an optional fields, where values (corresponding to the client to be added) under this column can be empty.    
-> If values under the `PROJECT` column are empty, corresponding clients will be added with no projects assigned to them, like the [`add-client` command](#add-client).
+
+If values under the `PROJECT` column are empty, corresponding clients will be added with no projects assigned to them, like the [`add-client` command](#add-client).
 
 
 Example of valid CSV:
