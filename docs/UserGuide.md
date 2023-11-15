@@ -61,7 +61,8 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 <div style="page-break-after: always;"></div>
 
 # **Navigating this guide**
-**-------------------------------------------------------------------------------------**
+
+
 ## ***Glossary***
 -------------------------------------------------------------------------------------
 ### **Definitions**
@@ -284,7 +285,6 @@ To view all our features, you may visit our [Features](#features) section.
 
 # **Features**
 
-**--------------------------------------------------------------------------------------------------------------------**
 
 | [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
 |:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
