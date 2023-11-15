@@ -505,11 +505,13 @@ Entered details of a project incorrectly? You can always undo the action with th
 --------------------------------------------------------------------------------------------------------------------
 #### Delete developer : `delete-developer`
 
-Deletes developer in the address book.
+> Deletes developer in the address book.
 
-Format: `delete-developer INDEX`
+**Format:**
+`delete-developer INDEX`
 
-Example of usage: `delete-developer 2`
+**Example of usage:**
+`delete-developer 2`
 
 * Deletes second developer in the developer list from the developer list and from the address book.
 
@@ -534,11 +536,13 @@ Deleted a wrong developer? You can always undo the action with the [`undo`](#und
 --------------------------------------------------------------------------------------------------------------------
 #### Delete client : `delete-client`
 
-Deletes client in the address book.
+> Deletes client in the address book.
 
-Format: `delete-client INDEX`
+**Format:**
+`delete-client INDEX`
 
-Example of usage: `delete-client 3`
+**Example of usage:**
+`delete-client 3`
 
 * Deletes third client in the client list from the client list and from the address book.
 
@@ -562,11 +566,13 @@ Deleted a wrong client? You can always undo the action with the [`undo`](#undo) 
 --------------------------------------------------------------------------------------------------------------------
 #### Delete project : `delete-project`
 
-Deletes the details of an existing project in the address book and updates developer and client project details accordingly.
+> Deletes the details of an existing project in the address book and updates developer and client project details accordingly.
 
-Format: `delete-project INDEX`
+**Format:**
+`delete-project INDEX`
 
-Example of usage: `delete-project 2`
+**Example of usage:**
+`delete-project 2`
 
 * Deletes second project in the project list from the project list and from the address book.
 * Deletes project from developers' and clients' project lists if they were assigned to this project.
@@ -594,23 +600,27 @@ Deleted a wrong project? You can always undo the action with the [`undo`](#undo)
 --------------------------------------------------------------------------------------------------------------------
 #### Edit developer details : `edit-developer`
 
-Edits the details of an existing developer in the address book.
+> Edits the details of an existing developer in the address book.
 
-Format: `edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [g/GITHUB_ID] [rt/RATING]`
+**Format:**
+`edit-developer INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] [r/ROLE] [s/SALARY] [pr/PROJECT_NAME]... [g/GITHUB_ID] [rt/RATING]`
 
-* Edits the developer at the specified `INDEX` in the currently displayed developer list.
-* At least one of the optional fields must be provided.
+**Constraints:**
+1. `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
+   You can, however, edit the casing of an existing developer's `NAME`.
+2. `PROJECT_NAME` should be the exact name of an existing project. 
+3. At least one of the optional fields must be provided.
+
+**Additional Notes:**
 * Existing values will be updated to the input values.
 * When editing projects, the existing assigned projects of the developer will be removed i/e. adding of projects is not
   cumulative.
 * You can remove all the developer's projects by typing `pr/` without specifying any project name after it.
-* `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
-* You can, however, edit the casing of an existing developer's `NAME`.
-* `PROJECT_NAME` should be the exact name of an existing project.
-* Note that for `RATING` values that not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
+* `RATING` values that not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
   may not be reflected as clearly in the coloured stars.
 
-Example of usage: `edit-developer 2 p/98989898 pr/Project2 pr/Project3`
+**Example of usage:**
+`edit-developer 2 p/98989898 pr/Project2 pr/Project3`
 
 * Edits `Amy`'s phone number to `98989898` and changes the projects assigned to her to `Project2` and `Project3`.
 
@@ -636,21 +646,27 @@ You can always undo the action with the [`undo`](#undo) command!
 --------------------------------------------------------------------------------------------------------------------
 #### Edit client details : `edit-client`
 
-Edits the details of an existing client in the address book.
+> Edits the details of an existing client in the address book.
 
-Format: `edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
+**Format:**
+`edit-client INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pr/PROJECT_NAME]...  [o/ORGANISATION]`
 
-* Edits the client at the specified `INDEX` in the currently displayed client list.
-* At least one of the optional fields must be provided.
+**Constraints:**
+1. `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
+   You can, however, edit the casing of an existing client's `NAME`.
+2. `PROJECT_NAME` should be the exact name of an existing project.
+3. At least one of the optional fields must be provided.
+
+**Additional Notes:**
 * Existing values will be updated to the input values.
 * When editing projects, the existing assigned projects of the client will be removed i/e. adding of projects is not
   cumulative.
 * You can remove all the client's projects by typing `pr/` without specifying any project name after it.
-* `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
-* You can, however, edit the casing of an existing client's `NAME`.
-* `PROJECT_NAME` should be the exact name of an existing project.
+* `RATING` values that not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
+  may not be reflected as clearly in the coloured stars.
 
-Example of usage: `edit-client 3 e/bob@gmail.com`
+**Example of usage:**
+`edit-client 3 e/bob@gmail.com`
 
 * Edits `Bob`'s email to `bob@gmail.com`.
 
@@ -674,18 +690,22 @@ You can always undo the action with the [`undo`](#undo) command!
 --------------------------------------------------------------------------------------------------------------------
 #### Edit project details : `edit-project`
 
-Edits the details of an existing project in the address book.
+> Edits the details of an existing project in the address book.
 
-Format: `edit-project INDEX [dr/DESCRIPTION] [dl/DEADLINE]...`
+**Format:**
+`edit-project INDEX [dr/DESCRIPTION] [dl/DEADLINE]...`
 
-* Edits the project at the specified `INDEX` in the currently displayed project list.
-* At least one of the optional fields must be provided.
+**Constraints:**
+1. The name of a project cannot be edited.
+2At least one of the optional fields must be provided.
+
+**Additional Notes:**
 * Existing values will be updated to the input values.
 * When editing deadlines, the existing deadlines will be removed ie. adding of projects is not cumulative.
 * You can remove all the current deadlines by typing `dl/` without specifying any deadline.
-* The name of a project cannot be edited.
 
-Example of usage: `edit-project 1 dl/19-12-2023,Design backend,HIGH,0`
+**Example of usage:**
+`edit-project 1 dl/19-12-2023,Design backend,HIGH,0`
 
 * Deletes existing project deadlines and adds new deadline `Design backend by: 19-12-2023, priority: HIGH (undone)`.
 
