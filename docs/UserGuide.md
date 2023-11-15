@@ -311,8 +311,10 @@ To view all our features, you may visit our [Features](#features) section.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Password Protection
+
 > **Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and
 > customizable password.**
+
 #### Lock : `lock`
 
 > Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
