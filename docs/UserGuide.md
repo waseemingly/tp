@@ -320,8 +320,10 @@ To view all our features, you may visit our [Features](#features) section.
 > Locks the system and hides all the information, denying access to all information and commands
 > except `unlock`, `help`, and `delete`.
 
-Format: `lock`
+**Format:** `lock`
 
+**Example of usage:** `lock`
+Upon entering the above command,
 When command succeeds, CLI shows:
 
 ```
@@ -563,11 +565,10 @@ Deleted a wrong developer? You can always undo the action with the [`undo`](#und
 
 **Format:** `delete-client INDEX`
 
-**Example of usage:** `delete-client 3`
-
 **Constraints:**
 1. `INDEX` cannot be greater than the number of clients in the list
 
+**Example of usage:** `delete-client 3`
 Upon executing the above command,
 * The third client in the client list is deleted from the list and from the address book.
 
@@ -596,13 +597,13 @@ Deleted a wrong client? You can always undo the action with the [`undo`](#undo) 
 
 **Format:** `delete-project INDEX`
 
-**Example of usage:** `delete-project 2`
-
 **Constraints:**
 1. `INDEX` cannot be greater than the number of projects in the list
 
 * Deletes second project in the project list from the project list and from the address book.
 * Deletes project from developers' and clients' project lists if they were assigned to this project.
+
+**Example of usage:** `delete-project 2`
 
 When command succeeds, CLI shows:
 ```
