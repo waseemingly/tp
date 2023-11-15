@@ -1,8 +1,8 @@
 ---
 layout: page
-title: CodeContact User Guide
+title: User Guide
 ---
--------------------------------------------------------------------------------------
+
 ## Welcome to CodeContact
 {: .no_toc}
 
@@ -14,9 +14,9 @@ facilitating collaboration, and offering command-line efficiency for project man
 CodeContact is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, CodeContact can get your contact
 management tasks done faster than traditional GUI apps. **CodeContact** aims to put the **P.R.O** in project management  by enabling project managers to be:
-  > **1. Productive**
-  > **2. Reliable**
-  > **3. Organised**
+1. **Productive**
+2. **Reliable**
+3. **Organised**
 
 Here’s an overview of how CodeContact can help you streamline your project management processes.
 * Store and edit information about developers and clients related to projects
@@ -28,8 +28,17 @@ for!
 
 If you are new here, you may start with learning [**How to navigate this guide**](#navigating-this-guide) and visit
 the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
+<div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------
+## Table of Contents
+{: .no_toc}
+
+* Table of Contents
+{:toc}
+
+-------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### How can this guide help me?
 {: .no_toc}
@@ -47,24 +56,14 @@ Confused about the terms or formatting used in this guide? Learn how to **naviga
 Confused about the visual display of CodeContact? Learn how to **navigate the user interface** of CodeContact
 [here](#navigating-the-graphical-user-interface-gui).
 
--------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
-
-## Table of Contents
-{: .no_toc}
-
-* Table of Contents
-{:toc}
-
 ------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 # **Navigating this guide**
-**-------------------------------------------------------------------------------------**
-## ***Glossary***
+
+<!-- -->
+
+## **Glossary**
 -------------------------------------------------------------------------------------
-### **Definitions**
+### Definitions
 
 | Term          | Definition                                                                                                                 |
 |---------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -81,7 +80,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 [Scroll back to Table of Contents](#table-of-contents)
 
 -------------------------------------------------------------------------------------
-### **Parameter Information**
+### Parameter Information
 
 Within the tables below, you can find out more about the parameters that CodeContact supports. These parameters come in
 handy when crafting commands in CodeContact.
@@ -129,6 +128,8 @@ Here are some notes about these parameters.
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             | 19.1.2023, 潔 いさぎ 世 よ 一 いち, NONE, 5 |
 | `pri/`    | priority of deadline   | HIGH, MEDIUM, LOW                                              | HIGH, MEDIUM, LOW                               | 5, 3.5, -1, high, M                |
 
+<div style="page-break-after: always;"></div>
+
 -------------------------------------------------------------------------------------
 ### Format
 #### General Formatting
@@ -161,7 +162,7 @@ Here are the explanations behind the formatting we use through this guide.<br>
 
 -----------------------------------------------------------------------------------------------
 
-## ***Navigating the Graphical User Interface (GUI)***
+## **Navigating the Graphical User Interface (GUI)**
 CodeContact comes with a GUI to allow for nice visual feedback for our users. Here is a quick run-through
 of the different sections of our GUI, as well as some notes regarding the use of the GUI.
 ### Quick Orientation
@@ -169,7 +170,7 @@ of the different sections of our GUI, as well as some notes regarding the use of
 <br><br>
 ![image](images/UG%20UI%201.png)
 
-**Here is a quick summary of each GUI component within CodeContact:**
+Here is a quick summary of each GUI component within CodeContact:
 
 | Name                             | Description                                                                                                                                                                                                |
 |----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -192,7 +193,7 @@ from always needing to call the list command.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## ***Quick start***
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -215,7 +216,7 @@ from always needing to call the list command.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## ***CodeContact Tutorial (for new users)***
+## **CodeContact Tutorial (for new users)**
 
 This is a tutorial for **first-time** CodeContact users.
 
@@ -282,8 +283,6 @@ To view all our features, you may visit our [Features](#features) section.
 
 # **Features**
 
-**--------------------------------------------------------------------------------------------------------------------**
-
 | [Security Features](#security-features)     | Locking Access to features | Unlocking Access to features |              Changing personal password               |
 |:--------------------------------------------|:--------------------------:|:----------------------------:|:-----------------------------------------------------:|
 | [Password Protection](#password-protection) |    [`lock`](#lock-lock)    |  [`unlock`](#unlock-unlock)  | [`change-password`](#change-password-change-password) |
@@ -311,14 +310,11 @@ To view all our features, you may visit our [Features](#features) section.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Password Protection
-
-> **Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and
-> customizable password.**
-
+Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and customizable password.
 #### Lock : `lock`
 
-> Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
-> except `unlock`, `help`, and `delete`.
+Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
+except `unlock`, `help`, and `delete`.
 
 Format: `lock`
 
@@ -333,7 +329,7 @@ Locked all data
 --------------------------------------------------------------------------------------------------------------------
 #### Unlock : `unlock`
 
-> Unlocks the system by making all the information visible and allows all commands to be parsed.
+Unlocks the system by making all the information visible and allows all commands to be parsed.
 
 Format: `unlock pw/Password123!`
 
@@ -351,7 +347,7 @@ Unlocked all data
 --------------------------------------------------------------------------------------------------------------------
 #### Change password : `change-password`
 
-> Allows for password to be changed, given the current password and new password matches criteria.
+Allows for password to be changed, given the current password and new password matches criteria.
 
 Format: `change-password pw/CURRENT_PASSWORD npw/NEW_PASSWORD`
 
@@ -379,32 +375,25 @@ Password changed successfully.
 --------------------------------------------------------------------------------------------------------------------
 #### Add developer : `add-developer`
 
-> Adds a new developer to the address book with the entered details.
+Adds a new developer to the address book.
 
-**Format:**    
-`add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`
+Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`
 
-**Constraints:**    
-1. `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
-2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
-    If project to be assigned does not exist, consider [adding the project](#add-project) first!
-
-
-**Optional Fields:**    
-  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects
-  2. `DATE_JOINED`  - if prefix d/ is missing in the command, the added developer's date joined field will automatically reflect today's date
-
-
+* Adds the developer with the given details to the address book.
+* Not specifying any `PROJECT_NAME` will add the developer without assigning them to any projects.
+* Not specifying the `DATE_JOINED` will automatically use today's date as the date joined.
+* `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
+* If specified, `PROJECT_NAME` should be the exact name of an existing project.
 * Note that for `RATING` values that are not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
   may not be reflected as clearly in the coloured stars.
 
+Example of usage: `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
 
-**Example of usage:**    
-`add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
-
-Upon executing the above command, a new developer, `John Doe`, is added with the respective details, and is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
+* Adds a new developer `John Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
+  given that they already exist in the address book.
 
 When command succeeds, CLI shows:
+
 ```
 New developer added: John Doe;
 Phone: 98765432;
@@ -425,23 +414,19 @@ Entered details of a developer incorrectly? You can always undo the action with 
 --------------------------------------------------------------------------------------------------------------------
 #### Add client : `add-client`
 
-> Adds a new client to the address book, with the entered details.
+Adds a new client to the address book.
 
-**Format:**    
-`add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`
+Format: `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`
 
-**Constraints:**    
-1. `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
-2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
-    If project to be assigned does not exist, consider [adding the project](#add-project) first!
+* Adds the client with the given details to the address book.
+* Not specifying any `PROJECT_NAME` will add the client without assigning them to any projects.
+* `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
+* If specified, `PROJECT_NAME` should be the exact name of an existing project.
 
-**Optional Fields:**    
-  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects.
+Example of usage: `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
 
-**Example of usage:**    
-`add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
-
-Upon executing the above command, a new client, `Jack Doe`, is added with the respective details and is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
+* Adds a new client `Jack Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
+  given that they already exist in the address book.
 
 When command succeeds, CLI shows:
 
@@ -465,21 +450,17 @@ Entered details of a client incorrectly? You can always undo the action with the
 --------------------------------------------------------------------------------------------------------------------
 #### Add project : `add-project`
 
-> Adds a new project and its relevant deadlines to the address book, with the entered details.
+Adds a new project to the address book.
 
-**Format:**     
-`add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`
+Format: `add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`
 
-**Constraints:**    
-1. `NAME` cannot be the same as another existing project's name in the address book. Checks are case-insensitive.
+* Adds the project with the given details to the address book.
+* Not specifying any deadline will add the project without assigning deadlines to it.
+* `NAME` cannot be the same as another existing project's name in the address book. Checks are case-insensitive.
 
-**Optional Fields:**    
-1. `DEADLINE` - if prefix dl/ is missing in the command, the added project will not have any deadlines assigned to it.
+Example of usage: `add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`
 
-**Example of usage:**    
-`add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`
-
-Upon executing the above command, a new project, `JuiceApp`, is added with the respective details. Moreover, deadlines with description `Design backend` and `Design frontend` are created and assigned to the newly added project.
+* Adds a new project `JuiceApp` with the respective details.
 
 When command succeeds, CLI shows:
 
@@ -711,22 +692,14 @@ You can always undo the action with the [`undo`](#undo) command!
 --------------------------------------------------------------------------------------------------------------------
 #### Import developers' details : `import-developer`
 
-> Reads a CSV file and populates the addressbook with the developers provided.
+Takes in a CSV file and populates the internal list of developers if the file is formatted correctly.
 
-**Format:** `import-developer [FILENAME]`
+Format: `import-developer [FILENAME]`
 
-**Constraints:**    
-1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.    
-2. The CSV file has to strictly follow the column header names and order (given in the example).    
-   The entire command will abort if any of column headers do not follow the given format.    
-3. `NAME` and `PROJECT_NAME` fields for developers to be added via the import feature have the same constraints as the [`add-developer` command constrainsts](#add-developer). The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
-
-**Optional Fields:** 
-While `PROJECT` and `DATE JOINED` column headers are compulsory, they are optional fields, where values (corresponding to the developer to be added) under these columns can be empty.    
-  * If values are empty, corresponding developers will be added with `DATE JOINED` automatically set to today and/or with no projects assigned to them, like the [`add-developer` command](#add-developer).
-
-
-Example of valid CSV:
+* Note that the CSV file has to be in the same folder as the JAR file for the command to function correctly.
+* The CSV file has to strictly follow the column header names and order for the import to function appropriately.
+* The command will abort if any of the rows have invalid data format.
+* Example of valid CSV:
 
 ```
 Name, Contact Number, Email, Address, Date Joined, Role, Salary, GithubId, Rating, Projects,,
@@ -738,11 +711,12 @@ Emily,111111111,emily@email.com,321 Pine St,08-10-2018,Developer,4800,EmilyAnaly
 Michael,999999999,michael@email.com,567 Birch St,06-03-2020,Developer,7000,MichaelEngineer,5,AndroidApp,ProjectB,
 ```
 
-**Example of usage:** `import-developer developers.csv`
+Example of usage: `import-developer developers.csv`
 
-Reads `developers.csv` and adds a new developer for each row of data.
+* Imports `developers.csv` and adds a new developer for each row of data.
 
 When command succeeds, CLI shows:
+
 ```
 New developer added: faiz;
 Phone: 87654321;
@@ -753,6 +727,7 @@ Role: Developer;
 Salary: 3333;
 Projects: ProjectB AndroidApp
 ```
+
 for each developer successfully added.
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -760,22 +735,15 @@ for each developer successfully added.
 --------------------------------------------------------------------------------------------------------------------
 #### Import clients' details : `import-client`
 
-Reads a CSV file and populates the addressbook with the clients provided.
+Takes in a CSV file and populates the internal list of clients if the file is formatted correctly.
 
-**Format:** `import-client [FILENAME]`
+Format: `import-client [FILENAME]`
 
-**Constraints:**    
-1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.    
-2. The CSV file has to strictly follow the column header names and order (given in the example).    
-   The entire command will abort if any of column headers do not follow the given format.    
-3. `NAME` and `PROJECT_NAME` fields for clients to be added via the import feature have the same constraints as the [`add-client` command constrainsts](#add-client). The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
+* Note that the CSV file has to be in the same folder as the JAR file for the command to function correctly.
+* The CSV file has to strictly follow the column header names and order for the import to function appropriately.
+* The command will abort if any of the rows have invalid data format
+* Example of valid CSV:
 
-**Optional Fields:** 
-While the `PROJECT` column header is compulsory, it is an optional fields, where values (corresponding to the client to be added) under this column can be empty.    
-  * If values under the `PROJECT` column are empty, corresponding clients will be added with no projects assigned to them, like the [`add-client` command](#add-client).
-
-
-Example of valid CSV:
 ```
 Name, Contact Number, Email, Address, Role, Organisation, Document, Projects,
 Mahi,87554321,mahi@u.com,utown,HR,Google,docs.google.com/abd,AndroidApp,ProjectB
@@ -786,9 +754,9 @@ Chris,876543219,chris@email.com,567 Pine St,HR,Data Insights,datainsights.com/do
 Laura,888555555,laura@email.com,101 Birch St,HR,Software Systems,software.com/docs
 ```
 
-**Example of usage:** `import-client clients.csv`
+Example of usage: `import-client clients.csv`
 
-Reads `clients.csv` and adds a new client for each row of data.
+* Imports `clients.csv` and adds a new client for each row of data.
 
 When command succeeds, CLI shows:
 
