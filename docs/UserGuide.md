@@ -94,18 +94,18 @@ Here are some notes about these parameters.
     * Nonetheless, CodeContact will not stop working. Rather, a message will be provided to you on
       how to correct your command.
 
-#### Common Parameters
+#### Common Parameters for Developers and Clients
 
 | Parameter | Description                      | Constraints                                                                                                                         | Valid Examples              | Invalid Examples                            |
 |-----------|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|---------------------------------------------|
-| `n/`      | name of developer/client/project | alphanumeric characters and spaces, and it should not be blank                                                                      | Tom Hanks, Elizabeth 2      | 成龍, 潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran |
+| `n/`      | name of developer/client | alphanumeric characters and spaces, and it should not be blank                                                                      | Tom Hanks, Elizabeth 2      | 成龍, 潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran |
 | `p/`      | phone number of developer/client | 8 numeric characters, and it should not be blank                                                                                    | 94566835                    | 123, 432, 5678@                             |
 | `e/`      | email of developer/client        | alphanumeric characters, contains an @ and it should not be blank                                                                   | amy@gmail.com               | amy!gmail.com, amy$gmail                    |
 | `a/`      | address of developer/client      | alphanumeric characters and spaces, and it should not be blank                                                                      | 311, Clementi Ave 2, #02-25 | 成龍, 潔 いさぎ 世 よ 一 いち                          |
 | `r/`      | role of developer/client         | alphabetical characters and spaces, and it should not be blank                                                                      | Developer                   | 成龍, 潔 いさぎ 世 よ 一 いち                          |
 | `pr/`     | project name                     | alphanumeric characters and spaces, and it should not be blank, used in the context or Developer/Client when assigned to project(s) | CS2103T                     | 成龍, 潔 いさぎ 世 よ 一 いち                          |
 
-#### Developer Parameters
+#### Developer Specific Parameters
 
 | Parameter | Description                  | Constraints                                                                                      | Valid Examples | Invalid Examples     |
 |----------|------------------------------|--------------------------------------------------------------------------------------------------|----------------|----------------------|
@@ -114,7 +114,7 @@ Here are some notes about these parameters.
 | `s/`     | salary of developer          | positive integers of at least 4 digits, should not be blank                                      | 5000           | 5000.0, 4321.32.22   |
 | `rt/`    | rating of developer          | numeric characters between 0 to 5                                                                | 5, 3.5         | -0, -1, 6            |
 
-#### Client Parameters
+#### Client Specific Parameters
 
 | Parameter | Description                 | Constraints                                                                                       | Valid Examples | Invalid Examples |
 |-----------|-----------------------------|---------------------------------------------------------------------------------------------------|----------------|------------------|
@@ -125,6 +125,7 @@ Here are some notes about these parameters.
 
 | Parameter | Description            | Constraints                                                    | Valid Examples                                  | Invalid Examples                   |
 |-----------|------------------------|----------------------------------------------------------------|-------------------------------------------------|------------------------------------|
+| `n/`     | name of project | alphanumeric characters and spaces, and it should not be blank | CodeContact, oribtal23, Team Trekker | 成龍, 潔 いさぎ 世 よ 一 いち                 |
 | `dr/`     | description of project | alphanumeric characters and spaces, and it should not be blank | App to allow for different juices to be ordered | 成龍, 潔 いさぎ 世 よ 一 いち                 |
 | `dl/`     | deadline of project    | alphanumeric characters and spaces, and it should not be blank | 19-12-2023, Design backend, HIGH, 0             | 19.1.2023, 潔 いさぎ 世 よ 一 いち, NONE, 5 |
 | `pri/`    | priority of deadline   | HIGH, MEDIUM, LOW                                              | HIGH, MEDIUM, LOW                               | 5, 3.5, -1, high, M                |
@@ -151,8 +152,9 @@ Here are the explanations behind the formatting we use through this guide.<br>
 
 | Format                                       | Explanation                                                        | Example                            |
 |----------------------------------------------|--------------------------------------------------------------------|------------------------------------|
-| words in `[UPPER_CASE]` with square brackets | parameter values that are supplied by the user                     | `add-developer n/NAME n/PHONE` |
-| Items with `…` after them                    | parameters that can be used multiple times (or omitted completely) | `add-developer [pr/PROJECT]...`    |
+| words in `UPPER_CASE`                        | **compulsory** parameter values that are supplied by the user         | `add-developer n/NAME n/PHONE` |
+| words in `[UPPER_CASE]` with square brackets | **optional** parameter values that are supplied by the user            | `add-developer n/NAME n/PHONE` |
+| Items with `…` after them                    | parameters that can be used **multiple times**                        | `add-developer [pr/PROJECT]...`    |
 
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -341,7 +343,7 @@ Locked all data
 
 **Constraints:**    
 1. Only unlocks if password exactly matches the current password (which is the last set password).
-   * Note: The default password is `Password123!`. It is highly recommended to change to a different password with the [`change-password` command](#change-password).
+   * Note: The default password is `Password123!`. It is highly recommended to change to a different password with the [`change-password` command](#change-password-chnage-password).
 
 **Example of usage:** `unlock pw/Password123!`
 
@@ -400,7 +402,7 @@ Password changed successfully.
 **Constraints:**
 1. `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
 2. `PROJECT_NAME` should be the exact name of an existing project if specified.   
-If project to be assigned does not exist, consider [adding the project](#add-project) first!
+If project to be assigned does not exist, consider [adding the project](#add-project--add-project) first!
 
 
 **Optional Fields:**    
@@ -452,7 +454,7 @@ Entered details of a developer incorrectly? You can always undo the action with 
 1. `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
   
 2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
-If project to be assigned does not exist, consider [adding the project](#add-project) first!
+If project to be assigned does not exist, consider [adding the project](#add-project--add-project) first!
 
 **Optional Fields:**
 1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects.
@@ -761,7 +763,7 @@ You can always undo the action with the [`undo`](#undo) command!
 
 > Reads a CSV file and populates the addressbook with the developers provided.
 
-**Format:** `import-developer [FILENAME]`
+**Format:** `import-developer FILENAME`
 
 **Constraints:**    
 1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.
@@ -814,7 +816,7 @@ for each developer successfully added.
 
 Reads a CSV file and populates the addressbook with the clients provided.
 
-**Format:** `import-client [FILENAME]`
+**Format:** `import-client FILENAME`
 
 **Constraints:**    
 1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.
