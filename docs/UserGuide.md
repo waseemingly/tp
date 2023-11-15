@@ -451,6 +451,11 @@ If project to be assigned does not exist, consider [adding the project](#add-pro
 `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer 
 pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
 
+
+* A new developer, `John Doe`, is added with the respective details.
+* He is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
+
+
 When command succeeds, CLI shows:
 ```
 New developer added: John Doe;
@@ -489,6 +494,11 @@ If project to be assigned does not exist, consider [adding the project](#add-pro
 **Example of usage:**
 `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
 
+
+* A new client, `Jack Doe`, is added with the respective details
+* He is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
+
+
 When command succeeds, CLI shows:
 
 ```
@@ -524,6 +534,11 @@ Entered details of a client incorrectly? You can always undo the action with the
 
 **Example of usage:**    
 `add-project n/JuiceApp dr/App to allow for different juices to be ordered dl/19-12-2023,Design backend,HIGH,0 dl/25-12-2023,Design frontend,MEDIUM,0`
+
+
+* A new project, `JuiceApp`, is added with the respective details.
+* Deadlines with the descriptions `Design backend` and `Design frontend` are created and assigned to the newly added project.
+
 
 When command succeeds, CLI shows:
 
@@ -626,6 +641,11 @@ Deleted a wrong client? You can always undo the action with the [`undo`](#undo) 
 1. `INDEX` cannot be greater than the number of projects in the list.
 
 **Example of usage:** `delete-project 2`
+
+
+* Deletes second project in the project list from the project list and from the address book.
+* Deletes project from developers' and clients' project lists if they were assigned to this project.
+
 
 When command succeeds, CLI shows:
 ```
