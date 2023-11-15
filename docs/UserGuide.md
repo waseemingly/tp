@@ -1343,43 +1343,41 @@ Projects: CustomWebsite AndroidApp
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+> **Q**: How do I transfer my data to another Computer?<br>
+> **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous CodeContact home folder.
 
---------------------------------------------------------------------------------------------------------------------
 
-**Q**: How can I launch CodeContact if the clicking on the JAR file does not work? <br>
-**A**: There are two possible methods to launch CodeContact.
+> **Q**: How can I launch CodeContact if the clicking on the JAR file does not work? <br>
+> **A**: There are two possible methods to launch CodeContact.
 <br>
 
-* Method 1: For users familiar with the command prompt
+  > * Method 1: For users familiar with the command prompt
 
-1. Open the command prompt.
-2. Navigate to the directory where the JAR file is located using cd [JAR file location].
-3. Type `java -jar CodeContact.jar` and press enter.
-4. CodeContact should launch.
+  > 1. Open the command prompt.
+  > 2. Navigate to the directory where the JAR file is located using cd [JAR file location].
+  > 3. Type `java -jar CodeContact.jar` and press enter.
+  > 4. CodeContact should launch.
    <br> <br>
 
-* Method 2: For users that wish to create a script to launch CodeContact (Recommended)
+  > * Method 2: For users that wish to create a script to launch CodeContact (Recommended)
 
-1. Create a new text file.
-2. Type the following into the text file:
+  > 1. Create a new text file.
+  >2. Type the following into the text file:
    `java -jar [JAR file location]/CodeContact.jar`.
-3. Save the text file as CodeContact.bat (Windows) or CodeContact.sh (MacOS/Linux).
-4. Change the admin settings of the script to allow it to run as a program:
+  >3. Save the text file as CodeContact.bat (Windows) or CodeContact.sh (MacOS/Linux).
+  >4. Change the admin settings of the script to allow it to run as a program:
     * Windows: Right-click on the script and select Properties. Under General , check
       the box that says Allow this file to run as a program.
     * MacOS/Linux: Open the terminal and navigate to the directory where the script is
       located. Type `chmod +x [script name]` and press enter (`chmod +x` changes
       permissions of the script to allow it to be executed).
-5. Double-click on the script to launch CodeContact.
-6. CodeContact should launch.
+  >5. Double-click on the script to launch CodeContact.
+  >6. CodeContact should launch.
 
---------------------------------------------------------------------------------------------------------------------
 
-**Q**: How can I check my java version?<br>
-**A**: Open a command prompt and type `java -version`. If you do not have Java installed, you
+> **Q**: How can I check my java version?<br>
+> **A**: Open a command prompt and type `java -version`. If you do not have Java installed, you
 can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
 [Scroll back to Table of Contents](#table-of-contents)
