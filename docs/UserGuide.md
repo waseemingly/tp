@@ -30,6 +30,7 @@ If you are new here, you may start with learning [**How to navigate this guide**
 the [**Quick Start**](#quick-start) guide to onboard onto CodeContact smoothly!
 
 -------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### How can this guide help me?
 {: .no_toc}
@@ -57,7 +58,7 @@ Confused about the visual display of CodeContact? Learn how to **navigate the us
 * Table of Contents
 {:toc}
 
-------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 # **Navigating this guide**
