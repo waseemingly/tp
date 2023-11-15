@@ -314,7 +314,7 @@ To view all our features, you may visit our [Features](#features) section.
 --------------------------------------------------------------------------------------------------------------------
 ### Password Protection
 
-> **Project Managers have the ability to grant themselves exclusive access by denying access by others to CodeContact with a personal and
+> **Grant yourself exclusive access and deny access by others to CodeContact with a personal and
 > customizable password.**
 
 #### Lock : `lock`
@@ -390,6 +390,7 @@ Password changed successfully.
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Add**
+> **Your accessible command to easily add relevant project details into CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
 #### Add developer : `add-developer`
@@ -526,6 +527,7 @@ Entered details of a project incorrectly? You can always undo the action with th
 <div style="page-break-after: always;"></div>
 
 ### **Delete**
+> **Your quick command to delete project details effectively into CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
 #### Delete developer : `delete-developer`
@@ -626,6 +628,7 @@ Deleted a wrong project? You can always undo the action with the [`undo`](#undo)
 <div style="page-break-after: always;"></div>
 
 ### **Edit**
+> **Your quick and accessible CodeContact command to edit your ever changing project details**
 
 --------------------------------------------------------------------------------------------------------------------
 #### Edit developer details : `edit-developer`
@@ -757,6 +760,7 @@ You can always undo the action with the [`undo`](#undo) command!
 <div style="page-break-after: always;"></div>
 
 ### **Import**
+> **Your lightning-fast and reliable way of porting over existing project details into CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
 #### Import developers' details : `import-developer`
@@ -868,6 +872,7 @@ for each client successfully added.
 <div style="page-break-after: always;"></div>
 
 ### **Find**
+> **Your go-to command to quickly access information in CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
 #### Find developer details : `find-developer`
@@ -986,6 +991,7 @@ These are the 3 projects with matching information.
 --------------------------------------------------------------------------------------------------------------------
 
 ### **List**
+> **Your command to view all relevant details in and your keyboard alternative to switching through tabs in CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
 #### List information : `list`
@@ -1019,6 +1025,7 @@ Listed all developers
 <div style="page-break-after: always;"></div>
 
 ### **Add roles**
+> **Your command to take control of the type of roles available in CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
 #### Add developer roles : `add-developer-role`
@@ -1089,6 +1096,7 @@ New role for client added: Boss
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Delete roles**
+> **Your command to remove unnecessary roles in CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
 #### Delete developer roles : `delete-developer-role`
@@ -1146,6 +1154,7 @@ Role for clients deleted: Boss
 <div style="page-break-after: always;"></div>
 
 ### **Mark**
+> **Your quick and reliable command to keep on track with your project deadlines in CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
 #### Mark project deadline as done : `mark-deadline`
@@ -1194,6 +1203,7 @@ The deadline has been marked as undone!
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Undo**
+> **Your quick and hassle free command to revert changes in CodeContact**
 --------------------------------------------------------------------------------------------------------------------
 
 #### Undo : `undo`
@@ -1268,7 +1278,7 @@ Projects: CustomWebsite AndroidApp
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Miscellaneous Features**
-Listed below are some miscellaneous features that are available in CodeContact to improve your user experience.
+> **Accessible features for you to navigate smoothly through CodeContact**
 
 --------------------------------------------------------------------------------------------------------------------
 #### Viewing help : `help`
