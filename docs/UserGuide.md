@@ -317,7 +317,7 @@ To view all our features, you may visit our [Features](#features) section.
 
 #### Lock : `lock`
 
-> Locks the system by hiding all the information in the tabs on the GUI. It also disables parsing of commands
+> Locks the system and hides all the information, denying access to all information and commands
 > except `unlock`, `help`, and `delete`.
 
 Format: `lock`
@@ -333,15 +333,20 @@ Locked all data
 --------------------------------------------------------------------------------------------------------------------
 #### Unlock : `unlock`
 
-> Unlocks the system by making all the information visible and allows all commands to be parsed.
+> Unlocks the system by granting access to all information and commands.
 
-Format: `unlock pw/Password123!`
+**Format:** `unlock pw/CURRENT_PASSWORD`
 
-* Default password is `Password123!`.
-* You are highly recommended to change to a different password.
+**Constraints:**    
+1. Only unlocks if password exactly matches the current password (which is the last set password).
+   * Note: The default password is `Password123!`. It is highly recommended to change to a different password with the [`change-password` command](#change-password).
+
+**Example of usage:** `unlock pw/Password123!`
+
+Upon entering the above command,
+* If password matches
 
 When command succeeds, CLI shows:
-
 ```
 Unlocked all data
 ```
@@ -351,17 +356,23 @@ Unlocked all data
 --------------------------------------------------------------------------------------------------------------------
 #### Change password : `change-password`
 
-> Allows for password to be changed, given the current password and new password matches criteria.
+> Changes the current password so that the password is kept personal.
 
-Format: `change-password pw/CURRENT_PASSWORD npw/NEW_PASSWORD`
+**Format:** `change-password pw/CURRENT_PASSWORD npw/NEW_PASSWORD`
 
-* Password must be at least 8 characters long and contain at least one digit, one lowercase letter,
+**Constraints:**    
+1. `CURRENT_PASSWORD` entered must exactly match the current password.
+    * Note: The default password is `Password123!`.
+    
+2. `NEW_PASSWORD` must be at least 8 characters long and contain at least one digit, one lowercase letter,
   one uppercase letter, and one special character.
 
-Example of usage: `change-password pw/Password123! npw/NewPass987!`
+**Example of usage:** `change-password pw/Password123! npw/NewPass987!`
+
+Upon entering the above command,    
+* If `CURRENT_PASSWORD` is entered correctly and `NEW_PASSWORD` is valid
 
 When command succeeds, CLI shows:
-
 ```
 Password changed successfully.
 ```
