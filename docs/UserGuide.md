@@ -381,18 +381,18 @@ Password changed successfully.
 
 > Adds a new developer to the address book with the entered details.
 
-**Format:**    
+**Format:**
 `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`
 
-**Constraints:**    
+**Constraints:**
 1. `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
-2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
-    If project to be assigned does not exist, consider [adding the project](#add-project) first!
+2. `PROJECT_NAME` should be the exact name of an existing project if specified.   
+If project to be assigned does not exist, consider [adding the project](#add-project) first!
 
 
 **Optional Fields:**    
-  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects
-  2. `DATE_JOINED`  - if prefix d/ is missing in the command, the added developer's date joined field will automatically reflect today's date
+1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects
+2. `DATE_JOINED`  - if prefix d/ is missing in the command, the added developer's date joined field will automatically reflect today's date
 
 
 * Note that for `RATING` values that are not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
@@ -400,7 +400,8 @@ Password changed successfully.
 
 
 **Example of usage:**    
-`add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
+`add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer 
+pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
 
 Upon executing the above command, a new developer, `John Doe`, is added with the respective details, and is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
 
@@ -427,18 +428,18 @@ Entered details of a developer incorrectly? You can always undo the action with 
 
 > Adds a new client to the address book, with the entered details.
 
-**Format:**    
+**Format:**
 `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`
 
-**Constraints:**    
+**Constraints:**
 1. `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
 2. `PROJECT_NAME` should be the exact name of an existing project if specified.    
-    If project to be assigned does not exist, consider [adding the project](#add-project) first!
+If project to be assigned does not exist, consider [adding the project](#add-project) first!
 
-**Optional Fields:**    
-  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects.
+**Optional Fields:**
+1. `PROJECT_NAME` - if prefix pr/ is missing in the command, the added developer will not be assigned to any projects.
 
-**Example of usage:**    
+**Example of usage:**
 `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
 
 Upon executing the above command, a new client, `Jack Doe`, is added with the respective details and is assigned to the projects `AndroidApp` and `CustomWebsite` (provided that these projects already exist in the address book).
@@ -467,13 +468,13 @@ Entered details of a client incorrectly? You can always undo the action with the
 
 > Adds a new project and its relevant deadlines to the address book, with the entered details.
 
-**Format:**     
+**Format:**
 `add-project n/NAME dr/DESCRIPTION [dl/DEADLINE_DATE,DEADLINE_DESCRIPTION,PRIORITY,IS_DONE]...`
 
-**Constraints:**    
+**Constraints:**
 1. `NAME` cannot be the same as another existing project's name in the address book. Checks are case-insensitive.
 
-**Optional Fields:**    
+**Optional Fields:**
 1. `DEADLINE` - if prefix dl/ is missing in the command, the added project will not have any deadlines assigned to it.
 
 **Example of usage:**    
@@ -817,7 +818,7 @@ for each client successfully added.
 
 > Finds the details of an existing developer in the address book.
 
-**Format:** 
+**Format:**
 `find-developer [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DATE_JOINED] 
 [r/ROLE] [s/SALARY] [pr/PROJECT_NAME] [g/GITHUB_ID] [rt/RATING]`
 
@@ -829,7 +830,7 @@ for each client successfully added.
 * You can combine multiple attributes for a more specific search.
 * The search is case-insensitive, so you can use any case for the search criteria.
 
-**Example of usage:** 
+**Example of usage:**
 `find-developer pr/2103T rt/5.0`
 
 * Prints developers in 2103/T project with a 5-star rating.
@@ -849,7 +850,7 @@ followed by the matching developer's details in the GUI.
 
 > Finds the details of an existing client in the address book.
 
-**Format:** 
+**Format:**
 `find-client [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [o/ORGANISATION] [pr/PROJECT] [d/DOCUMENT]`
 
 **Additional notes:**
@@ -860,7 +861,8 @@ followed by the matching developer's details in the GUI.
 * You can combine multiple attributes for a more specific search.
 * The search is case-insensitive, so you can use any case for the search criteria.
 
-**Example of usage:** `find-client o/Google r/Senior developer`
+**Example of usage:** 
+`find-client o/Google r/Senior developer`
 
 * Prints clients from Google with the Senior developer role.
 
