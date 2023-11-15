@@ -381,8 +381,7 @@ Password changed successfully.
 
 > Adds a new developer with the given details to the address book.
 
-**Format:**
-
+**Format:**    
 `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`
 
 **Constraints:**
@@ -400,8 +399,7 @@ Password changed successfully.
   may not be reflected as clearly in the coloured stars.
 
 
-**Example of usage:**
-
+**Example of usage:**    
 `add-developer n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite s/4500 d/11-11-2023 g/johng rt/3`
 
 Adds a new developer `John Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
@@ -430,14 +428,14 @@ Entered details of a developer incorrectly? You can always undo the action with 
 
 > Adds a new client to the address book.
 
-Format: `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`
-
+Format: `add-client n/NAME p/PHONE e/EMAIL a/ADDRESS r/ROLE [pr/PROJECT]... o/ORGANISATION do/DOCUMENT`    
 * Adds the client with the given details to the address book.
 * Not specifying any `PROJECT_NAME` will add the client without assigning them to any projects.
 * `NAME` cannot be the same as another existing client's name in the address book. Checks are case-insensitive.
 * If specified, `PROJECT_NAME` should be the exact name of an existing project.
 
-Example of usage: `add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
+Example of usage:    
+`add-client n/Jack Doe p/98765432 e/jackd@example.com a/311, Clementi Ave 2, #02-25 r/Developer pr/AndroidApp pr/CustomWebsite o/Google do/google.com`
 
 * Adds a new client `Jack Doe` with the respective details, who is assigned to the projects `AndroidApp` and `CustomWebsite`,
   given that they already exist in the address book.
