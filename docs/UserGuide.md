@@ -379,7 +379,7 @@ Locked all data
 
 **Constraints:**    
 1. Only unlocks if password exactly matches the current password (which is the last set password).
-   * Note: The default password is `Password123!`. It is highly recommended to change to a different password with the [`change-password` command](#change-password--chanage-password).
+   * Note: The default password is `Password123!`. It is highly recommended to change to a different password with the [`change-password` command](#change-password--change-password).
 
 **Example of usage:** `unlock pw/Password123!`
 
