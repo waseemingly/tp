@@ -379,15 +379,19 @@ Password changed successfully.
 --------------------------------------------------------------------------------------------------------------------
 #### Add developer : `add-developer`
 
-> Adds a new developer to the address book.
+> Adds a new developer with the given details to the address book.
 
 Format: `add-developer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DATE_JOINED] r/ROLE s/SALARY [pr/PROJECT_NAME]... g/GITHUB_ID rt/RATING`
 
-* Adds the developer with the given details to the address book.
-* Not specifying any `PROJECT_NAME` will add the developer without assigning them to any projects.
-* Not specifying the `DATE_JOINED` will automatically use today's date as the date joined.
-* `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
-* If specified, `PROJECT_NAME` should be the exact name of an existing project.
+**Constraints:**
+  1. `NAME` cannot be the same as another existing developer's name in the address book. Checks are case-insensitive.
+  2. `PROJECT_NAME` should be the exact name of an existing project if specified.
+     If project to be assigned does not exist, consider [adding the project](#add-project) first!
+
+**Optional Fields:**
+  1. `PROJECT_NAME` - if prefix pr/ is missing in the command, added developer will not be assigned to any projects
+  2. `DATE_JOINED`  - if prefix d/ is missing in the command, added developer's date joined will automatically use today's date
+
 * Note that for `RATING` values that are not in increments of 0.5 (eg. 3.2 or 3.8 instead of 3.0 or 3.5), the decimal portion
   may not be reflected as clearly in the coloured stars.
 
