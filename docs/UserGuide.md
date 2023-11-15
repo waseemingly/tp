@@ -716,14 +716,17 @@ You can always undo the action with the [`undo`](#undo) command!
 **Format:** `import-developer [FILENAME]`
 
 **Constraints:**    
-1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.    
-2. The CSV file has to strictly follow the column header names and order (given in the example).    
-   The entire command will abort if any of column headers do not follow the given format.    
-3. `NAME` and `PROJECT_NAME` fields for developers to be added via the import feature have the same constraints as the [`add-developer` command constrainsts](#add-developer). The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
+1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.
 
-**Optional Fields:** 
+2. The CSV file has to strictly follow the column header names and order (given in the example).    
+   The entire command will abort if any of column headers do not follow the given format.
+
+3. `NAME` and `PROJECT_NAME` fields for developers to be added via the import feature have the same constraints as the [`add-developer` command](#add-developer) constraints.    
+   The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
+
+**Optional Fields:**     
 While `PROJECT` and `DATE JOINED` column headers are compulsory, they are optional fields, where values (corresponding to the developer to be added) under these columns can be empty.    
-  * If values are empty, corresponding developers will be added with `DATE JOINED` automatically set to today and/or with no projects assigned to them, like the [`add-developer` command](#add-developer).
+> If values are empty, corresponding developers will be added with `DATE JOINED` automatically set to today and/or with no projects assigned to them, like the [`add-developer` command](#add-developer).
 
 
 Example of valid CSV:
@@ -765,14 +768,16 @@ Reads a CSV file and populates the addressbook with the clients provided.
 **Format:** `import-client [FILENAME]`
 
 **Constraints:**    
-1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.    
+1. The CSV file has to be in the same folder as the JAR file for the command to function correctly.
+   
 2. The CSV file has to strictly follow the column header names and order (given in the example).    
-   The entire command will abort if any of column headers do not follow the given format.    
-3. `NAME` and `PROJECT_NAME` fields for clients to be added via the import feature have the same constraints as the [`add-client` command constrainsts](#add-client). The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
+   The entire command will abort if any of column headers do not follow the given format.
 
-**Optional Fields:** 
+3. `NAME` and `PROJECT_NAME` fields for clients to be added via the import feature have the same constraints as the [`add-client` command](#add-client) constraints. The entire command will abort if any of the rows have invalid values that do not comply with given constraints.    
+
+**Optional Fields:**       
 While the `PROJECT` column header is compulsory, it is an optional fields, where values (corresponding to the client to be added) under this column can be empty.    
-  * If values under the `PROJECT` column are empty, corresponding clients will be added with no projects assigned to them, like the [`add-client` command](#add-client).
+> If values under the `PROJECT` column are empty, corresponding clients will be added with no projects assigned to them, like the [`add-client` command](#add-client).
 
 
 Example of valid CSV:
