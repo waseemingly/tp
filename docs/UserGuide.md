@@ -606,7 +606,7 @@ Deleted a wrong developer? You can always undo the action with the [`undo`](#und
 **Constraints:**
 1. `INDEX` cannot be greater than the number of clients in the list.
 
-**Example of usage:** `delete-client 3` 
+**Example of usage:** `delete-client 3`
 
 When command succeeds, CLI shows:
 ```
